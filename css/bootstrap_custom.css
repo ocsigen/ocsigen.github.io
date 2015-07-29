@@ -1,0 +1,18 @@
+/* Sticky footer styles */
+
+body {
+    padding-top: 50px;
+}
+
+.container {
+    width: auto;
+    max-width: 42em;
+}
+
+.main-matter p {
+    text-align: justify;
+}
+
+.main-matter ul {
+    text-align: justify;
+}
