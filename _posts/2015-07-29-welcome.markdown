@@ -4,9 +4,8 @@ layout: default
 author: The Editor
 ---
 
-The [Ocsigen][ocsigen] project finally has a blog, where you will be
-able to find news from the wider Ocsigen community, tutorials, and
-more.
+The [Ocsigen][ocsigen] project finally has a blog. We are planning to
+publish news from the wider Ocsigen community, tutorials, and more.
 
 Ocsigen encompasses the building blocks that you need in order to
 efficiently develop Web applications in [OCaml][ocaml].  Among other

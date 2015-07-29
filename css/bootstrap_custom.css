@@ -1,12 +1,7 @@
-/* Sticky footer styles */
-
-body {
-    padding-top: 50px;
-}
-
-.container {
-    width: auto;
-    max-width: 42em;
+@media (min-width: 1200px) {
+    .container {
+        width: 970px;
+    }
 }
 
 .main-matter p {

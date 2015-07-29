@@ -1,13 +1,66 @@
 ---
 redirect_from: "/"
-layout: default
+layout: null
 ---
 
-<ul class="list-unstyled">
-  {% for post in site.posts %}
-  <li>
-    <a href="{{ post.url }}">{{ post.title }}</a>
-    {{ post.date | date: '%B %d, %Y' }}
-  </li>
-  {% endfor %}
-</ul>
+{% include header.html %}
+
+<div class="row">
+
+  <div class="col-md-8">
+
+    {% for post in site.posts limit:1 %}
+
+    <h1 class="page-header">
+      <a href="{{ post.url }}">{{post.title}}</a>
+      {% if post.date %}
+      <br>
+      <small>
+        {% if post.author %}
+        Written by {{ post.author }} on
+        {% endif %}
+        {{ post.date | date: '%B %d, %Y' }}
+      </small>
+      {% endif %}
+    </h1>
+
+    {{ post.content }}
+
+    {% else %}
+
+    <h1 class="page-header">Welcome!</h1>
+    <div class="alert alert-warning" role="alert">No posts!</div>
+
+    {% endfor %}
+
+  </div>
+
+  <div class="col-md-4">
+    <h1 class="page-header">Older Posts</h1>
+
+    {% for post in site.posts offset:1 %}
+
+    {% if forloop.first == true %}
+    <ul class="media-list">
+      {% endif %}
+      <li class="media">
+        <h4 class="media-heading">
+          <a href="{{ post.url }}">{{ post.title }}</a>
+          <small>{{ post.date | date: '%B %d, %Y' }}</small>
+        </h4>
+      </li>
+      {% if forloop.last == true %}
+    </ul>
+    {% endif %}
+
+    {% else %}
+
+    <div class="alert alert-warning" role="alert">No posts!</div>
+
+    {% endfor %}
+
+  </div>
+
+</div>
+
+{% include footer.html %}
