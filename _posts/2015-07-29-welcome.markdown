@@ -1,10 +1,12 @@
 ---
 title: Welcome to the Ocsigen Blog!
 layout: default
+author: The Editor
 ---
 
-The [Ocsigen][ocsigen] project finally has a blog. Here, you will find
-news from the wider Ocsigen community, tutorials, and more.
+The [Ocsigen][ocsigen] project finally has a blog, where you will be
+able to find news from the wider Ocsigen community, tutorials, and
+more.
 
 Ocsigen encompasses the building blocks that you need in order to
 efficiently develop Web applications in [OCaml][ocaml].  Among other
@@ -26,7 +28,7 @@ libraries and tools, Ocsigen provides:
 The blog content lives in a [Git repository][repo], and gets served by
 means of the [GitHub Pages][githubpages] infrastructure. We welcome
 contributions! Fork the repository, add a
-[Markdown][markdown]-formatted article under `posts/`, and initiate a
+[Markdown][markdown]-formatted article under `_posts/`, and initiate a
 [pull request][githubpr].
 
 Happy hacking, and stay tuned!

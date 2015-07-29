@@ -18,7 +18,7 @@
 
     <!-- Custom styles for this template -->
     <link href="/css/bootstrap_custom.css" rel="stylesheet">
-    
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements
     and media queries -->
     <!--[if lt IE 9]>
@@ -26,9 +26,9 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-       <link rel="alternate" type="application/atom+xml"
-             title="Ocsigen Bloga"
-             href="/feed.xml">
+    <link rel="alternate" type="application/atom+xml"
+          title="Ocsigen Bloga"
+          href="/feed.xml">
 
   </head>
 
@@ -67,6 +67,15 @@
       </h1>
 
       {{ content }}
+
+      {% if page.date %}
+      <p class="text-muted">
+        {% if page.author %}
+        Written by {{ page.author }} on
+        {% endif %}
+        {{ page.date | date: '%B %d, %Y' }}
+      </p>
+      {% endif %}
 
     </div><!-- /.container -->
 
