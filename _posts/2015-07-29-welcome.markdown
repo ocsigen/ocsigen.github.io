@@ -1,7 +1,7 @@
 ---
 title: Welcome to the Ocsigen Blog!
 layout: default
-author: The Editor
+author: The Ocsigen Team
 ---
 
 The [Ocsigen][ocsigen] project finally has a blog. We are planning to

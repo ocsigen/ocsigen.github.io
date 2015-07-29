@@ -2,7 +2,7 @@
 
 <div class="row">
 
-  <div class="col-md-8">
+  <div class="col-sm-8">
 
     <h1 class="page-header">
       {{ page.title }}
@@ -10,7 +10,7 @@
       <br>
       <small>
         {% if page.author %}
-        Written by {{ page.author }} on
+        Written by <em>{{ page.author }}</em> on
         {% endif %}
         {{ page.date | date: '%B %d, %Y' }}
       </small>
@@ -21,7 +21,7 @@
 
   </div>
 
-  <div class="col-md-4">
+  <div class="col-sm-4">
 
     <h1 class="page-header">Other Posts</h1>
 

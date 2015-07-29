@@ -1,7 +1,5 @@
-@media (min-width: 1200px) {
-    .container {
-        width: 970px;
-    }
+.container-fluid {
+    max-width: 970px;
 }
 
 .main-matter p {

@@ -7,7 +7,7 @@ layout: null
 
 <div class="row">
 
-  <div class="col-md-8">
+  <div class="col-sm-8">
 
     {% for post in site.posts limit:1 %}
 
@@ -17,7 +17,7 @@ layout: null
       <br>
       <small>
         {% if post.author %}
-        Written by {{ post.author }} on
+        Written by <em>{{ post.author }}</em> on
         {% endif %}
         {{ post.date | date: '%B %d, %Y' }}
       </small>
@@ -35,7 +35,7 @@ layout: null
 
   </div>
 
-  <div class="col-md-4">
+  <div class="col-sm-4">
     <h1 class="page-header">Older Posts</h1>
 
     {% for post in site.posts offset:1 %}
