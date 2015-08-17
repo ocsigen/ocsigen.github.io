@@ -20,7 +20,7 @@ layout: null
     <title>{{ post.title }}</title>
     <link href="http://ocsigen.github.io{{ post.url }}"/>
     <updated>{{ post.date | date_to_xmlschema }}</updated>
-    <id>/ocsigen/{{ post.id }}</id>
+    <id>/ocsigen{{ post.id }}</id>
     <content type="html">{{ post.content | xml_escape }}</content>
   </entry>
   {% endfor %}
