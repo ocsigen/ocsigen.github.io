@@ -11,7 +11,7 @@ layout: null
         href="https://ocsigen.github.io"
         rel="alternate" />
   <updated>{{ site.time | date_to_xmlschema }}</updated>
-  <id>http://ocsigen.github.io</id>
+  <id>https://ocsigen.github.io</id>
   <author>
     <name>Ocsigen Project</name>
   </author>

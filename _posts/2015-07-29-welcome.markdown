@@ -32,13 +32,13 @@ contributions! Fork the repository, add a
 
 Happy hacking, and stay tuned!
 
-[ocsigen]: http://www.ocsigen.org
-[ocaml]: http://www.ocaml.org
-[os]: http://ocsigen.org/ocsigenserver
-[jsoo]: http://ocsigen.org/js_of_ocaml/
-[eliom]: http://ocsigen.org/eliom
-[tyxml]: http://ocsigen.org/tyxml
-[lwt]: http://ocsigen.org/lwt
+[ocsigen]: https://www.ocsigen.org
+[ocaml]: https://www.ocaml.org
+[os]: https://ocsigen.org/ocsigenserver
+[jsoo]: https://ocsigen.org/js_of_ocaml/
+[eliom]: https://ocsigen.org/eliom
+[tyxml]: https://ocsigen.org/tyxml
+[lwt]: https://ocsigen.org/lwt
 [githubpages]: https://pages.github.com/
 [githubpr]: https://help.github.com/articles/using-pull-requests/
 [repo]: https://www.github.com/ocsigen/ocsigen.github.io
