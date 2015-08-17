@@ -9,7 +9,7 @@ layout: null
 
   <div class="col-sm-8">
 
-    {% for post in site.posts limit:1 %}
+    {% for post in site.posts %}
 
     <h1 class="page-header">
       <a href="{{ post.url }}">{{post.title}}</a>
@@ -38,14 +38,14 @@ layout: null
   <div class="col-sm-4">
     <h1 class="page-header">Older Posts</h1>
 
-    {% for post in site.posts offset:1 %}
+    {% for post in site.posts %}
 
     {% if forloop.first == true %}
     <ul class="media-list">
       {% endif %}
       <li class="media">
         <h4 class="media-heading">
-          <a href="{{ post.url }}">{{ post.title }}</a>
+          <a href="{{ post.url }}">{{ post.title }}</a><br/>
           <small>{{ post.date | date: '%B %d, %Y' }}</small>
         </h4>
       </li>
