@@ -3,7 +3,6 @@ layout: null
 ---
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  
   <title type="text" xml:lang="en">{{ site.root_desc }}</title>
   <link type="application/atom+xml"
         href="http://ocsigen.github.io/feed.xml"
@@ -14,15 +13,14 @@ layout: null
   <updated>{{ site.time | date_to_xmlschema }}</updated>
   <id>http://ocsigen.github.io</id>
   <author>
-    <name>Ocsigen Projec</name>
+    <name>Ocsigen Project</name>
   </author>
-  
-  {% for post in site.posts limit:20 %}
+  {% for post in site.posts %}
   <entry>
     <title>{{ post.title }}</title>
     <link href="http://ocsigen.github.io{{ post.url }}"/>
     <updated>{{ post.date | date_to_xmlschema }}</updated>
-    <id>http://ocsigen.github.io{{ post.id }}</id>
+    <id>/ocsigen/{{ post.id }}</id>
     <content type="html">{{ post.content | xml_escape }}</content>
   </entry>
   {% endfor %}
