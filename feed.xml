@@ -3,25 +3,24 @@ layout: null
 ---
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title type="text" xml:lang="en">{{ site.root_desc }}</title>
-  <link type="application/atom+xml"
-        href="https://ocsigen.github.io/feed.xml"
-        rel="self" />
-  <link type="text"
-        href="https://ocsigen.github.io"
-        rel="alternate" />
+  <title>{{ site.title | xml_escape }}</title>
+  <link href="https://ocsigen.github.io/feed.xml" rel="self" />
+  <link href="{{ site.baseurl | prepend: site.url }}" />
   <updated>{{ site.time | date_to_xmlschema }}</updated>
-  <id>https://ocsigen.github.io</id>
+  <id>https://ocsigen.github.io/</id>
   <author>
     <name>Ocsigen Project</name>
   </author>
   {% for post in site.posts %}
   <entry>
     <title>{{ post.title }}</title>
-    <link href="https://ocsigen.github.io{{ post.url }}"/>
+    <link href="{{ post.url | prepend: site.baseurl | prepend: site.url }}" />
     <updated>{{ post.date | date_to_xmlschema }}</updated>
-    <id>/ocsigen{{ post.id }}</id>
+    <id>tag:ocsigen.github.io,{{post.date| date: "%F" }}:{{ post.id }}</id>
     <content type="html">{{ post.content | xml_escape }}</content>
+    <author>
+      <name>{{ post.author }}</name>
+    </author>
   </entry>
   {% endfor %}
 </feed>

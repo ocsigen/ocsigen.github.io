@@ -1,3 +1,7 @@
 permalink: /blog/:year/:month/:day/:title/
 gems:
   - jekyll-redirect-from
+
+title: "Ocsigen Blog"
+url: https://ocsigen.github.io
+baseurl: ""
