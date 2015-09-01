@@ -71,14 +71,49 @@ So each time the signal value will be updated by the controller, the css_visibil
 
 ### Reactive list
 
-TODO
+Having reactive attributes would not be enough to build a user interface. We also need to be able to have a reactive list of child nodes. This is for instance the case to display the tasks list ([the source code section is the same than for the first example](https://github.com/slegrand45/examples_ocsigen/blob/d6766d404a449d0b1d36ad3cd916b0c444390a19/jsoo/todomvc-react/todomvc.ml#L267-L299)). It's a list of `<li>` contained in a `<ul>`. So we have a reactive node:
+
+{% highlight ocaml %}
+R.Html5.ul ~a:[a_class ["todo-list"]] rl
+{% endhighlight %}
+
+As before, we use the Tyxml_js.R.Html5 module. But this time it's not on an attribute, it's on the `<ul>` element. The `rl` value contains the node's children:
+
+{% highlight ocaml %}
+let rl = ReactList.list (React.S.map visible_tasks r)
+{% endhighlight %}
+
+We create the reactive list with the helper module [ReactList](https://github.com/slegrand45/examples_ocsigen/blob/d6766d404a449d0b1d36ad3cd916b0c444390a19/jsoo/todomvc-react/todomvc.ml#L3). And as for the previous example, we use React.S.map to build a reactive signal. The `r` value is again the primitive signal. The `visible_task` function generates the `<li>` elements from the tasks list, filtered by the current selected visibility: 
+
+{% highlight ocaml %}
+let visible_tasks m =
+    let visibility = m.Model.visibility in
+    let is_visible todo =
+      match visibility with
+      | Model.Completed -> todo.Model.completed
+      | Active -> not todo.completed
+      | All -> true
+    in
+    let tasks = List.filter is_visible m.Model.tasks in
+    List.rev(List.fold_left (todo_item (r, f)) [] tasks)
+{% endhighlight %}
+
+Following the same principle than for the reactive attribute, each time the signal value will be updated by the controller, the `<li>` nodes will be automatically refreshed.
 
 ### Signal typing
 
-TODO
+You may have notice that the code [includes these types](https://github.com/slegrand45/examples_ocsigen/blob/d6766d404a449d0b1d36ad3cd916b0c444390a19/jsoo/todomvc-react/todomvc.ml#L89-L91):
 
 {% highlight ocaml %}
 type rs = Model.t React.signal
 type rf = ?step:React.step -> Model.t -> unit
 type rp = rs * rf
 {% endhighlight %}
+
+They are used to specify the type of arguments in some functions. For instance, in the `update` function from Controller module:
+
+{% highlight ocaml %}
+let update a ((r, f) : rp) =
+{% endhighlight %}
+
+It seems that this explicit typing is required, or else the compiler complains.
