@@ -20,16 +20,16 @@ Besides these three MVC modules, the application uses also two helpers. [Storage
 
 #### React
 
-[React](http://erratique.ch/software/react) is an OCaml module for [functional reactive programming](https://en.wikipedia.org/wiki/Functional_reactive_programming) (FRP). In this TodoMVC example, React is used to automatically refresh the view whenever a new model is built by the controller. 
+[React](http://erratique.ch/software/react) is an OCaml module for [functional reactive programming](https://en.wikipedia.org/wiki/Functional_reactive_programming) (FRP). In this TodoMVC example, React gives a way to automatically refresh the view whenever a new model is built by the controller. How is this done? The application uses a reactive signal which carries the varying model values over time. At the beginning, the model value may be the [empty model](https://github.com/slegrand45/examples_ocsigen/blob/d6766d404a449d0b1d36ad3cd916b0c444390a19/jsoo/todomvc-react/todomvc.ml#L60-L65). But at any specific point in time, the reactive signal contains a model value. When this value is modified by the controller (a new model has been generated), the view automatically refresh its reactive parts.
 
 #### Mixing the two
 
-The following figure shows what happens when the user interacts with the application:
+The following figure shows what happens when the user interacts with the application (add a new task, click on a checkbox to select a specific task...):
 
 ![MVC with React](/img/posts/2015/react-example-todomvc-steps.png)
 
 1. the view sends the action to the controller ;
-2. the controller gets the current model and build a new one accordingly to the action ;
+2. the controller gets the current model from the reactive signal and build a new model accordingly to the action ;
 3. the controller sets this new model as the new reactive signal value ;
 4. the view detects that a new model is available (the view reacts to the new signal value) and updates itself with the new model data.
 
