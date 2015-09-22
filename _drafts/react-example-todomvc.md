@@ -43,7 +43,7 @@ The [main function](https://github.com/slegrand45/examples_ocsigen/blob/d6766d40
 let rp = React.S.create m in
 {% endhighlight %}
 
-React.S.create returns a tuple. The first value is a primitive signal. The second value is a function which will be used later by the controller [to set a new model as the new signal value](https://github.com/slegrand45/examples_ocsigen/blob/d6766d404a449d0b1d36ad3cd916b0c444390a19/jsoo/todomvc-react/todomvc.ml#L170).
+`React.S.create` returns a tuple. The first value is a primitive signal. The second value is a function which will be used later by the controller [to set a new model as the new signal value](https://github.com/slegrand45/examples_ocsigen/blob/d6766d404a449d0b1d36ad3cd916b0c444390a19/jsoo/todomvc-react/todomvc.ml#L170).
 
 ### Reactive attribute
 
@@ -53,7 +53,7 @@ This first example explains how the CSS style of a HTML node becomes reactive ([
 R.Html5.a_style (React.S.map css_visibility r)
 {% endhighlight %}
 
-The first thing to note is that we use the Tyxml_js.R.Html5 module instead of the Tyxml_js.Html5 one. Tyxml_js.R.Html5 is simply the Reactive counterpart of Tyxml_js.Html5. As it's a reactive attribute, the a_style function waits a reactive signal as its argument. Here we use React.S.map which have the signature `('a -> 'b) -> 'a React.signal -> 'b React.signal`. This map function takes as its first argument a function named css_visibility:
+The first thing to note is that we use the `Tyxml_js.R.Html5` module instead of the `Tyxml_js.Html5` one. `Tyxml_js.R.Html5` is simply the Reactive counterpart of `Tyxml_js.Html5`. As it's a reactive attribute, the a_style function waits a reactive signal as its argument. Here we use `React.S.map` which have the signature `('a -> 'b) -> 'a React.signal -> 'b React.signal`. This map function takes as its first argument a function named `css_visibility`:
 
 {% highlight ocaml %}
 let css_visibility m =
@@ -63,11 +63,11 @@ let css_visibility m =
       | _ -> "visibility: visible;"
 {% endhighlight %}
 
-As you can see, this function takes a model `m` as its argument. In fact, thanks to React.S.map, it takes the signal value as its argument. And then the function returns the right style regarding if the tasks list is empty or not.
+As you can see, this function takes a model `m` as its argument. In fact, thanks to `React.S.map`, it takes the signal value as its argument. And then the function returns the right style regarding if the tasks list is empty or not.
 
-The second argument to React.S.map is the value named `r`. Remember when we created the reactive signal with React.S.create? This `r` is simply the first returned value, the primitive signal.
+The second argument to `React.S.map` is the value named `r`. Remember when we created the reactive signal with `React.S.create`? This `r` is simply the first returned value, the primitive signal.
 
-So each time the signal value will be updated by the controller, the css_visibility function will be automatically called with the new signal value (a new model) as its argument and the style attribute will be automatically modified.
+So each time the signal value will be updated by the controller, the `css_visibility` function will be automatically called with the new signal value (a new model) as its argument and the style attribute will be automatically modified.
 
 ### Reactive list
 
@@ -77,13 +77,13 @@ Having reactive attributes would not be enough to build a user interface. We als
 R.Html5.ul ~a:[a_class ["todo-list"]] rl
 {% endhighlight %}
 
-As before, we use the Tyxml_js.R.Html5 module. But this time it's not on an attribute, it's on the `<ul>` element. The `rl` value contains the node's children:
+As before, we use the `Tyxml_js.R.Html5` module. But this time it's not on an attribute, it's on the `<ul>` element. The `rl` value contains the node's children:
 
 {% highlight ocaml %}
 let rl = ReactList.list (React.S.map visible_tasks r)
 {% endhighlight %}
 
-We create the reactive list with the helper module [ReactList](https://github.com/slegrand45/examples_ocsigen/blob/d6766d404a449d0b1d36ad3cd916b0c444390a19/jsoo/todomvc-react/todomvc.ml#L3). And as for the previous example, we use React.S.map to build a reactive signal. The `r` value is again the primitive signal. The `visible_task` function generates the `<li>` elements from the tasks list, filtered by the current selected visibility: 
+We create the reactive list with the helper module [ReactList](https://github.com/slegrand45/examples_ocsigen/blob/d6766d404a449d0b1d36ad3cd916b0c444390a19/jsoo/todomvc-react/todomvc.ml#L3). And as for the previous example, we use `React.S.map` to build a reactive signal. The `r` value is again the primitive signal. The `visible_task` function generates the `<li>` elements from the tasks list, filtered by the current selected visibility:
 
 {% highlight ocaml %}
 let visible_tasks m =
