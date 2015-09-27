@@ -20,7 +20,7 @@ Besides these three MVC modules, the application also uses three helpers. [Stora
 
 #### React
 
-[React](http://erratique.ch/software/react) is an OCaml module for [functional reactive programming](https://en.wikipedia.org/wiki/Functional_reactive_programming) (FRP). In this TodoMVC example, React gives a way to automatically refresh the view whenever a new model is built by the controller. How is this done? The application uses a reactive signal which carries the varying model values over time. At the beginning, the model value may be the [empty model](https://github.com/slegrand45/examples_ocsigen/blob/d6766d404a449d0b1d36ad3cd916b0c444390a19/jsoo/todomvc-react/todomvc.ml#L60-L65). But at any specific point in time, the reactive signal contains a model value. When this value is modified by the controller (a new model has been generated), the view automatically refresh its reactive parts.
+[React](http://erratique.ch/software/react) is an OCaml module for [functional reactive programming](https://en.wikipedia.org/wiki/Functional_reactive_programming) (FRP). In this TodoMVC example, React gives a way to automatically refreshes the view whenever a new model is built by the controller. To achieve this goal, the application uses a reactive signal which carries the varying model values over time. At the beginning, the model value may be the [empty model](https://github.com/slegrand45/examples_ocsigen/blob/d6766d404a449d0b1d36ad3cd916b0c444390a19/jsoo/todomvc-react/todomvc.ml#L60-L65). But at any specific point in time, the reactive signal contains a model value. When this value is modified by the controller (a new model has been generated), the view automatically refresh its reactive parts.
 
 #### Mixing the two
 
