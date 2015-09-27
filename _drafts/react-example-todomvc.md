@@ -102,7 +102,7 @@ Following the same principle than for the reactive attribute, each time the sign
 
 ### Signal typing
 
-You may have notice that the code [includes these types](https://github.com/slegrand45/examples_ocsigen/blob/d6766d404a449d0b1d36ad3cd916b0c444390a19/jsoo/todomvc-react/todomvc.ml#L89-L91):
+You may have noticed that the code [includes these types](https://github.com/slegrand45/examples_ocsigen/blob/d6766d404a449d0b1d36ad3cd916b0c444390a19/jsoo/todomvc-react/todomvc.ml#L89-L91):
 
 {% highlight ocaml %}
 type rs = Model.t React.signal
