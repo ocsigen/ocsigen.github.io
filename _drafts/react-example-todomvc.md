@@ -65,7 +65,7 @@ let css_visibility m =
 
 As you can see, this function takes a model `m` as its argument. In fact, thanks to `React.S.map`, it takes the signal value as its argument. And then the function returns the right style regarding if the tasks list is empty or not.
 
-The second argument to `React.S.map` is the value named `r`. Remember when we created the reactive signal with `React.S.create`? This `r` is simply the first returned value, the primitive signal.
+The second argument to `React.S.map` is the value named `r`. This is the primitive signal, the first value returned by the `React.S.create` function.
 
 So each time the signal value will be updated by the controller, the `css_visibility` function will be automatically called with the new signal value (a new model) as its argument and the style attribute will be automatically modified.
 
