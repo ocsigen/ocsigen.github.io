@@ -126,4 +126,4 @@ One major difference is obviously the language. But Elm is nonetheless quite und
 
 ### Conclusion
 
-The addition of OCaml + js_of_ocaml + Functional Reactive Programming gives a killer features combination to build rich client for a web application. OCaml strong typing associated with the ability to check the HTML validity at compile time thanks to Tyxml also increase reliability.
+The addition of OCaml + js_of_ocaml + Functional Reactive Programming provides a killer features combination to build rich client for a web application. OCaml static typing associated with the ability to check the HTML validity at compile time thanks to Tyxml also increase reliability.
