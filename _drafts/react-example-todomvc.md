@@ -120,7 +120,7 @@ It seems that this explicit typing is required, or else the compiler complains.
 
 ### Comparison with Elm implementation
 
-[Elm](http://elm-lang.org/) is a functional programming language dedicated to web fontend application designed by Evan Czaplicki. This example is based on the [Elm TodoMVC implementation](https://github.com/evancz/elm-todomvc). It follows the same structure used in [all Elm programs](https://github.com/evancz/elm-architecture-tutorial/): a model, an update function and a view. And, like Elm, it also uses the Functional Reactive Programming (FRP) style thanks to the React library and the reactive modules Tyxml_js.R and ReactiveData.
+[Elm](http://elm-lang.org/) is a functional programming language dedicated to web frontend application designed by Evan Czaplicki. This example is based on the [Elm TodoMVC implementation](https://github.com/evancz/elm-todomvc). It follows the same structure used in [all Elm programs](https://github.com/evancz/elm-architecture-tutorial/): a model, an update function and a view. And, like Elm, it also uses the Functional Reactive Programming (FRP) style thanks to the React library and the reactive modules Tyxml_js.R and ReactiveData.
 
 One major difference is obviously the language. But Elm is nonetheless quite understandable for an OCaml software developer, and even more for any Haskell programmer.
 
