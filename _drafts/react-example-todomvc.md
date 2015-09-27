@@ -53,7 +53,7 @@ This first example explains how the CSS style of a HTML node becomes reactive ([
 R.Html5.a_style (React.S.map css_visibility r)
 {% endhighlight %}
 
-We use the `Tyxml_js` module to safely build the HTML code. But the first thing to note is that we use its `R.Html5` submodule instead of the `Html5` one. `R.Html5` is simply the Reactive counterpart of `Html5`. As it's a reactive attribute, the a_style function waits a reactive signal as its argument. Here we use `React.S.map` which have the signature `('a -> 'b) -> 'a React.signal -> 'b React.signal`. This map function takes as its first argument a function named `css_visibility`:
+We use the `Tyxml_js` module to safely build the HTML code. The first thing to note is that we use its `R.Html5` submodule instead of the `Html5` one. `R.Html5` is simply the Reactive counterpart of `Html5`. As it's a reactive attribute, the a_style function expects a reactive signal as its argument. Here we use `React.S.map` which have the signature `('a -> 'b) -> 'a React.signal -> 'b React.signal`. This map function takes as its first argument a function named `css_visibility`:
 
 {% highlight ocaml %}
 let css_visibility m =
