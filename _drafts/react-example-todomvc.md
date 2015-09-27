@@ -1,5 +1,5 @@
 ---
-title: TodoMVC example, a React version
+title: 'TodoMVC: a reactive version'
 layout: default
 author: Stéphane Legrand
 ---
