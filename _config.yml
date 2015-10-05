@@ -5,3 +5,7 @@ gems:
 title: "Ocsigen Blog"
 url: https://ocsigen.github.io
 baseurl: ""
+
+syntax-highlighting:
+  enabled: true
+  css: syntax.css
