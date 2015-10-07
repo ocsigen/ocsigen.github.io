@@ -10,7 +10,13 @@
       <br>
       <small>
         {% if page.author %}
-        Written by <em>{{ page.author }}</em> on
+        Written by
+        {% if page.authorurl %}
+        <a href="{{ page.authorurl }}">{{ page.author }}</a>
+        {% else %}
+        {{ page.author }}
+        {% endif %}
+        on
         {% endif %}
         {{ page.date | date: '%B %d, %Y' }}
       </small>

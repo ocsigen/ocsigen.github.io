@@ -17,7 +17,13 @@ layout: null
       <br>
       <small>
         {% if post.author %}
-        Written by <em>{{ post.author }}</em> on
+        Written by
+        {% if post.authorurl %}
+        <a href="{{ post.authorurl }}">{{ post.author }}</a>
+        {% else %}
+        {{ post.author }}
+        {% endif %}
+        on
         {% endif %}
         {{ post.date | date: '%B %d, %Y' }}
       </small>

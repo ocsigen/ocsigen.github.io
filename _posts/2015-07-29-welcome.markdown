@@ -2,6 +2,7 @@
 title: Welcome to the Ocsigen Blog!
 layout: default
 author: The Ocsigen Team
+authorurl: https://ocsigen.org
 ---
 
 The [Ocsigen][ocsigen] project finally has a blog. We are planning to

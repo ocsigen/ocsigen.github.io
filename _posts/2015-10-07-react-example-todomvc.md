@@ -2,6 +2,7 @@
 title: 'TodoMVC: a reactive version'
 layout: default
 author: Stéphane Legrand
+authorurl: https://stephanelegrand.wordpress.com/
 ---
 
 [TodoMVC](http://todomvc.com/) is a project which offers the same Todo
