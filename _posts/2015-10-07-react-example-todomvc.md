@@ -5,7 +5,7 @@ author: Stéphane Legrand
 ---
 
 [TodoMVC](http://todomvc.com/) is a project which offers the same Todo
-application implemented using [MV*][mvc] concepts in most of the
+application implemented using [MV\*][mvc] concepts in most of the
 popular JavaScript MV* frameworks. One of the aims of TodoMVC is to
 enable a fair comparison between several frameworks, by providing
 implementations of the same application. A [js_of_ocaml (JSOO)][jsoo]
@@ -28,8 +28,8 @@ divides an application into three components:
 
 - the *Model* manages the data, logic and rules of the application;
 
-- the *Controller* manages events from the view and accordingly updates
-  the model;
+- the *Controller* manages events from the view, and accordingly
+  updates the model;
 
 - the *View* generates an output presentation (a web page for
   instance) based on the model data.
@@ -37,9 +37,9 @@ divides an application into three components:
 For the Todo application, we have three corresponding OCaml
 modules. [`Model`][modelsrc] mainly contains the task list and the new
 task field value. It uses [`Deriving_Json`][derivingjson] to convert
-the data to JSON and vice versa, in order to be able to save/restore
-the application state. This module is otherwise written with basic
-OCaml code. [`Controller`][controllersrc] produces new models
+the data to JSON and vice versa, in order to be able to save and
+restore the application state. This module is otherwise written with
+basic OCaml code. [`Controller`][controllersrc] produces new models
 according to the actions it receives. Whenever a new model is built,
 the model becomes the new reactive signal value. We will elaborate on
 this point later. [`View`][viewsrc] builds the HTML to display the
@@ -98,7 +98,7 @@ The [main function][main] creates the reactive signal with an initial
 (possibly empty) model. The `m` value is of type `Model.t`:
 
 {% highlight ocaml %}
-let rp = React.S.create m in
+let rp = React.S.create m in (* ... *)
 {% endhighlight %}
 
 `React.S.create` returns a tuple, the first part of which is a
@@ -174,7 +174,7 @@ let rl = ReactList.list (React.S.map visible_tasks r)
 We create the reactive list via the helper module
 [ReactList][reactlistsrc]. As for the previous example, we use
 `React.S.map` to build a reactive signal, `r` being again the
-primitive signal. The `visible_task` function generates the `<li>`
+primitive signal. The `visible_tasks` function generates the `<li>`
 elements from the task list, filtered by the current selected
 visibility:
 
@@ -198,7 +198,7 @@ automatically refreshed.
 ### Signal typing
 
 You may have noticed that the code [includes the following
-types](https://github.com/slegrand45/examples_ocsigen/blob/d6766d404a449d0b1d36ad3cd916b0c444390a19/jsoo/todomvc-react/todomvc.ml#L89-L91):
+types][types]:
 
 {% highlight ocaml %}
 type rs = Model.t React.signal
@@ -213,7 +213,7 @@ for the `update` function from the `Controller` module:
 let update a ((r, f) : rp) = (* ... *)
 {% endhighlight %}
 
-## Comparison with Elm implementation
+## Comparison with the Elm implementation
 
 [Elm](http://elm-lang.org/) is a functional programming language
 dedicated to frontend web application development. Elm was designed by
@@ -226,15 +226,16 @@ the structure used in [all Elm
 programs](https://github.com/evancz/elm-architecture-tutorial/): a
 model, an update function, and a view. Like Elm, our example uses the
 functional reactive programming style, enabled in our case by the
-React library and the reactive modules `Tyxml_js.R` and
+`React` library and the reactive modules `Tyxml_js.R` and
 `ReactiveData`.
 
 ## Conclusion
 
-The combination of OCaml, js_of_ocaml, and Functional Reactive
-Programming provides a killer feature combination for building rich
-web clients. OCaml static typing associated with compile-time HTML
-validity checking thanks to Tyxml also increase reliability.
+The combination of OCaml, js_of_ocaml, and functional reactive
+programming provides a killer feature combination for building rich
+web clients. Additionally, OCaml static typing can provide
+compile-time HTML validity checking (via TyXML), thus increasing
+reliability.
 
 [mvc]: https://en.wikipedia.org/wiki/Model-view-controller
 [jsoo]: http://ocsigen.org/js_of_ocaml/
@@ -255,3 +256,4 @@ validity checking thanks to Tyxml also increase reliability.
 [main]: https://github.com/slegrand45/examples_ocsigen/blob/d6766d404a449d0b1d36ad3cd916b0c444390a19/jsoo/todomvc-react/todomvc.ml#L393
 [signalval]: https://github.com/slegrand45/examples_ocsigen/blob/d6766d404a449d0b1d36ad3cd916b0c444390a19/jsoo/todomvc-react/todomvc.ml#L170
 [derivingjson]: https://ocsigen.org/js_of_ocaml/api/Deriving_Json
+[types]: https://github.com/slegrand45/examples_ocsigen/blob/d6766d404a449d0b1d36ad3cd916b0c444390a19/jsoo/todomvc-react/todomvc.ml#L89-L91
