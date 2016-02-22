@@ -14,3 +14,8 @@
 .main-matter ul {
     text-align: justify;
 }
+
+p img {
+    width: 100%;
+    border: 4px solid #eee;
+}
