@@ -1,5 +1,5 @@
 ---
-title: Ocsigen, client-server widgets
+title: Ocsigen: client-server widgets
 layout: default
 author: Vincent Balat
 authorurl: http://ocsigen.org
@@ -21,7 +21,7 @@ We choose a very simple widget, that could be the base for example for implement
 
 The following code defines a client-server Web application with only one service, registered at URL / (the root of the website).
 
-The code also defines a client-side application (section `[%%client ... ]` ) that appends a client-side generated widget to the page.
+The code also defines a client-side application (section `[%%client ... ]`) that appends a client-side generated widget to the page. Section `[%%shared ... ]` is compiled on both the server and client side programs. Alternatively, you can write `let%client`, `let%server` or `let%shared` (default) to define values on client side, on server side, or on both sides.
 
 {% highlight ocaml %}
 [%%shared
@@ -74,9 +74,7 @@ This section gives very quick explanations on the rest of the program. For more 
 - The `##` is used to call a JS method from OCaml and `##.` to access a JS object field (See Js_of_ocaml's documentation: [Ppx_js](http://ocsigen.org/js_of_ocaml/api/Ppx_js)).
 - If there are several services in your application, the client-side program will be sent only with the first page, and will not stop if you go to another page of the application.
 - `Lwt` is the concurrent library used to program threads on both client and server sides. The syntax `let%lwt a = e1 in e2` allows waiting (without blocking the rest of the program) for an Lwt thread to terminate before continuing. `e2` must ben a Lwt thread itself. `Lwt.return` enables creating an already-terminated Lwt thread.
-- `Lwt_js_events` defines a convenient way to program interface events (mouse, keyboard, ...).
-
-`Lwt_js_events.onload` is a Lwt thread that waits until the page is loaded. There are similar functions to wait for other events, e.g., for a click on an element of the page, or for a key press.
+- `Lwt_js_events` defines a convenient way to program interface events (mouse, keyboard, ...). For example, `Lwt_js_events.onload` is a Lwt thread that waits until the page is loaded. There are similar functions to wait for other events, e.g., for a click on an element of the page, or for a key press.
 
 ## Second step: bind the button
 
@@ -111,7 +109,7 @@ The following version of the program shows how to generate the widget on server 
 The code is exactly the same, with the following modifications:
 
 - We place function mywidget out of client section.
-- The portion of code that must be run on client side (binding the click event) is written as a client value, inside `[%client (... : unit) ]`. This code will be executed by the client-side program when it receives the page. Note that you must give the type (here `unit`), as the type inference for client values is currently very limited. The client section may refer to server side values, using the `~%x` syntax. These values will be serialized and sent to the client automatically with the page.
+- The portion of code that must be run on client side (binding the click event) is written as a *client value*, inside `[%client (... : unit) ]`. This code will be executed by the client-side program when it receives the page. Note that you must give the type (here `unit`), as the type inference for client values is currently very limited. The client section may refer to server side values, using the `~%x` syntax. These values will be serialized and sent to the client automatically with the page.
 - We include the widget on the server side generated page instead of adding it to the page from client side.
 
 {% highlight ocaml %}
@@ -220,7 +218,7 @@ let _ =
              
 ## Last step: several sets of widgets
 
-Now we want to enable several sets of widgets in the same page. A single reference no longer suffices. In the following version, the server-side program asks the client-side program to generate two different references, by calling function `new_set`. This function returns what we call a client value. On server side, it is not evaluated, and it has an abstract type.
+Now we want to enable several sets of widgets in the same page. A single reference no longer suffices. In the following version, the server-side program asks the client-side program to generate two different references, by calling function `new_set`. This function returns what we call a *client value*. Client values are values of the client side program that can be manipulated on server side (but not evaluated). On server side, they have an abstract type.
 
 {% highlight ocaml %}
 [%%shared
@@ -232,7 +230,7 @@ Now we want to enable several sets of widgets in the same page. A single referen
 module Ex_app =
   Eliom_registration.App (struct let application_name = "ex" end)
 
-let new_set () = [%client ( ref (fun () -> ()) : (unit -> unit) ref)]
+let new_set () = [%client (ref (fun () -> ()) : (unit -> unit) ref)]
 
 let%client switch_visibility elt =
   let elt = To_dom.of_element elt in
