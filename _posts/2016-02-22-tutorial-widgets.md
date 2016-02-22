@@ -5,7 +5,7 @@ author: Vincent Balat
 authorurl: http://ocsigen.org
 ---
 
-This short tutorial is an example of client-server Eliom application. It gives an example of client-server widgets.
+This short tutorial is an example of client-server Eliom application. It gives an example of client-server widgets. You can find the original version of this tutorial (and many others) [here](http://ocsigen.org/tuto/manual/tutowidgets).
 
 It is probably a good starting point if you know OCaml well, and want to quickly learn how to write a client-server Eliom application with a short example and concise explanations. For more detailed explanations, see the ["Graffiti" tutorial](http://ocsigen.org/tuto/manual/application), or read the manuals.
 
@@ -61,9 +61,9 @@ To compile it, first create a project by calling
 eliom-distillery -name ex -template basic.ppx
 ```
 
-The name of the project must match the name given to the functor Eliom_registration.App.
+The name of the project must match the name given to the functor `Eliom_registration.App`.
 
-After you adapt the file ex.eliom, you can compile by calling make, and run the server by calling make test.byte. Download the [CSS file](http://ocsigen.org/tuto/files/tutorial/tutowidgets/ex.css) and place it in directory `static/css`. Then open a browser window and go to URL `http://localhost:8080`.
+After you adapt the file `ex.eliom`, you can compile by calling make, and run the server by calling `make test.byte`. Download the [CSS file](http://ocsigen.org/tuto/files/tutorial/tutowidgets/ex.css) and place it in directory `static/css`. Then open a browser window and go to URL `http://localhost:8080`.
 
 ![Screenshot](http://ocsigen.org/tuto/files/tutorial/tutowidgets/ex1.png)
 
