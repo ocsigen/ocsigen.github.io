@@ -1,5 +1,5 @@
 ---
-title: Ocsigen: client-server widgets
+title: Ocsigen&#58; client-server widgets
 layout: default
 author: Vincent Balat
 authorurl: http://ocsigen.org
@@ -215,7 +215,7 @@ let _ =
                mywidget "Click me" "server side"
              ])))
 {% endhighlight %}
-             
+
 ## Last step: several sets of widgets
 
 Now we want to enable several sets of widgets in the same page. A single reference no longer suffices. In the following version, the server-side program asks the client-side program to generate two different references, by calling function `new_set`. This function returns what we call a *client value*. Client values are values of the client side program that can be manipulated on server side (but not evaluated). On server side, they have an abstract type.
@@ -289,4 +289,3 @@ For many applications, you will need several services. By default, client-side E
 ### Sessions
 
 Eliom also offers a rich session mechanism, with scopes (see [Eliom's manual](http://ocsigen.org/eliom/manual/server-state)).
-
