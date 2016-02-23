@@ -65,12 +65,15 @@ The name of the project must match the name given to the functor `Eliom_registra
 
 After you adapt the file `ex.eliom`, you can compile by calling make, and run the server by calling `make test.byte`. Download the [CSS file](http://ocsigen.org/tuto/files/tutorial/tutowidgets/ex.css) and place it in directory `static/css`. Then open a browser window and go to URL `http://localhost:8080`.
 
+Screenshot:
+
 ![Screenshot](http://ocsigen.org/tuto/files/tutorial/tutowidgets/ex1.png)
 
 ### More explanations
 
 This section gives very quick explanations on the rest of the program. For more detailed explanations, see the tutorial for the graffiti app or the manual of each of the projects.
 
+- The client side program is sent with the first page belonging to the application (registered through module `Ex_app`).
 - The `##` is used to call a JS method from OCaml and `##.` to access a JS object field (See Js_of_ocaml's documentation: [Ppx_js](http://ocsigen.org/js_of_ocaml/api/Ppx_js)).
 - If there are several services in your application, the client-side program will be sent only with the first page, and will not stop if you go to another page of the application.
 - `Lwt` is the concurrent library used to program threads on both client and server sides. The syntax `let%lwt a = e1 in e2` allows waiting (without blocking the rest of the program) for an Lwt thread to terminate before continuing. `e2` must ben a Lwt thread itself. `Lwt.return` enables creating an already-terminated Lwt thread.
@@ -157,6 +160,8 @@ If you make function `mywidget` *shared*, it will be available both on server an
 let%shared mywidget s1 s2 =
   ...
 {% endhighlight %}
+
+Screenshot:
 
 ![Screenshot](http://ocsigen.org/tuto/files/tutorial/tutowidgets/ex2.png)
 
@@ -273,6 +278,8 @@ let _ =
                mywidget set2 "Click me" "server side"
              ])))
 {% endhighlight %}
+
+Screenshot:
 
 ![Screenshot](http://ocsigen.org/tuto/files/tutorial/tutowidgets/ex-final.png)
 
