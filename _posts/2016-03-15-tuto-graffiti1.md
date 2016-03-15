@@ -22,8 +22,7 @@ The final eliom code is available for download
 [Git tag eliom-5.0](https://github.com/ocsigen/graffiti/releases/tag/eliom-5.0)
 has been tested against Eliom 5.0.
 
-The application is running online
-[here](https://github.com/ocsigen/graffiti/releases/tag/eliom-5.0).
+The application is running online [here](http://ocsigen.org/graffiti/).
 
 ## Basics
 
@@ -144,7 +143,7 @@ Error: This expression has type ([> `PCDATA ] as 'a) Html5.elt
        The second variant type does not allow tag(s) `PCDATA
 ```
 
-where `Html5_types.​head_content_fun` is the type of content allowed inside `<head>` (`<base>`, `<command>`, `<link>`, `<meta>`, etc.). Notice that `\`PCDATA` (i.e. raw text) is not included in this polymorphic variant type.
+where `Html5_types.​head_content_fun` is the type of content allowed inside `<head>` (`<base>`, `<command>`, `<link>`, `<meta>`, etc.). Notice that `&lt;PCDATA` (i.e. raw text) is not included in this polymorphic variant type.
 
 Most functions take as parameter the list representing its contents. See other examples below. Each of them take un optional `?a` parameter for optional HTML attributes. Mandatory HTML attributes correspond to mandatory OCaml parameters. See below for examples.
 
@@ -161,7 +160,7 @@ For now we will just use the `Lwt.return` function as above. We will come back t
 **(Service sending an application,
 Client and server code, Compiling a web application with server and client parts, Calling JavaScript methods with Js_of_ocaml)**
 
-To create our first service, we used the function [Eliom_registration.​Html5.​register_service](http://ocsigen.org/eliom/5.0/api/client/Eliom_registration.Html5#VALregister_service), as all we wanted to do was return HTML5. But we actually want a service that corresponds to a full Eliom application with client and server parts. To do so, we need to create our own registration module by using the functor Eliom_registration.App:
+To create our first service, we used the function [Eliom_registration.​Html5.​register_service](http://ocsigen.org/eliom/5.0/api/client/Eliom_registration.Html5#VALregister_service), as all we wanted to do was return HTML5. But we actually want a service that corresponds to a full Eliom application with client and server parts. To do so, we need to create our own registration module by using the functor `Eliom_registration.App`:
 
 {% highlight ocaml %}
 module Graffiti_app =
@@ -280,6 +279,7 @@ Note that the value of an injection into a `[%%client ... ]` section is sent onl
 
 In next tutorial, we will turn the program into a collaborative drawing
 application, and learn:
+
 - How to draw on a canvas,
 - How to program mouse events with `js_of_ocaml`,
 - More about Lwt,
