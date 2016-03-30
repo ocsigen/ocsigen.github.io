@@ -1,21 +1,22 @@
 ---
 title: Ocsigen&#58; step by step tutorial for client-server Web application (2/2)
 layout: default
-author: Vincent Balat
+author: Ocsigen team
 authorurl: http://ocsigen.org
 ---
 
 This is the end of the tutorial about writing a collaborative Web drawing
 in OCaml. Have a look at
 [the full tutorial](http://ocsigen.org/tuto/manual/application)
-if you haven't read the first part.
+if you haven't read the first part or if you want a version with full
+colors and links.
 
 In the last part, we've seen how to create a client-server Web application
 in OCaml. The server generates a Web page and sends it together with an
 OCaml program (compiled to JavaScript) to the browser.
 
 We will now see how to draw on the canvas, program mouse events with Lwt,
-and do server to client communication using Eliom buses.
+and do server to client communication on a bus.
 
 ## Collaborative drawing application                           
 
@@ -44,6 +45,7 @@ module Graffiti_app =
     struct
       let application_name = "graffiti"
     end)
+    
 let%shared width = 700
 let%shared height = 400
 
@@ -75,7 +77,7 @@ let%client init_client () =
 let main_service =
   Graffiti_app.register_service ~path:[""] ~get_params:Eliom_parameter.unit
     (fun () () ->
-       (* Cf. the box "Client side side-effects on the server" *)
+       (* Cf. section "Client side side-effects on the server" *)
        let _ = [%client (init_client () : unit) ] in
        Lwt.return (page ()))
 {% endhighlight %}
@@ -146,10 +148,10 @@ let%client init_client () =
     let open Lwt_js_events in
     mousedowns canvas
       (fun ev _ ->
-         set_coord ev; line ev ~>>= fun () ->
+         set_coord ev; line ev >>= fun () ->
            Lwt.pick
              [mousemoves Dom_html.document (fun x _ -> line x);
-	      mouseup Dom_html.document ~>>= line]))
+	      mouseup Dom_html.document >>= line]))
 {% endhighlight %}
 
 We use two references `x` and `y` to record the last mouse
@@ -184,13 +186,13 @@ Lwt.bind : 'a Lwt.t -> ('a -> 'b Lwt.t) -> 'b Lwt.t
 
 It is convenient to define an infix operator like this:
 {% highlight ocaml %}
-let (~>>=) = Lwt.bind
+let (>>=) = Lwt.bind
 {% endhighlight %}
 
 Then the code
 
 {% highlight ocaml %}
-f () ~>>= fun x ->
+f () >>= fun x ->
 {% endhighlight %}
 
 is conceptually similar to
@@ -357,16 +359,18 @@ of the brush. For the colorpicker we used a widget available in
 `Ocsigen-widgets`.
 
 To install Ocsigen widgets, do:
-`
+
+```
 opam pin add ocsigen-widgets https://github.com/ocsigen/ocsigen-widgets.git
 opam install ocsigen-widgets
-`
+```
 
 
 
 In `Makefile.options`, created by Eliom's distillery, add
 `ocsigen-widgets.client` to the
 `CLIENT_PACKAGES`:
+
 ```
 CLIENT_PACKAGES := ... ocsigen-widgets.client
 ```
@@ -439,9 +443,8 @@ let page =
 
 You need to install the corresponding stylesheets and images into your
 project. The stylesheet files should go to the directory
-`static/css`:
-
-- `graffiti.css` is a custom-made CSS file.
+`static/css`.
+[graffiti.css](http://ocsigen.org/tuto/files/tutorial/static/css/graffiti.css) is a custom-made CSS file.
 
 You can then test your application (`make test.byte`).
 
