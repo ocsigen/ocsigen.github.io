@@ -14,7 +14,17 @@ New features include a friendlier service API that retains the
 expressive power of our service system. Additionally, Eliom can now be
 used to build mobile applications.
 
-## Friendlier service APIs
+## What is Eliom?
+
+Eliom is a framework for developing client/server web
+applications. Both the server and the client parts of the application
+are written in OCaml, as a single program.
+
+Eliom makes extensive use of the Ocaml language features. It provides
+advanced functionality like a powerful session mechanism and support
+for functional reactive Web pages.
+
+## Friendly service APIs
 
 Services are a key concept in Eliom, used for building the pages that
 are sent to the user, for accessing server-side data, for performing
@@ -43,10 +53,18 @@ use our soon-to-be-released [Ocsigen Start][ostart] project, which
 provides a mobile-ready template application
 ([walkthrough][mobilewalkthrough]).
 
+## Compatibility
+
+Eliom 6.0 supports the last 3 major versions of OCaml (4.02 up to
+4.04). Additionally, Eliom is compatible and with and builds on the
+latest Ocsigen releases, including
+[Ocsigen Server 2.8][serverrelease],
+[Js\_of\_ocaml 2.8.x][jsoorelease], and [TyXML 4.0.x][tyxmlrelease].
+
 ## Future
 
 The Ocsigen team is busy working on new features. Notably, we are
-working on an [OCaml compiler][eliomc] specifically tuned for
+developing an [OCaml compiler][eliomc] specifically tuned for
 Eliom. Additionally, we are planning a transition to the
 [Cohttp][cohttp] HTTP backend.
 
@@ -60,6 +78,7 @@ Eliom. Additionally, we are planning a transition to the
 [release]: https://github.com/ocsigen/eliom/releases/tag/6.0.0
 [serverrelease]: https://github.com/ocsigen/ocsigenserver/releases/tag/2.8
 [jsoorelease]: https://github.com/ocsigen/js_of_ocaml/releases/tag/2.8.3
+[tyxmlrelease]: https://github.com/ocsigen/tyxml/releases/tag/4.0.1
 
 [migration]: https://ocsigen.org/eliom/Eliom60
 [issues]: https://github.com/ocsigen/eliom/issues
