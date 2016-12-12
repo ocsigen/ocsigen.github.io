@@ -1,24 +1,26 @@
 ---
-title: Eliom 6.0 released
+title: Eliom 6.0: Mobile and Web apps in OCaml or ReasonML
 layout: default
 author: The Ocsigen Team
 authorurl: https://ocsigen.org
 ---
 
-We are very happy to announce the release of [Eliom 6.0][release],
+We are very happy to announce the release of [Ocsigen Eliom 6.0][release],
 which follows the recent releases of
 [Ocsigen Server 2.8][serverrelease]
-and [Js\_of\_ocaml 2.8.x][jsoorelease].
+and [Ocsigen Js\_of\_ocaml 2.8.x][jsoorelease].
 
 New features include a friendlier service API that retains the
 expressive power of our service system. Additionally, Eliom can now be
-used to build mobile applications.
+used to build cross-platform Web/mobile applications (Android, iOS ...).
 
 ## What is Eliom?
 
 Eliom is a framework for developing client/server web
 applications. Both the server and the client parts of the application
-are written in OCaml, as a single program.
+are written in OCaml, as a single program. Communication between server
+and client is straightforward (e.g. just call a server-side function from 
+client-side code).
 
 Eliom makes extensive use of the Ocaml language features. It provides
 advanced functionality like a powerful session mechanism and support
