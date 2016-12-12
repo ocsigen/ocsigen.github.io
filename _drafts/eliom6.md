@@ -1,5 +1,5 @@
 ---
-title: Eliom 6.0: Mobile and Web apps in OCaml or ReasonML
+title: Eliom 6.0: mobile and Web apps in OCaml
 layout: default
 author: The Ocsigen Team
 authorurl: https://ocsigen.org
@@ -18,9 +18,9 @@ used to build cross-platform Web/mobile applications (Android, iOS ...).
 
 Eliom is a framework for developing client/server web
 applications. Both the server and the client parts of the application
-are written in OCaml, as a single program. Communication between server
-and client is straightforward (e.g. just call a server-side function from 
-client-side code).
+are written in OCaml, as a single program. Communication between
+server and client is straightforward, e.g., one can just call a
+server-side function from client-side code.
 
 Eliom makes extensive use of the Ocaml language features. It provides
 advanced functionality like a powerful session mechanism and support
