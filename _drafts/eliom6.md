@@ -20,7 +20,7 @@ Eliom is a framework for developing client/server web
 applications. Both the server and the client parts of the application
 are written in OCaml, as a single program.
 
-Eliom makes extensive use of the Ocaml language features. It provides
+Eliom makes extensive use of the OCaml language features. It provides
 advanced functionality like a powerful session mechanism and support
 for functional reactive Web pages.
 
@@ -56,7 +56,7 @@ provides a mobile-ready template application
 ## Compatibility
 
 Eliom 6.0 supports the last 3 major versions of OCaml (4.02 up to
-4.04). Additionally, Eliom is compatible and with and builds on the
+4.04). Additionally, Eliom is compatible with and builds on the
 latest Ocsigen releases, including
 [Ocsigen Server 2.8][serverrelease],
 [Js\_of\_ocaml 2.8.x][jsoorelease], and [TyXML 4.0.x][tyxmlrelease].
