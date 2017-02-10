@@ -124,7 +124,7 @@ Finally, the work on using this new compiler to compile the Eliom framework can 
 A more in-depth presentation of the Eliom language can be found [here][slides].
 The [APLAS paper][paperAPLAS] is quite formal and is mostly aimed at people
 that want to really understand the minute details of the language. The
-[IFL paper][paperIFL], on the other hang, should be accessible to most OCaml programmers
+[IFL paper][paperIFL], on the other hand, should be accessible to most OCaml programmers
 (even those who don't know Eliom) and demonstrates how to use the new Eliom
 constructs to build nice, tierless and typesafe libraries for client/server
 web programming.
