@@ -1,0 +1,27 @@
+
+
+
+
+/****** Switch button (from html_of_wiki) *****/
+/* Update the switch button's content */
+body:not(.reason) button#reason::after {
+	content: 'Reason';
+}
+body.reason button#reason::after {
+	content: 'OCaml';
+}
+
+/* <pre> is shared among the original and automatically translated code, so we
+ * only hide those containing manually translated code, which would otherwise
+ * appear as empty boxes (with a background, because <code> is inline). */
+body:not(.reason) pre.language-reason.manually-translated,
+body.reason pre.language-ocaml.manually-translated,
+/* Hide the translated ReasonML code from OCaml users */
+body:not(.reason) code.language-reason,
+/* API pages only use <pre> elements for OCaml code... */
+body.reason pre.language-ocaml.standalone,
+body:not(.reason) pre.language-reason.standalone,
+/* Hide the original OCaml code from ReasonML users */
+body.reason code.language-ocaml:not(.error) {
+	display: none
+}

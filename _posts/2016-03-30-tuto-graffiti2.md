@@ -444,7 +444,7 @@ let page =
 You need to install the corresponding stylesheets and images into your
 project. The stylesheet files should go to the directory
 `static/css`.
-[graffiti.css](http://ocsigen.org/tuto/files/tutorial/static/css/graffiti.css) is a custom-made CSS file.
+File [graffiti.css](http://ocsigen.org/tuto/files/tutorial/static/css/graffiti.css) is a custom-made CSS file.
 
 You can then test your application (`make test.byte`).
 
