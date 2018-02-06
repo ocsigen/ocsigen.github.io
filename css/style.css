@@ -15,7 +15,7 @@ h1, h2, h3, h4 {
     color: #333;
 }
 .project-page h1 {
-    margin-top: 100px;
+    margin-top: 220px;
     font-size: 50px;
 }
 p {
@@ -52,6 +52,10 @@ form#search {
     height: 600px;
     color: white;
     padding: 150px 150px;
+}
+.main-page-section-header h1,
+.main-page-section-header h2 {
+    color: white;
 }
 .main-page-section-header .main-button {
     margin-top: 50px;
@@ -164,6 +168,7 @@ form#search {
     margin: 120px auto;
     max-width: 900px;
 }
+
 
 
 /****** Switch button (from html_of_wiki) *****/
