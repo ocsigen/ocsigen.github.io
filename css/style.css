@@ -1,5 +1,134 @@
+@import url('https://fonts.googleapis.com/css?family=Work+Sans:400,600');
 
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+a {
+    text-decoration: none;
+}
+h1, h2, h3, h4 {
+    font-weight: normal;
+}
+body {
+    margin: 0;
+    font-family: 'Work Sans', sans-serif;
+}
+.main-button {
+    display: inline-block;
+    padding: 15px 45px;
+    background-color: #64caff;
+    color: white;
+    border-radius: 3px;
+}
+.main-page-section h2 {
+    font-size: 26px;
+    font-weight: normal;
+}
+.main-page-section-header {
+    position: sticky;
+    top: -510px;
+    background-color: #003474;
+    height: 600px;
+    color: white;
+    padding: 150px 150px;
+}
+.main-page-section-header .main-button {
+    margin-top: 50px;
+}
+.main-page-section-header h1 {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+.main-page-section-header h2 {
+    font-size: 16px;
+}
+.main-header {
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    width: 100%;
+    background-color: rgba(0,0,0,0.3);
+    height: 90px;
+    padding: 10px 20px;
+    text-align: right;
+}
+.main-header a {
+    color: white;
+}
+.main-header ul {
+    line-height: 30px;
+    margin: 10px 0;
+    font-size: 12px;
+}
+.main-header li {
+    display: inline-block;
+    padding: 5px 15px;
+    color: #bbb;
+}
+.main-header li.mainmenu-current {
+    color: white;
+    border-bottom: 4px solid #64caff;
+}
+.main-header .logo-ocsigen {
+    position: absolute;
+    left: 30px;
+    top: 20px;
+}
+.main-page-section-partners {
+    background-color: #aaddff;
+    text-align: center;
+}
+.main-page-section-partners ul {
+    display: inline-block;
+    line-height: 30px;
+    margin: 20px 0;
+}
+.main-page-section-partners li {
+    display: inline-block;
+    padding: 5px 20px;
+}
+.main-page-section-content {
+    max-width: 1200px;
+    padding: 50px;
+    margin: 0 auto;
+}
+.main-page-section-multitier {
+    background-color: white;
+    color: #888;
+}
+.main-page-section-js_of_ocaml {
+    background-color: #003474;
+    color: white;
+}
+.main-page-section-about {
+    background-color: #dddddd;
+    color: #888;
+}
+.main-page-section-projects {
+    background-color: #ccc;
+    color: #888;
+}
+.main-page-schema-multitier {
 
+}
+.main-page-schema-js_of_ocaml {
+}
+.main-page-projects {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.main-page-project {
+    width: 400px;
+    height: 250px;
+    background-color: white;
+    padding: 30px;
+    margin: 20px;
+}
 
 
 /****** Switch button (from html_of_wiki) *****/
