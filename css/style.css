@@ -162,6 +162,7 @@ form#search {
 
 .project-page {
     margin: 120px auto;
+    max-width: 900px;
 }
 
 
