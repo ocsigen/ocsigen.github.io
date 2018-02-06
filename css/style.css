@@ -14,6 +14,10 @@ h1, h2, h3, h4 {
     font-weight: normal;
     color: #333;
 }
+.project-page h1 {
+    margin-top: 100px;
+    font-size: 50px;
+}
 p {
     text-align: justify;
 }
@@ -21,6 +25,14 @@ body {
     margin: 0;
     font-family: 'Work Sans', sans-serif;
     color: #555;
+}
+button#reason {
+    position: fixed;
+    right: 20px;
+    top: 120px;
+}
+form#search {
+    display: none;
 }
 .main-button {
     display: inline-block;
@@ -149,7 +161,7 @@ body {
 }
 
 .project-page {
-    margin-top: 120px;
+    margin: 120px auto;
 }
 
 
