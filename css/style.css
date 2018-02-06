@@ -7,15 +7,20 @@ html {
   box-sizing: inherit;
 }
 a, a:visited {
-    color: #666;
+    color: #669;
     text-decoration: none;
 }
 h1, h2, h3, h4 {
     font-weight: normal;
+    color: #333;
+}
+p {
+    text-align: justify;
 }
 body {
     margin: 0;
     font-family: 'Work Sans', sans-serif;
+    color: #555;
 }
 .main-button {
     display: inline-block;
@@ -46,10 +51,11 @@ body {
 .main-page-section-header h2 {
     font-size: 16px;
 }
-.main-header {
+.page-header {
     position: fixed;
     z-index: 1;
     top: 0;
+    left: 0;
     width: 100%;
     background-color: rgba(0,40,100,0.9);
     box-shadow: 0 3px 3px rgba(0,40,100,0.9);
@@ -57,27 +63,27 @@ body {
     padding: 10px 20px;
     text-align: right;
 }
-.main-header a {
+.page-header a {
     color: white;
 }
-.main-header p.logo-ocsigen img {
+.page-header p.logo-ocsigen img {
     width: 100px;
 }
-.main-header ul {
+.page-header ul {
     line-height: 30px;
     margin: 10px 0;
     font-size: 12px;
 }
-.main-header li {
+.page-header li {
     display: inline-block;
     padding: 5px 15px;
     color: #bbb;
 }
-.main-header li.mainmenu-current {
+.page-header li.mainmenu-current {
     color: white;
     border-bottom: 4px solid #64caff;
 }
-.main-header .logo-ocsigen {
+.page-header .logo-ocsigen {
     position: absolute;
     left: 30px;
     top: 20px;
@@ -140,6 +146,10 @@ body {
     background-color: white;
     padding: 30px;
     margin: 20px;
+}
+
+.project-page {
+    margin-top: 120px;
 }
 
 
