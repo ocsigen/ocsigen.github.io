@@ -6,7 +6,8 @@ html {
 *, *:before, *:after {
   box-sizing: inherit;
 }
-a {
+a, a:visited {
+    color: #666;
     text-decoration: none;
 }
 h1, h2, h3, h4 {
@@ -50,13 +51,17 @@ body {
     z-index: 1;
     top: 0;
     width: 100%;
-    background-color: rgba(0,0,0,0.3);
+    background-color: rgba(0,40,100,0.9);
+    box-shadow: 0 3px 3px rgba(0,40,100,0.9);
     height: 90px;
     padding: 10px 20px;
     text-align: right;
 }
 .main-header a {
     color: white;
+}
+.main-header p.logo-ocsigen img {
+    width: 100px;
 }
 .main-header ul {
     line-height: 30px;
@@ -84,11 +89,18 @@ body {
 .main-page-section-partners ul {
     display: inline-block;
     line-height: 30px;
+    vertical-align: middle;
     margin: 20px 0;
 }
 .main-page-section-partners li {
     display: inline-block;
     padding: 5px 20px;
+}
+.main-page-section-partners img {
+    width: 100px;
+}
+.main-page-section-partners img.logo-cnrs {
+    width: 50px;
 }
 .main-page-section-content {
     max-width: 1200px;
