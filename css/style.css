@@ -169,7 +169,15 @@ form#search {
     margin: 120px auto;
     max-width: 900px;
 }
-
+.version-selector {
+}
+.version-selector .version-selector-versions {
+    display: none;
+}
+.version-selector:hover .version-selector-versions {
+    display: block;
+    position: absolute;
+}
 
 
 /****** Switch button (from html_of_wiki) *****/
