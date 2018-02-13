@@ -59,6 +59,8 @@ form#search {
     position: sticky;
     top: -510px;
     background-color: #003474;
+    background-image: url("/img/cover-ocsigen.jpg");
+    background-size: cover;
     height: 600px;
     color: white;
     padding: 150px 150px;
@@ -84,8 +86,8 @@ form#search {
     top: 0;
     left: 0;
     width: 100%;
-    background-color: rgba(0,40,100,0.9);
-    box-shadow: 0 3px 3px rgba(0,40,100,0.9);
+    background-color: rgba(0,0,0,0.2);
+    box-shadow: 0 3px 3px rgba(0,0,0,0.2);
     height: 90px;
     padding: 10px 20px;
     text-align: right;
@@ -97,7 +99,7 @@ form#search {
     width: 100px;
 }
 .page-header .mainmenu {
-    padding-right: 60px;
+    padding-right: 80px;
 }
 .page-header .mainmenu {
     line-height: 30px;
@@ -119,7 +121,6 @@ form#search {
     top: 20px;
 }
 .main-page-section-partners {
-    background-color: #aaddff;
     text-align: center;
 }
 .main-page-section-partners ul {
@@ -156,7 +157,7 @@ form#search {
     color: #888;
 }
 .main-page-section-projects {
-    background-color: #ccc;
+    background-color: white;
     color: #888;
 }
 .main-page-schema-multitier {
@@ -174,8 +175,19 @@ form#search {
     width: 400px;
     height: 250px;
     background-color: white;
-    padding: 30px;
     margin: 20px;
+    border-radius: 4px;
+    box-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+    overflow: hidden;
+}
+.main-page-project h3 {
+    background-color: #094489;
+    color: white;
+    padding: 30px;
+    margin: 0;
+}
+.main-page-project p {
+    padding: 30px;
 }
 .project-page {
     margin: 120px auto;
@@ -403,7 +415,7 @@ pre.language-ocaml::before, pre.language-reason::before {
     position: absolute;
     display: block;
     width: 25px;
-    height: 4px;
+    height: 3px;
     background-color: white;
     left: 0;
     border-radius: 1px;
