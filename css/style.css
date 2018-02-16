@@ -48,11 +48,13 @@ form#search {
     display: inline-block;
     padding: 15px 45px;
     background-color: #64caff;
-    color: white;
     border-radius: 3px;
 }
+a.main-button, a.main-button:visited {
+    color: white !important;
+}
 .main-page-section h2 {
-    font-size: 26px;
+    font-size: 36px;
     font-weight: normal;
 }
 .main-page-section-header {
@@ -140,6 +142,7 @@ form#search {
     width: 50px;
 }
 .main-page-section-content {
+    position: relative;
     max-width: 1200px;
     padding: 50px;
     margin: 0 auto;
@@ -148,20 +151,119 @@ form#search {
     background-color: white;
     color: #888;
 }
+.main-page-section-multitier-schema {
+    position: relative;
+    height: 600px;
+}
+.main-page-section-multitier-multitier {
+    position: absolute;
+    top: 20px;
+    left: 150px;
+    font-size: 25px;
+    color: #094489;
+}
+.main-page-section-multitier-multiplatform {
+    position: absolute;
+    top: 20px;
+    right: 150px;
+    font-size: 25px;
+    color: #094489;
+}
+.main-page-section-multitier-one-code {
+    box-shadow: 0 0 100px 100px white;
+    top: 200px;
+    left: 36%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    background-color: white;
+    color: #094489;
+    border-radius: 50%;
+    width: 250px;
+    height: 250px;
+    line-height: 200%;
+    font-size: 40px;
+}
 .main-page-section-js_of_ocaml {
     background-color: #003474;
     color: white;
 }
+.main-page-section-js_of_ocaml-schema {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+pre[class*=language-].main-page-section-js_of_ocaml-ocaml::before,
+pre[class*=language-].main-page-section-js_of_ocaml-js::before {
+    color: rgba(0,0,0,0.1);
+    text-shadow: none;
+}
+pre[class*=language-].main-page-section-js_of_ocaml-ocaml,
+pre[class*=language-].main-page-section-js_of_ocaml-js {
+    width: 500px;
+    border: 1px solid white;
+    border-radius: 10px;
+    padding: 40px !important;
+    margin: 40px;
+    background-color: transparent !important;
+}
+.darkcode code[class*=language-] {
+    text-shadow: none;
+    color: white;
+}
+.main-page-section-js_of_ocaml-arrow1 {
+    position: absolute;
+    top: 100px;
+    left: 500px;
+    font-size: 51px;
+}
+.main-page-section-js_of_ocaml-arrow2 {
+    position: absolute;
+    top: 300px;
+    left: 500px;
+    font-size: 51px;
+    transform: rotateZ(45deg);
+}
+.darkcode .token.number {
+    color: #ffaa99;
+}
+.darkcode .token.keyword {
+    color: #aaccff;
+}
+.darkcode .token.operator {
+    background-color: transparent;
+    color: #ddccbb;
+}
 .main-page-section-about {
-    background-color: #dddddd;
-    color: #888;
+    background-color: #445;
+    color: #ddd;
+    padding: 30px 0;
+}
+.main-page-section-about ul {
+    list-style-type: none;
+}
+.main-page-section-about li {
+    line-height: 200%;
 }
 .main-page-section-projects {
     background-color: white;
     color: #888;
 }
 .main-page-schema-multitier {
-
+    position: absolute;
+    top: 100px;
+    left: 0;
+    width: 587px;
+}
+.main-page-schema-multiplatform {
+    position: absolute;
+    top: 100px;
+    right: 0;
+    width: 587px;
 }
 .main-page-schema-js_of_ocaml {
 }
@@ -175,6 +277,7 @@ form#search {
     width: 400px;
     height: 250px;
     background-color: white;
+    background: url("/home/balat/ocsigen/ocsigen.github.io/img/logo-ocsigen-contours.png");
     margin: 20px;
     border-radius: 4px;
     box-shadow: 1px 1px 4px rgba(0,0,0,0.5);
@@ -188,6 +291,8 @@ form#search {
 }
 .main-page-project p {
     padding: 30px;
+    color: #555;
+    font-size: 20px;
 }
 .project-page {
     margin: 120px auto;
@@ -356,7 +461,7 @@ pre.ocsforge_color.shared {
   background-color: #eeffee;
 }
 
-pre.language-ocaml, pre.language-reason {
+pre.language-ocaml, pre.language-reason, pre.language-javascript {
     position: relative;
 }
 
@@ -368,7 +473,13 @@ pre.language-reason::before {
     content: 'Reason';
 }
 
-pre.language-ocaml::before, pre.language-reason::before {
+pre.language-javascript::before {
+    content: 'JavaScript';
+}
+
+pre.language-ocaml::before,
+pre.language-reason::before,
+pre.language-javascript::before {
     position: absolute;
     top: -22px;
     right: 0;
