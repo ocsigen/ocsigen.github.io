@@ -60,6 +60,7 @@ a.main-button, a.main-button:visited {
 .main-page-section-header {
     position: sticky;
     top: -510px;
+    z-index: 1;
     background-color: #003474;
     background-image: url("/img/cover-ocsigen.jpg");
     background-size: cover;
@@ -84,7 +85,7 @@ a.main-button, a.main-button:visited {
 }
 .page-header {
     position: fixed;
-    z-index: 1;
+    z-index: 2;
     top: 0;
     left: 0;
     width: 100%;
@@ -151,40 +152,17 @@ a.main-button, a.main-button:visited {
     background-color: white;
     color: #888;
 }
+.main-page-schema-multitier {
+    width: 800px;
+    max-width: 100vw;
+}
 .main-page-section-multitier-schema {
     position: relative;
-    height: 600px;
+    height: 500px;
+    padding: 50px 0;
 }
-.main-page-section-multitier-multitier {
-    position: absolute;
-    top: 20px;
-    left: 150px;
-    font-size: 25px;
-    color: #094489;
-}
-.main-page-section-multitier-multiplatform {
-    position: absolute;
-    top: 20px;
-    right: 150px;
-    font-size: 25px;
-    color: #094489;
-}
-.main-page-section-multitier-one-code {
-    box-shadow: 0 0 100px 100px white;
-    top: 200px;
-    left: 36%;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.main-page-section-multitier-schema > p {
     text-align: center;
-    background-color: white;
-    color: #094489;
-    border-radius: 50%;
-    width: 250px;
-    height: 250px;
-    line-height: 200%;
-    font-size: 40px;
 }
 .main-page-section-js_of_ocaml {
     background-color: #003474;
@@ -252,18 +230,6 @@ pre[class*=language-].main-page-section-js_of_ocaml-js {
 .main-page-section-projects {
     background-color: white;
     color: #888;
-}
-.main-page-schema-multitier {
-    position: absolute;
-    top: 100px;
-    left: 0;
-    width: 587px;
-}
-.main-page-schema-multiplatform {
-    position: absolute;
-    top: 100px;
-    right: 0;
-    width: 587px;
 }
 .main-page-schema-js_of_ocaml {
 }
