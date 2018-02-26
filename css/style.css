@@ -4,6 +4,7 @@
 /****** Main style *****/
 /****** Code ******/
 /****** Switch button (from html_of_wiki) *****/
+/****** Docversion ******/
 /****** Drawer ******/
 /****** Drawer content ******/
 /****** Mobile ******/
@@ -21,6 +22,15 @@ html {
 a, a:visited {
     color: #2e8eff;
     text-decoration: none;
+}
+a.backref {
+    display: none;
+}
+h1:hover a.backref,
+h2:hover a.backref,
+h3:hover a.backref,
+h4:hover a.backref {
+    display: inline;
 }
 h1, h2, h3, h4 {
     font-weight: normal;
@@ -42,6 +52,14 @@ button#reason {
     position: fixed;
     right: 20px;
     top: 120px;
+    background-color: #ff8d52;
+    border-radius: 50%;
+    border: none;
+    height: 75px;
+    width: 75px;
+    color: white;
+    cursor: pointer;
+    font-size: 12px;
 }
 form#search {
     display: none;
@@ -299,7 +317,7 @@ pre[class*=language-].main-page-section-js_of_ocaml-js {
 .leftcol {
     width: 400px;
     margin: 220px 40px 0 0;
-    padding: 0 18px 50px 18px;
+    padding: 18px; 18px 50px 18px;
     background-color: #edeeef;
 }
 .leftcol h1 {
@@ -327,14 +345,16 @@ pre[class*=language-].main-page-section-js_of_ocaml-js {
 }
 
 
-/****** Switch button (from html_of_wiki) *****/
+/****** Reason switch button (from html_of_wiki) *****/
 /* Update the switch button's content */
 body:not(.reason) button#reason::after {
-	content: 'Reason';
+	content: 'Reason syntax';
 }
 body.reason button#reason::after {
-	content: 'OCaml';
+	content: 'regular OCaml syntax';
 }
+
+/****** Client-server switch button *****/
 
 /* <pre> is shared among the original and automatically translated code, so we
  * only hide those containing manually translated code, which would otherwise
@@ -458,18 +478,22 @@ pre.ocsforge_color.shared {
 
 pre.language-ocaml, pre.language-reason, pre.language-javascript {
     position: relative;
+    z-index: -1;
 }
 
 pre.language-ocaml::before {
     content: 'OCaml';
+    z-index: -1;
 }
 
 pre.language-reason::before {
     content: 'Reason';
+    z-index: -1;
 }
 
 pre.language-javascript::before {
     content: 'JavaScript';
+    z-index: -1;
 }
 
 pre.language-ocaml::before,
@@ -482,6 +506,37 @@ pre.language-javascript::before {
     font-weight: bold;
     font-size: 50px;
     font-family: 'Work Sans';
+}
+
+/****** Docversion ******/
+.how-versions-all {
+    display: none;
+}
+.how-versions-current {
+    cursor: pointer;
+    background-color: white;
+    padding: 4px 10px;
+}
+.how-versions-current::after {
+    content: '⏷';
+    display: inline-block;
+    padding-left: 15px;
+}
+#how-versions-toggle {
+    display: none;
+}
+#how-versions-toggle:checked ~ .how-versions-all {
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    background-color: white;
+    border: 1px solid #aaa;
+    min-width: 200px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+.how-versions-all > * {
+    padding: 4px 10px;
 }
 
 /****** Drawer *****/
@@ -612,6 +667,9 @@ pre.language-javascript::before {
     }
     .leftcol {
         display: none;
+    }
+    .project-page h1 {
+        font-size: 22px;
     }
 }
 /****** Large screen ******/
