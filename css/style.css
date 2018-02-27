@@ -313,12 +313,22 @@ pre[class*=language-].main-page-section-js_of_ocaml-js {
 .twocols {
     display: flex;
     flex-direction: row;
+    flex-wrap: nowrap;
 }
 .leftcol {
-    width: 400px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 100px;
+    bottom: 0;
+    height: calc(100vh - 120px);
+    overflow-y: auto;
+    width: 300px;
     margin: 220px 40px 0 0;
     padding: 18px; 18px 50px 18px;
     background-color: #edeeef;
+}
+.leftcol::-webkit-scrollbar {
+  display: none;
 }
 .leftcol h1 {
     margin: 30px 0 0 0;
@@ -333,6 +343,7 @@ pre[class*=language-].main-page-section-js_of_ocaml-js {
 }
 .rightcol {
     padding: 0 20px;
+    right: 0;
 }
 .version-selector {
 }
@@ -674,4 +685,7 @@ pre.language-javascript::before {
 }
 /****** Large screen ******/
 @media (min-width: 721px) {
+    .rightcol {
+        margin-left: 40px;
+    }
 }
