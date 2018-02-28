@@ -95,7 +95,7 @@ a.main-button, a.main-button:visited {
 .main-page-section-header {
     position: sticky;
     top: -510px;
-    z-index: 1;
+    z-index: 2;
     background-color: #003474;
     background-image: url("/img/cover-ocsigen.jpg");
     background-size: cover;
@@ -121,7 +121,7 @@ a.main-button, a.main-button:visited {
 }
 .page-header {
     position: fixed;
-    z-index: 2;
+    z-index: 3;
     top: 0;
     left: 0;
     width: 100%;
@@ -140,6 +140,13 @@ a.main-button, a.main-button:visited {
 .page-header p.logo-ocsigen img {
     width: 100px;
 }
+.page-header p.logo-subproject {
+    position: relative;
+    top: 8px;
+    left: 74px;
+    font-size: 30px;
+    color: #ff8d52;
+}
 .page-header .mainmenu {
     padding-right: 80px;
 }
@@ -156,6 +163,13 @@ a.main-button, a.main-button:visited {
 .page-header .mainmenu li.mainmenu-current {
     color: white;
     border-bottom: 4px solid #64caff;
+}
+li.drawermainmenu-page,
+li.drawermainmenu-home,
+li.drawermainmenu-doc,
+li.mainmenu-home,
+li.mainmenu-doc {
+    font-weight: bold;
 }
 .page-header .logo-ocsigen {
     position: absolute;
@@ -323,7 +337,7 @@ pre[class*=language-].main-page-section-js_of_ocaml-js {
     overflow-y: auto;
     width: 300px;
     margin: 220px 40px 0 0;
-    padding: 18px; 18px 50px 18px;
+    padding: 18px 18px 50px 18px;
     background-color: #edeeef;
 }
 .leftcol::-webkit-scrollbar {
@@ -688,7 +702,17 @@ pre.language-javascript::before {
 }
 /****** Large screen ******/
 @media (min-width: 721px) {
+    .how-drawer .how-doctree {
+        display: none;
+    }
     .rightcol {
         margin-left: 40px;
+    }
+}
+@media (min-width: 1200px) {
+    body {
+        background-image: url(/home/balat/ocsigen/ocsigen.github.io/img/ocsigen-bubbles-large.png);
+        background-repeat: no-repeat;
+        background-position: -800px 100px;
     }
 }
