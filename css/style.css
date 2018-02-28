@@ -141,9 +141,9 @@ a.main-button, a.main-button:visited {
     width: 100px;
 }
 .page-header p.logo-subproject {
-    position: relative;
-    top: 8px;
-    left: 74px;
+    position: absolute;
+    top: 20px;
+    left: 95px;
     font-size: 30px;
     color: #ff8d52;
 }
@@ -204,8 +204,10 @@ li.mainmenu-doc {
     padding: 50px;
     margin: 0 auto;
 }
-.main-page-section-multitier {
+.main-page-section-news {
     background-color: #f2f2f2;
+}
+.main-page-section-multitier {
     color: #222;
 }
 .main-page-schema-multitier {
