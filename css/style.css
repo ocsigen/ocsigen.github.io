@@ -128,14 +128,14 @@ a.main-button, a.main-button:visited {
     top: 0;
     left: 0;
     width: 100%;
-    background-color: rgba(0,0,0,0.2);
+    background-color: #001a39;
     box-shadow: 0 3px 3px rgba(0,0,0,0.2);
     height: 90px;
     padding: 10px 20px;
     text-align: right;
 }
-.project-page .page-header {
-    background-color: #001a39;
+body.ocsigen\.github\.io.intro .page-header {
+    background-color: rgba(0,0,0,0.2);
 }
 .page-header a {
     color: white;
@@ -343,7 +343,7 @@ pre[class*=language-].main-page-section-js_of_ocaml-js {
     width: 300px;
     margin: 220px 40px 0 0;
     padding: 18px 18px 50px 18px;
-    background-color: #edeeef;
+    background-color: rgba(220,220,220,0.9);
 }
 .leftcol::-webkit-scrollbar {
   display: none;
