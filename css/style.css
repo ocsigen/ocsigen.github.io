@@ -85,6 +85,9 @@ a.main-button, a.main-button:visited {
     min-width: 200px;
     margin: 20px;
 }
+.main-page-section {
+    background-color: white;
+}
 .main-page-section h2 {
     font-size: 36px;
     font-weight: normal;
