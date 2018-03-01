@@ -234,9 +234,9 @@ li.mainmenu-doc {
     align-items: flex-start;
     flex-wrap: wrap;
 }
-pre[class*=language-].main-page-section-js_of_ocaml-ocaml::before,
-pre[class*=language-].main-page-section-js_of_ocaml-js::before {
-    color: rgba(0,0,0,0.1);
+.main-page-section-js_of_ocaml-ocaml code[class*=language-]::before,
+.main-page-section-js_of_ocaml-js code[class*=language-]::before {
+    color: rgba(0,0,0,0.3);
     text-shadow: none;
 }
 pre[class*=language-].main-page-section-js_of_ocaml-ocaml,
@@ -502,29 +502,29 @@ pre.ocsforge_color.shared {
   background-color: #eeffee;
 }
 
-pre.language-ocaml, pre.language-reason, pre.language-javascript {
+pre[class*=language-] {
     position: relative;
-    z-index: 1;
+    z-index: 0;
+}
+code[class*=language-]::before {
+    z-index: -1;
 }
 
-pre.language-ocaml::before {
+code.language-ocaml::before {
     content: 'OCaml';
-    z-index: -1;
 }
 
-pre.language-reason::before {
+code.language-reason::before {
     content: 'Reason';
-    z-index: -1;
 }
 
-pre.language-javascript::before {
+code.language-javascript::before {
     content: 'JavaScript';
-    z-index: -1;
 }
 
-pre.language-ocaml::before,
-pre.language-reason::before,
-pre.language-javascript::before {
+code.language-ocaml::before,
+code.language-reason::before,
+code.language-javascript::before {
     position: absolute;
     top: -22px;
     right: 0;
@@ -596,6 +596,7 @@ pre.language-javascript::before {
 }
 #how-drawer-toggle:checked ~ .how-drawer-content {
     transform: translateX(0);
+    transition: transform .5s;
 }
 .how-drawer-icon::before,
 .how-drawer-icon::after,
@@ -715,6 +716,7 @@ pre.language-javascript::before {
     body {
         background-image: url("/img/ocsigen-bubbles-large.png");
         background-repeat: no-repeat;
-        background-position: -800px 100px;
+        background-position: -800px 0;
+        background-attachment: fixed;
     }
 }
