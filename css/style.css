@@ -135,7 +135,7 @@ a.main-button, a.main-button:visited {
     text-align: right;
 }
 .project-page .page-header {
-    background-color: #002149;
+    background-color: #001a39;
 }
 .page-header a {
     color: white;
@@ -226,7 +226,7 @@ li.mainmenu-doc {
     text-align: center;
 }
 .main-page-section-js_of_ocaml {
-    background-color: #002149;
+    background-color: #001a39;
     color: white;
 }
 .main-page-section-js_of_ocaml-schema {
@@ -279,7 +279,7 @@ pre[class*=language-].main-page-section-js_of_ocaml-js {
     color: #ddccbb;
 }
 .main-page-section-about {
-    background-color: #002149; /* dark dark blue */
+    background-color: #001a39; /* dark dark blue */
     color: #ddd;
     padding: 30px 0;
 }
@@ -592,7 +592,7 @@ code.language-javascript::before {
     max-width: 100vw;
     top: 0;
     right:0;
-    background-color: #002149;
+    background-color: #001a39;
     transform: translateX(400px);
     transition: transform .5s;
     box-shadow: -5px 0 5px 0 rgba(0,0,0,0.2);
