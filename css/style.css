@@ -48,19 +48,6 @@ body {
     font-family: 'Work Sans', sans-serif;
     color: #555;
 }
-button#reason {
-    position: fixed;
-    right: 20px;
-    top: 120px;
-    background-color: #ff8d52;
-    border-radius: 50%;
-    border: none;
-    height: 75px;
-    width: 75px;
-    color: white;
-    cursor: pointer;
-    font-size: 12px;
-}
 form#search {
     display: none;
 }
@@ -370,24 +357,35 @@ pre[class*=language-].main-page-section-js_of_ocaml-js {
     padding: 0 20px;
     right: 0;
 }
-.version-selector {
-}
-.version-selector .version-selector-versions {
-    display: none;
-}
-.version-selector:hover .version-selector-versions {
-    display: block;
-    position: absolute;
-}
-
 
 /****** Reason switch button (from html_of_wiki) *****/
+button#reason {
+    position: fixed;
+    right: 20px;
+    top: 120px;
+    background-color: #ff8d52;
+    border-radius: 50%;
+    border: none;
+    height: 75px;
+    width: 75px;
+    color: white;
+    cursor: pointer;
+    font-size: 12px;
+    z-index: 10;
+}
 /* Update the switch button's content */
 body:not(.reason) button#reason::after {
 	content: 'Reason syntax';
 }
 body.reason button#reason::after {
 	content: 'regular OCaml syntax';
+}
+.reasonwarning {
+    display: none;
+    font-style: italic;
+}
+body.reason .reasonwarning {
+    display: block;
 }
 
 /****** Client-server switch button *****/
@@ -406,8 +404,22 @@ body:not(.reason) pre.language-reason.standalone,
 body.reason code.language-ocaml:not(.error) {
 	display: none
 }
-
-
+.client-server-switch-wrapper {
+    font-size: 14px;
+}
+.client-server-switch .server {
+    display: inline-block;
+    background-color: #73c6ed;
+    padding: 5px 10px;
+}
+.client-server-switch .client {
+    display: inline-block;
+    background-color: #d4df67;
+    padding: 5px 10px;
+}
+.client-server-switch a {
+    color: white;
+}
 
 /****** Code ******/
 
@@ -545,6 +557,9 @@ code.language-javascript::before {
 }
 
 /****** Docversion ******/
+.how-versions {
+    margin-bottom: 10px;
+}
 .how-versions-all {
     display: none;
 }
@@ -674,6 +689,20 @@ code.language-javascript::before {
 
 /****** Mobile version ******/
 @media (max-width: 720px) {
+    .smallscreen {
+        display: block;
+    }
+    .largescreen {
+        display: none;
+    }
+    /* We use an id because of https://github.com/ocsigen/tyxml/issues/196 */
+    #smallscreencsswitch {
+        display: block;
+        margin: 0 15px;
+    }
+    #largescreencsswitch {
+        display: none;
+    }
     .page-header .mainmenu {
         display: none;
     }
@@ -720,6 +749,19 @@ code.language-javascript::before {
     }
     .rightcol {
         margin-left: 40px;
+    }
+    .smallscreen {
+        display: none;
+    }
+    .largescreen {
+        display: block;
+    }
+    /* We use an id because of https://github.com/ocsigen/tyxml/issues/196 */
+    #smallscreencsswitch {
+        display: none;
+    }
+    #largescreencsswitch {
+        display: block;
     }
 }
 @media (min-width: 1200px) {
