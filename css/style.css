@@ -7,6 +7,7 @@
 /****** Docversion ******/
 /****** Drawer ******/
 /****** Drawer content ******/
+/****** Page specific ******/
 /****** Mobile ******/
 /****** Large screen ******/
 
@@ -332,7 +333,7 @@ pre[class*=language-].main-page-section-js_of_ocaml-js {
     position: sticky;
     top: 100px;
     bottom: 0;
-    height: calc(100vh - 120px);
+    height: calc(100vh - 100px);
     overflow-y: auto;
     width: 300px;
     margin: 220px 40px 0 0;
@@ -371,7 +372,7 @@ button#reason {
     color: white;
     cursor: pointer;
     font-size: 12px;
-    z-index: 10;
+    z-index: 3;
 }
 /* Update the switch button's content */
 body:not(.reason) button#reason::after {
@@ -556,6 +557,10 @@ code.language-javascript::before {
     font-family: 'Work Sans';
 }
 
+code[class*=language-], pre[class*=language-] {
+    white-space: pre-wrap;
+}
+
 /****** Docversion ******/
 .how-versions {
     margin-bottom: 10px;
@@ -687,6 +692,17 @@ code.language-javascript::before {
     padding: 15px 0;
 }
 
+/****** Page specific ******/
+/* intro tuto */
+body.tuto .tutocase {
+    background-color: #f7cbb5;
+    padding: 15px 25px;
+}
+/* tuto os */
+body.tuto.start div.screenshots img {
+    max-height: 200px;
+    max-width: calc(100vw - 30px);
+}
 /****** Mobile version ******/
 @media (max-width: 720px) {
     .smallscreen {
@@ -729,7 +745,7 @@ code.language-javascript::before {
         display: none;
     }
     .project-page h1 {
-        font-size: 22px;
+        font-size: 36px;
     }
 }
 @media (max-width: 1179px) {
