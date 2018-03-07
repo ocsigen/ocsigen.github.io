@@ -234,7 +234,7 @@ li.drawermainmenu-current a {
 }
 .main-page-section-js_of_ocaml-ocaml code[class*=language-]::before,
 .main-page-section-js_of_ocaml-js code[class*=language-]::before {
-    color: rgba(0,0,0,0.3);
+    color: rgba(255,255,255,0.2);
     text-shadow: none;
 }
 pre[class*=language-].main-page-section-js_of_ocaml-ocaml,
@@ -253,13 +253,13 @@ pre[class*=language-].main-page-section-js_of_ocaml-js {
 .main-page-section-js_of_ocaml-arrow1 {
     position: absolute;
     top: 100px;
-    left: 500px;
+    left: 525px;
     font-size: 51px;
 }
 .main-page-section-js_of_ocaml-arrow2 {
     position: absolute;
     top: 300px;
-    left: 500px;
+    left: 525px;
     font-size: 51px;
     transform: rotateZ(45deg);
 }
@@ -558,7 +558,7 @@ code.language-javascript::before {
 }
 
 code[class*=language-], pre[class*=language-] {
-    white-space: pre-wrap;
+    white-space: pre-wrap !important;
 }
 
 /****** Docversion ******/
@@ -746,6 +746,11 @@ body.tuto.start div.screenshots img {
     }
     .project-page h1 {
         font-size: 36px;
+    }
+}
+@media (min-width: 1180px) {
+    .main-page-section-js_of_ocaml-schema pre[class*=language-] {
+        width: 450px;
     }
 }
 @media (max-width: 1179px) {
