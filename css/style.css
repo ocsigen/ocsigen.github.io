@@ -5,6 +5,7 @@
 /****** Code ******/
 /****** Switch button (from html_of_wiki) *****/
 /****** Docversion ******/
+/****** Outline ******/
 /****** Drawer ******/
 /****** Drawer content ******/
 /****** Page specific ******/
@@ -38,7 +39,7 @@ h1, h2, h3, h4 {
     color: #094489; /* dark blue */
 }
 .project-page h1 {
-    margin-top: 220px;
+    margin: 170px 0 70px 0;
     font-size: 50px;
 }
 p {
@@ -336,9 +337,10 @@ pre[class*=language-].main-page-section-js_of_ocaml-js {
     height: calc(100vh - 100px);
     overflow-y: auto;
     width: 300px;
-    margin: 220px 40px 0 0;
+    margin: 170px 40px 0 0;
     padding: 18px 18px 50px 18px;
     background-color: rgba(220,220,220,0.9);
+    border-radius: 5px;
 }
 .leftcol::-webkit-scrollbar {
   display: none;
@@ -593,6 +595,11 @@ code[class*=language-], pre[class*=language-] {
 }
 .how-versions-all > * {
     padding: 4px 10px;
+}
+
+/****** Outline ******/
+.ocsimore_outline {
+    margin: 60px 0;
 }
 
 /****** Drawer *****/
