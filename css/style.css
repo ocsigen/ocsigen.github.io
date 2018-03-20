@@ -207,7 +207,13 @@ li.drawermainmenu-current a {
     margin: 0 auto;
 }
 .main-page-section-news {
-    background-color: #f2f2f2;
+    background: linear-gradient(white, #eee);
+}
+[class^="main-page-news-"] {
+    padding: 35px;
+    border-box: 5px;
+    color: white;
+    background-color: white;
 }
 .main-page-section-multitier {
     color: #222;
@@ -369,7 +375,7 @@ button#reason {
     position: fixed;
     right: 20px;
     top: 120px;
-    background-color: #ff8d52;
+    background-color: #ff8d52; /* orange */
     border-radius: 50%;
     border: none;
     height: 75px;
