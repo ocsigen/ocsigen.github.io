@@ -308,23 +308,39 @@ pre[class*=language-].main-page-section-js_of_ocaml-js {
     padding-bottom: 50px;
 }
 .main-page-project {
+    position: relative;
     width: 400px;
     max-width: 100vw;
-    height: 250px;
+    height: 210px;
     background-color: white;
-    background: url("/img/logo-ocsigen-contours.png");
+    background: url("/img/ocsigen-bubbles-shadow-small.png");
+    background-repeat: no-repeat;
+    background-position: 127% 220%;
     margin: 20px;
     border-radius: 4px;
     box-shadow: 1px 1px 4px rgba(0,0,0,0.5);
     overflow: hidden;
 }
+.main-page-project h3::before {
+    content: '';
+    position: absolute;
+    left: 30px;
+    top: 30px;
+    width: 90px;
+    display: block;
+    background-image: url("/img/ocsigen-white.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 28px;
+}
 .main-page-project h3 {
-    background-color: #094489;
-    color: white;
-    padding: 30px;
+    background-color: #001a39;
+    color: #ff8d52;
+    padding: 44px 0 10px 92px;
     margin: 0;
 }
 .main-page-project p {
+    margin: 0;
     padding: 30px;
     color: #555;
     font-size: 20px;
