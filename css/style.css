@@ -39,7 +39,7 @@ h1, h2, h3, h4 {
     color: #094489; /* dark blue */
 }
 .project-page h1 {
-    margin: 170px 0 70px 0;
+    margin: 140px 0 70px 0;
     font-size: 50px;
 }
 p {
@@ -211,8 +211,7 @@ li.drawermainmenu-current a {
 }
 [class^="main-page-news-"] {
     padding: 35px;
-    border-box: 5px;
-    color: white;
+    border-radius: 5px;
     background-color: white;
 }
 .main-page-section-multitier {
@@ -357,15 +356,16 @@ pre[class*=language-].main-page-section-js_of_ocaml-js {
 .leftcol {
     flex-shrink: 0;
     position: sticky;
-    top: 100px;
+    top: 260px;
     bottom: 0;
-    height: calc(100vh - 100px);
+    height: calc(100vh - 320px);
     overflow-y: auto;
     width: 300px;
-    margin: 170px 40px 0 0;
+    margin: 140px 40px 0 0;
     padding: 18px 18px 50px 18px;
-    background-color: rgba(220,220,220,0.9);
+    background-color: rgba(255,255,255,0.9);
     border-radius: 5px;
+    border: 1px solid #eee;
 }
 .leftcol::-webkit-scrollbar {
   display: none;
@@ -700,6 +700,7 @@ code[class*=language-], pre[class*=language-] {
 body.tuto .tutocase {
     background-color: #f7cbb5;
     padding: 15px 25px;
+    border-radius: 5px;
 }
 /* tuto os */
 body.tuto.start div.screenshots img {
