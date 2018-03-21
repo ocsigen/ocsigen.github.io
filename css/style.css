@@ -172,7 +172,7 @@ li.drawermainmenu-current a {
 }
 .page-header .logo-ocsigen {
     position: absolute;
-    left: 30px;
+    left: 60px;
     top: 20px;
 }
 .main-page-section-partners {
@@ -342,7 +342,6 @@ pre[class*=language-].main-page-section-js_of_ocaml-js {
     margin: 0;
     padding: 30px;
     color: #555;
-    font-size: 20px;
 }
 .project-page {
     margin: 120px auto;
@@ -714,6 +713,9 @@ body.tuto.start div.screenshots img {
     }
     .largescreen {
         display: none;
+    }
+    .page-header .logo-ocsigen {
+        left: 30px;
     }
     /* We use an id because of https://github.com/ocsigen/tyxml/issues/196 */
     #smallscreencsswitch {
