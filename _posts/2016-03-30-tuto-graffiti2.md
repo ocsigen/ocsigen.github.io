@@ -173,7 +173,7 @@ behave as the `first` of the two following lines that terminates:
 
 Functions in Eliom and Js_of_ocaml which do not implement just a
 computation or direct side effect, but rather wait for user activity,
-or file system access, or need a unforseeable amount of time to return
+or file system access, or need a unforeseeable amount of time to return
 are defined *with Lwt*; instead of returning a value of type `a`
 they return an Lwt thread of type `a Lwt.t`.
 
@@ -232,7 +232,7 @@ run.  Cooperative functions return a value in the Lwt monad
 `Lwt.bind` and `Lwt.return` do not introduce cooperation points.
 
 In our example, the function `Lwt_js_events.mouseup` may introduce
-a cooperation point, because it is unforseeable when this event
+a cooperation point, because it is unforeseeable when this event
 happens. That's why it returns a value in the Lwt monad.
 
 Using cooperative threads has a huge advantage: given that you know
