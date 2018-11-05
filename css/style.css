@@ -39,7 +39,7 @@ h1, h2, h3, h4 {
     color: #094489; /* dark blue */
 }
 .project-page h1 {
-    margin: 140px 0 70px 0;
+    margin: 100px 0 70px 0;
     font-size: 50px;
 }
 p {
@@ -51,7 +51,18 @@ body {
     color: #555;
 }
 form#search {
-    display: none;
+    display: flex;
+}
+form#search input {
+    flex-grow: 1;
+}
+form#search button {
+    color: white;
+    background-color: royalblue;
+    padding: 10px;
+    margin-left: 5px;
+    border-radius: 10%;
+    border-style: none;
 }
 .main-button {
     display: inline-block;
