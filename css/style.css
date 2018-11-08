@@ -450,6 +450,19 @@ body.reason code.language-ocaml:not(.error) {
 
 /****** Code ******/
 
+pre.shared {
+    background-color: #eeffee !important;
+    border-color: #B4eeb4;
+}
+pre.server {
+    background-color: #ddeeff !important;
+    border-color: #Cae1ff;
+}
+pre.client {
+    background-color: #ffffdd !important;
+    border-color: #Ffec8b;
+}
+
 span.teletype {
   color: #0CA9DC;
   font-family: monospace;
@@ -540,16 +553,6 @@ span.odocwiki_field::after {
 
 span.odocwiki_variant > span { display: table-cell; }
 */
-
-pre.ocsforge_color.server {
-  background-color: #ddeeff;
-}
-pre.ocsforge_color.client {
-  background-color: #ffffdd;
-}
-pre.ocsforge_color.shared {
-  background-color: #eeffee;
-}
 
 pre[class*=language-] {
     position: relative;
