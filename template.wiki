@@ -41,7 +41,7 @@
 <<drawer|
 *@@class="drawermainmenu"@class="drawermainmenu-home"@@[[site:/|Home]]
 *@@class="drawermainmenu-doc"@@[[wiki("tuto"):|Doc]]
-*@@class="drawermainmenu-current"@@[[wiki("eliom"):|Eliom]]
+*@@class="drawermainmenu-project"@@[[wiki("eliom"):|Eliom]]
 *@@class="drawermainmenu-project"@@[[wiki("js_of_ocaml"):|Js_of_ocaml]]
 *@@class="drawermainmenu-project"@@[[wiki("ocsigenserver"):|Server]]
 *@@class="drawermainmenu-project"@@[[wiki("lwt"):|Lwt]]
