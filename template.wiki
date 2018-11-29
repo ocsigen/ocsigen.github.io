@@ -12,27 +12,27 @@
 
 @@class="logo-ocsigen"@@[[site:/|{{site:/img/ocsigen-white.svg|Ocsigen}}]]
 
-<<when-project when="eliom"          |@@class="logo-subproject"@@Eliom>>
-<<when-project when="js_of_ocaml"    |@@class="logo-subproject"@@Js_of_ocaml>>
-<<when-project when="ocsigenserver"  |@@class="logo-subproject"@@Server>>
-<<when-project when="lwt"            |@@class="logo-subproject"@@Lwt>>
-<<when-project when="tyxml"          |@@class="logo-subproject"@@Tyxml>>
-<<when-project when="ocsigen-toolkit"|@@class="logo-subproject"@@Toolkit>>
-<<when-project when="ocsigen-start"  |@@class="logo-subproject"@@Start>>
+<<when-project when="eliom"          | @@class="logo-subproject"@@Eliom>>
+<<when-project when="js_of_ocaml"    | @@class="logo-subproject"@@Js_of_ocaml>>
+<<when-project when="ocsigenserver"  | @@class="logo-subproject"@@Server>>
+<<when-project when="lwt"            | @@class="logo-subproject"@@Lwt>>
+<<when-project when="tyxml"          | @@class="logo-subproject"@@Tyxml>>
+<<when-project when="ocsigen-toolkit"| @@class="logo-subproject"@@Toolkit>>
+<<when-project when="ocsigen-start"  | @@class="logo-subproject"@@Start>>
 
 <<div class="mainmenu"|
 <<span class="mainmenu-home"|[[site:/|Home]]>>
 <<span class="mainmenu-doc" |[[wiki("tuto"):|Doc]]>>
-<<when-project   when="eliom"        |@@class="mainmenu-current"@@[[wiki("eliom"):|Eliom]]>>
-<<when-project unless="eliom"        |                            [[wiki("eliom"):|Eliom]]>>
-<<when-project   when="js_of_ocaml"  |@@class="mainmenu-current"@@[[wiki("js_of_ocaml"):|Js_of_ocaml]]>>
-<<when-project unless="js_of_ocaml"  |                            [[wiki("js_of_ocaml"):|Js_of_ocaml]]>>
-<<when-project   when="lwt"          |@@class="mainmenu-current"@@[[wiki("lwt"):|Lwt]]>>
-<<when-project unless="lwt"          |                            [[wiki("lwt"):|Lwt]]>>
-<<when-project   when="tyxml"        |@@class="mainmenu-current"@@[[wiki("tyxml"):|Tyxml]]>>
-<<when-project unless="tyxml"        |                            [[wiki("tyxml"):|Tyxml]]>>
-<<when-project   when="ocsigen-start"|@@class="mainmenu-current"@@[[wiki("ocsigen-start"):|Start]]>>
-<<when-project unless="ocsigen-start"|                            [[wiki("ocsigen-start"):|Start]]>>
+<<when-project   when="eliom"        | @@class="mainmenu-current"@@[[wiki("eliom"):|Eliom]]>>
+<<when-project unless="eliom"        |                             [[wiki("eliom"):|Eliom]]>>
+<<when-project   when="js_of_ocaml"  | @@class="mainmenu-current"@@[[wiki("js_of_ocaml"):|Js_of_ocaml]]>>
+<<when-project unless="js_of_ocaml"  |                             [[wiki("js_of_ocaml"):|Js_of_ocaml]]>>
+<<when-project   when="lwt"          | @@class="mainmenu-current"@@[[wiki("lwt"):|Lwt]]>>
+<<when-project unless="lwt"          |                             [[wiki("lwt"):|Lwt]]>>
+<<when-project   when="tyxml"        | @@class="mainmenu-current"@@[[wiki("tyxml"):|Tyxml]]>>
+<<when-project unless="tyxml"        |                             [[wiki("tyxml"):|Tyxml]]>>
+<<when-project   when="ocsigen-start"| @@class="mainmenu-current"@@[[wiki("ocsigen-start"):|Start]]>>
+<<when-project unless="ocsigen-start"|                             [[wiki("ocsigen-start"):|Start]]>>
 >>
 
 <<when-local  |<<googlesearch icon="https://ocsigen.org/img/search.svg" domain="ocsigen.org">>>>
