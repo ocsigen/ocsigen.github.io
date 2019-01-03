@@ -106,7 +106,14 @@ body {
 form#googlesearch {
     padding-top: 15px;
     margin-right: -100px;
+    margin-left: 15px;
 }
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    form#googlesearch {
+        margin-right: -20px;
+    }
+}
+
 .main-button {
     display: inline-block;
     padding: 15px 45px;
@@ -197,23 +204,26 @@ body.ocsigen\.github\.io.intro .page-header {
 .page-header .mainmenu {
     flex-grow: 1;
     line-height: 30px;
-    margin: 15px 0;
+    margin: 20px 0px;
     font-size: 12px;
 }
-.page-header .mainmenu li {
-    display: inline-block;
-    padding: 5px 15px;
-    color: #bbb;
+.page-header .mainmenu p {
+    display: inline;
 }
-.page-header .mainmenu li.mainmenu-current {
+.page-header .mainmenu p a,
+.page-header .mainmenu p span a {
+    font-size: 13px;
+    padding: 7px 10px;
     color: white;
+}
+.page-header .mainmenu .mainmenu-current {
     border-bottom: 4px solid #64caff;
 }
 li.drawermainmenu-page,
 li.drawermainmenu-home,
 li.drawermainmenu-doc,
-li.mainmenu-home,
-li.mainmenu-doc {
+.mainmenu-home,
+.mainmenu-doc {
     font-weight: bold;
 }
 li.drawermainmenu-project a {
