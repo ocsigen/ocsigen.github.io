@@ -21,7 +21,8 @@
 <<when-project when="ocsigen-start"  | @@class="logo-subproject"@@Start>>
 
 <<div class="mainmenu"|
-<<span class="mainmenu-home"|[[site:/|Home]]>>
+<<when-project   when="ocsigen.github.io"|<<span class="mainmenu-home"|[[site:/|Home]]>>>>
+<<when-project unless="ocsigen.github.io"|<<span class="mainmenu-current mainmenu-home"|[[site:/|Home]]>>>>
 <<span class="mainmenu-doc" |[[wiki("tuto"):|Doc]]>>
 <<when-project   when="eliom"        | @@class="mainmenu-current"@@[[wiki("eliom"):|Eliom]]>>
 <<when-project unless="eliom"        |                             [[wiki("eliom"):|Eliom]]>>
@@ -61,21 +62,39 @@
 
 >> <<|page-header>>
 
-@@class="reasonwarning"@@Warning: Reason support is experimental.
-We are looking for beta-tester and contributors.
+<<when-project unless="ocsigen.github.io"|
+    @@class="reasonwarning"@@Warning: Reason support is experimental.
+    We are looking for beta-tester and contributors.
 
-<<reason-switch>>
+    <<reason-switch>>
 
-<<div class="twocols" |
-<<nav class="leftcol" |
-<<docversion>>
+    <<div class="twocols" |
+    <<nav class="leftcol" |
+    <<docversion>>
 
-<<doctree>>
->> <<|leftcol>>
+    <<doctree>>
+    >> <<|leftcol>>
 
-<<article class="rightcol" |
-<<client-server-switch|>>
-<<content>>
->> <<|rightcol>>
->> <<|twocols>>
+    <<article class="rightcol" |
+    <<client-server-switch|>>
+    <<content>>
+    >> <<|rightcol>>
+    >> <<|twocols>>
+>>
+
+<<when-project when="ocsigen.github.io"|
+    <<content>>
+
+
+    <<div class="main-page-section main-page-section-about"|
+    <<div class="main-page-section-content"|
+    * [[site:/credits|Who does Ocsigen?]]
+    * [[site:/papers|Research papers]]
+    * [[site:/projects|All the projects]]
+    * [[site:/blog|Blog]]
+    * [[https://github.com/ocsigen|Source code]]
+    >>
+    >>
+>>
+
 >> <<|project-page>>
