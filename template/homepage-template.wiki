@@ -1,0 +1,16 @@
+<<include template="head.wiki">>
+<<include template="header.wiki">>
+
+<<content>>
+
+
+<<div class="main-page-section main-page-section-about"|
+<<div class="main-page-section-content"|
+* [[site:/credits|Who does Ocsigen?]]
+* [[site:/papers|Research papers]]
+* [[site:/projects|All the projects]]
+* [[site:/blog|Blog]]
+* [[https://github.com/ocsigen|Source code]]
+
+>>
+>>

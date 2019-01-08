@@ -1,15 +1,4 @@
-<<head-css href="https://ocsigen.org/css/style.css">>
-<<head-css href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.9.0/themes/prism.min.css">>
-<<head-script src="https://ocsigen.org/js/client.js">>
-<<head-script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.9.0/components/prism-core.min.js">>
-<<head-script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.9.0/components/prism-ocaml.min.js">>
-<<head-script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.9.0/components/prism-clike.min.js">>
-<<head-script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.9.0/components/prism-reason.min.js">>
-<<head-script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.9.0/components/prism-javascript.min.js">>
-
-<<div class="project-page"|
 <<div class="page-header"|
-
 @@class="logo-ocsigen"@@[[site:/|{{site:/img/ocsigen-white.svg|Ocsigen}}]]
 
 <<when-project when="eliom"          | @@class="logo-subproject"@@Eliom>>
@@ -55,27 +44,5 @@
 *@@class="drawermainmenu-page"@@[[https://github.com/ocsigen|Source code]]
 
 <<doctree>>
-
-
 >> <<|drawer>>
-
 >> <<|page-header>>
-
-@@class="reasonwarning"@@Warning: Reason support is experimental.
-We are looking for beta-tester and contributors.
-
-<<reason-switch>>
-
-<<div class="twocols" |
-<<nav class="leftcol" |
-<<docversion>>
-
-<<doctree>>
->> <<|leftcol>>
-
-<<article class="rightcol" |
-<<client-server-switch|>>
-<<content>>
->> <<|rightcol>>
->> <<|twocols>>
->> <<|project-page>>
