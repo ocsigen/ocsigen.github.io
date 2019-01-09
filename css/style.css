@@ -355,12 +355,12 @@ pre[class*=language-].main-page-section-js_of_ocaml-js {
 .leftcol {
     flex-shrink: 0;
     position: sticky;
-    top: 260px;
+    top: 220px;
     bottom: 0;
-    height: calc(100vh - 320px);
+    height: calc(100vh - 260px);
     overflow-y: auto;
     width: 300px;
-    margin: 140px 40px 0 0;
+    margin: 100px 40px 0 0;
     padding: 18px 18px 50px 18px;
     background-color: rgba(255,255,255,0.9);
     border-radius: 5px;
