@@ -1,0 +1,38 @@
+<<head-css|.monospace{font-style: monospace;}>>
+<<div class="project-page" |
+<<div class="rightcol" |
+
+<<header |=Contributing to Ocsigen>>
+
+==For individual contributers
+To contribute to an Ocsigen project, first see the guidelines it provides. It
+will give you the directives on how to make your contribution. Once ready,
+create a //Pull Request// on the repository and wait for feedback!
+
+**Every contribution has to be documented!** The documentation is stored on
+a branch ##wikidoc##. For your contribution to be accepted, you also need to
+make a PR on that branch for your documentation. On your forked branch, feel
+free to push and the CI will tell you if your documentation has errors. It 
+will only be deployed to [[https://ocsigen.org]] when merged on ##wikidoc##.
+
+The documentation format is the wikicréole. Please find the reference
+[[https://ocsigen.org/html_of_wiki/2.0/manual/intro|here]]. You can generate
+the documentation of your API  directly in Ocsigen's wikicréole using {{{ocamldoc}}}.
+Do not hesitate to ask for help if you experience any trouble!
+
+Remember, you have to issue **2** pull requests---one for your code on ##master##
+and one for its documentation on ##wikidoc##---for your contribution to be
+accepted!
+
+==For package maintainers
+# Make sure the documentation on ##wikidoc## is **up to date** with the code on ##master##.
+# On ##wikidoc##, {{{cp dev X.Y.Z}}}, where {{{X.Y.Z}}} is the new version's number.
+# On ##master##, update opam configuration file.
+# {{{git tag}}}
+# Create a release on GitHub.
+# Publish with opam and wait for the package to be accepted.
+
+Also do not forget to push on ##wikidoc## as it will update the website
+automatically for the new version.
+>>
+>>
