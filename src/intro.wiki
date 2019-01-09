@@ -1,0 +1,233 @@
+<<head-css|.page-header{background-color:rgba(0,0,0,0.2) !important;}>>
+<<div class="main-page-section main-page-section-header"|
+
+==Site under construction. Please use http://ocsigen.org for now.
+
+= Multi-tier programming for Web and mobile apps
+== Android, iOS, Server & client in one piece of code
+== Powerful type-checking with OCaml/Reason
+
+[[@@class="main-button"@@wiki("tuto"):manual/start|Your first app in 5 minutes ...]]
+
+>>
+
+<<div class="main-page-section main-page-section-partners"|
+
+*@@class="sponsormain"@ @@ [[http://besport.com|{{@@class="logo-besport"@@site:img/besport.svg|Be Sport}}]]
+* [[http://www.univ-paris-diderot.fr|{{@@class="logo-diderot"@@site:img/diderot.png|Université Paris Diderot}}]]
+
+* [[http://www.cnrs.fr|{{@@class="logo-cnrs"@@site:/img/cnrs.png|CNRS}}]]
+* [[http://www.irif.fr|{{@@class="logo-irif"@@site:/img/irif.svg|IRIF}}]]
+* [[http://www.irill.org|{{@@class="logo-irill"@@site:/img/irill.png|IRILL}}]]
+
+* [[http://www.inria.fr|{{@@class="logo-inria"@@site:/img/inria.png|Inria}}]]
+* [[http://www.systematic-paris-region.org|{{@@class="logo-systematic"@@site:/img/systematic.png|Systematic}}]]
+
+>>
+
+<<div class="main-page-section main-page-section-news"|
+<<div class="main-page-section-content"|
+== News
+
+<<div class="horiz-blocks"|
+<<div class="main-page-news-1"|
+=== New site
+New design for ocsigen.org!
+Send us your feedback and bug reports
+[[https://github.com/ocsigen/ocsigen.org/issues|on Github]].
+>>
+
+<<div class="main-page-news-2"|
+=== Releases
+We have recently released the following Ocsigen packages:
+Ocsigen Start 1.1.0, Ocsigen Toolkit 1.1.0, Eliom 6.3.0, Js_of_ocaml 3.1.0,
+Lwt 3.3.0, Ocsigen Server 2.9.0, TyXML 4.2.0, deriving 0.8.1
+
+The releases restore compatibility with the latest OCaml (4.6.x) and as usual bring about a fair amount of bugfixes end enhancements.
+
+Everything is available in opam. `opam install ocsigen-start` will pull in all the other packages.
+>>
+>> <<|horiz-blocks>>
+
+>>
+>>
+
+<<div class="main-page-section main-page-section-multitier"|
+<<div class="main-page-section-content"|
+== Eliom
+===@@class="subtitle"@@ Multi-tier language for multi-platform apps
+
+<<div class="horiz-blocks"|
+Eliom extends OCaml/Reason into a **multi-tier language**
+making it possible to write your whole application (client and server parts)
+as a **single program**!
+
+It can run as a **Web app**, or as a **mobile app** (based on Web technologies).
+>>
+
+<<div class="main-page-section-multitier-schema"|
+
+{{@@class="main-page-schema-multitier"@@site:/img/multitier-multiplatform.svg|Multi-tier}}
+
+>>
+>>
+>>
+
+<<div class="main-page-section main-page-section-js_of_ocaml"|
+<<div class="main-page-section-content"|
+== Js_of_ocaml
+===@@class="subtitle" Optimizing compiler for OCaml/Reason to Javascript
+
+<<div class="horiz-blocks"|
+Js_of_ocaml translates your OCaml or Reason programs to Javascript.
+You can choose between readable or optimized JavaScript.
+
+Js_of_ocaml operates from compiled OCaml bytecode programs.
+You don't even need the source code, and you don't need to recompile
+all the OCaml libraries you use.
+
+Easy interfacing with Javascript libraries.
+>>
+
+<<div class="main-page-section-js_of_ocaml-schema"|
+<<code language="ocaml" class="main-page-section-js_of_ocaml-ocaml darkcode"|
+let fib num =
+  let rec aux num prec2 prec =
+    if num = 0
+    then prec
+    else
+      aux (num - 1) prec (prec + prec2)
+  in aux num 1 1
+>>
+
+<<div|
+<<code language="javascript" class="main-page-section-js_of_ocaml-js darkcode"|
+function fib(num)
+ {var num$0=num,prec2=1,prec=1;
+  for(;;)
+   {if(0 === num$0)return prec;
+    var
+     prec$0=prec + prec2 | 0,
+     num$1=num$0 - 1 | 0,
+     num$0=num$1,
+     prec2=prec,
+     prec=prec$0;
+     continue}}
+>>
+
+<<code language="javascript" class="main-page-section-js_of_ocaml-js darkcode"|
+
+function(d){var b=d,c=1,a=1;for(;;){if(0===b)return a;var b=b-1|0,e=a+c|0,c=a,a=e;continue}};
+>>
+>>
+
+<<div class="main-page-section-js_of_ocaml-arrow1"|➔>>
+<<div class="main-page-section-js_of_ocaml-arrow2"|➔>>
+>>
+
+
+>>
+>>
+
+<<div class="main-page-section main-page-section-projects"|
+<<div class="main-page-section-content"|
+==Main projects
+>>
+
+<<div class="main-page-projects"|
+<<link wiki="js_of_ocaml"|
+<<div class="main-page-project"|
+  ===Js_of_ocaml
+
+  Optimizing compiler from OCaml/Reason to Javascript.
+
+>>
+>>
+<<link wiki="eliom"|
+<<div class="main-page-project"|
+  ===Eliom
+
+  Multi-tier language and framework for multi-platform apps.
+
+>>
+>>
+<<link wiki="ocsigenserver"|
+<<div class="main-page-project"|
+  ===Server
+
+  Full-featured and extensible Web Server.
+>>
+>>
+<<link wiki="lwt"|
+<<div class="main-page-project"|
+  ===Lwt
+
+  Cooperative threading library.
+>>
+>>
+<<link wiki="eliom"|
+<<div class="main-page-project"|
+  ===Tyxml
+
+  Static type-checking for HTML and SVG.
+>>
+>>
+<<link wiki="eliom"|
+<<div class="main-page-project"|
+  ===Ocsigen Toolkit
+
+  Native OCaml widgets for browsers (client side only or client-server).
+>>
+>>
+<<link wiki="eliom"|
+<<div class="main-page-project"|
+  ===Start
+
+  A full-featured app to use as code example for your own projects.
+>>
+>>
+
+>>
+>>
+
+<<div class="main-page-section main-page-section-users"|
+<<div class="main-page-section-content"|
+== Users
+
+Here is a short list of users:
+
+* [[http://www.besport.com/|BeSport]]
+* [[https://code.facebook.com/posts/264544830379293/hack-a-new-programming-language-for-hhvm/|Facebook]] <<span class="small"|(internal tools for developers) >>
+* Prose
+* Rambugo
+* Cumulus
+* Life, the game
+* [[http://pumgrana.com/|Pumgrana]]
+* [[http://gencore.bio.nyu.edu/|NYU CGSB Genomics Core]]
+* [[http://try.ocamlpro.com/|Try OCaml]]
+* [[http://ashimaarts.com|Ashima Arts]]
+* [[http://www.licor.com/|Li-Cor]]
+* [[http://www.freebase.com/|Metaweb/Freebase]]
+* Oasis
+* [[http://forge.ocamlcore.org/projects/lambdium/|Lambdium]]
+* Summer music store
+* [[http://code.google.com/p/nurpawiki/|Nurpawiki]]
+* [[http://eigenclass.org/|Eigenclass]]
+* [[http://www.elehack.net/|Elehack]]
+* [[http://www.pps.univ-paris-diderot.fr/|PPS]]
+* Haejinchun
+* ...
+
+<<|
+* [[http://www.baoug.org/|Baoug]]
+* [[http://www.corefarm.com/|Corefarm.com]] and [[http://www.corefarm.org/|Corefarm.org]]
+* [[http://www.nleyten.com/|nLeyten]]
+* [[http://www.sotokolan.com/|Sotokolan]]
+* [[http://www.mytwittshirt.com/|My Twittshirt]]
+>>
+<<| À ajouter : Cowebo Punchup >>
+
+Tell us if you want (or do not want) to appear in this list.
+
+>>
+>>
