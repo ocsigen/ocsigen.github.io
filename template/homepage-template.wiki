@@ -9,6 +9,7 @@
 * [[site:/credits|Who does Ocsigen?]]
 * [[site:/papers|Research papers]]
 * [[site:/projects|All the projects]]
+* [[site:/contributing|Contributing]]
 * [[site:/blog|Blog]]
 * [[https://github.com/ocsigen|Source code]]
 

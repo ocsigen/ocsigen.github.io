@@ -26,11 +26,11 @@ make-redir() {
 EOF
 }
 
-options="--project githubio --api api --manual src --images img --assets download --template template/homepage-template.wiki"
+options="--project githubio --api api --manual manual --images img --assets download --template template/homepage-template.wiki"
 mkdir -p $OUT
-find src -name '*.wiki' -exec basename {} \; | while read -r wiki; do
+find manual -name '*.wiki' -exec basename {} \; | while read -r wiki; do
     html=${wiki%wiki}html
-    $OHOW $options $local -o $OUT/$html src/$wiki || exit 2
+    $OHOW $options $local -o $OUT/$html manual/$wiki || exit 2
     make-redir "$OUT/$(basename $html)" $html
 done
 make-redir "$OUT/intro.html" index.html
