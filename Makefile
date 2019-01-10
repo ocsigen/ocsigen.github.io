@@ -13,3 +13,6 @@ commit: website
 
 deploy: commit
 	git push origin master
+
+open: local
+	xdg-open index.html
