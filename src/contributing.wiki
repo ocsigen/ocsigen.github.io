@@ -1,4 +1,4 @@
-<<head-css|.monospace{font-style: monospace;}>>
+<<head-css|.monospace{font-family: monospace;}>>
 <<div class="project-page" |
 <<div class="rightcol" |
 
@@ -18,19 +18,19 @@ will only be deployed to [[https://ocsigen.org]] when merged on ##wikidoc##.
 The documentation format is the wikicréole. Please find the reference
 [[https://ocsigen.org/html_of_wiki/2.0/manual/intro|here]]. You can generate
 the documentation of your API  directly in Ocsigen's wikicréole using {{{ocamldoc}}}.
-Do not hesitate to ask for help if you experience any trouble!
+Do not hesitate to ask for help if you experience any trouble.
 
 Remember, you have to issue **2** pull requests---one for your code on ##master##
 and one for its documentation on ##wikidoc##---for your contribution to be
 accepted!
 
-==For package maintainers
+==Create a release (for package maintainers)
 # Make sure the documentation on ##wikidoc## is **up to date** with the code on ##master##.
-# On ##wikidoc##, {{{cp dev X.Y.Z}}}, where {{{X.Y.Z}}} is the new version's number.
+# On ##wikidoc##, {{{cp -r dev X.Y.Z}}}, where {{{X.Y.Z}}} is the new version's number.
 # On ##master##, update opam configuration file.
 # {{{git tag}}}
 # Create a release on GitHub.
-# Publish with opam and wait for the package to be accepted.
+# {{{opam publish}}} and wait for the package to be accepted.
 
 Also do not forget to push on ##wikidoc## as it will update the website
 automatically for the new version.
