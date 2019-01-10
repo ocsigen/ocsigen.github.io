@@ -26,9 +26,7 @@ make-redir() {
 EOF
 }
 
-export HOW_HACK_NOPROJECT=t 
 options="--project githubio --api api --manual src --images img --assets download --template template/homepage-template.wiki"
-
 mkdir -p $OUT
 find src -name '*.wiki' -exec basename {} \; | while read -r wiki; do
     html=${wiki%wiki}html
