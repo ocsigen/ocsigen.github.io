@@ -9,7 +9,7 @@ $OHOW --version >/dev/null || {
 }
 
 OUT=home
-[ "$1" = '-l' ] && local=' --local'
+[ "$1" = '-l' ] && local=--local || local=
 
 # NOTE redirections have to be done this way because: GitHub Pages uses
 # symlinks to change the displayed page but the URL is not
@@ -27,12 +27,12 @@ EOF
 }
 
 export HOW_HACK_NOPROJECT=t 
-options="--project 'githubio' --api api --manual src --images img --assets download --template template/homepage-template.wiki$local"
+options="--project githubio --api api --manual src --images img --assets download --template template/homepage-template.wiki"
 
 mkdir -p $OUT
 find src -name '*.wiki' -exec basename {} \; | while read -r wiki; do
     html=${wiki%wiki}html
-    $OHOW $options -o $OUT/$html src/$wiki || exit 2
+    $OHOW $options $local -o $OUT/$html src/$wiki || exit 2
     make-redir "$OUT/$(basename $html)" $html
 done
 make-redir "$OUT/intro.html" index.html
