@@ -20,7 +20,6 @@ script:
     # Examples:
     # - how-redirect "$HOW_LATEST/manual/intro" $HOW_OUT/index.html # redirect index.html to the intro of the latest version
     # - how-redirect-manual 2.4.0 1.1.2 # redirect v1.1.2 manual to v2.4.0 manual
-    - exit $HOW_STATUS
 
 deploy:
   provider: pages

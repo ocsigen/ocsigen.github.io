@@ -48,4 +48,5 @@ how-generate() {
     if ! quickdop -f $HOW_DOC $HOW_OUT -t json -c $HOW_CONFIG -viu; then
         HOW_STATUS=1
     fi
+    return $HOW_STATUS
 }
