@@ -1,3 +1,5 @@
+HOW_STATUS=0
+
 # NOTE redirections have to be done this way because:
 # 1. Travis doesn't deploy symlinks (https://github.com/travis-ci/dpl/issues/912)
 # 2. GitHub Pages uses symlinks to change the displayed page but the URL is not
@@ -43,5 +45,7 @@ how-install() {
 }
 
 how-generate() {
-    quickdop -f $HOW_DOC $HOW_OUT -t json -c $HOW_CONFIG -viu
+    if ! quickdop -f $HOW_DOC $HOW_OUT -t json -c $HOW_CONFIG -viu; then
+        HOW_STATUS=1
+    fi
 }

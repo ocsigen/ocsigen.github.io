@@ -1,9 +1,9 @@
 language: c
 
-env:
-    - HOW_DOC=doc # replace "doc" with the name of your documentation directory
-    - HOW_CONFIG=how.json # replace "how.json" with the name of your file
-    - HOW_OUT=_doc # replace "_doc" with the name of the build directory you like (*)
+# replace HOW_DOC with the name of your documentation directory
+# replace HOW_CONFIG with the name of your configuration file
+# replace HOW_OUT with the name of the build directory you like (*)
+env: HOW_DOC=doc HOW_CONFIG=how.json HOW_OUT=_doc 
 
 install: 
     - wget https://ocsigen.org/how.sh
@@ -12,8 +12,15 @@ install:
 
 script:
     - how-generate
+    # You can add here your redirections. There are two types of redirections:
+    # * Simple redirections from one page to another. Use `how-redirect`.
+    # * Manual redirections from one manual version to another (likely more recent). Use `how-redirect-manual`.
+    # The variable HOW_LATEST contains the number of the more recent version that is not `dev`.
+    # The other environment variables are also accessible.
+    # Examples:
     # - how-redirect "$HOW_LATEST/manual/intro" $HOW_OUT/index.html # redirect index.html to the intro of the latest version
     # - how-redirect-manual 2.4.0 1.1.2 # redirect v1.1.2 manual to v2.4.0 manual
+    - exit $HOW_STATUS
 
 deploy:
   provider: pages
