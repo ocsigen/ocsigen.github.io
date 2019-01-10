@@ -30,7 +30,7 @@
 >>
 
 <<when-local  |<<googlesearch icon="https://ocsigen.org/img/search.svg" domain="ocsigen.org">>>>
-<<unless-local|<<googlesearch icon="/search.svg" domain="ocsigen.org">>>>
+<<unless-local|<<googlesearch icon="/img/search.svg" domain="ocsigen.org">>>>
 
 <<drawer|
 *@@class="drawermainmenu"@class="drawermainmenu-home"@@[[site:/|Home]]
