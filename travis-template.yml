@@ -1,0 +1,25 @@
+language: c
+
+env:
+    - HOW_DOC=doc # replace "doc" with the name of your documentation directory
+    - HOW_CONFIG=how.json # replace "how.json" with the name of your file
+    - HOW_OUT=_doc # replace "_doc" with the name of the build directory you like (*)
+
+install: 
+    - wget https://ocsigen.org/how.sh
+    - . how.sh
+    - how-install
+
+script:
+    - how-generate
+    # - how-redirect "$HOW_LATEST/manual/intro" $HOW_OUT/index.html # redirect index.html to the intro of the latest version
+    # - how-redirect-manual 2.4.0 1.1.2 # redirect v1.1.2 manual to v2.4.0 manual
+
+deploy:
+  provider: pages
+  keep-history: true
+  skip-cleanup: true
+  github-token: $GHP_TOKEN
+  local-dir: _doc # (*) also here
+  on:
+    branch: wikidoc
