@@ -492,23 +492,86 @@ body.reason pre.language-ocaml.standalone,
 body:not(.reason) pre.language-reason.standalone,
 /* Hide the original OCaml code from ReasonML users */
 body.reason code.language-ocaml:not(.error) {
-	display: none
+  display: none
 }
-.client-server-switch-wrapper {
-    font-size: 14px;
-}
-.client-server-switch .server {
+
+
+/* Design from https://www.w3schools.com/howto/howto_css_switch.asp */
+/* The switch - the box around the slider */
+.csw-switch {
+    position: relative;
     display: inline-block;
-    background-color: #73c6ed;
-    padding: 5px 10px;
+    width: 60px;
+    height: 34px;
+    margin-top: 150px;
+    float: right;
 }
-.client-server-switch .client {
-    display: inline-block;
-    background-color: #d4df67;
-    padding: 5px 10px;
+/* Hide default HTML checkbox */
+.csw-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
 }
-.client-server-switch a {
-    color: white;
+/* The slider */
+.csw-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #5cacee; /* steel blue */
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.csw-slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+input:checked + .csw-slider {
+    background-color: #00cd66; /* spring green */
+}
+input:focus + .csw-slider {
+    box-shadow: 0 0 1px : #00cd66;
+}
+input:checked + .csw-slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.csw-slider-style-round {
+    border-radius: 34px;
+}
+.csw-slider-style-round:before {
+    border-radius: 50%;
+}
+
+.csw-slider-yes, .csw-slider-no {
+    position: absolute;
+    left: 3px;
+    top: 35px;
+}
+.csw-switch input:not(:checked) + .csw-slider + .csw-slider-no {
+    display: inline;
+}
+.csw-switch input:not(:checked) + .csw-slider + .csw-slider-no + .csw-slider-yes {
+    display: none;
+}
+.csw-switch input:checked + .csw-slider + .csw-slider-no + .csw-slider-yes {
+    display: inline;
+}
+.csw-switch input:checked + .csw-slider + .csw-slider-no {
+    display: none;
 }
 
 /****** Code ******/
