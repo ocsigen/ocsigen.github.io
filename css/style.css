@@ -39,7 +39,7 @@ h1, h2, h3, h4 {
     color: #094489; /* dark blue */
 }
 .project-page h1 {
-    margin: 140px 0 70px 0;
+    margin: 100px 0 70px 0;
     font-size: 50px;
 }
 p {
@@ -50,9 +50,70 @@ body {
     font-family: 'Work Sans', sans-serif;
     color: #555;
 }
-form#search {
-    display: none;
+#gsearch-box {
+    transition: width 0.6s, border-radius 0.6s, background 0.6s, box-shadow 0.6s;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    background: white;
 }
+#gsearch-box + label#gsearch-icon {
+    color: black;
+}
+#gsearch-box:hover {
+    color: white;
+    background: #98fb98; /* pale green */
+    box-shadow: 0 0 0 5px #36648b; /* dark steel blue */
+}
+#gsearch-box:hover + label#gsearch-icon {
+    color: white;
+}
+#gsearch-box:focus {
+    transition: width 0.6s, border-radius 0.6s, background 0.6s;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    padding-left: 15px;
+    cursor: text;
+    width: 300px;
+    border-radius: auto;
+    background: white;
+    color: black;
+}
+#gsearch-box:focus + label#gsearch-icon {
+    color: black;
+}
+#gsearch-box:not(:focus) {
+    text-indent: -5000px;
+}
+
+#gsearch-submit {
+    position: relative;
+    left: -5000px;
+}
+
+#gsearch-icon {
+    position: relative;
+    left: -30px;
+    top: 4px;
+    color: white;
+    cursor: pointer;
+    width: 20px;
+}
+
+form#googlesearch {
+    padding-top: 15px;
+    margin-right: -100px;
+    margin-left: 15px;
+}
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    form#googlesearch {
+        margin-right: -20px;
+    }
+}
+
 .main-button {
     display: inline-block;
     padding: 15px 45px;
@@ -112,6 +173,7 @@ a.main-button, a.main-button:visited {
     font-size: 16px;
 }
 .page-header {
+    display: flex;
     position: fixed;
     z-index: 3;
     top: 0;
@@ -140,27 +202,28 @@ body.ocsigen\.github\.io.intro .page-header {
     color: #ff8d52;
 }
 .page-header .mainmenu {
-    padding-right: 80px;
-}
-.page-header .mainmenu {
+    flex-grow: 1;
     line-height: 30px;
-    margin: 15px 0;
+    margin: 20px 0px;
     font-size: 12px;
 }
-.page-header .mainmenu li {
-    display: inline-block;
-    padding: 5px 15px;
-    color: #bbb;
+.page-header .mainmenu p {
+    display: inline;
 }
-.page-header .mainmenu li.mainmenu-current {
+.page-header .mainmenu p a,
+.page-header .mainmenu p span a {
+    font-size: 13px;
+    padding: 7px 10px;
     color: white;
+}
+.page-header .mainmenu .mainmenu-current {
     border-bottom: 4px solid #64caff;
 }
 li.drawermainmenu-page,
 li.drawermainmenu-home,
 li.drawermainmenu-doc,
-li.mainmenu-home,
-li.mainmenu-doc {
+.mainmenu-home,
+.mainmenu-doc {
     font-weight: bold;
 }
 li.drawermainmenu-project a {
@@ -729,7 +792,7 @@ body.tuto.start div.screenshots img {
         display: none;
     }
     .page-header .mainmenu {
-        display: none;
+        visibility: hidden;
     }
     .main-page-section-header {
         padding: 90px 40px;
