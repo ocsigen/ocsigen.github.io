@@ -11,8 +11,11 @@ directory.
 * `make local` --- generates the website with links supporting local navigation. (*For testing only!*)
 * `make website` --- generates the files to upload on GitHub Pages.
 * `make commit` --- `make website` + `git add` the files + `git commit -v` (opens your `$EDITOR` for editing commit message).
-* `make deploy` --- `make comit` + `git push origin master`.
+* `make deploy` --- `make commit` + `git push origin master`.
 * `make open` --- opens `index.html` in your default web browser.
+
+The content of the website is not refreshed automatically.
+**On each modification/addition of a .wiki file, you have to** `make deploy`.
 
 ## Blog
 
