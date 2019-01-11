@@ -218,6 +218,7 @@ body.ocsigen\.github\.io.intro .page-header {
 }
 .page-header .mainmenu .mainmenu-current {
     border-bottom: 4px solid #64caff;
+    padding-bottom: 10px;
 }
 li.drawermainmenu-page,
 li.drawermainmenu-home,
