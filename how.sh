@@ -21,7 +21,7 @@ how-redirect-manual() {
     mkdir -p "$dir"
     cd "$HOW_OUT/$1/manual"
     find . -type f | while read -r f; do
-        make-redir "../../$1/manual/$f" "$dir/$f"
+        how-redirect "../../$1/manual/$f" "$dir/$f"
     done
     cd - 2>&1 >/dev/null
 }
