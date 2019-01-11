@@ -14,7 +14,7 @@ directory.
 * `make deploy` --- `make commit` + `git push origin master`.
 * `make open` --- opens `index.html` in your default web browser.
 
-The content of the website is not refreshed automatically.
+The content of the main website is not refreshed automatically (unlike individual projects).
 **On each modification/addition of a .wiki file, you have to** `make deploy`.
 
 ## Blog
