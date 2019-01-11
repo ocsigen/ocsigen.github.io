@@ -27,7 +27,6 @@ To previsualize locally, you can use:
 jekyll serve
 ```
 
-## Links
 [githubpages]: https://pages.github.com/
 [githubpr]: https://help.github.com/articles/using-pull-requests/
 [repo]: https://www.github.com/ocsigen/ocsigen.github.io
