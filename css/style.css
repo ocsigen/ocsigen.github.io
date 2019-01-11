@@ -207,13 +207,14 @@ body.ocsigen\.github\.io.intro .page-header {
     margin: 20px 0px;
     font-size: 12px;
 }
+
 .page-header .mainmenu p {
     display: inline;
 }
 .page-header .mainmenu p a,
 .page-header .mainmenu p span a {
     font-size: 13px;
-    padding: 7px 10px;
+    padding: 5px 15px;
     color: white;
 }
 .page-header .mainmenu .mainmenu-current {
