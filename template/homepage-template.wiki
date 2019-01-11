@@ -11,6 +11,7 @@
 * [[site:/projects|All the projects]]
 * [[site:/contributing|Contributing]]
 * [[site:/blog|Blog]]
+* [[site:/install|Installation]]
 * [[https://github.com/ocsigen|Source code]]
 
 >>

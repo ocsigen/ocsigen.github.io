@@ -1,0 +1,16 @@
+<<div class="project-page" |
+<<div class="rightcol" |
+
+<<header |=Installing Ocsigen>>
+
+To install Ocsigen, just download the packages you want using [[https://opam.ocaml.org/|opam]],
+the OCaml package manager.
+
+[[wiki("ocsigen-start"):|Ocsigen-start]] is a good place to start:
+{{{
+$ opam install ocsigen-start
+}}}
+A tutorial is available [[wiki("tuto"):|here]].
+
+>>
+>>
