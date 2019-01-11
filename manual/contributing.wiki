@@ -1,0 +1,62 @@
+<<head-css|.monospace{font-family: monospace;}>>
+<<div class="project-page" |
+<<div class="rightcol" |
+
+<<header |=Contributing to Ocsigen>>
+
+==For individual contributers
+To contribute to an Ocsigen project, first see the guidelines it provides. It
+will give you the directives on how to make your contribution. Once ready,
+create a //Pull Request// on the repository and wait for feedback!
+
+**Every contribution has to be documented!** The documentation is stored on
+a branch ##wikidoc##. For your contribution to be accepted, you also need to
+make a PR on that branch for your documentation. On your forked branch, feel
+free to push and the CI will tell you if your documentation has errors. It 
+will only be deployed to [[https://ocsigen.org]] when merged on ##wikidoc##.
+
+The documentation format is the wikicréole. Please find the reference
+[[wiki("html_of_wiki"):|here]]. 
+You can generate the documentation of your API  directly in Ocsigen's wikicréole 
+using {{{ocamldoc}}}. Do not hesitate to ask for help if you experience any trouble.
+
+Remember, you have to issue **2** pull requests---one for your code on ##master##
+and one for its documentation on ##wikidoc##---for your contribution to be
+accepted!
+
+==Create a release (for package maintainers)
+# Make sure the documentation on ##wikidoc## is **up to date** with the code on ##master##.
+# On ##wikidoc##, {{{cp -r dev X.Y.Z}}}, where {{{X.Y.Z}}} is the new version's number.
+# On ##master##, update opam configuration file.
+# {{{git tag}}}
+# Create a release on GitHub.
+# {{{opam publish}}} and wait for the package to be accepted.
+
+Also do not forget to push on ##wikidoc## as it will update the website
+automatically for the new version.
+
+==Local documentation generation
+html_of_wiki can (to some extent) locally generate your documentation. Please
+find its manual [[wiki("html_of_wiki"):|here]].
+Each project, on the ##wikidoc## branch, contains a file ##how.json##. Please
+ensure that its configuration is correct for your changes. The following
+steps require you to be at //the root of the project//.
+
+* Install html_of_wiki on your computer. Please follow the instructions provided on the [[https://github.com/ocsigen/html_of_wiki|project's homepage]].
+* Copy the {{{template}}} directory from the repository [[https://github.com/ocsigen/ocsigen.github.io|ocsigen.github.io]] and rename it {{{how_template}}}. You can use the following command:
+{{{
+tmp=$(mktemp -d) && \
+git clone --depth 1 https://github.com/ocsigen/ocsigen.github.io.git $tmp && \
+mv $tmp/{template,how_template} && \
+mv $tmp/how_template .
+}}}
+* Use the following command to generate the documentation of the project, where {{{DOC}}} is the directory containing the documentation:
+{{{
+quickdop -f DOCS _doc -t json -c how.json -viul
+}}}
+
+If you want to avoid generating the whole documentation---just some parts of
+it---read the documentation of the tools **{{{dop}}}** and **{{{ohow}}}** in 
+[[wiki("html_of_wiki"):|the manual of html_of_wiki]]. 
+>>
+>>

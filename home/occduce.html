@@ -1,0 +1,1308 @@
+<html><head><title> OcCDuce </title><meta charset="utf8"/><link rel="stylesheet" href="https://ocsigen.org/css/style.css"/><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.9.0/themes/prism.min.css"/><script type="text/javascript" src="https://ocsigen.org/js/client.js">
+//<![CDATA[
+
+//]]>
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.9.0/components/prism-core.min.js">
+//<![CDATA[
+
+//]]>
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.9.0/components/prism-ocaml.min.js">
+//<![CDATA[
+
+//]]>
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.9.0/components/prism-clike.min.js">
+//<![CDATA[
+
+//]]>
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.9.0/components/prism-reason.min.js">
+//<![CDATA[
+
+//]]>
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.9.0/components/prism-javascript.min.js">
+//<![CDATA[
+
+//]]>
+</script></head><body><div class="page-header"><p class="logo-ocsigen"><a href=".././../../" class="ocsimore_phrasing_link"><img src=".././../../img/ocsigen-white.svg" alt="Ocsigen"/></a>
+</p><div class="mainmenu"><p class="mainmenu-current mainmenu-home"><a href=".././../../" class="ocsimore_phrasing_link">Home</a></p><p class="mainmenu-doc"><a href=".././../../tuto/" class="ocsimore_phrasing_link">Doc</a></p><p><a href=".././../../eliom/" class="ocsimore_phrasing_link">Eliom</a></p><p><a href=".././../../js_of_ocaml/" class="ocsimore_phrasing_link">Js_of_ocaml</a></p><p><a href=".././../../lwt/" class="ocsimore_phrasing_link">Lwt</a></p><p><a href=".././../../tyxml/" class="ocsimore_phrasing_link">Tyxml</a></p><p><a href=".././../../ocsigen-start/" class="ocsimore_phrasing_link">Start</a></p></div><form id="googlesearch" action="https://google.com/search"><input name="q" id="gsearch-box" placeholder="Search using Google"/><label for="gsearch-box"><img src="/img/search.svg" alt="" id="gsearch-icon"/></label><input type="submit" id="gsearch-submit" onclick="document.getElementById('gsearch-box').value += ' site:ocsigen.org';"/></form><aside class="how-drawer"><input id="how-drawer-toggle" type="checkbox"/><label for="how-drawer-toggle" id="how-drawer-label"><span class="how-drawer-icon"></span></label><nav class="how-drawer-content"><ul class="drawermainmenu"><li class="drawermainmenu-home"><a href=".././../../" class="ocsimore_phrasing_link">Home</a>
+</li><li class="drawermainmenu-doc"><a href=".././../../tuto/" class="ocsimore_phrasing_link">Doc</a>
+</li><li class="drawermainmenu-project"><a href=".././../../eliom/" class="ocsimore_phrasing_link">Eliom</a>
+</li><li class="drawermainmenu-project"><a href=".././../../js_of_ocaml/" class="ocsimore_phrasing_link">Js_of_ocaml</a>
+</li><li class="drawermainmenu-project"><a href=".././../../ocsigenserver/" class="ocsimore_phrasing_link">Server</a>
+</li><li class="drawermainmenu-project"><a href=".././../../lwt/" class="ocsimore_phrasing_link">Lwt</a>
+</li><li class="drawermainmenu-project"><a href=".././../../tyxml/" class="ocsimore_phrasing_link">Tyxml</a>
+</li><li class="drawermainmenu-project"><a href=".././../../ocsigen-toolkit/" class="ocsimore_phrasing_link">Toolkit</a>
+</li><li class="drawermainmenu-project"><a href=".././../../ocsigen-start/" class="ocsimore_phrasing_link">Start</a>
+</li><li class="drawermainmenu-project"><a href=".././../../html_of_wiki/" class="ocsimore_phrasing_link">html_of_wiki</a>
+</li><li class="drawermainmenu-project"><a href=".././../../deriving/" class="ocsimore_phrasing_link">deriving</a>
+</li><li class="drawermainmenu-project"><a href=".././../../ocsimore/" class="ocsimore_phrasing_link">Ocsimore (<em>deprecated</em>)</a>
+</li><li class="drawermainmenu-page"><a href=".././../../projects" class="ocsimore_phrasing_link">Other projects</a>
+</li><li class="drawermainmenu-page"><a href=".././../../papers" class="ocsimore_phrasing_link">Research papers</a>
+</li><li class="drawermainmenu-page"><a href=".././../../credits" class="ocsimore_phrasing_link">Who does Ocsigen?</a>
+</li><li class="drawermainmenu-page"><a href=".././../../contributing" class="ocsimore_phrasing_link">Contributing</a>
+</li><li class="drawermainmenu-page"><a href=".././../../blog" class="ocsimore_phrasing_link">Blog</a>
+</li><li class="drawermainmenu-page"><a href="https://github.com/ocsigen" class="ocsimore_phrasing_link">Source code</a>
+</li></ul><nav class="how-doctree"></nav></nav></aside></div><div class="project-page"><div class="rightcol"><header><h1> OcCDuce </h1><h2> OcCDuce Tutorial <span class="label" id="tuto"></span></h2><p>OcCDuce (pronounced Ocsiduce) provides a partial binding from Eliom to CDuce.
+</p><p>CDuce is a functional language tightly integrated with OCaml designed to work on
+XML documents. As such it has native XML types, and include powerful patterns
+and expressions to manipulate XML documents. See
+<a href="http://www.cduce.org/tutorial.html" class="ocsimore_phrasing_link">this page</a>
+for a tutorial on CDuce.
+</p><p>This tutorial has been generated from the file tutorial.cd provided
+with OcCDuce. You can compile and execute it with Ocsigen (at
+least version 2.0.1).
+</p><h3> Introduction <span class="label" id="intro"></span></h3><p>Ocsigen is a http server developped in Objective Caml, while Eliom
+is a higher level framework to create web sites, more at
+<a href="http://ocsigen.org/" class="ocsimore_phrasing_link"> Ocsigen Web Site</a>.
+</p><p>You can register Objective Caml functions as <em>services</em> in
+Ocsigen. When the URL associated with the service is used, Ocsigen
+(and Eliom) will convert the parameters provided with the http
+request in appropriate Objective Caml values before calling the
+function associated with the service.
+</p><p>Since the service parameters are typed, you do not have to worry
+about your functions parameters.
+</p><p>OcCDuce provides the same safety, with some limitations:
+</p><ul><li> Only a subset (functional) of Eliom is currently implemented; this
+tutorial shows pretty much all features available in OcCDuce.
+</li><li> Due to limitations in CDuce (lack of polymorphism) functions of
+Eliom using polymorphic parameters are not implemented.
+</li><li> Due to limitations in the interface between CDuce and Objective
+Caml types in Elioms with polymorphic variants cannot be used in
+CDuce.
+</li><li> Consequently, some checks performed at compile time when using
+Eliom in Objective Caml are performed at runtime during the startup
+of the Ocsigen server with OcCDuce.
+</li></ul><h4> Installation <span class="label" id="install"></span></h4><p>OcCDuce as version 0.2 has the following requirements:
+</p><ul><li> CDuce 0.5.5 or higher <a href="http://cduce.org/download/cduce-0.5.5.tar.gz" class="ocsimore_phrasing_link">CDuce</a>,
+</li><li> Ocsigen and Eliom 2.0.1 (development version) <a href="http://ocsigen.org" class="ocsimore_phrasing_link">Ocsigen</a>
+</li><li> ocamlfind
+</li><li> and, of course, ocaml.
+</li></ul><p>Since these software have many dependencies it is probably easier to
+install them using <a href="http://www.ocaml-programming.de/godi/" class="ocsimore_phrasing_link"> Godi</a>.
+</p><p>You must download OcCDuce from
+<a href="http://www.cduce.org/download/occduce-0.2.tar.gz" class="ocsimore_phrasing_link">OcCDuce</a>, untar
+and type
+</p><pre>make install.
+</pre><p>If you want to compile the tutorial, you need to type
+</p><pre>  make tutorial
+</pre><p>All the files will be in the <em>tests</em> sub-directory. You need to
+configure Ocsigen in order to load the tutorial as an extension.
+</p><h4> Configuration <span class="label" id="config"></span></h4><p>You will need a configuration file for ocsigen, for example in
+/etc/ocsigen/conf.d/ the file cduce.conf:
+</p><pre>&lt;ocsigen&gt;
+  &lt;server&gt;
+    &lt;port&gt;80&lt;/port&gt;
+    &lt;host defaulthostname=&quot;localhost&quot;&gt;
+      &lt;site path=&quot;occduce_tutorial&quot;&gt;
+        &lt;eliom findlib-package=&quot;tests.tutorial&quot;/&gt;
+      &lt;/site&gt;
+    &lt;/host&gt;
+  &lt;/server&gt;
+&lt;/ocsigen&gt;
+</pre><p>And a configuration file for ocamlfind, in $OCAML/lib/ocsigen/METAS/
+the file META.tests
+</p><pre>description = &quot;Tests&quot;
+
+version = &quot;0.2&quot;
+
+package &quot;tutorial&quot; (
+  exists_if = &quot;tutorial.cma,tutorial.cmxs&quot;
+  version = &quot;0.2&quot;
+  requires = &quot;occduce&quot;
+  description = &quot;Eliom tutorial in CDuce&quot;
+  archive(plugin,byte) = &quot;tutorial.cma&quot;
+  archive(plugin,native) = &quot;tutorial.cmxs&quot;
+)
+</pre><h3> Basics <span class="label" id="basics"></span></h3><p>Eliom services are functions that returns HTML pages and which
+parameters are passed through HTTP protocol as key-value
+pairs of strings. When parameters are sent using the <strong>GET</strong> method, they are
+encoded in the URL, e.g <a href="http://url?field1=value1&amp;field2=value2" class="ocsimore_phrasing_link">http://url?field1=value1&amp;field2=value2</a>,
+while in the <strong>POST</strong> method, parameters are embedded in the
+message body of the HTML page.
+</p><p>Eliom provides constructions to specify the types of the parameters
+and some higher level structures such as lists or choices.
+For example:
+</p><ul><li> (int &quot;field1&quot;) specifies a parameter named <em>field1</em> of type int.
+</li><li> (prod(int &quot;field1&quot;, prod(string &quot;field2&quot;, bool &quot;field3&quot;))) specifies 3 parameters <em>field1</em> to <em>field3</em> of types
+int, string and boolean respectively. Here, <strong>prod</strong> is a
+combinator used to create a sequence of parameters.
+These declarations must be provided to Eliom through the service
+registration function and the parameters of the function specified
+as a service must corresponds to the declarations (these checks are
+performed at compile-time).
+</li></ul><p>In OcCDuce, the parameters are declared using a different
+formalism, <strong>GET</strong> and <strong>POST</strong> parameters are lists of <em>Param</em>,
+where <em>Param</em> is defined (for simple types) as:
+</p><pre class=""><code class="language-ocaml translatable">type BaseType = &lt;_&gt;[Int|Float|String|Bool]</code></pre><p>The tagname is the name of the parameter, while the content
+represent the type.
+Previous examples will be represented in OcCDuce as:
+</p><ul><li> [&lt;field1&gt;[Int]] and
+</li><li> [&lt;field1&gt;[Int] &lt;field2&gt;[String] &lt;field3&gt;[Bool]]
+Type specification can also use ?, for an optional parameter, and *
+or +, for a list.
+</li></ul><p>Eliom also provides extensions, such as suffix, that will be
+explained later.
+</p><h3> Setup <span class="label" id="setup"></span></h3><p>OcCDuce convert automatically the parameters of the functions
+registered as a service in the formalism used by Eliom, therefore
+you just have to specify the parameters of your functions.
+However, you may need a description of the types of your parameters
+in some cases, for example with HTML forms to know the name of the
+parameters. A program named <em>typeconverter</em> can generate an XML
+description of all the types declared in a file and put them in
+another files.
+</p><p>For example, given a file <em>type.cd</em> with the following declaration:
+</p><pre class=""><code class="language-ocaml translatable">type IntJ = [&lt;j&gt;[Int]];;</code></pre><p>Typeconverter will generate a file <em>typerep.cd</em> such as:
+</p><pre class=""><code class="language-ocaml translatable">let IntJ_rep = [ &lt;param type=&quot;int&quot;&gt;&quot;j&quot; ];;</code></pre><p>In the tutorial file, all types have been put in <em>types.cd</em> and
+their representation in <em>typesrep.cd</em>.
+</p><p>Here is the beginning of <em>tutorial.cd</em>:
+</p><pre class=""><code class="language-ocaml translatable">using H = &quot;xhtml&quot;;;
+using Lib = &quot;occduce_lib&quot;;;
+
+include &quot;types.cd&quot;;;
+include &quot;typesrep.cd&quot;;;
+
+let header (title : String) : H.head =
+      &lt;head&gt;[
+	&lt;title&gt;title
+	&lt;meta content=&quot;text/html; charset=utf-8&quot; http-equiv=&quot;Content-Type&quot;&gt;[]
+      ]</code></pre><p>Where <strong>H</strong> and <strong>Lib</strong> point to externals CDuce files provided with
+OcCDuce, and <em>header</em> a helper function.
+</p><h3> Simple example <span class="label" id="ex1"></span></h3><p>The following example is an Eliom service with no parameter
+registered at <a href="http://localhost/occduce_tutorial/coucou" class="ocsimore_phrasing_link">http://localhost/occduce_tutorial/coucou</a> if you used the
+same configuration than above.
+</p><pre class=""><code class="language-ocaml translatable">open Lwt
+open XHTML.M
+open Eliom_services
+open Eliom_parameters
+open Eliom_state
+open Eliom_output.Xhtml
+
+let coucou =
+  register_service
+    ~path:[&quot;coucou&quot;]
+    ~get_params:unit
+    (fun () () -&gt;
+      return
+        (html
+           (head (title (pcdata &quot;&quot;)) [])
+           (body [h1 [pcdata &quot;Hallo!&quot;]])))</code></pre><p>The following OcCDuce code is equivalent:
+</p><pre class=""><code class="language-ocaml translatable">let pageCoucou ([] -&gt; AnyXml)
+    _ -&gt; &lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;[
+      (header &quot;CDuce Web page&quot;)
+    &lt;body&gt;[
+      &lt;h1&gt;&quot;Hallo CDuce!&quot;
+    ]
+  ]
+
+let coucou = Lib.register_service
+  { path = [&quot;coucou&quot;]; serviceName = &quot;coucou&quot;} pageCoucou</code></pre><p><em>pageCoucou</em> is the function called by Ocsigen when the
+corresponding URL is requested, therefore it must return an XHTML
+page.
+</p><p><em>Lib.register_service</em> is the function registering the function in
+Ocsigen. Compared with the Eliom register function, there is an
+additional parameter, <em>serviceName</em> which must be unique and
+identifies the service.
+This parameter is necessary to allow recursive pages.
+</p><h3> Counter <span class="label" id="counter"></span></h3><p>In this example, a counter is incremented each time the page at
+<a href="http://localhost/cduce_tutorial/count/" class="ocsimore_phrasing_link">http://localhost/cduce_tutorial/count/</a> is reloaded:
+</p><pre class=""><code class="language-ocaml translatable">let count =
+  let next =
+    let c = ref 0 in
+      (fun () -&gt; c := !c + 1; !c)
+  in
+  register_service
+    ~path:[&quot;count&quot;]
+    ~get_params:unit
+    (fun () () -&gt;
+      return
+        (html
+         (head (title (pcdata &quot;counter&quot;)) [])
+         (body [p [pcdata (string_of_int (next ()))]])))</code></pre><p>The following OcCDuce code is equivalent:
+</p><pre class=""><code class="language-ocaml translatable">let refCounter = ref Int 0;;
+
+let next ([] -&gt; Int )
+  _ -&gt; refCounter := !refCounter + 1; !refCounter;;
+
+let pageCounter ([] -&gt; AnyXml)
+    _ -&gt;
+    &lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;[
+      (header &quot;CDuce Counter&quot;)
+      &lt;body&gt;[
+	&lt;p&gt;[!(string_of (next []))]
+      ]
+    ]
+
+let counter = Lib.register_service
+  { path = [ &quot;count&quot; ]; serviceName = &quot;counter&quot; } pageCounter</code></pre><h3> URL path <span class="label" id="urlpath"></span></h3><p>The following service is registered at <em>dir/hello</em>.
+</p><pre class=""><code class="language-ocaml translatable">let hello =
+  register_service
+    [&quot;dir&quot;;&quot;hello&quot;]  (* the url dir/hello *)
+    unit
+    (fun () () -&gt;
+      return
+        (html
+         (head (title (pcdata &quot;Hello&quot;)) [])
+         (body [h1 [pcdata &quot;Hello&quot;]])))</code></pre><p>The equivalent OcCDuce code:
+</p><pre class=""><code class="language-ocaml translatable">let pageHello (_ : []) : AnyXml =
+   &lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;[
+     (header &quot;CDuce Web page&quot;)
+     &lt;body&gt;[
+       &lt;h1&gt;&quot;Hello CDuce!&quot;
+    ]
+  ]
+
+let hello = Lib.register_service
+  { path = [&quot;dir&quot; &quot;hello&quot;]; serviceName = &quot;hello&quot;} pageHello</code></pre><p>This example shows how to define the default page for
+a directory. (Note that <span class="code">[&quot;rep&quot;;&quot;&quot;]</span> means
+the default page of the directory <span class="code">rep/</span>)
+</p><pre class=""><code class="language-ocaml translatable">let default = register_service [&quot;rep&quot;;&quot;&quot;] unit
+  (fun () () -&gt;
+    return
+     (html
+      (head (title (pcdata &quot;&quot;)) [])
+      (body [p [pcdata &quot;default page. rep is redirected to rep/&quot;]])))</code></pre><p>With the equivalent OcCDuce code:
+</p><pre class=""><code class="language-ocaml translatable">let pageDefault ([] -&gt; AnyXml)
+    _ -&gt; &lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;[
+      (header &quot;CDuce Web Page&quot;)
+    &lt;body&gt;[
+      &lt;p&gt;['default page. rep is redirected to rep/']
+    ]
+  ]
+
+let default = Lib.register_service
+    { path = [ &quot;rep&quot; &quot;&quot; ] ; serviceName = &quot;pageDefault&quot; }
+    pageDefault</code></pre><h3> Parameters <span class="label" id="params"></span></h3><p>Here is an example of a service in ocaml with 3 <strong>GET</strong>
+parameters. You need to give all 3 parameters with the right type to
+call the service, for example:
+<a href="http://localhost/cduce_tutorial/coucou?i=12&amp;ii=24&amp;s=Test" class="ocsimore_phrasing_link">http://localhost/cduce_tutorial/coucou?i=12&amp;ii=24&amp;s=Test</a> string
+</p><pre class=""><code class="language-ocaml translatable">let writeparams (i1, (i2, s1)) () =
+  return
+   (html
+    (head (title (pcdata &quot;&quot;)) [])
+    (body [p [pcdata &quot;You sent: &quot;;
+              strong [pcdata (string_of_int i1)];
+              pcdata &quot;, &quot;;
+              strong [pcdata (string_of_int i2)];
+              pcdata &quot; and &quot;;
+              strong [pcdata s1]]]))
+
+let coucou_params = register_service
+    ~path:[&quot;coucou&quot;]
+    ~get_params:(int &quot;i&quot; ** (int &quot;ii&quot; ** string &quot;s&quot;))
+    writeparams</code></pre><p>With the equivalent OcCDuce code, where <em>WriteGetParams</em> is
+defined as:
+</p><pre class=""><code class="language-ocaml translatable">type WriteGetParams = [&lt;i&gt;[Int] &lt;ii&gt;[Int] &lt;s&gt;[String]];;</code></pre><p>in <em>types.cd</em>.
+</p><pre class=""><code class="language-ocaml translatable">let pageWriteparams (WriteGetParams -&gt; AnyXml)
+    [&lt;i&gt;[ i1 ] &lt;ii&gt;[ i2 ] &lt;s&gt; [ s1 ]] -&gt;
+      &lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;[
+	(header &quot;CDuce Web Page&quot;)
+	&lt;body&gt;[
+	  &lt;p&gt;['You sent: '
+	  &lt;strong&gt;[ !(string_of i1) ]
+	  ', '
+	  &lt;strong&gt;[ !(string_of i2) ]
+	  ' and '
+	  &lt;strong&gt;[ !s1 ]
+	  ]
+	]
+      ]
+;;
+
+let writeparams = Lib.register_service
+    { path = [ &quot;coucou&quot; ]; serviceName = &quot;pageWriteparams&quot; }
+    pageWriteparams</code></pre><h3> Suffix <span class="label" id="suffix"></span></h3><p>The following examples shows how to create a service with &quot;suffix&quot; service
+(taking the end of the URL as a parameter, as wikis do very often)
+and how to get server information:
+</p><pre class=""><code class="language-ocaml translatable">let uasuffix =
+  register_service
+    ~path:[&quot;uasuffix&quot;]
+    ~get_params:(suffix (int &quot;year&quot; ** int &quot;month&quot;))
+    (fun (year, month) () -&gt;
+      return
+       (html
+        (head (title (pcdata &quot;&quot;)) [])
+        (body
+           [p [pcdata &quot;The suffix of the url is &quot;;
+               strong [pcdata ((string_of_int year)^&quot;/&quot;
+                               ^(string_of_int month))];
+               pcdata &quot;, your user-agent is &quot;;
+               strong [pcdata (Eliom_request_info.get_user_agent ())];
+               pcdata &quot;, your IP is &quot;;
+               strong [pcdata (Eliom_request_info.get_remote_ip
+   ())]]])))</code></pre><p>Suffix parameters have names, because we can create forms towards
+these services. <span class="code">uasuffix/2000/11</span> is equivalent to
+<span class="code">uasuffix/?year=2000&amp;month=11</span>.
+</p><p>Here is the equivalent in OcCDuce, where <em>UasuffixGetParams</em> as
+</p><pre class=""><code class="language-ocaml translatable">type UasuffixGetParams = [&lt;eliom:suffix&gt;[&lt;year&gt;[Int] &lt;month&gt;[Int]]];;</code></pre><p>in <em>types.cd</em>.
+</p><p>This service accepts URL such as
+<a href="http://localhost/cduce_tutorial/uasuffix/2010/11" class="ocsimore_phrasing_link">http://localhost/cduce_tutorial/uasuffix/2010/11</a>.
+</p><p>  <strong>NOTE</strong>: Both functions <em>Eliom_request_info.get_user_agent</em> and
+<em>Eliom_request_info.get_remote_ip</em> can be called in CDuce since
+their parameters and return values are automatically translated in
+CDuce types by the OCaml to CDuce interface. However, it is not
+possible with functions using polymorphic types or polymorphic
+variants.
+</p><pre class=""><code class="language-ocaml translatable">let pageUasuffix (param : UasuffixGetParams) : AnyXml =
+  let user = Eliom_request_info.get_user_agent [] in
+  let ip = Eliom_request_info.get_remote_ip [] in
+      match param with
+	| [&lt;_&gt;[&lt;year&gt;[y] &lt;month&gt;[m]]] -&gt;
+      &lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;[
+	(header &quot;CDuce Web Page&quot;)
+	&lt;body&gt;[
+	  &lt;p&gt;['The suffix of the url is '
+	    &lt;strong&gt;[ !(string_of y) '/' !(string_of m) ]
+	    ', your user-agent is '
+	    &lt;strong&gt;[!(user)]
+	    ', your IP is '
+	    &lt;strong&gt;[!(ip)]
+	  ]
+	]
+      ]
+;;
+
+let uasuffix = Lib.register_service
+    { path = [ &quot;uasuffix&quot; ]; serviceName = &quot;pageUasuffix&quot; }
+    pageUasuffix</code></pre><p><span class="code">suffix_prod</span> allows to take both a suffix and
+other parameters.            <br/>
+<span class="code">all_suffix</span> allows to take the end of the suffix as a
+<span class="code">string list</span>.
+</p><pre class=""><code class="language-ocaml translatable">let isuffix =
+  register_service
+    ~path:[&quot;isuffix&quot;]
+    ~get_params:(suffix_prod (int &quot;suff&quot; ** all_suffix &quot;endsuff&quot;) (int &quot;i&quot;))
+    (fun ((suff, endsuff), i) () -&gt;
+      return
+       (html
+        (head (title (pcdata &quot;&quot;)) [])
+        (body
+           [p [pcdata &quot;The suffix of the url is &quot;;
+               strong [pcdata (string_of_int suff)];
+               pcdata &quot; followed by &quot;;
+               strong [pcdata
+                      (Ocsigen_lib.string_of_url_path ~encode:false
+	                  endsuff)];
+               pcdata &quot; and i is equal to &quot;;
+               strong [pcdata (string_of_int i)]]])))</code></pre><p>Here is the OcCDuce equivalent, with <em>IsuffixGetParams</em> defined
+as:
+</p><pre class=""><code class="language-ocaml translatable">type IsuffixGetParams = [&lt;eliom:suffix&gt;[&lt;suff&gt;[Int]
+    &lt;endsuff end_suffix=_&gt;[String*]] &lt;i&gt;[Int]];;</code></pre><p>in <em>types.cd</em>.
+</p><p>  <strong>NOTE</strong>: <em>suffix_prod</em> used in OCaml is not necessary in OcCDuce
+since all suffix parameters are enclosed in the XML tag
+<em>eliom:suffix</em>.
+</p><p>This service accepts URL such as:
+<a href="http://localhost/cduce_tutorial/isuffix/42/a/b/c/?i=25" class="ocsimore_phrasing_link">http://localhost/cduce_tutorial/isuffix/42/a/b/c/?i=25</a>
+</p><pre class=""><code class="language-ocaml translatable">let pageIsuffix (IsuffixGetParams -&gt; AnyXml)
+    [&lt;_&gt;[&lt;suff&gt;[p1] &lt;endsuff ..&gt;[p2::String* ]] &lt;i&gt;[p3]] -&gt;
+      &lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;[
+	(header &quot;CDuce Web Page&quot;)
+	&lt;body&gt;[
+	  &lt;p&gt;['The suffix of the url is '
+	    &lt;strong&gt;[!(string_of p1)]
+	    ' followed by '
+	    &lt;strong&gt;[!(string_of p2)]
+	    ' and i is equal to '
+	      &lt;strong&gt;[!(string_of p3)]
+	  ]
+	]
+      ]
+;;
+
+let isuffix = Lib.register_service
+    { path = [ &quot;isuffix&quot; ]; serviceName = &quot;pageIsuffix&quot; }
+    pageIsuffix</code></pre><p>If you want parameters in the path but not always at the end,
+use the Eliom_parameters.const parameter specification.
+It will match for example URLs like /param1/const/param2.
+Example:
+</p><pre class=""><code class="language-ocaml translatable">let constfix =
+  register_service
+    ~path:[&quot;constfix&quot;]
+    ~get_params:(suffix (string &quot;s1&quot; **
+                 (Eliom_parameters.suffix_const &quot;toto&quot; ** string &quot;s2&quot;)))
+    (fun (s1, ((), s2))  () -&gt;
+      return
+        (html
+          (head (title (pcdata &quot;&quot;)) [])
+          (body [h1
+                   [pcdata &quot;Suffix with constants&quot;];
+                 p [pcdata (&quot;Parameters are &quot;^s1^&quot; and &quot;^s2)]])))</code></pre><p>Here is the OcCDuce equivalent, with <em>IsuffixGetParams</em> defined
+as:
+</p><pre class=""><code class="language-ocaml translatable">type ConstsuffixGetParams = [&lt;eliom:suffix&gt;[&lt;s1&gt;[String] &lt;toto const=_&gt;[]
+     &lt;s2&gt;[String]]];;</code></pre><p>in <em>types.cd</em>.
+</p><p>This service accepts URL such as:
+<a href="http://localhost/cduce_tutorial/constfix/foo/toto/bar" class="ocsimore_phrasing_link">http://localhost/cduce_tutorial/constfix/foo/toto/bar</a>
+</p><pre class=""><code class="language-ocaml translatable">let pageConstfix (ConstsuffixGetParams -&gt; AnyXml)
+    [&lt;_&gt;[&lt;s1&gt;[ p1  ] &lt;toto ..&gt; [] &lt;s2&gt; [p2]]] -&gt;
+      &lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;[
+	(header &quot;CDuce Web Page&quot;)
+	&lt;body&gt;[
+	  &lt;h1&gt;['Suffix with constants'
+	      &lt;p&gt;['Parameters are' !(string_of p1) ' and ' !(string_of p2)]
+	  ]
+	]
+      ]
+;;
+
+let constfix = Lib.register_service
+    { path = [ &quot;constfix&quot; ]; serviceName = &quot;pageConstfix&quot; }
+    pageConstfix</code></pre><h3> Untyped parameters <span class="label" id="untyped"></span></h3><p>If you want a service that answers to requests with any parameters,
+use the Eliom_parameters.any value. The service will get an
+association list of strings. Example:
+</p><pre class=""><code class="language-ocaml translatable">let raw_serv = register_service
+    ~path:[&quot;any&quot;]
+    ~get_params:Eliom_parameters.any
+  (fun l () -&gt;
+    let ll =</code></pre><p>Here is the OcCDuce equivalent, where <em>EliomAny</em> is defined as:
+</p><pre class=""><code class="language-ocaml translatable">type EliomAny = [&lt;eliom:any&gt;[(String,String)*]];;</code></pre><p>in <em>types.cd</em>.
+</p><pre class=""><code class="language-ocaml translatable">let pageRaw_serv (param : EliomAny) : AnyXml =
+  match param with
+    | [&lt;eliom:any&gt;[l::(String,String)*]] -&gt;
+      &lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;[
+	(header &quot;CDuce Web Page&quot;)
+	&lt;body&gt;[
+	  &lt;p&gt;['You sent:'
+		 !(string_of l)
+	     ]
+	]
+      ];;
+
+let raw_serv = Lib.register_service
+    { path = [ &quot;any&quot; ]; serviceName = &quot;any&quot; }
+    pageRaw_serv;;</code></pre><h3> Links <span class="label" id="links"></span></h3><p>To create a link (<span class="code">&lt;a</span>&gt;), use the
+Eliom_output.Xhtml.a function,
+as in these examples:
+</p><pre class=""><code class="language-ocaml translatable">let links = register_service [&quot;rep&quot;;&quot;links&quot;] unit
+ (fun () () -&gt;
+   return
+    (html
+     (head (title (pcdata &quot;Links&quot;)) [])
+     (body
+       [p
+        [Eliom_output.Xhtml.a coucou [pcdata &quot;coucou&quot;] (); br ();
+         Eliom_output.Xhtml.a hello [pcdata &quot;hello&quot;] (); br ();
+         Eliom_output.Xhtml.a default
+           [pcdata &quot;default page of the dir&quot;] (); br ();
+         Eliom_output.Xhtml.a uasuffix
+           [pcdata &quot;uasuffix&quot;] (2007,06); br ();
+         Eliom_output.Xhtml.a coucou_params
+           [pcdata &quot;coucou_params&quot;] (42,(22,&quot;ciao&quot;)); br ();
+         Eliom_output.Xhtml.a raw_serv
+           [pcdata &quot;raw_serv&quot;] [(&quot;sun&quot;,&quot;yellow&quot;);(&quot;sea&quot;,&quot;blue and pink&quot;)]; br();
+         Eliom_output.Xhtml.a
+           (external_service
+              ~prefix:&quot;http://fr.wikipedia.org&quot;
+              ~path:[&quot;wiki&quot;;&quot;&quot;]
+              ~get_params:(suffix (all_suffix &quot;suff&quot;))
+              ())
+           [pcdata &quot;OCaml on wikipedia&quot;]
+           [&quot;OCaml&quot;]; br ();
+         XHTML.M.a
+           ~a:[a_href (uri_of_string &quot;http://en.wikipedia.org/wiki/OCaml&quot;)]
+           [pcdata &quot;OCaml on wikipedia&quot;]
+       ]])))</code></pre><p>Here is the OcCDuce equivalent, where the types are:
+</p><pre class=""><code class="language-ocaml translatable">type WriteGetParams = [&lt;i&gt;[Int] &lt;ii&gt;[Int] &lt;s&gt;[String]];;
+type UasuffixGetParams = [&lt;eliom:suffix&gt;[&lt;year&gt;[Int] &lt;month&gt;[Int]]];;
+type EliomAny = [&lt;eliom:any&gt;[(String,String)*]];;
+type IsuffixGetParams = [&lt;eliom:suffix&gt;[&lt;suff&gt;[Int]
+     &lt;endsuff end_suffix=_&gt;[String*]] &lt;i&gt;[Int]];;</code></pre><p>  <strong>NOTE</strong>: There is no equivalent to <em>external_service</em> in OcCDuce.
+</p><pre class=""><code class="language-ocaml translatable">let pageLinks (_ : []) : AnyXml =
+  let writeVal : WriteGetParams = [&lt;i&gt;[42] &lt;ii&gt;[22] &lt;s&gt;[&quot;ciao&quot;] ] in
+  let uasuffixVal : UasuffixGetParams = [&lt;eliom:suffix&gt;[&lt;year&gt;[2007]
+      &lt;month&gt;[06]]] in
+  let rawVal : EliomAny = [&lt;eliom:any&gt;[(&quot;sun&quot;,&quot;yellow&quot;)
+			 (&quot;sea&quot;,&quot;blue and pink&quot;)]] in
+  let constfixVal : ConstsuffixGetParams =
+    [&lt;eliom:suffix&gt;[&lt;s1&gt;[&quot;suffix1&quot;] &lt;toto const=`true&gt;[]
+	&lt;s2&gt;[&quot;suffix2&quot;]]] in
+  let isuffixVal : IsuffixGetParams =
+    [&lt;eliom:suffix&gt;[&lt;suff&gt;[2010] &lt;endsuff end_suffix=`true&gt;[&quot;a&quot; &quot;b&quot; &quot;c&quot;]]
+      &lt;i&gt;[22]] in
+  &lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;[
+    (header &quot;CDuce Web Page:Links&quot;)
+    &lt;body&gt;[
+      &lt;p&gt;[
+	(Lib.a coucou [] ['coucou']) &lt;br&gt;[]
+	  (Lib.a hello [] ['hello']) &lt;br&gt;[]
+	  (Lib.a default [] ['default page of the dir']) &lt;br&gt;[]
+	  (Lib.a uasuffix uasuffixVal ['uasuffix']) &lt;br&gt;[]
+	  (Lib.a writeparams writeVal ['coucou_params']) &lt;br&gt;[]
+	  (Lib.a raw_serv rawVal ['raw_serv']) &lt;br&gt;[]
+	  (Lib.a constfix constfixVal ['constfix']) &lt;br&gt;[]
+	  (Lib.a isuffix isuffixVal ['isuffix']) &lt;br&gt;[]
+	  &lt;a href=&quot;http://en.wikipedia.org/wiki/OCaml&quot;&gt;['OCaml on wikipedia']
+            &lt;br&gt;[]
+      ]
+    ]
+  ];;
+
+let links = Lib.register_service
+  { path = [ &quot;rep&quot; &quot;links&quot; ]; serviceName = &quot;pageLinks&quot; }
+  pageLinks;;</code></pre><h3> Recursive pages <span class="label" id="recursive"></span></h3><p>If you want to create (mutually or not) recursive pages,
+create the service using Eliom_services.service first,
+then register it in the table using (for example)
+Eliom_output.Xhtml.register:
+</p><pre class=""><code class="language-ocaml translatable">let linkrec = Eliom_services.service [&quot;linkrec&quot;] unit ()
+
+let _ = Eliom_output.Xhtml.register linkrec
+    (fun () () -&gt;
+      return
+       (html
+        (head (title (pcdata &quot;&quot;)) [])
+        (body [p [a linkrec [pcdata &quot;click&quot;] ()]])))</code></pre><p>In OcCDuce, recursive pages are created in the usual way, however a
+link to a service not yet created must call <em>Lib.get_service
+&quot;serviceID&quot;</em>.
+Here is the previous example in OcCDuce, where <em>serviceID</em> is
+<em>linkrec</em>.
+</p><pre class=""><code class="language-ocaml translatable">let pageLinks (_ : []) : AnyXml =
+  &lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;[
+    (header &quot;CDuce Web Page:Links&quot;)
+ 	&lt;body&gt;[
+	  &lt;p&gt;[ (Lib.a (Lib.get_service &quot;linkrec&quot;) [] ['click'])]
+        ]
+  ];;
+let linkrec =  Lib.register_service
+   { path = [&quot;linkrec&quot;]; serviceName = &quot;linkrec&quot;} pageLinks;;</code></pre><h3> Forms towards services <span class="label" id="forms"></span></h3><p>The function Eliom_output.Xhtml.get_form allows to create a form
+that uses the GET method (parameters in the URL).
+It works like Eliom_output.Xhtml.a but takes a <em>function</em> that
+creates the form from the parameters names as parameter.
+</p><pre class=""><code class="language-ocaml translatable">let create_form =
+  (fun (number_name, (number2_name, string_name)) -&gt;
+    [p [pcdata &quot;Write an int: &quot;;
+        Eliom_output.Xhtml.int_input ~input_type:`Text ~name:number_name ();
+        pcdata &quot;Write another int: &quot;;
+        Eliom_output.Xhtml.int_input ~input_type:`Text ~name:number2_name ();
+        pcdata &quot;Write a string: &quot;;
+        Eliom_output.Xhtml.string_input ~input_type:`Text ~name:string_name ();
+        Eliom_output.Xhtml.string_input ~input_type:`Submit ~value:&quot;Click&quot; ()]])
+
+let form = register_service [&quot;form&quot;] unit
+  (fun () () -&gt;
+     let f = Eliom_output.Xhtml.get_form coucou_params create_form in
+     return
+       (html
+         (head (title (pcdata &quot;&quot;)) [])
+         (body [f])))</code></pre><p>In OcCDuce, you will need the XML representation of the service
+parameters to create a form. For example, in the previous example,
+the type of the service is:
+</p><pre class=""><code class="language-ocaml translatable">type WriteGetParams = [&lt;i&gt;[Int] &lt;ii&gt;[Int] &lt;s&gt;[String]];;</code></pre><p>and the representation generated by <em>typeconverter</em> is :
+</p><pre class=""><code class="language-ocaml translatable">let WriteGetParams_rep = [ &lt;param type=&quot;int&quot;&gt;&quot;i&quot; &lt;param type=&quot;int&quot;&gt;&quot;ii&quot;
+     &lt;param type=&quot;string&quot;&gt;&quot;s&quot; ];;</code></pre><p>  <strong>NOTE</strong>: <em>typeconverter</em> adds the suffix &quot;_rep&quot; to the type name.
+</p><pre class=""><code class="language-ocaml translatable">let create_form (service : Lib.CduceService) : H.form =
+  let [&lt;param type=&quot;int&quot;&gt;number_name
+       &lt;param type=&quot;int&quot;&gt;number_name2
+		  &lt;param type=&quot;string&quot;&gt;string_name] =
+    WriteGetParams_rep in
+  Lib.make_form service [] [
+    &lt;p&gt;['Write an int: '
+	&lt;input type=&quot;text&quot; name=number_name&gt;[]
+	'Write another int: '
+	&lt;input type=&quot;text&quot; name=number_name2&gt;[]
+	'Write a string: '
+	&lt;input type=&quot;text&quot; name=string_name&gt;[]
+	&lt;input type=&quot;submit&quot; value=&quot;Click&quot;&gt;[]
+    ]
+  ];;</code></pre><p><em>Lib.make_form</em> create the form with an action link toward the
+<em>service</em> parameter.
+</p><p><em>number_name</em>, <em>number_name2</em> and <em>string_name</em> correspond to
+&quot;i&quot;, &quot;ii&quot; and &quot;s&quot; respectively. They could have been written
+directly in the <em>name</em> field of the <em>input</em> tags, however, if
+<em>WriteGetParams</em> change later, this implementation will be correct
+if only the name change, or fail to compile if the type of a
+parameter change. Therefore, it is safer that way.
+</p><pre class=""><code class="language-ocaml translatable">let pageForm (_ : []) : AnyXml =
+  &lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;[
+    (header &quot;CDuce Web Page&quot;)
+    &lt;body&gt;[
+      &lt;p&gt;[
+	!(string_of (Lib.get_parameters_name WriteGetParams_rep))]
+	(create_form writeparams)
+    ]
+  ]
+
+let form = Lib.register_service
+  { path = [&quot;form&quot;]; serviceName = &quot;pageForm&quot; }
+  pageForm;;</code></pre><p>For untyped forms, you may use functions from XHTML.M (or
+OCamlDuce syntax, or whatever syntax you are using) or
+functions which name is prefixed by &quot;raw_&quot;.
+Here is a form linking to our (untyped) service
+raw_serv.
+</p><pre class=""><code class="language-ocaml translatable">let raw_form = register_service
+    ~path:[&quot;anyform&quot;]
+    ~get_params:unit
+    (fun () () -&gt;
+      return
+        (html
+           (head (title (pcdata &quot;&quot;)) [])
+           (body
+              [h1 [pcdata &quot;Any Form&quot;];
+               Eliom_output.Xhtml.get_form raw_serv
+                 (fun () -&gt;
+                   [p [pcdata &quot;Form to raw_serv: &quot;;
+                       Eliom_output.Xhtml.raw_input ~input_type:`Text
+		          ~name:&quot;plop&quot; ();
+                       Eliom_output.Xhtml.raw_input ~input_type:`Text
+		          ~name:&quot;plip&quot; ();
+                       Eliom_output.Xhtml.raw_input ~input_type:`Text
+		       	  ~name:&quot;plap&quot; ();
+                       Eliom_output.Xhtml.string_input
+		       ~input_type:`Submit
+		          ~value:&quot;Click&quot; ()]])
+                ])))</code></pre><p>Here is the OcCDuce equivalent.
+</p><pre class=""><code class="language-ocaml translatable">let create_raw_form (service : Lib.CduceService) : H.form =
+  Lib.make_form service [] [
+    &lt;p&gt;['Form to raw_serv: '
+	&lt;input type=&quot;text&quot; name=&quot;plop&quot;&gt;[]
+	&lt;input type=&quot;text&quot; name=&quot;plip&quot;&gt;[]
+	&lt;input type=&quot;text&quot; name=&quot;plap&quot;&gt;[]
+	&lt;input type=&quot;submit&quot; value=&quot;Click&quot;&gt;[]
+    ]
+  ];;
+
+let pageForm (_ : []) : AnyXml =
+  &lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;[
+    (header &quot;CDuce Web Page&quot;)
+    &lt;body&gt;[
+      &lt;p&gt;[
+	(create_raw_form raw_serv)
+      ]
+    ]
+  ]
+
+let raw_form = Lib.register_service
+  { path = [&quot;anyform&quot;]; serviceName = &quot;pageRawForm&quot; }
+  pageForm;;</code></pre><h3> POST parameters <span class="label" id="post"></span></h3><p>When you register a service with POST parameters, you must first
+register a service (fallback) without these parameters (for example
+that will
+answer if the page is reloaded without the hidden parameters, or
+if it is bookmarked).
+</p><pre class=""><code class="language-ocaml translatable">let no_post_param_service =
+  register_service
+    ~path:[&quot;post&quot;]
+    ~get_params:unit
+    (fun () () -&gt;
+      return
+        (html
+         (head (title (pcdata &quot;&quot;)) [])
+         (body [h1 [pcdata
+                      &quot;Version of the page without POST parameters&quot;]])))
+
+let my_service_with_post_params =
+  register_post_service
+    ~fallback:no_post_param_service
+    ~post_params:(string &quot;value&quot;)
+    (fun () value -&gt;
+      return
+        (html
+         (head (title (pcdata &quot;&quot;)) [])
+         (body [h1 [pcdata value]])))</code></pre><p>Here is the OcCDuce equivalent, where <em>ServicePostParams</em> is:
+</p><pre class=""><code class="language-ocaml translatable">type ServicePostParams = [&lt;value&gt;[String]];;</code></pre><p>in <em>types.cd</em>.
+</p><p>  <strong>NOTE</strong>: the fallback parameter is the string used to
+identify a service.
+</p><pre class=""><code class="language-ocaml translatable">let pageNoPostParam (_ : []) : AnyXml =
+  &lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;[
+    (header &quot;CDuce Web page&quot;)
+    &lt;body&gt;[
+      &lt;h1&gt;&quot;Version of the page without POST parameters&quot;
+    ]
+  ]
+
+let no_post_param_service = Lib.register_service
+    { path = [ &quot;post&quot; ]; serviceName = &quot;pageNoPostParam&quot; }
+    pageNoPostParam
+
+let pagePostParam (post_param : ServicePostParams) (_ : []) : AnyXml =
+  match post_param with [&lt;value&gt;[p]] -&gt;
+    &lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;[
+      (header &quot;CDuce Web Page!&quot;)
+      &lt;body&gt;[
+	&lt;h1&gt;['Post param: ' !(p) ' !']
+      ]
+    ]
+
+let my_service_with_post_params =
+  let fallbackID = &quot;pageNoPostParam&quot; in
+  Lib.register_post_service
+    { postServiceName = &quot;pagePostParam&quot; }
+    pagePostParam
+    fallbackID</code></pre><p>Services may take both GET and POST parameters:
+</p><pre class=""><code class="language-ocaml translatable">let get_no_post_param_service =
+  register_service
+    ~path:[&quot;post2&quot;]
+    ~get_params:(int &quot;i&quot;)
+    (fun i () -&gt;
+      return
+        (html
+         (head (title (pcdata &quot;&quot;)) [])
+         (body [p [pcdata &quot;No POST parameter, i:&quot;;
+                   em [pcdata (string_of_int i)]]])))
+
+let my_service_with_get_and_post = register_post_service
+  ~fallback:get_no_post_param_service
+  ~post_params:(string &quot;value&quot;)
+  (fun i value -&gt;
+    return
+      (html
+         (head (title (pcdata &quot;&quot;)) [])
+         (body [p [pcdata &quot;Value: &quot;;
+                   em [pcdata value];
+                   pcdata &quot;, i: &quot;;
+                   em [pcdata (string_of_int i)]]])))</code></pre><p>Here is the OcCDuce equivalent where:
+</p><pre class=""><code class="language-ocaml translatable">type GetNoPostParams = [&lt;i&gt;[Int]];;
+type ServicePostParams = [&lt;value&gt;[String]];;</code></pre><p>in <em>types.cd</em>.
+</p><pre class=""><code class="language-ocaml translatable">let pageGetNoPostParam(param : GetNoPostParams) : AnyXml =
+  match param with [&lt;i&gt;[v]] -&gt;
+    &lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;[
+      (header &quot;CDuce Web page&quot;)
+      &lt;body&gt;[
+	&lt;p&gt;[
+	  'No POST parameter, i:'
+	    &lt;em&gt;[!(string_of v)]
+	]
+      ]
+    ]
+let get_no_post_param_service = Lib.register_service
+    { path = [ &quot;post2&quot; ]; serviceName = &quot;pageGetNoPostParam&quot; }
+    pageGetNoPostParam
+
+let pagePostGetParam (post_param : ServicePostParams)
+    (get_param : GetNoPostParams) : AnyXml =
+  let m1 = (match post_param with [&lt;value&gt;[p]] -&gt; p) in
+  let m2 = string_of (match get_param with [&lt;i&gt;[v]] -&gt; v) in
+  &lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;[
+    (header &quot;CDuce Web Page!&quot;)
+    &lt;body&gt;[
+      &lt;p&gt;['Value: '
+	     &lt;em&gt;[!(m1)]
+	       ', i:'
+		 &lt;em&gt;[!(m2)]
+      ]
+    ]
+  ]
+
+let my_service_with_get_and_post =
+  let fallbackID = &quot;pageGetNoPostParam&quot; in
+  Lib.register_post_service
+    { postServiceName = &quot;pagePostGetParam&quot; }
+    pagePostGetParam
+    fallbackID</code></pre><h3> POST forms <span class="label" id="postforms"></span></h3><p>To create a POST form, use the Eliom_output.Xhtml.post_form function.
+It is similar to Eliom_output.Xhtml.get_form with an additional parameter
+for the GET parameters you want to put in the URL (if any).
+Here, form2 is a page containing a form to the service post (using XHTML.M_s functions)
+and form3 (defined using the syntax extension)
+contains a form to post2, with a GET parameter.
+form4 is a form to an external page.
+</p><pre class=""><code class="language-ocaml translatable">let form2 = register_service [&quot;form2&quot;] unit
+  (fun () () -&gt;
+     let f =
+       (Eliom_output.Xhtml.post_form my_service_with_post_params
+          (fun chaine -&gt;
+            [p [pcdata &quot;Write a string: &quot;;
+                string_input ~input_type:`Text ~name:chaine ()]]) ()) in
+     return
+       (html
+         (head (title (pcdata &quot;form&quot;)) [])
+         (body [f])))</code></pre><p>Here is the OcCDuce equivalent where:
+</p><pre class=""><code class="language-ocaml translatable">type ServicePostParams = [&lt;value&gt;[String]];;
+type GetNoPostParams = [&lt;i&gt;[Int]];;</code></pre><p>in <em>types.cd</em> and
+</p><pre class=""><code class="language-ocaml translatable">let ServicePostParams_rep = [ &lt;param type=&quot;string&quot;&gt;&quot;value&quot; ];;
+let GetNoPostParams_rep = [ &lt;param type=&quot;int&quot;&gt;&quot;i&quot; ];;</code></pre><p>These services can be accessed from
+<a href="http://localhost/cduce_tutorial/form2" class="ocsimore_phrasing_link">http://localhost/cduce_tutorial/form2</a> and
+<a href="http://localhost/cduce_tutorial/form3" class="ocsimore_phrasing_link">http://localhost/cduce_tutorial/form3</a>
+</p><pre class=""><code class="language-ocaml translatable">let create_form2 (service : Lib.CduceService) : H.form =
+  let [&lt;param type=&quot;string&quot;&gt;chaine] = ServicePostParams_rep in
+  Lib.make_form service [] [
+    &lt;p&gt;['Write a string: '
+	 &lt;input type=&quot;text&quot; name=chaine&gt;[]
+       ]
+  ];;
+
+let pageForm2 (_ : []) : AnyXml =
+  &lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;[
+    (header &quot;CDuce Web Page&quot;)
+    &lt;body&gt;[
+	!(string_of (Lib.get_parameters_name ServicePostParams_rep))]
+	(create_form2 my_service_with_post_params)
+  ]
+
+let form2 = Lib.register_service
+  { path = [ &quot;form2&quot; ]; serviceName = &quot;pageForm2&quot; }
+  pageForm2;;
+
+let create_form3 (service : Lib.CduceService) : H.form =
+  let getVal : GetNoPostParams = [&lt;i&gt;[222]] in
+  let [&lt;param type=&quot;string&quot;&gt;chaine] = ServicePostParams_rep in
+  Lib.make_form service getVal [
+    &lt;p&gt;['Write a string: '
+	 &lt;input type=&quot;text&quot; name=chaine&gt;[]
+       ]
+  ];;
+
+let pageForm3 (_ : []) : AnyXml =
+  &lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;[
+    (header &quot;CDuce Web Page&quot;)
+    &lt;body&gt;[
+	!(string_of (Lib.get_parameters_name ServicePostParams_rep))]
+	(create_form3 my_service_with_get_and_post)
+  ]
+
+let form3 = Lib.register_service
+  { path = [ &quot;form3&quot; ]; serviceName = &quot;pageForm3&quot; }
+  pageForm3;;</code></pre><h3> Coservices <span class="label" id="coservices"></span></h3><p>To create a coservice, use Eliom_services.coservice and Eliom_services.post_coservice.
+Like Eliom_services.post_service, they take a public service as
+parameter (labeled fallback) to be used as fallback when the user comes back without the state
+parameter (for example if it was a POST coservice and/or the coservice
+has expired).
+</p><p>The following example shows the difference between GET coservices
+(bookmarkable) and POST coservices:
+</p><pre class=""><code class="language-ocaml translatable">(* -------------------------------------------------------- *)
+(* We create one main service and two coservices:           *)
+let coservices_example =
+  Eliom_services.service
+    ~path:[&quot;coserv&quot;]
+    ~get_params:Eliom_parameters.unit
+    ()
+
+let coservices_example_post =
+  Eliom_services.post_coservice
+    ~fallback:coservices_example
+    ~post_params:Eliom_parameters.unit
+    ()
+
+let coservices_example_get =
+  Eliom_services.coservice
+    ~fallback:coservices_example
+    ~get_params:Eliom_parameters.unit
+    ()
+
+(* -------------------------------------------------------- *)
+(* The three of them display the same page,                 *)
+(* but the coservices change the counter.                   *)
+let _ =
+  let c = ref 0 in
+  let page () () =
+    let l3 = Eliom_output.Xhtml.post_form coservices_example_post
+        (fun _ -&gt; [p [Eliom_output.Xhtml.string_input
+                        ~input_type:`Submit
+                        ~value:&quot;incr i (post)&quot; ()]]) ()
+    in
+    let l4 = Eliom_output.Xhtml.get_form coservices_example_get
+        (fun _ -&gt; [p [Eliom_output.Xhtml.string_input
+                        ~input_type:`Submit
+                        ~value:&quot;incr i (get)&quot; ()]])
+    in
+    return
+      (html
+       (head (title (pcdata &quot;&quot;)) [])
+       (body [p [pcdata &quot;i is equal to &quot;;
+                 pcdata (string_of_int !c); br ();
+                 a coservices_example [pcdata &quot;reload&quot;] (); br ();
+                 a coservices_example_get [pcdata &quot;incr i&quot;] ()];
+              l3;
+              l4]))
+  in
+  Eliom_output.Xhtml.register coservices_example page;
+  let f () () = c := !c + 1; page () () in
+  Eliom_output.Xhtml.register coservices_example_post f;
+  Eliom_output.Xhtml.register coservices_example_get f</code></pre><p>Here is the OcCDuce equivalent, which can be accessed from
+<a href="http://localhost/cduce_tutorial/coserv" class="ocsimore_phrasing_link">http://localhost/cduce_tutorial/coserv</a>
+</p><pre class=""><code class="language-ocaml translatable">let _ =
+  let c = ref Int 0 in
+  let page (_ : []) : AnyXml =
+    let coserviceFormPost (service : Lib.CduceService) : H.form =
+      Lib.make_form service [] [
+	&lt;p&gt;[
+	  &lt;input type=&quot;submit&quot; value=&quot;incr i (post)&quot;&gt;[]
+	]
+      ] in
+    let coserviceFormGet (service : Lib.CduceService) : H.form =
+      Lib.make_form service [] [
+	&lt;p&gt;[
+	  &lt;input type=&quot;submit&quot; value=&quot;incr i (get)&quot;&gt;[]
+	]
+      ] in
+    &lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;[
+      (header &quot;CDuce Web Page:Links&quot;)
+      &lt;body&gt;[
+	&lt;p&gt;['i is equal to ' !(string_of !c) &lt;br&gt;[]
+	    (Lib.a (Lib.get_service &quot;coservices_example&quot;) []
+	       ['reload']) &lt;br&gt;[]
+	    (Lib.a (Lib.get_service &quot;coservices_example_get&quot;) []
+	       ['incr i'])
+	    (coserviceFormPost (Lib.get_service
+  &quot;coservices_example_post&quot;))
+	    (coserviceFormGet (Lib.get_service &quot;coservices_example_get&quot;))
+	]
+      ]
+    ] in
+  let coservices_example = Lib.register_service
+      { path = [&quot;coserv&quot;]; serviceName = &quot;coservices_example&quot; } page in
+  let f (_ : []) : AnyXml = c := !c + 1; page [] in
+  let coservices_example_get = Lib.register_coservice
+    { coServiceName = &quot;coservices_example_get&quot; }
+    f &quot;coservices_example&quot; in
+  let coservices_examples_post = Lib.register_post_coservice
+    { coServiceName = &quot;coservices_example_post&quot; }
+    f &quot;coservices_example&quot; in
+  [];;</code></pre><p>Here is another example of coservices.
+</p><pre class=""><code class="language-ocaml translatable">let state_name = &quot;calc_example&quot;
+
+(* -------------------------------------------------------- *)
+(* We create two main services on the same URL,             *)
+(* one with a GET integer parameter:                        *)
+
+let calc =
+  service
+    ~path:[&quot;calc&quot;]
+    ~get_params:unit
+    ()
+
+let calc_i =
+  service
+    ~path:[&quot;calc&quot;]
+    ~get_params:(int &quot;i&quot;)
+    ()
+
+(* -------------------------------------------------------- *)
+(* The handler for the service without parameter.           *)
+(* It displays a form where you can write an integer value: *)
+
+let calc_handler () () =
+  let create_form intname =
+    [p [pcdata &quot;Write a number: &quot;;
+        Eliom_output.Xhtml.int_input ~input_type:`Text ~name:intname ();
+        br ();
+        Eliom_output.Xhtml.string_input ~input_type:`Submit ~value:&quot;Send&quot; ()]]
+  in
+  let f = Eliom_output.Xhtml.get_form calc_i create_form in
+  return
+    (html
+       (head (title (pcdata &quot;&quot;)) [])
+       (body [f]))
+
+(* -------------------------------------------------------- *)
+(* The handler for the service with parameter.              *)
+(* It creates dynamically and registers a new coservice     *)
+(* with one GET integer parameter.                          *)
+(* This new coservice depends on the first value (i)        *)
+(* entered by the user.                                     *)
+
+let calc_i_handler i () =
+  let create_form is =
+    (fun entier -&gt;
+       [p [pcdata (is^&quot; + &quot;);
+           int_input ~input_type:`Text ~name:entier ();
+           br ();
+           string_input ~input_type:`Submit ~value:&quot;Sum&quot; ()]])
+  in
+  let is = string_of_int i in
+  let calc_result =
+    register_coservice ~scope:`Session
+      ~fallback:calc
+      ~get_params:(int &quot;j&quot;)
+      (fun j () -&gt;
+        let js = string_of_int j in
+        let ijs = string_of_int (i+j) in
+        return
+          (html
+             (head (title (pcdata &quot;&quot;)) [])
+             (body
+                [p [pcdata (is^&quot; + &quot;^js^&quot; = &quot;^ijs)]])))
+  in
+  let f = get_form calc_result (create_form is) in
+  return
+    (html
+       (head (title (pcdata &quot;&quot;)) [])
+       (body [f]))
+
+(* -------------------------------------------------------- *)
+(* Registration of main services:                           *)
+
+let () =
+  Eliom_output.Xhtml.register calc   calc_handler;
+  Eliom_output.Xhtml.register calc_i calc_i_handler</code></pre><p>Here is the OcCDuce equivalent, where:
+</p><pre class=""><code class="language-ocaml translatable">type GetNoPostParams = [&lt;i&gt;[Int]];;</code></pre><p>in <em>types.cd</em>, and
+</p><pre class=""><code class="language-ocaml translatable">let GetNoPostParams_rep = [ &lt;param type=&quot;int&quot;&gt;&quot;i&quot; ];;</code></pre><p>in <em>typesrep.cd</em>.
+</p><p>This service can be accessed from:
+<a href="http://localhost/cduce_tutorial/calc" class="ocsimore_phrasing_link">http://localhost/cduce_tutorial/calc</a>
+</p><pre class=""><code class="language-ocaml translatable">let calc_handler (_ : []) : AnyXml =
+  let [&lt;param ..&gt;p] = GetNoPostParams_rep in
+  let form = Lib.make_form (Lib.get_service &quot;calc_i&quot;) [] [
+    &lt;p&gt;['Write an int: '
+	 &lt;input type=&quot;text&quot; name=p&gt;[]
+	 &lt;input type=&quot;submit&quot; value=&quot;Send&quot;&gt;[]
+    ]
+  ] in
+  &lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;[
+    (header &quot;CDuce Web Page&quot;)
+    &lt;body&gt;[
+      &lt;p&gt;[form]
+    ]
+  ]
+
+let calc_i_handler (p : GetNoPostParams ) : AnyXml =
+  let i = (match p with [&lt;i&gt;[v]] -&gt; v) in
+  let calc_result (p2 : IntJ) : AnyXml =
+    let j = (match p2 with [&lt;j&gt;[v]] -&gt; v) in
+    let res = i + j in
+    &lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;[
+      (header &quot;CDuce Web page&quot;)
+      &lt;body&gt;[
+	&lt;p&gt;[
+	  !(string_of i) ' + ' !(string_of j) ' = '
+	    !(string_of res)
+	]
+      ]
+    ] in
+  let _ = Lib.register_coservice {coServiceName = &quot;calcCoservice&quot; }
+    calc_result &quot;calc&quot; in
+  let [&lt;param ..&gt;p] = IntJ_rep in
+  let form = Lib.make_form (Lib.get_service &quot;calcCoservice&quot;) [] [
+    &lt;p&gt;[!(string_of i) ' + '
+	 &lt;input type=&quot;text&quot; name=(&quot;__co_eliom_&quot;@p)&gt;[]
+	 &lt;input type=&quot;submit&quot; value=&quot;Sum&quot;&gt;[]
+    ]
+  ] in
+  &lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;[
+    (header &quot;CDuce Web page&quot;)
+    &lt;body&gt;[
+      &lt;p&gt;[
+	(form)
+      ]
+    ]
+  ]
+
+let calc = Lib.register_service
+  { path = [ &quot;calc&quot; ]; serviceName = &quot;calc&quot; } calc_handler;;
+let calc_i = Lib.register_service
+  { path = [ &quot;calc&quot; ]; serviceName = &quot;calc_i&quot; } calc_i_handler;;</code></pre><h3> Uploading files <span class="label" id="upload"></span></h3><p>The Eliom_parameters.file parameter type allows to send files in your
+request (it is only possible as a POST parameter). The service gets something of type
+Ocsigen_extensions.file_info. You can extract information
+using these functions (from Eliom_request_info).
+</p><pre class=""><code class="language-ocaml translatable">let upload = service
+    ~path:[&quot;upload&quot;]
+    ~get_params:unit
+    ()
+
+let upload2 = register_post_service
+   ~fallback:upload
+   ~post_params:(file &quot;file&quot;)
+    (fun () file -&gt;
+      let to_display =
+        let newname = &quot;/tmp/thefile&quot; in
+        (try
+          Unix.unlink newname;
+        with _ -&gt; ());
+        Ocsigen_messages.console2 (Eliom_request_info.get_tmp_filename file);
+        Unix.link (Eliom_request_info.get_tmp_filename file) newname;
+        let fd_in = open_in newname in
+        try
+          let line = input_line fd_in in close_in fd_in; line (*end*)
+        with End_of_file -&gt; close_in fd_in; &quot;vide&quot;
+      in
+      return
+        (html
+           (head (title (pcdata &quot;Upload&quot;)) [])
+           (body [h1 [pcdata to_display]])))
+
+
+let uploadform = register upload
+    (fun () () -&gt;
+      let f =
+        (post_form upload2
+           (fun file -&gt;
+             [p [file_input ~name:file ();
+                 br ();
+                 string_input ~input_type:`Submit ~value:&quot;Send&quot; ()
+               ]]) ()) in
+      return
+        (html
+           (head (title (pcdata &quot;form&quot;)) [])
+           (body [f])))</code></pre><p>Here is a simpler (but similar) example in OcCDuce which print information
+about the uploaded file, where:
+</p><pre class=""><code class="language-ocaml translatable">type FileParam = [&lt;f file=_ orig_name=String size=Int&gt;[String]];;</code></pre><p>in <em>types.cd</em>.
+</p><pre class=""><code class="language-ocaml translatable">let pageUpload2 (file : FileParam) (_ : []) : AnyXml =
+  match file with [&lt;f file=_ orig_name=orig_name size=size&gt;[name]] -&gt;
+      &lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;[
+	(header &quot;CDuce Web Page&quot;)
+	&lt;body&gt;[
+	  &lt;h1&gt;['The temporary file name is:'
+		  !(name) &lt;br&gt;[]
+		  'Original name is:'
+		  !(orig_name) &lt;br&gt;[]
+		  'Size is:'
+		  !(string_of size)
+	      ]
+	]
+      ];;
+
+let uploadform (_ : []) : AnyXml =
+  let [ &lt;param type=&quot;file&quot;&gt;filename ] = FileParam_rep in
+  let form =Lib.make_form (Lib.get_service &quot;upload2&quot;) [] [
+    &lt;p&gt;[ 'Write a filename: '
+	 &lt;input type=&quot;file&quot; name=filename&gt;[] &lt;br&gt;[]
+		    &lt;input type=&quot;submit&quot; value=&quot;Send&quot;&gt;[]
+       ]
+  ] in
+  &lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;[
+    (header &quot;CDuce Web Page&quot;)
+    &lt;body&gt;[
+      (form)
+    ]
+  ];;
+
+let upload = Lib.register_service
+  { path = [&quot;upload&quot;]; serviceName = &quot;upload&quot;} uploadform;;
+
+let upload2 =
+  let fallback = &quot;upload&quot; in
+  Lib.register_post_service { postServiceName = &quot;upload2&quot; }
+    pageUpload2 fallback</code></pre><h3> XProc <span class="label" id="xproc"></span></h3><p>From version 0.2, OcCDuce can be used to call a CDuce function from
+an XProc pipeline.
+</p><p>Depending on the content-type of the XProc request, the CDuce
+function must used a different method to receive the data or the
+parameters.
+</p><p>In the following example, the request uses a content-type of
+&quot;application/x-www-form-urlencoded&quot;:
+</p><pre>&lt;p:declare-step xmlns:p=&quot;http://www.w3.org/ns/xproc&quot;
+  xmlns:c=&quot;http://www.w3.org/ns/xproc-step&quot; version=&quot;1.0&quot;&gt;
+  &lt;p:input port=&quot;source&quot;&gt;
+    &lt;p:inline&gt;
+      &lt;c:request method=&quot;POST&quot; href=&quot;http://localhost/xproc/xproc&quot;
+		 xmlns:c=&quot;http://www.w3.org/ns/xproc-step&quot;&gt;
+	&lt;c:body content-type=&quot;application/x-www-form-urlencoded&quot;
+	         &gt;name=W3C&amp;amp;spec=XProc&lt;/c:body&gt;
+      &lt;/c:request&gt;
+    &lt;/p:inline&gt;
+  &lt;/p:input&gt;
+  &lt;p:output port=&quot;result&quot;/&gt;
+  &lt;p:http-request/&gt;
+&lt;/p:declare-step&gt;
+</pre><p>In this case, a &quot;normal&quot; POST service is necessary to retrieve the
+parameters provided by XProc.
+</p><pre class=""><code class="language-ocaml translatable">type XProcTestParam  = [&lt;name&gt;[String] &lt;spec&gt;[String] ];;
+
+let pageNoPostXProc (_ : []) : AnyXml =
+  &lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;[
+    (header &quot;CDuce Web page&quot;)
+    &lt;body&gt;[
+      &lt;h1&gt;&quot;Version of the page without POST parameters&quot;
+    ]
+  ]
+
+let no_post_xproc = Lib.register_service
+  { path = [ &quot;xproc&quot; ]; serviceName = &quot;pageNoPostXProc&quot; }
+  pageNoPostXProc
+
+let pagePostXProc (param : XProcTestParam) (_ : []) : AnyXml =
+  match param with [ &lt;name&gt;[n] &lt;spec&gt;[s] ] -&gt;
+    &lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;[
+      (header &quot;CDuce Web Page!&quot;)
+      &lt;body&gt;[
+	&lt;h1&gt;['Post param1: ' !(n) ' &lt;br&gt;[]
+	    'Post param2: ' !(s) ' &lt;br&gt;[] ]
+      ]
+    ]
+
+let post_xproc =
+  let fallbackID = &quot;pageNoPostXProc&quot; in
+  Lib.register_post_service
+    { postServiceName = &quot;pageXProc&quot; }
+    pagePostXProc fallbackID</code></pre><p>When the content-type is &quot;text/plain&quot; or &quot;application/xml&quot;, you need
+to register a Web Service, since the information provided by XProc
+is embedded in the body of the http request.
+</p><p>For more information on how to register a web service, you can
+consult the documentation of
+<a href="http://cduce.org/cduce_ws.html" class="ocsimore_phrasing_link">CDuce_WS</a>.
+</p><p>In the next example, XProc sends a simple string to CDuce:
+</p><pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;p:declare-step xmlns:p=&quot;http://www.w3.org/ns/xproc&quot;
+    xmlns:c=&quot;http://www.w3.org/ns/xproc-step&quot; version=&quot;1.0&quot;&gt;
+    &lt;p:input port=&quot;source&quot;&gt;
+        &lt;p:inline&gt;
+            &lt;c:request method=&quot;POST&quot; href=&quot;http://localhost/xproc/text&quot;&gt;
+                &lt;c:body content-type=&quot;text/plain&quot;&gt;test&lt;/c:body&gt;
+            &lt;/c:request&gt;
+        &lt;/p:inline&gt;
+    &lt;/p:input&gt;
+    &lt;p:output port=&quot;result&quot;/&gt;
+    &lt;p:http-request/&gt;
+&lt;/p:declare-step&gt;
+</pre><p>And the following code registers a web service which simply returns
+the string received in an xml tag &lt;response&gt;[].
+</p><pre class=""><code class="language-ocaml translatable">let pageNoPostFile (_ : []) : AnyXml =
+  &lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;[
+    (header &quot;CDuce Web page&quot;)
+    &lt;body&gt;[
+      &lt;h1&gt;&quot;Version of the page without POST parameters&quot;
+    ]
+  ]
+
+let pageXprocText (_ : []) (_ : []) (content : Latin1) : AnyXml =
+  &lt;response&gt;[!(string_of content)];;
+
+let xproc_text = Lib.register_webservice
+   { path = [&quot;text&quot;]; serviceName = &quot;XProcText&quot; }
+    pageXprocText pageNoPostFile</code></pre><p>XProc can, of course, sends an XML file:
+</p><pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;p:declare-step xmlns:p=&quot;http://www.w3.org/ns/xproc&quot;
+    xmlns:c=&quot;http://www.w3.org/ns/xproc-step&quot; version=&quot;1.0&quot;&gt;
+    &lt;p:input port=&quot;source&quot;&gt;
+        &lt;p:inline&gt;
+            &lt;c:request method=&quot;POST&quot; href=&quot;http://localhost/xproc/xml&quot;&gt;
+                &lt;c:body xmlns:c=&quot;http://www.w3.org/ns/xproc-step&quot;
+                    content-type=&quot;application/xml&quot;&gt;
+                    &lt;doc&gt;
+                        &lt;title&gt;My document&lt;/title&gt;
+                    &lt;/doc&gt;
+                &lt;/c:body&gt;
+            &lt;/c:request&gt;
+        &lt;/p:inline&gt;
+    &lt;/p:input&gt;
+    &lt;p:output port=&quot;result&quot;/&gt;
+  &lt;p:http-request/&gt;
+&lt;/p:declare-step&gt;
+</pre><p>or a sequence of XML files:
+</p><pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;p:declare-step xmlns:p=&quot;http://www.w3.org/ns/xproc&quot;
+    xmlns:c=&quot;http://www.w3.org/ns/xproc-step&quot; version=&quot;1.0&quot;&gt;
+    &lt;p:input port=&quot;source&quot;&gt;
+        &lt;p:inline&gt;
+            &lt;c:request method=&quot;POST&quot; href=&quot;http://localhost/xproc/xml&quot;&gt;
+                &lt;c:multipart
+                    content-type=&quot;multipart/mixed&quot;
+                    boundary=&quot;AAA&quot;&gt;
+                    &lt;c:body content-type=&quot;application/xml&quot;&gt;
+                        &lt;doc&gt;
+                            &lt;title&gt;My document&lt;/title&gt;
+                        &lt;/doc&gt;
+                    &lt;/c:body&gt;
+                    &lt;c:body content-type=&quot;application/xml&quot;&gt;
+                        &lt;doc2&gt;
+                            &lt;title&gt;My second document&lt;/title&gt;
+                        &lt;/doc2&gt;
+                    &lt;/c:body&gt;
+                &lt;/c:multipart&gt;
+            &lt;/c:request&gt;
+        &lt;/p:inline&gt;
+    &lt;/p:input&gt;
+    &lt;p:output port=&quot;result&quot;/&gt;
+  &lt;p:http-request/&gt;
+&lt;/p:declare-step&gt;
+</pre><p>In both cases, you can use the following code to retrieve the data in
+CDuce.
+</p><p>NOTE: You must use Lib.parse_multipart only for a sequence of XML
+files, but it does nothing on string that contains a single XML file.
+Therefore it is safe to use it on both previous XProc pipelines.
+</p><pre class=""><code class="language-ocaml translatable">let pageXprocFile (_ : []) (_ : []) (content : Latin1) : AnyXml =
+  let xmls = Lib.parse_multipart content in
+  let xs = (map xmls with xml -&gt;
+    load_xml [ 'string:' !xml]) in
+  &lt;response&gt;xs;;
+
+let xproc_file =  Lib.register_webservice
+    { path = [&quot;xml&quot;]; serviceName = &quot;XProcFile&quot; }
+    pageXprocFile pageNoPostFile</code></pre></header></div></div><div class="main-page-section main-page-section-about"><div class="main-page-section-content"><ul><li> <a href=".././../../credits" class="ocsimore_phrasing_link">Who does Ocsigen?</a>
+</li><li> <a href=".././../../papers" class="ocsimore_phrasing_link">Research papers</a>
+</li><li> <a href=".././../../projects" class="ocsimore_phrasing_link">All the projects</a>
+</li><li> <a href=".././../../contributing" class="ocsimore_phrasing_link">Contributing</a>
+</li><li> <a href=".././../../blog" class="ocsimore_phrasing_link">Blog</a>
+</li><li> <a href="https://github.com/ocsigen" class="ocsimore_phrasing_link">Source code</a></li></ul></div></div></body></html>

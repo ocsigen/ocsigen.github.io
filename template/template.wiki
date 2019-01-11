@@ -1,0 +1,23 @@
+<<include template="head.wiki">>
+
+<<div class="project-page"|
+<<include template="header.wiki">>
+
+@@class="reasonwarning"@@Warning: Reason support is experimental.
+We are looking for beta-tester and contributors.
+
+<<reason-switch>>
+
+<<div class="twocols" |
+<<nav class="leftcol" |
+<<docversion>>
+
+<<doctree>>
+>> <<|leftcol>>
+
+<<article class="rightcol" |
+<<client-server-switch|>>
+<<content>>
+>> <<|rightcol>>
+>> <<|twocols>>
+>> <<|project-page>>

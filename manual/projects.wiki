@@ -1,0 +1,171 @@
+<<div class="project-page" |
+<<div class="rightcol" |
+
+<<div class="main-page-section main-page-section-projects"|
+<<div class="main-page-section-content"|
+==Main projects
+>>
+
+<<div class="main-page-projects"|
+<<link wiki="js_of_ocaml"|
+<<div class="main-page-project"|
+  ===Js_of_ocaml
+
+  Optimizing compiler from OCaml/Reason to Javascript.
+
+>>
+>>
+<<link wiki="eliom"|
+<<div class="main-page-project"|
+  ===Eliom
+
+  Multi-tier language and framework for multi-platform apps.
+
+>>
+>>
+<<link wiki="ocsigenserver"|
+<<div class="main-page-project"|
+  ===Server
+
+  Full-featured and extensible Web Server.
+>>
+>>
+<<link wiki="lwt"|
+<<div class="main-page-project"|
+  ===Lwt
+
+  Cooperative threading library.
+>>
+>>
+
+
+<<link wiki="tyxml"|
+<<div class="main-page-project"|
+  ===Tyxml
+
+  Static type-checking for HTML and SVG.
+>>
+>>
+<<link wiki="ocsigen-toolkit"|
+<<div class="main-page-project"|
+  ===Ocsigen Toolkit
+
+  Native OCaml widgets for browsers (client side only or client-server).
+>>
+>>
+<<link wiki="ocsigen-start"|
+<<div class="main-page-project"|
+  ===Start
+
+  A full-featured app to use as code example for your own projects.
+>>
+>>
+
+
+
+>>
+
+<<div class="main-page-section-content"|
+==Experimental projects
+>>
+
+<<div class="main-page-projects"|
+
+<<link href="https://github.com/ocsigen/macaque"|
+<<div class="main-page-project"|
+  ===Macaque
+
+  An experimental language for type-safe database queries.
+
+>>
+>>
+
+
+
+<<link href="https://github.com/ocsigen/ocsipersist"|
+<<div class="main-page-project"|
+  ===Ocsipersist
+
+  Persistent references and key-value stores.
+
+>>
+>>
+
+<<link wiki="ocsimore"|
+<<div class="main-page-project"|
+  ===Ocsimore
+
+  A content management system written with Eliom (wiki, forum).
+  (unmaintained)
+
+>>
+>>
+
+<<link wiki="oclosure"|
+<<div class="main-page-project"|
+  ===OClosure
+
+  An OCaml binding of the Google Closure widget library.
+  (unmaintained)
+
+>>
+>>
+
+
+<<link href="https://github.com/klakplok/goji"|
+<<div class="main-page-project"|
+  ===Goji
+
+  OCaml binding generator for Javascript libraries
+  (unmaintained)
+
+>>
+>>
+
+<<link href="https://github.com/ocsigen/ojquery"|
+<<div class="main-page-project"|
+  ===Ojquery
+
+  An OCaml binding for JQuery
+  (unmaintained)
+
+>>
+>>
+
+<<link href="https://github.com/ocsigen/obrowser"|
+<<div class="main-page-project"|
+  ===O'Browser
+
+  An OCaml virtual machine in Javascript.
+  (unmaintained)
+
+>>
+>>
+
+<<link href="https://github.com/ocsigen/ocsforge"|
+<<div class="main-page-project"|
+  ===Ocsforge
+
+  Ocsimore module implementing collaborative development tools (forge).
+
+>>
+>>
+
+<<link href="/occduce"|
+<<div class="main-page-project"|
+  ===Occduce
+
+  An experimental Eliom-like module for the CDuce language.
+  (unmaintained)
+
+>>
+>>
+
+
+
+>>
+>>
+
+
+>>
+>>
