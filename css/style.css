@@ -209,7 +209,7 @@ body.ocsigen\.github\.io.intro .page-header {
 }
 
 .page-header .mainmenu p {
-    display: inline;
+    display: inline-block;
 }
 .page-header .mainmenu p a,
 .page-header .mainmenu p span a {
@@ -219,7 +219,6 @@ body.ocsigen\.github\.io.intro .page-header {
 }
 .page-header .mainmenu .mainmenu-current {
     border-bottom: 4px solid #64caff;
-    padding-bottom: 10px;
 }
 li.drawermainmenu-page,
 li.drawermainmenu-home,
