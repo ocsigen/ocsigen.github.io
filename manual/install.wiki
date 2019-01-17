@@ -10,7 +10,27 @@ the OCaml package manager.
 {{{
 $ opam install ocsigen-start
 }}}
+
+Then, create your application using {{{eliom-distillery}}}:
+{{{
+$ eliom-distillery -name myapp -template os.pgocaml
+}}}
+
 A tutorial is available [[wiki("tuto"):|here]].
 
+=== Non-OCaml dependencies
+
+You may need to install some external (i.e. non-OCaml) dependencies first. You can use [[https://opam.ocaml.org/packages/opam-depext/|ocaml-depext]] to install those packages on your operating system:
+
+{{{
+$ opam install ocaml-depext
+$ opam depext ocsigen-start
+}}}
+
+You may also need to install either {{{sass}}} or {{{sassc}}} from your system
+package manager. On Debian-based systems:
+{{{
+$ apt-get install ruby-sass
+}}}
 >>
 >>
