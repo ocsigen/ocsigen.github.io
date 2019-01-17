@@ -275,17 +275,11 @@ li.drawermainmenu-current a {
 }
 [class^="main-page-news-"] {
     padding: 35px;
-    border-radius: 5px;
-    background-color: white;
 }
 .main-page-news-1 {
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
     background-color: #ffffdd;
 }
 .main-page-news-2 {
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
     background-color: #73c6ed;
     color: white;
 }
@@ -944,5 +938,11 @@ body.tuto.start div.screenshots img {
         background-repeat: no-repeat;
         background-position: -800px 0;
         background-attachment: fixed;
+    }
+    .main-page-news-1 {
+        padding-left: calc(50% - 550px);
+    }
+    .main-page-news-2 {
+        padding-right: calc(50% - 550px);
     }
 }
