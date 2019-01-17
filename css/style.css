@@ -121,14 +121,11 @@ a.main-button, a.main-button:visited {
 .horiz-blocks {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    margin: 40px -20px;
     flex-wrap: wrap;
 }
 .horiz-blocks > * {
-    max-width: 500px;
     min-width: 200px;
-    margin: 20px;
+    width: 50%;
 }
 .main-page-section {
     background-color: white;
@@ -266,13 +263,31 @@ li.drawermainmenu-current a {
     padding: 50px;
     margin: 0 auto;
 }
-.main-page-section-news {
-    background: linear-gradient(white, #eee);
+.main-page-section-news .main-page-section-content {
+    padding: 50px 0;
+    margin: 0;
+    max-width: 100%;
+}
+.main-page-section-news .main-page-section-content h2 {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 50px;
 }
 [class^="main-page-news-"] {
     padding: 35px;
     border-radius: 5px;
     background-color: white;
+}
+.main-page-news-1 {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    background-color: #ffffdd;
+}
+.main-page-news-2 {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    background-color: #73c6ed;
+    color: white;
 }
 .main-page-section-multitier {
     color: #222;
@@ -881,6 +896,9 @@ body.tuto.start div.screenshots img {
     }
     .project-page h1 {
         font-size: 36px;
+    }
+    .horiz-blocks > * {
+        width: 100%;
     }
 }
 @media (min-width: 1180px) {
