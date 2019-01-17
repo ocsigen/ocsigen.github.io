@@ -59,8 +59,12 @@ body {
     cursor: pointer;
     background: white;
 }
-#gsearch-box + label#gsearch-icon {
+#gsearch-box + label {
     color: black;
+    position: absolute;
+    right: 10px;
+    top: 24px;
+    cursor: pointer;
 }
 #gsearch-box:hover {
     color: white;
@@ -90,28 +94,19 @@ body {
 }
 
 #gsearch-submit {
-    position: relative;
-    left: -5000px;
+    display: none;
 }
 
 #gsearch-icon {
-    position: relative;
-    left: -30px;
-    top: 4px;
     color: white;
-    cursor: pointer;
     width: 20px;
 }
 
 form#googlesearch {
+    position: relative;
     padding-top: 15px;
-    margin-right: -100px;
     margin-left: 15px;
-}
-@media screen and (-webkit-min-device-pixel-ratio:0) {
-    form#googlesearch {
-        margin-right: -20px;
-    }
+    margin-right: 60px;
 }
 
 .main-button {
