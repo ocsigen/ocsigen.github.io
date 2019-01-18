@@ -543,7 +543,7 @@ body.reason code.language-ocaml:not(.error) {
     transition: .4s;
 }
 input:checked + .csw-slider {
-    background-color: #00cd66; /* spring green */
+    background-color: #d4df67; /* dark yellow */
 }
 input:focus + .csw-slider {
     box-shadow: 0 0 1px : #00cd66;
