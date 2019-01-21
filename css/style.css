@@ -122,7 +122,6 @@ a.main-button, a.main-button:visited {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin: 40px -20px;
     flex-wrap: wrap;
 }
 .horiz-blocks > * {
