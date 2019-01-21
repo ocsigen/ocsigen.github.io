@@ -121,10 +121,21 @@ a.main-button, a.main-button:visited {
 .horiz-blocks {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    margin: 40px -20px;
     flex-wrap: wrap;
 }
 .horiz-blocks > * {
+    max-width: 500px;
     min-width: 200px;
+}
+.main-page-section-news .horiz-blocks {
+    justify-content: unset;
+    margin: 0;
+}
+.main-page-section-news .horiz-blocks > * {
+    max-width: unset;
+    margin: 0;
     width: 50%;
 }
 .main-page-section {
@@ -891,7 +902,7 @@ body.tuto.start div.screenshots img {
     .project-page h1 {
         font-size: 36px;
     }
-    .horiz-blocks > * {
+    .main-page-section-news .horiz-blocks > * {
         width: 100%;
     }
 }
