@@ -31,6 +31,7 @@ accepted!
 # {{{git tag}}}
 # Create a release on GitHub.
 # {{{opam publish}}} and wait for the package to be accepted.
+# Manually update symbolic link {{{latest}}} on branch {{{gh-pages}}} //(How do automatize this?)//
 
 Also do not forget to push on ##wikidoc## as it will update the website
 automatically for the new version.
