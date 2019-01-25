@@ -128,6 +128,12 @@ a.main-button, a.main-button:visited {
     max-width: 500px;
     min-width: 200px;
 }
+.horiz-blocks > *:first-child {
+    padding-right: 10px;
+}
+.horiz-blocks > *:last-child {
+    padding-left: 10px;
+}
 .main-page-section-news .horiz-blocks {
     justify-content: unset;
     margin: 0;
