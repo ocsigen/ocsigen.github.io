@@ -55,7 +55,7 @@ You can also have a look at the archives of the [[http://sympa.mancoosi.univ-par
     //(Lwt)// \\
 **Benjamin Canou**
     //(O'Browser, Eliom client, Goji)// \\
-**Jacques-Pascal Deplaix**
+**Kate Deplaix**
     //(Ocsimore, ...)// \\
 **Jérôme Maloberti**
     //(GODI packaging, OcCDuce)//\\
