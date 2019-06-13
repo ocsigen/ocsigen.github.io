@@ -12,12 +12,12 @@ create a //Pull Request// on the repository and wait for feedback!
 **Every contribution has to be documented!** The documentation is stored on
 a branch ##wikidoc##. For your contribution to be accepted, you also need to
 make a PR on that branch for your documentation. On your forked branch, feel
-free to push and the CI will tell you if your documentation has errors. It 
+free to push and the CI will tell you if your documentation has errors. It
 will only be deployed to [[https://ocsigen.org]] when merged on ##wikidoc##.
 
 The documentation format is the wikicréole. Please find the reference
-[[wiki("html_of_wiki"):|here]]. 
-You can generate the documentation of your API  directly in Ocsigen's wikicréole 
+[[wiki("html_of_wiki"):|here]].
+You can generate the documentation of your API  directly in Ocsigen's wikicréole
 using {{{ocamldoc}}}. Do not hesitate to ask for help if you experience any trouble.
 
 Remember, you have to issue **2** pull requests---one for your code on ##master##
@@ -26,12 +26,13 @@ accepted!
 
 ==Create a release (for package maintainers)
 # Make sure the documentation on ##wikidoc## is **up to date** with the code on ##master##.
-# On ##wikidoc##, {{{cp -r dev X.Y.Z}}}, where {{{X.Y.Z}}} is the new version's number.
+# On ##wikidoc##, {{{cp -r dev X.Y.Z}}}, where {{{X.Y.Z}}} is the new version's number. Commit changes, do a PR, wait for the documentation to be regenerated, and check the documentation on the website.
+# Update file CHANGES
 # On ##master##, update opam configuration file.
-# {{{git tag}}}
+# {{{git tag <version>}}} puis {{{git push --tags}}}
 # Create a release on GitHub.
 # {{{opam publish}}} and wait for the package to be accepted.
-# Manually update symbolic link {{{latest}}} on branch {{{gh-pages}}} //(How do automatize this?)//
+<<|# Manually update symbolic link {{{latest}}} on branch {{{gh-pages}}} //(How to automatize this?)//>>
 
 Also do not forget to push on ##wikidoc## as it will update the website
 automatically for the new version.
@@ -57,7 +58,7 @@ quickdop -f DOCS _doc -t json -c how.json -viul
 }}}
 
 If you want to avoid generating the whole documentation---just some parts of
-it---read the documentation of the tools **{{{dop}}}** and **{{{ohow}}}** in 
-[[wiki("html_of_wiki"):|the manual of html_of_wiki]]. 
+it---read the documentation of the tools **{{{dop}}}** and **{{{ohow}}}** in
+[[wiki("html_of_wiki"):|the manual of html_of_wiki]].
 >>
 >>
