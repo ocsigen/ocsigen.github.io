@@ -48,22 +48,22 @@ create a <em>Pull Request</em> on the repository and wait for feedback!
 </p><p><strong>Every contribution has to be documented!</strong> The documentation is stored on
 a branch <span class="monospace">wikidoc</span>. For your contribution to be accepted, you also need to
 make a PR on that branch for your documentation. On your forked branch, feel
-free to push and the CI will tell you if your documentation has errors. It 
+free to push and the CI will tell you if your documentation has errors. It
 will only be deployed to <a href="https://ocsigen.org" class="ocsimore_phrasing_link">https://ocsigen.org</a> when merged on <span class="monospace">wikidoc</span>.
 </p><p>The documentation format is the wikicréole. Please find the reference
-<a href=".././html_of_wiki/" class="ocsimore_phrasing_link">here</a>. 
-You can generate the documentation of your API  directly in Ocsigen's wikicréole 
+<a href=".././html_of_wiki/" class="ocsimore_phrasing_link">here</a>.
+You can generate the documentation of your API  directly in Ocsigen's wikicréole
 using <span class="teletype">ocamldoc</span>. Do not hesitate to ask for help if you experience any trouble.
 </p><p>Remember, you have to issue <strong>2</strong> pull requests—one for your code on <span class="monospace">master</span>
 and one for its documentation on <span class="monospace">wikidoc</span>—for your contribution to be
 accepted!
 </p><h2>Create a release (for package maintainers)</h2><ol><li> Make sure the documentation on <span class="monospace">wikidoc</span> is <strong>up to date</strong> with the code on <span class="monospace">master</span>.
-</li><li> On <span class="monospace">wikidoc</span>, <span class="teletype">cp -r dev X.Y.Z</span>, where <span class="teletype">X.Y.Z</span> is the new version's number.
+</li><li> On <span class="monospace">wikidoc</span>, <span class="teletype">cp -r dev X.Y.Z</span>, where <span class="teletype">X.Y.Z</span> is the new version's number. Commit changes, do a PR, wait for the documentation to be regenerated, and check the documentation on the website.
+</li><li> Update file CHANGES
 </li><li> On <span class="monospace">master</span>, update opam configuration file.
-</li><li> <span class="teletype">git tag</span>
+</li><li> <span class="teletype">git tag &lt;version&gt;</span> puis <span class="teletype">git push --tags</span>
 </li><li> Create a release on GitHub.
 </li><li> <span class="teletype">opam publish</span> and wait for the package to be accepted.
-</li><li> Manually update symbolic link <span class="teletype">latest</span> on branch <span class="teletype">gh-pages</span> <em>(How do automatize this?)</em>
 </li></ol><p>Also do not forget to push on <span class="monospace">wikidoc</span> as it will update the website
 automatically for the new version.
 </p><h2>Local documentation generation</h2><p>html_of_wiki can (to some extent) locally generate your documentation. Please
@@ -80,8 +80,10 @@ mv $tmp/how_template .
 </pre><ul><li> Use the following command to generate the documentation of the project, where <span class="teletype">DOC</span> is the directory containing the documentation:
 </li></ul><pre>quickdop -f DOCS _doc -t json -c how.json -viul
 </pre><p>If you want to avoid generating the whole documentation—just some parts of
-it—read the documentation of the tools <strong><span class="teletype">dop</span></strong> and <strong><span class="teletype">ohow</span></strong> in 
-<a href=".././html_of_wiki/" class="ocsimore_phrasing_link">the manual of html_of_wiki</a>.</p></div></div><div class="main-page-section main-page-section-about"><div class="main-page-section-content"><ul><li> <a href=".././credits" class="ocsimore_phrasing_link">Who does Ocsigen?</a>
+it—read the documentation of the tools <strong><span class="teletype">dop</span></strong> and <strong><span class="teletype">ohow</span></strong> in
+<a href=".././html_of_wiki/" class="ocsimore_phrasing_link">the manual of html_of_wiki</a>.</p></div></div><h2>Main site</h2><p>Changes in the main site must be done in repository <span class="teletype">ocsigen.github.io</span>,
+branch <span class="teletype">master</span>, directory <span class="teletype">manual</span>. Site generation must be done
+manually: <span class="teletype">make deploy</span>.</p><div class="main-page-section main-page-section-about"><div class="main-page-section-content"><ul><li> <a href=".././credits" class="ocsimore_phrasing_link">Who does Ocsigen?</a>
 </li><li> <a href=".././papers" class="ocsimore_phrasing_link">Research papers</a>
 </li><li> <a href=".././projects" class="ocsimore_phrasing_link">All the projects</a>
 </li><li> <a href=".././contributing" class="ocsimore_phrasing_link">Contributing</a>
