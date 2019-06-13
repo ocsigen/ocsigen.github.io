@@ -62,3 +62,9 @@ it---read the documentation of the tools **{{{dop}}}** and **{{{ohow}}}** in
 [[wiki("html_of_wiki"):|the manual of html_of_wiki]].
 >>
 >>
+
+==Main site
+
+Changes in the main site must be done in repository {{{ocsigen.github.io}}},
+branch {{{master}}}, directory {{{manual}}}. Site generation must be done
+manually: {{{make deploy}}}.
