@@ -20,9 +20,13 @@ how-redirect-manual() {
     local dir="$(pwd)/$HOW_OUT/$2"
     mkdir -p "$dir"
     cd "$HOW_OUT/$1"
-    find . -type f | while read -r f; do
+    find api -type f | while read -r f; do
         mkdir -p `dirname "$dir/$f"`
         how-redirect "../../../$1/$f" "$dir/$f"
+    done
+    find manual -type f | while read -r f; do
+        mkdir -p `dirname "$dir/$f"`
+        how-redirect "../../$1/$f" "$dir/$f"
     done
     cd - 2>&1 >/dev/null
 }
