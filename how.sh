@@ -20,9 +20,10 @@ how-redirect-manual() {
     local dir="$(pwd)/$HOW_OUT/$2"
     mkdir -p "$dir"
     cd "$HOW_OUT/$1"
+    [ "$3" == "clientserver" ] && prefix="../"
     find api -type f | while read -r f; do
         mkdir -p `dirname "$dir/$f"`
-        how-redirect "../../../$1/$f" "$dir/$f"
+        how-redirect "$prefix""../../$1/$f" "$dir/$f"
     done
     find manual -type f | while read -r f; do
         mkdir -p `dirname "$dir/$f"`
@@ -42,7 +43,7 @@ how-install() {
     opam pin add -y html_of_wiki html_of_wiki
 
     git clone --depth 1 https://github.com/ocsigen/ocsigen.github.io.git __ocsigen.github.io
-    mv __ocsigen.github.io/template __ocsigen.github.io/how_template 
+    mv __ocsigen.github.io/template __ocsigen.github.io/how_template
     mv __ocsigen.github.io/how_template .
 
     HOW_LATEST=$(find $HOW_DOC -maxdepth 1 -type d -not -name $HOW_DOC -not -name dev -exec basename {} \; | sort -nr | head -n 1)
