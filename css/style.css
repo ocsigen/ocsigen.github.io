@@ -845,6 +845,15 @@ code[class*=language-], pre[class*=language-] {
     padding: 15px 0;
 }
 
+.concepts {
+    width: 300px;
+    background-color: #ff8d52;
+    color: white;
+    padding: 1px 20px;
+    margin-left: auto;
+    border-radius: 5px;
+}
+
 /****** Page specific ******/
 /* intro tuto */
 body.tuto .tutocase {
