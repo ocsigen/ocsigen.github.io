@@ -13,7 +13,8 @@ create a //Pull Request// on the repository and wait for feedback!
 a branch ##wikidoc##. For your contribution to be accepted, you also need to
 make a PR on that branch for your documentation. On your forked branch, feel
 free to push and the CI will tell you if your documentation has errors. It
-will only be deployed to [[https://ocsigen.org]] when merged on ##wikidoc##.
+will only be deployed to [[https://ocsigen.org]] by Travis
+when merged on ##wikidoc##.
 
 The documentation format is the wikicréole. Please find the reference
 [[wiki("html_of_wiki"):|here]].

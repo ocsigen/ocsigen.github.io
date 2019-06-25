@@ -50,6 +50,18 @@ Send us your feedback and bug reports
 >>
 
 <<div class="main-page-news-2"|
+=== Graffiti tutorial updated!
+[[wiki(tuto):manual/application|Graffiti tutorial]]
+explains step by step how to write a multi-user
+client-server drawing application with Eliom.
+
+It is the best starting point for beginners!
+
+An updated version of this tutorial is now online, thanks to [[https://github.com/corentinjuvigny|corentinjuvigny]] and [[https://github.com/chrismamo1|chrismamo1]].
+>>
+>> <<|horiz-blocks>>
+
+<<|
 === Releases
 We have recently released the following Ocsigen packages:
 Ocsigen Start 1.3.0, Ocsigen Toolkit 2.0.0, Eliom 6.5.0, Js_of_ocaml 3.3.0,
@@ -59,7 +71,6 @@ The releases restore compatibility with the latest OCaml and as usual bring abou
 
 Everything is available in opam. `opam install ocsigen-start` will pull in all the other packages.
 >>
->> <<|horiz-blocks>>
 
 >>
 >>
