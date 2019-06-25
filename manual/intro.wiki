@@ -51,7 +51,7 @@ Send us your feedback and bug reports
 
 <<div class="main-page-news-2"|
 === Graffiti tutorial updated!
-[[wiki("tuto"):manual/application|Graffiti tutorial]]
+[[wiki("tuto"):latest/manual/application|Graffiti tutorial]]
 explains step by step how to write a multi-user
 client-server drawing application with Eliom.
 
