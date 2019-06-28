@@ -34,6 +34,9 @@ accepted!
 # Create a release on GitHub.
 # {{{opam publish}}} and wait for the package to be accepted.
 <<|# Manually update symbolic link {{{latest}}} on branch {{{gh-pages}}} //(How to automatize this?)//>>
+# Add a file in directory {{{_posts}}} of repository {{{ocsigen.github.io}}}
+on Github to create a blog post that will be published on OCaml Planet
+and Twitter's OCaml page
 
 Also do not forget to push on ##wikidoc## as it will update the website
 automatically for the new version.
