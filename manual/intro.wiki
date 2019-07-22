@@ -188,21 +188,21 @@ function(d){var b=d,c=1,a=1;for(;;){if(0===b)return a;var b=b-1|0,e=a+c|0,c=a,a=
   Cooperative threading library.
 >>
 >>
-<<link wiki="eliom"|
+<<link wiki="tyxml"|
 <<div class="main-page-project"|
   ===Tyxml
 
   Static type-checking for HTML and SVG.
 >>
 >>
-<<link wiki="eliom"|
+<<link wiki="ocsigen-toolkit"|
 <<div class="main-page-project"|
   ===Ocsigen Toolkit
 
   Native OCaml widgets for browsers (client side only or client-server).
 >>
 >>
-<<link wiki="eliom"|
+<<link wiki="ocsigen-start"|
 <<div class="main-page-project"|
   ===Start
 
