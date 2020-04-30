@@ -58,8 +58,8 @@ using <span class="teletype">ocamldoc</span>. Do not hesitate to ask for help if
 </p><p>Remember, you have to issue <strong>2</strong> pull requests—one for your code on <span class="monospace">master</span>
 and one for its documentation on <span class="monospace">wikidoc</span>—for your contribution to be
 accepted!
-</p><h2>Create a release (for package maintainers)</h2><ol><li> Make sure the documentation on <span class="monospace">wikidoc</span> is <strong>up to date</strong> with the code on <span class="monospace">master</span>.
-</li><li> On <span class="monospace">wikidoc</span>, <span class="teletype">cp -r dev X.Y.Z</span>, where <span class="teletype">X.Y.Z</span> is the new version's number. Commit changes, do a PR, wait for the documentation to be regenerated, and check the documentation on the website.
+</p><h2>Create a release (for package maintainers)</h2><ol><li> Make sure the documentation on git branch <span class="monospace">wikidoc</span> is <strong>up to date</strong> with the code on <span class="monospace">master</span>.
+</li><li> On branch <span class="monospace">wikidoc</span>, <span class="teletype">cp -r dev X.Y.Z</span>, where <span class="teletype">X.Y.Z</span> is the new version's number. Commit changes, do a PR, wait for the documentation to be regenerated, and check the documentation on the website.
 </li><li> Update file CHANGES
 </li><li> On <span class="monospace">master</span>, update opam configuration file.
 </li><li> <span class="teletype">git tag &lt;version&gt;</span> puis <span class="teletype">git push --tags</span>
