@@ -26,8 +26,8 @@ and one for its documentation on ##wikidoc##---for your contribution to be
 accepted!
 
 ==Create a release (for package maintainers)
-# Make sure the documentation on ##wikidoc## is **up to date** with the code on ##master##.
-# On ##wikidoc##, {{{cp -r dev X.Y.Z}}}, where {{{X.Y.Z}}} is the new version's number. Commit changes, do a PR, wait for the documentation to be regenerated, and check the documentation on the website.
+# Make sure the documentation on git branch ##wikidoc## is **up to date** with the code on ##master##.
+# On branch ##wikidoc##, {{{cp -r dev X.Y.Z}}}, where {{{X.Y.Z}}} is the new version's number. Commit changes, do a PR, wait for the documentation to be regenerated, and check the documentation on the website.
 # Update file CHANGES
 # On ##master##, update opam configuration file.
 # {{{git tag <version>}}} puis {{{git push --tags}}}
