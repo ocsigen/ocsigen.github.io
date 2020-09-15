@@ -8,6 +8,7 @@
 /****** Outline ******/
 /****** Drawer ******/
 /****** Drawer content ******/
+/****** Doc ******/
 /****** Page specific ******/
 /****** Mobile ******/
 /****** Large screen ******/
@@ -845,6 +846,7 @@ code[class*=language-], pre[class*=language-] {
     padding: 15px 0;
 }
 
+/****** Doc ******/
 .concepts {
     width: 400px;
     background-color: #ff8d52;
@@ -853,6 +855,12 @@ code[class*=language-], pre[class*=language-] {
     margin-left: auto;
     border-radius: 5px;
 }
+
+aside.concept {
+    border-left: 4px #348 solid;
+    padding-left: 20px;
+}
+
 
 /****** Page specific ******/
 /* intro tuto */
