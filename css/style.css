@@ -861,6 +861,21 @@ aside.concept {
     padding-left: 20px;
 }
 
+.screenshot::before {
+    content: "Screenshot";
+    display: block;
+    text-align: center;
+    background-color: #def;
+    color: white;
+    font-weight: bold;
+    line-height: 30px;
+    font-size: 20px;
+}
+
+.screenshot {
+    border: 4px #def solid;
+    margin: 20px;
+}
 
 /****** Page specific ******/
 /* intro tuto */
