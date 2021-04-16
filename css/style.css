@@ -10,6 +10,7 @@
 /****** Drawer content ******/
 /****** Doc ******/
 /****** Page specific ******/
+/****** Doc block ******/
 /****** Mobile ******/
 /****** Large screen ******/
 
@@ -889,6 +890,31 @@ body.tuto.start div.screenshots img {
     max-height: 200px;
     max-width: calc(100vw - 30px);
 }
+/****** Dock block ******/
+section.docblock {
+    border: 2px solid;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+section.docblock > header {
+    position: sticky;
+    top: 90px;
+    background-color: white;
+    padding-top: 50px;
+    border: 2px solid white;
+    margin: -12px;
+}
+section.docblock > header > h2 {
+    margin: -2px;
+    padding: 10px;
+    border: 2px solid;
+    border-bottom: none;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+}
+
 /****** Mobile version ******/
 @media (max-width: 720px) {
     .smallscreen {
