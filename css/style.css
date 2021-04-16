@@ -515,7 +515,11 @@ body.reason button#reason::after {
 body.reason .reasonwarning {
   display: block;
 }
-
+.focused {
+  background: #fcf0eb;
+  padding: 1px 15px;
+  border-radius: 10px;
+}
 /****** Client-server switch button *****/
 
 /* <pre> is shared among the original and automatically translated code, so we
