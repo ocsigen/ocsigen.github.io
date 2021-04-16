@@ -736,7 +736,7 @@ span.odocwiki_comments_close {
 
 span.odocwiki_variant::after,
 span.odocwiki_field::after {
-  content: ".";
+  content: "";
   display: block;
   clear: both;
   height: 0;
