@@ -904,6 +904,7 @@ section.docblock > header {
     padding-top: 50px;
     border: 2px solid white;
     margin: -12px;
+    z-index: 1;
 }
 section.docblock > header > h2 {
     margin: -2px;
