@@ -13,6 +13,7 @@
 /****** Doc block ******/
 /****** Mobile ******/
 /****** Large screen ******/
+/****** Print ******/
 
 /****** Main style *****/
 html {
@@ -1067,5 +1068,11 @@ section.docblock > header > h2 {
   }
   .main-page-news-2 {
     padding-right: calc(50% - 550px);
+  }
+}
+/****** Print ******/
+@media print {
+  .page-header, #reason {
+      display: none;
   }
 }
