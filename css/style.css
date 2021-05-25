@@ -904,6 +904,8 @@ pre[class*="language-"] {
 /****** Doc ******/
 .concepts {
   width: 400px;
+  max-width: 85vw;
+  overflow-x: auto;
   background-color: #ff8d52;
   color: white;
   padding: 1px 20px;
