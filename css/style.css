@@ -336,6 +336,10 @@ li.drawermainmenu-current a {
   color: rgba(255, 255, 255, 0.2);
   text-shadow: none;
 }
+pre {
+  max-width: 85vw;
+  overflow-x: auto;
+}
 pre[class*="language-"].main-page-section-js_of_ocaml-ocaml,
 pre[class*="language-"].main-page-section-js_of_ocaml-js {
   max-width: 100vw;
