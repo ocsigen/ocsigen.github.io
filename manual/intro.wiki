@@ -29,6 +29,23 @@
 
 <<div class="horiz-blocks"|
 <<div class="main-page-news-1"|
+=== New programmer's guide!
+
+A new programmer’s guide for Ocsigen has just been released
+<<a_manual project="tuto" chapter="basics"|here>>.
+It describes in one page everything you need to know to become
+a fully operational OCaml Web and mobile developer.
+
+>>
+
+<<|
+=== New site
+New design for ocsigen.org!
+Send us your feedback and bug reports
+[[https://github.com/ocsigen/ocsigen.org/issues|on Github]].
+>>
+
+<<div class="main-page-news-2"|
 === html_of_wiki
 We are happy to release the first public version of html_of_wiki.
 
@@ -40,16 +57,11 @@ html_of_wiki is used to generate this Web site.
 
 Send us your feedback and bug reports about the Web site
 [[https://github.com/ocsigen/ocsigen.github.io/issues|on Github]].
+
 >>
+>> <<|horiz-blocks>>
 
 <<|
-=== New site
-New design for ocsigen.org!
-Send us your feedback and bug reports
-[[https://github.com/ocsigen/ocsigen.org/issues|on Github]].
->>
-
-<<div class="main-page-news-2"|
 === Graffiti tutorial updated!
 [[wiki("tuto"):latest/manual/application|Graffiti tutorial]]
 explains step by step how to write a multi-user
@@ -59,8 +71,6 @@ It is the best starting point for beginners!
 
 An updated version of this tutorial is now online, thanks to [[https://github.com/corentinjuvigny|corentinjuvigny]] and [[https://github.com/chrismamo1|chrismamo1]].
 >>
->> <<|horiz-blocks>>
-
 <<|
 === Releases
 We have recently released the following Ocsigen packages:
