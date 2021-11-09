@@ -114,7 +114,11 @@ You can also have a look at the archives of the [[http://sympa.mancoosi.univ-par
 **Pierre Clairambault**
     //(Lwt_lib, Gentoo package, configure script, ...)// \\
 **Cécile Herbelin**
-    //HTML5, Benchmarks// \\
+    //(HTML5, Benchmarks)// \\
+**Yuta Sato**
+    //(ts2ocaml)// \\
+**Sora Morimoto**
+    //(ts2ocaml, Lwt, Js_of_ocaml, ...)// \\
 
 ==Other team members==
 
