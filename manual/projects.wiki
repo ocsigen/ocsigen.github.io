@@ -101,7 +101,7 @@
 >>
 >>
 
-<<link wiki="oclosure"|
+<<link href="https://github.com/ocsigen/oclosure"|
 <<div class="main-page-project"|
   ===OClosure
 
