@@ -31,3 +31,6 @@
 [submodule "ocsimore"]
 	path = ocsimore
 	url = git@github.com:ocsigen/ocsimore.git
+[submodule "ocsigen.github.io"]
+	path = ocsigen.github.io
+	url = git@github.com:ocsigen/ocsigen.github.io.git
