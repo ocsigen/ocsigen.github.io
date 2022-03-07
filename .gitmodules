@@ -1,0 +1,33 @@
+[submodule "js_of_ocaml"]
+	path = js_of_ocaml
+	url = git@github.com:ocsigen/js_of_ocaml.git
+[submodule "lwt"]
+	path = lwt
+	url = git@github.com:ocsigen/lwt.git
+[submodule "eliom"]
+	path = eliom
+	url = git@github.com:ocsigen/eliom.git
+[submodule "tyxml"]
+	path = tyxml
+	url = git@github.com:ocsigen/tyxml.git
+[submodule "ocsigen-start"]
+	path = ocsigen-start
+	url = git@github.com:ocsigen/ocsigen-start.git
+[submodule "ocsigen-toolkit"]
+	path = ocsigen-toolkit
+	url = git@github.com:ocsigen/ocsigen-toolkit.git
+[submodule "tuto"]
+	path = tuto
+	url = git@github.com:ocsigen/tuto.git
+[submodule "ocsigenserver"]
+	path = ocsigenserver
+	url = git@github.com:ocsigen/ocsigenserver.git
+[submodule "html_of_wiki"]
+	path = html_of_wiki
+	url = git@github.com:ocsigen/html_of_wiki.git
+[submodule "deriving"]
+	path = deriving
+	url = git@github.com:ocsigen/deriving.git
+[submodule "ocsimore"]
+	path = ocsimore
+	url = git@github.com:ocsigen/ocsimore.git
