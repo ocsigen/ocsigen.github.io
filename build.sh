@@ -35,7 +35,7 @@ first_that_exists() {
 }
 
 docversions() {
-    find "$1" -maxdepth 1 -type d -exec basename {} \; | grep -E '[0-9][0-9.]*|dev' | sort -Vr
+    find "$1" -maxdepth 1 -type d -exec basename {} \; | grep -E '([0-9][0-9.]*(\.x)?|dev)$' | sort -Vr
 }
 
 find_wikis() {
