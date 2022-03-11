@@ -70,5 +70,17 @@ it---read the documentation of the tools **{{{dop}}}** and **{{{ohow}}}** in
 Changes in the main site must be done in repository {{{ocsigen.github.io}}},
 branch {{{master}}}, directory {{{manual}}}. Site generation must be done
 manually: {{{make deploy}}}.
+
+==Generate the whole website locally (experimental)
+
+One can generate the whole website locally using the [[https://github.com/ocsigen/ocsigen.github.io/tree/local-build|local-build]] branch of ocsigen.github.io repo.
+The branch contains git sub-modules for all projects documented on the website.
+
+* Install html_of_wiki. Please follow the instructions provided on the [[https://github.com/ocsigen/html_of_wiki|project's homepage]].
+* execute the build.sh script to generate the whole website in the given directory:
+{{{
+./build.sh _doc
+}}}
+
 >>
 >>
