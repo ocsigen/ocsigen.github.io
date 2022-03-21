@@ -88,7 +88,13 @@ it—read the documentation of the tools <strong><span class="teletype">dop</spa
 <a href=".././html_of_wiki/" class="ocsimore_phrasing_link">the manual of html_of_wiki</a>.
 </p><h2>Main site</h2><p>Changes in the main site must be done in repository <span class="teletype">ocsigen.github.io</span>,
 branch <span class="teletype">master</span>, directory <span class="teletype">manual</span>. Site generation must be done
-manually: <span class="teletype">make deploy</span>.</p></div></div><div class="main-page-section main-page-section-about"><div class="main-page-section-content"><ul><li> <a href=".././credits" class="ocsimore_phrasing_link">Who does Ocsigen?</a>
+manually: <span class="teletype">make deploy</span>.
+</p><h2>Generate the whole website locally (experimental)</h2><p>One can generate the whole website locally using the <a href="https://github.com/ocsigen/ocsigen.github.io/tree/local-build" class="ocsimore_phrasing_link">local-build</a> branch of ocsigen.github.io repo.
+The branch contains git sub-modules for all projects documented on the website.
+</p><ul><li> Install html_of_wiki. Please follow the instructions provided on the <a href="https://github.com/ocsigen/html_of_wiki" class="ocsimore_phrasing_link">project's homepage</a>.
+</li><li> execute the build.sh script to generate the whole website in the given directory:
+</li></ul><pre>./build.sh _doc
+</pre></div></div><div class="main-page-section main-page-section-about"><div class="main-page-section-content"><ul><li> <a href=".././credits" class="ocsimore_phrasing_link">Who does Ocsigen?</a>
 </li><li> <a href=".././papers" class="ocsimore_phrasing_link">Research papers</a>
 </li><li> <a href=".././projects" class="ocsimore_phrasing_link">All the projects</a>
 </li><li> <a href=".././contributing" class="ocsimore_phrasing_link">Contributing</a>
