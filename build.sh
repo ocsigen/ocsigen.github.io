@@ -108,9 +108,10 @@ gen_doc() {
 rm -rf $dest
 cp -r ocsigen.github.io $dest
 
-for wiki in $(cd $dest/ && find manual -name "*.wiki"); do
-    html=../${wiki%wiki}html
-    ohow --root $dest --local --project githubio --api api --manual manual --images img --assets download --template $dest/template/homepage-template.wiki -o $dest/home/$html $dest/$wiki
+for wiki in $(cd $dest/manual && find ./ -name "*.wiki"); do
+    html=${wiki%wiki}html
+    echo "generating doc for home/$html"
+    ohow --root $dest --local --project githubio --api api --manual manual --images img --assets download --template $dest/template/homepage-template.wiki -o $dest/home/$html $dest/manual/$wiki
 done
 
 make-redir "home/intro" $dest/index.html
