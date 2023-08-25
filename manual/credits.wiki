@@ -37,56 +37,68 @@ You can also have a look at the archives of the [[http://sympa.mancoosi.univ-par
     //(Lwt, Web server, Js_of_ocaml, Eliom, O'Closure, ...)// \\
 **Vasilis Papavasileiou**
     //(Eliom, Server, Eliom-base-app, Ocsigen Toolkit,...)// \\
-**Gabriel Radanne**
-    //(Tyxml, Semantics of client-server Eliom applications, Eliom, etc.)//\\
-**Hugo Heuzard**
-    //(Js_of_ocaml, Eliom)// \\
-**Danny Willems**
-    //(Ocsigen Start)// \\
-**Benedikt Becker**
-    //(Ocsimore, Eliom client-server syntax, ...)//\\
-**Boris Yakobowski**
-    //(Ocsimore, module Extendconfiguration, Ocsigen server...)// \\
 **Pierre Chambart**
     //(Comet, Eliom client, ...)//\\
 **Grégoire Henry**
     //(safe unmarshalling of client data, Eliom client, ...)//\\
-**Jérémie Dimino**
-    //(Lwt)// \\
+**Benedikt Becker**
+    //(Ocsimore, Eliom client-server syntax, ...)//\\
+**Gabriel Radanne**
+    //(Tyxml, Semantics of client-server Eliom applications, Eliom, etc.)//\\
+**Hugo Heuzard**
+    //(Js_of_ocaml, Eliom)// \\
 **Benjamin Canou**
     //(O'Browser, Eliom client, Goji)// \\
-**Kate Deplaix**
-    //(Ocsimore, ...)// \\
-**Jérôme Maloberti**
-    //(GODI packaging, OcCDuce)//\\
+**Boris Yakobowski**
+    //(Ocsimore, module Extendconfiguration, Ocsigen server...)// \\
 **Raphaël Proust**
     //(Ocsforge, Eliom client, Comet)//\\
-**Charly Chevalier**
-    //(OJWidgets, Eliom widgets, Eliom base app)//\\
+**Baptiste Strazzulla**
+    //(Eliom distillery, Makefile for client server applications, documentation, ...)//\\
+**Jan Rochel**
+    //(Eliom, ...)//\\
+**Idir Lankri**
+    //(Eliom, ...)//\\
+**Jérémie Dimino**
+    //(Lwt)// \\
+**Anton Bachin**
+    //(Lwt)// \\
 **Romain Calascibetta**
     //(Server)//\\
-**Enguerrand Decorne**
-    //(Eliom Widgets)//\\
-**Grégoire Lionnet**
-    //(Eliom mobile)//\\
-**Christophe Lecointe**
-    //(OJQuery, Goji)//\\
-**Arnaud Parant**
-    //(Eliom mobile, Graffiti 2)//\\
+**Denis Berthod**
+    //(HTTP protocol, Web server)//\\
 **Stéphane Glondu**
     //(Configuration file, Findlib integration, access control, HTTP authentication, Debian package, ...)// \\
 **Gabriel Kerneis**
     //(XHTML syntax extension for OCaml 3.10, Ocsipersist with SQLite, CGI module, forms in Eliom, deflatemod, ...)// \\
-**Denis Berthod**
-    //(HTTP protocol, Web server)//\\
+**Jérôme Maloberti**
+    //(GODI packaging, OcCDuce)//\\
+**Danny Willems**
+    //(Ocsigen Start)// \\
+**Thorsten Ohl**
+    //(TyXMl)//\\
+**Charly Chevalier**
+    //(OJWidgets, Eliom widgets, Eliom base app)//\\
+**Kate Deplaix**
+    //(Ocsimore, ...)// \\
+**Enguerrand Decorne**
+    //(Eliom Widgets)//\\
+**Grégoire Lionnet**
+    //(Eliom mobile)//\\
 **Jaap Boender**
     //(Ocsimore, NetBSD and Godi packages)// \\
+**Yuta Sato**
+    //(ts2ocaml)// \\
+**Sora Morimoto**
+    //(ts2ocaml, Lwt, Js_of_ocaml, ...)// \\
 **Gabriel Scherer**
     //(Macaque)// \\
+**Christophe Lecointe**
+    //(OJQuery, Goji)//\\
+**Arnaud Parant**
+    //(Eliom mobile, Graffiti 2)//\\
 **Gabriel Cardoso**
     //(O'Closure)// \\
-**Baptiste Strazzulla**
-    //(Eliom destillery, Makefile for client server applications, documentation, ...)//\\
 **Jean-Henri Granarolo**
     //(Ocsforge)//\\
 **Simon Castellan**
@@ -97,8 +109,6 @@ You can also have a look at the archives of the [[http://sympa.mancoosi.univ-par
     //(Eliom widgets, ...)// \\
 **Piero Furiesi**
     //(Ocsimore)// \\
-**Thorsten Ohl**
-    //(most of the functions generating XHTML (xML and xHTML modules))//\\
 **Mauricio Fernandez**
     //(Xhtmlcompact, static linking of extensions and Eliom modules)// \\
 **Michael Laporte**
@@ -115,10 +125,6 @@ You can also have a look at the archives of the [[http://sympa.mancoosi.univ-par
     //(Lwt_lib, Gentoo package, configure script, ...)// \\
 **Cécile Herbelin**
     //(HTML5, Benchmarks)// \\
-**Yuta Sato**
-    //(ts2ocaml)// \\
-**Sora Morimoto**
-    //(ts2ocaml, Lwt, Js_of_ocaml, ...)// \\
 
 ==Other team members==
 
