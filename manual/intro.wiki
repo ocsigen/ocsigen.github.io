@@ -3,7 +3,7 @@
 
 = Multi-tier programming for Web and mobile apps
 == Android, iOS, Server & client in one piece of code
-== Powerful type-checking with OCaml/Reason
+== Full-stack Web framework for OCaml/Reason with advanced type-checking
 
 <<a_manual project="tuto" chapter="basics" class="main-button"|Get started now!>>
 
