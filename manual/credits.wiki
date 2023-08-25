@@ -15,13 +15,15 @@ It comes from a research project of the
 It is part of the [[http://www.irill.org|IRILL]],
 a center  for  Research and  Innovation  on  Free  Software, located at Inria Paris.
 
-
-It received founding from [[http://inria.fr|Inria]] and the
+It received funding from [[http://inria.fr|Inria]] and the
 [[http://www.agence-nationale-recherche.fr/|ANR]], through three research projects:
 *@@class="sponsorprojects"@ @@ //Programmation fonctionnelle pour le Web// (2007-2010)
 * //[[http://www-sop.inria.fr/indes/pwd/|PWD]]// (2010-2013) labellised by the [[http://www.systematic-paris-region.org|System@tic cluster]]
 * //Ubiquitous Content Framework// (FUI project, [[http://www.systematic-paris-region.org|System@tic cluster]])
 
+It is partly developed by [[https://besport.com|Be Sport]].
+
+It also receive funding from [[https://janestreet.com/|Jane Street]].
 
 ==Contact
 
