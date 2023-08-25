@@ -5,8 +5,8 @@
 
 
 Ocsigen is a collaborative open source project mainly developed by
-[[https://www.besport.com|Be Sport]] and
-[[http://www.univ-paris-diderot.fr|Paris Diderot university]].
+[[https://www.besport.com|Be Sport]], [[https://www.cnrs.fr|CNRS]] and
+[[http://www.univ-paris-diderot.fr|Paris Cité university]].
 
 It comes from a research project of the
 [[https://www.irif.fr/|Research Institute for Foundations of Computer Science (IRIF)]]
@@ -21,7 +21,6 @@ It received funding from [[http://inria.fr|Inria]] and the
 * //[[http://www-sop.inria.fr/indes/pwd/|PWD]]// (2010-2013) labellised by the [[http://www.systematic-paris-region.org|System@tic cluster]]
 * //Ubiquitous Content Framework// (FUI project, [[http://www.systematic-paris-region.org|System@tic cluster]])
 
-It is partly developed by [[https://besport.com|Be Sport]].
 
 It also receive funding from [[https://janestreet.com/|Jane Street]].
 
