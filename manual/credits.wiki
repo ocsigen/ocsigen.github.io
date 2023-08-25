@@ -59,6 +59,8 @@ You can also have a look at the archives of the [[http://sympa.mancoosi.univ-par
     //(Eliom, ...)//\\
 **Idir Lankri**
     //(Eliom, ...)//\\
+**Julien Sagot**
+    //(Ocsigen-i18n, ...)//\\
 **Jérémie Dimino**
     //(Lwt)// \\
 **Anton Bachin**
