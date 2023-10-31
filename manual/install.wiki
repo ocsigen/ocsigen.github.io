@@ -12,7 +12,7 @@ If you plan to build a Web and/or mobile app with Ocsigen,
 $ opam install ocsigen-start
 }}}
 
-Please read the [[wiki("tuto"):manual/basics|one page documentation]] first.\\
+Please read the [[wiki("tuto"):latest/manual/basics|one page documentation]] first.\\
 Several tutorials are available [[wiki("tuto"):|here]].
 
 >>
