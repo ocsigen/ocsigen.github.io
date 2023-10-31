@@ -6,18 +6,13 @@
 To install Ocsigen, just download the packages you want using [[https://opam.ocaml.org/|opam]],
 the OCaml package manager.
 
-You will need some non-OCaml dependencies.
-Opam can help you for this if you install {{{opam-depext}}}.
-{{{
-$ opam install opam-depext
-}}}
-
 If you plan to build a Web and/or mobile app with Ocsigen,
 [[wiki("ocsigen-start"):|Ocsigen-start]] is a good place to start:
 {{{
 $ opam install ocsigen-start
 }}}
 
+Please read the [[wiki("tuto"):manual/basics|one page documentation]] first.\\
 Several tutorials are available [[wiki("tuto"):|here]].
 
 >>
