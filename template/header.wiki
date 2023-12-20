@@ -9,7 +9,6 @@
 <<when-project when="ocsigen-toolkit"| @@class="logo-subproject"@@Toolkit>>
 <<when-project when="ocsigen-start"  | @@class="logo-subproject"@@Start>>
 <<when-project when="html_of_wiki"   | @@class="logo-subproject"@@html_of_wiki>>
-<<when-project when="deriving"       | @@class="logo-subproject"@@deriving>>
 <<when-project when="ocsimore"       | @@class="logo-subproject"@@Ocsimore>>
 
 <<div class="mainmenu"|
@@ -43,7 +42,6 @@
 *@@class="drawermainmenu-project"@@[[wiki("ocsigen-toolkit"):|Toolkit]]
 *@@class="drawermainmenu-project"@@[[wiki("ocsigen-start"):|Start]]
 *@@class="drawermainmenu-project"@@[[wiki("html_of_wiki"):|html_of_wiki]]
-*@@class="drawermainmenu-project"@@[[wiki("deriving"):|deriving]]
 *@@class="drawermainmenu-project"@@[[wiki("ocsimore"):|Ocsimore (//deprecated//)]]
 *@@class="drawermainmenu-page"@@[[site:/projects|Other projects]]
 *@@class="drawermainmenu-page"@@[[site:/papers|Research papers]]
