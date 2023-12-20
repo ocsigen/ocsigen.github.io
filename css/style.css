@@ -52,6 +52,9 @@ h4 {
 p {
   text-align: justify;
 }
+p.centered {
+  text-align: center;
+}
 body {
   margin: 0;
   font-family: "Work Sans", sans-serif;
@@ -946,7 +949,7 @@ body.tuto.start div.screenshots img {
   max-height: 200px;
   max-width: calc(100vw - 30px);
 }
-/****** Dock block ******/
+/****** Doc block ******/
 section.docblock {
   border: 2px solid;
   padding: 10px;
@@ -970,7 +973,10 @@ section.docblock > header > h2 {
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
 }
-
+.img-col-width-400 {
+  width: 400px;
+  max-width: 100%;
+}
 /****** Mobile version ******/
 @media (max-width: 720px) {
   .smallscreen {
