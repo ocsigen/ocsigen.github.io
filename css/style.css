@@ -486,14 +486,6 @@ pre[class*="language-"].main-page-section-js_of_ocaml-js {
   padding: 0 20px;
   right: 0;
 }
-/* Adding space before the target element (URL #fragments) so that it is not under page header */
-:target::before {
-  display: block;
-  content: " ";
-  /* margin-top: -100px; does not work with <pre> */
-  height: 100px;
-  visibility: hidden;
-}
 /****** Reason switch button (from html_of_wiki) *****/
 button#reason {
   position: fixed;
