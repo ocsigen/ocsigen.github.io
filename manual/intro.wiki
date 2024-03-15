@@ -23,6 +23,7 @@
 
 >>
 
+<<|
 <<div class="main-page-section main-page-section-news"|
 <<div class="main-page-section-content"|
 == News
@@ -83,7 +84,8 @@ Everything is available in opam. `opam install ocsigen-start` will pull in all t
 >>
 
 >>
->>
+>> <<|News>>
+>> <<|commented news section>>
 
 <<div class="main-page-section main-page-section-multitier"|
 <<div class="main-page-section-content"|
@@ -222,7 +224,7 @@ function(d){var b=d,c=1,a=1;for(;;){if(0===b)return a;var b=b-1|0,e=a+c|0,c=a,a=
 
 >>
 >>
-
+<<|
 <<div class="main-page-section main-page-section-users"|
 <<div class="main-page-section-content"|
 == Users
@@ -263,4 +265,5 @@ Here is a short list of users:
 Tell us if you want (or do not want) to appear in this list.
 
 >>
->>
+>> <<|User section>>
+>> <<|Commented user section>>
