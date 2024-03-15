@@ -18,6 +18,7 @@
 /****** Main style *****/
 html {
   box-sizing: border-box;
+  font-size: 18px;
 }
 *,
 *:before,
@@ -26,7 +27,7 @@ html {
 }
 a,
 a:visited {
-  color: #2e8eff;
+  color: #0e7eff;
   text-decoration: none;
 }
 a.backref {
@@ -122,8 +123,9 @@ form#googlesearch {
 .main-button {
   display: inline-block;
   padding: 15px 45px;
-  background-color: #64caff;
+  background-color: #099be6;
   border-radius: 3px;
+  font-size: 22px;
 }
 a.main-button,
 a.main-button:visited {
@@ -186,7 +188,7 @@ a.main-button:visited {
   margin-bottom: 10px;
 }
 .main-page-section-header h2 {
-  font-size: 16px;
+  font-size: 20px;
 }
 .page-header {
   display: flex;
@@ -474,7 +476,7 @@ pre[class*="language-"].main-page-section-js_of_ocaml-js {
 .leftcol h3,
 .leftcol h4 {
   margin: 4px 0 4px 10px;
-  font-size: 14px;
+  font-size: 16px;
 }
 .leftcol h2 {
   margin: 20px 0 2px 0;
