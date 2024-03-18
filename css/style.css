@@ -223,7 +223,7 @@ body.ocsigen\.github\.io.intro .page-header {
   flex-grow: 1;
   line-height: 30px;
   margin: 20px 0px;
-  font-size: 12px;
+  font-size: 16px;
 }
 
 .page-header .mainmenu p {
@@ -232,7 +232,7 @@ body.ocsigen\.github\.io.intro .page-header {
 }
 .page-header .mainmenu p a,
 .page-header .mainmenu p span a {
-  font-size: 13px;
+  font-size: 16px;
   padding: 5px 15px;
   color: white;
 }
@@ -1047,6 +1047,7 @@ section.docblock > header > h2 {
   }
   .rightcol {
     margin-left: 40px;
+    max-width: calc(100vw - 380px);
   }
   .smallscreen {
     display: none;
