@@ -33,18 +33,18 @@
 === New programmer's guide!
 
 A new programmer’s guide for Ocsigen has just been released
-<<a_manual project="tuto" chapter="basics"|here>>.
+<<a_manual project="tuto" chapter="basics"|here> >.
 It describes in one page everything you need to know to become
 a fully operational OCaml Web and mobile developer.
 
->>
+> >
 
 <<|
 === New site
 New design for ocsigen.org!
 Send us your feedback and bug reports
 [[https://github.com/ocsigen/ocsigen.org/issues|on Github]].
->>
+> >
 
 <<div class="main-page-news-2"|
 === html_of_wiki
@@ -59,8 +59,8 @@ html_of_wiki is used to generate this Web site.
 Send us your feedback and bug reports about the Web site
 [[https://github.com/ocsigen/ocsigen.github.io/issues|on Github]].
 
->>
->> <<|horiz-blocks>>
+> >
+> > <<|horiz-blocks>>
 
 <<|
 === Graffiti tutorial updated!
@@ -71,7 +71,7 @@ client-server drawing application with Eliom.
 It is the best starting point for beginners!
 
 An updated version of this tutorial is now online, thanks to [[https://github.com/corentinjuvigny|corentinjuvigny]] and [[https://github.com/chrismamo1|chrismamo1]].
->>
+> >
 <<|
 === Releases
 We have recently released the following Ocsigen packages:
@@ -81,10 +81,10 @@ Lwt 4.1.0, Ocsigen Server 2.11.0, TyXML 4.3.0
 The releases restore compatibility with the latest OCaml and as usual bring about a fair amount of bugfixes end enhancements.
 
 Everything is available in opam. `opam install ocsigen-start` will pull in all the other packages.
->>
+> >
 
->>
->> <<|News>>
+> >
+> > <<|News> >
 >> <<|commented news section>>
 
 <<div class="main-page-section main-page-section-multitier"|
@@ -232,7 +232,7 @@ function(d){var b=d,c=1,a=1;for(;;){if(0===b)return a;var b=b-1|0,e=a+c|0,c=a,a=
 Here is a short list of users:
 
 * [[http://www.besport.com/|BeSport]]
-* [[https://code.facebook.com/posts/264544830379293/hack-a-new-programming-language-for-hhvm/|Facebook]] <<span class="small"|(internal tools for developers) >>
+* [[https://code.facebook.com/posts/264544830379293/hack-a-new-programming-language-for-hhvm/|Facebook]] <<span class="small"|(internal tools for developers) > >
 * Prose
 * Rambugo
 * Cumulus
@@ -259,11 +259,11 @@ Here is a short list of users:
 * [[http://www.nleyten.com/|nLeyten]]
 * [[http://www.sotokolan.com/|Sotokolan]]
 * [[http://www.mytwittshirt.com/|My Twittshirt]]
->>
-<<| À ajouter : Cowebo Punchup >>
+> >
+<<| À ajouter : Cowebo Punchup > >
 
 Tell us if you want (or do not want) to appear in this list.
 
->>
->> <<|User section>>
+> >
+> > <<|User section> >
 >> <<|Commented user section>>
