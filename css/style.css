@@ -1047,7 +1047,7 @@ section.docblock > header > h2 {
   }
   .rightcol {
     margin-left: 40px;
-    max-width: calc(100% - 350px);
+    max-width: calc(100% - 380px);
   }
   .smallscreen {
     display: none;
