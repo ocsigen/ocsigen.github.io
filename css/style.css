@@ -953,7 +953,7 @@ section.docblock {
 }
 section.docblock > header {
   position: sticky;
-  top: 90px;
+  top: 70px;
   background-color: white;
   padding-top: 50px;
   border: 2px solid white;
