@@ -947,7 +947,8 @@ body.tuto.start div.screenshots img {
 section.docblock {
   border: 2px solid;
   padding: 10px;
-  border-radius: 10px;
+  border-radius: 5px;
+  border-color: #eee;
   margin-top: 20px;
 }
 section.docblock > header {
@@ -963,9 +964,10 @@ section.docblock > header > h2 {
   margin: -2px;
   padding: 10px;
   border: 2px solid;
+  border-color: #eee;
   border-bottom: none;
-  border-top-right-radius: 10px;
-  border-top-left-radius: 10px;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
 }
 .img-col-width-400 {
   width: 400px;
