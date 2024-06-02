@@ -41,6 +41,7 @@
 *@@class="drawermainmenu-project"@@[[wiki("tyxml"):|Tyxml]]
 *@@class="drawermainmenu-project"@@[[wiki("ocsigen-toolkit"):|Toolkit]]
 *@@class="drawermainmenu-project"@@[[wiki("ocsigen-start"):|Start]]
+*@@class="drawermainmenu-project"@@[[wiki("ocsipersist"):|Ocsipersist]]
 *@@class="drawermainmenu-project"@@[[wiki("html_of_wiki"):|html_of_wiki]]
 *@@class="drawermainmenu-project"@@[[wiki("ocsimore"):|Ocsimore (//deprecated//)]]
 *@@class="drawermainmenu-page"@@[[site:/projects|Other projects]]
