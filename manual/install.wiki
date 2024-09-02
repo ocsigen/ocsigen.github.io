@@ -16,7 +16,7 @@ $ opam install ocsigen-start
 If you want to start with a website with few client-side features,
 you will probably need only [[wiki("eliom"):|Eliom]] to begin with:
 {{{
-$ opam install eliom
+$ opam install ocsipersist-sqlite-config eliom
 }}}
 
 Please read the [[wiki("tuto"):latest/manual/basics|one page documentation]] first,
