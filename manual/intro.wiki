@@ -87,6 +87,15 @@ Everything is available in opam. `opam install ocsigen-start` will pull in all t
 > > <<|News> >
 >> <<|commented news section>>
 
+<<div class="main-page-section main-page-section-events"|
+<<div class="main-page-section-content"|
+== Events
+===@@class="subtitle"@@  2024-09-16
+Come and learn Ocsigen at
+[[https://fun-ocaml.com/|FUN OCaml in Berlin]]!
+>>
+>>
+
 <<div class="main-page-section main-page-section-multitier"|
 <<div class="main-page-section-content"|
 == Eliom
