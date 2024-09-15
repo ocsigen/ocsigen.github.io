@@ -93,6 +93,8 @@ Everything is available in opam. `opam install ocsigen-start` will pull in all t
 ===@@class="subtitle"@@  2024-09-16
 Come and learn Ocsigen at
 [[https://fun-ocaml.com/|FUN OCaml in Berlin]]!
+
+[[../talks/tutochat.html|slides]]
 >>
 >>
 
