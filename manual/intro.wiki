@@ -1,9 +1,10 @@
 <<head-css|.page-header{background-color:rgba(0,0,0,0.2) !important;}>>
 <<div class="main-page-section main-page-section-header"|
 
-= Multi-tier programming for Web and mobile apps
+= The next generation Web and mobile framework
+== Multi-tier programming for Web and mobile apps
 == Android, iOS, Web (Server & client) with the same code
-== Full-stack modular Web framework for OCaml/Reason with advanced type-checking
+== Full-stack modular Web framework for OCaml with advanced type-checking
 
 [[@@class="main-button"@@wiki("tuto"):latest/manual/basics|Get started now!]]
 
