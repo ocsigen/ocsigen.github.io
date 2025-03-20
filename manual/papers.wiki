@@ -23,33 +23,33 @@ Gabriel Radanne , Jérôme Vouillon, and Vincent Balat\\
 //Eliom: A core ML language for tierless Web programming//\\
 28th symposium on Implementation and Application of Functional Languages, APLAS 2016, Hanoi, Vietnam, 2016\\
 **[[https://www.irif.fr/_media/users/balat/2016aplas-eliom.pdf|pdf]]**
-**[[https://www.irif.univ-paris-diderot.fr/~balat/publications/balat.bib|bib]]**
+**[[https://www.irif.fr/~balat/publications/balat.bib|bib]]**
 
 
 Gabriel Radanne, Vincent Balat, Jérôme Vouillon and Vasilis Papavasileiou\\
 //Eliom: tierless Web programming from the ground up//\\
 14th Asian Symposium on Programming Languages and Systems, IFL 2016, KU Leuven, Belgium 2016\\
-**[[https://www.irif.univ-paris-diderot.fr/~balat/publications/balat.bib|bib]]**
+**[[https://www.irif.fr/~balat/publications/balat.bib|bib]]**
 
 Vincent Balat\\
 //Rethinking Web interaction: theory and implementation//\\
 International Journal on Advances in Internet Technologies, vol 7, 2014\\
-**[[https://www.irif.univ-paris-diderot.fr/~balat/publications/2014balat-rethinking2.pdf|pdf]]**
-**[[https://www.irif.univ-paris-diderot.fr/~balat/publications/balat.bib|bib]]**
+**[[https://www.irif.fr/~balat/publications/2014balat-rethinking2.pdf|pdf]]**
+**[[https://www.irif.fr/~balat/publications/balat.bib|bib]]**
 
 
 Vincent Balat\\
 //Client-server Web applications widgets//\\
 WWW 2013 dev track\\
-**[[https://www.irif.univ-paris-diderot.fr/~balat/publications/2013balat-www-clserwidgets.pdf|pdf]]**
-**[[https://www.irif.univ-paris-diderot.fr/~balat/publications/2013balat-www-clserwidgets.bib|bibtex]]**
+**[[https://www.irif.fr/~balat/publications/2013balat-www-clserwidgets.pdf|pdf]]**
+**[[https://www.irif.fr/~balat/publications/2013balat-www-clserwidgets.bib|bibtex]]**
 
 
 Vincent Balat\\
 //Rethinking Web interaction//\\
 ICIW 2013\\
-**[[https://www.irif.univ-paris-diderot.fr/~balat/publications/2013balat-rethinking.pdf|pdf]]**
-**[[https://www.irif.univ-paris-diderot.fr/~balat/publications/balat.bib|bib]]**
+**[[https://www.irif.fr/~balat/publications/2013balat-rethinking.pdf|pdf]]**
+**[[https://www.irif.fr/~balat/publications/balat.bib|bib]]**
 
 Benjamin Canou\\
 //Programmation Web Typée//\\
@@ -60,8 +60,8 @@ PhD Thesis - 2011\\
 Jérôme Vouillon, Vincent Balat\\
 //From bytecode to Javascript: the Js_of_ocaml compiler//\\
 in journal //Software: Practice and Experience//, 2013\\
-**[[https://www.irif.univ-paris-diderot.fr/~balat/publications/vouillon_balat-js_of_ocaml.pdf|pdf]]**
-**[[https://www.irif.univ-paris-diderot.fr/~balat/publications/balat.bib|bib]]**
+**[[https://www.irif.fr/~balat/publications/vouillon_balat-js_of_ocaml.pdf|pdf]]**
+**[[https://www.irif.fr/~balat/publications/balat.bib|bib]]**
 
 Benjamin Canou, Emmanuel Chailloux, Vincent Botbol\\
 //Static Typing & JavaScript Libraries: Towards a More Considerate Relationship//\\
@@ -77,22 +77,22 @@ World Wide Web (WWW) 2012, developer's track\\
 Benjamin Canou, Emmanuel Chailloux, and Vincent Balat\\
 A declarative-friendly API for Web document manipulation\\
 PADL 2013\\
-**[[https://www.irif.univ-paris-diderot.fr/~balat/publications/2013padl-cdom.pdf|pdf]]**
-**[[https://www.irif.univ-paris-diderot.fr/~balat/publications/balat.bib|bib]]**
+**[[https://www.irif.fr/~balat/publications/2013padl-cdom.pdf|pdf]]**
+**[[https://www.irif.fr/~balat/publications/balat.bib|bib]]**
 
 
 Vincent Balat, Pierre Chambart and Grégoire Henry\\
 //Client-server Web applications with Ocsigen//\\
 World Wide Web Conference, developers track. WWW2012\\
-**[[https://www.irif.univ-paris-diderot.fr/~balat/publications/www2012-ocsigen.pdf|pdf]]**
-**[[https://www.irif.univ-paris-diderot.fr/~balat/publications/balat.bib|bib]]**
+**[[https://www.irif.fr/~balat/publications/www2012-ocsigen.pdf|pdf]]**
+**[[https://www.irif.fr/~balat/publications/balat.bib|bib]]**
 
 
 Vincent Balat, Boris Yakobowski, Jérôme Vouillon\\
 //Experience Report: Ocsigen, a Web Programming Framework//\\
 International Conference on Functional Programming, ACM, 2009.\\
-**[[https://www.irif.univ-paris-diderot.fr/~balat/publications/2009icfp-ocsigen.pdf|pdf]]**
-**[[https://www.irif.univ-paris-diderot.fr/~balat/publications/balat.bib|bib]]**
+**[[https://www.irif.fr/~balat/publications/2009icfp-ocsigen.pdf|pdf]]**
+**[[https://www.irif.fr/~balat/publications/balat.bib|bib]]**
 
 
 Benjamin Canou, Vincent Balat, Emmanuel Chailloux
@@ -101,8 +101,8 @@ Benjamin Canou, Vincent Balat, Emmanuel Chailloux
 \\
 ACM Sigplan Workshop on ML 2008.
 \\
-**[[https://www.irif.univ-paris-diderot.fr/~balat/publications/2008mlworkshop-obrowser.pdf|pdf]]**
-**[[https://www.irif.univ-paris-diderot.fr/~balat/publications/balat.bib|bib]]**
+**[[https://www.irif.fr/~balat/publications/2008mlworkshop-obrowser.pdf|pdf]]**
+**[[https://www.irif.fr/~balat/publications/balat.bib|bib]]**
 
 
 
@@ -112,8 +112,8 @@ Vincent Balat
 \\
 ACM Sigplan Workshop on ML 2006.
 \\
-**[[https://www.irif.univ-paris-diderot.fr/~balat/publications/2006mlworkshop-balat-ocsigen.pdf|pdf]]**
-**[[https://www.irif.univ-paris-diderot.fr/~balat/publications/balat.bib|bib]]**
+**[[https://www.irif.fr/~balat/publications/2006mlworkshop-balat-ocsigen.pdf|pdf]]**
+**[[https://www.irif.fr/~balat/publications/balat.bib|bib]]**
 
 
 
