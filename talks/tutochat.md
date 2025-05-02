@@ -2,19 +2,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
 <style>
-slip-slipshow>slip-slip>.slip-scale-container>.slip-container>slip-body {
-    margin: 0 auto;
-}
-slip-slip { width: 33.33%;}
-slip-body {
+.slip-body {
   font-family: "Ubuntu", sans-serif;
   line-height: 1.4;
-  margin: 0;
   color: #555;
-}
-.slip-group {
-  display: flex;
-  flex-wrap: no-wrap;
 }
 a { color: #0c4481; }
 code { font-size: smaller; }
@@ -22,6 +13,9 @@ code { font-size: smaller; }
     display: flex;
     justify-content: space-evenly;
     width: 1300px;
+}
+.relative {
+  position: relative;
 }
 .col {
     align-self: center;
@@ -33,21 +27,20 @@ code { font-size: smaller; }
     text-align: center;
 }
 .vspace { height: 1em; }
-.hidden { position:absolute; visibility: hidden; }
 .center { text-align: center; }
 .right { text-align: right; }
 .smaller { font-size: smaller; }
 .focused { outline: 20000px solid #000000aa; }
 .comment { color: #888; font-style: italic; }
-.encadré { 
-  position: relative; 
+.encadré {
+  position: relative;
   background-color: #ffccaa;
   border-radius: 12px;
   color: black;
   padding: 20px;
 }
 .encadré p { margin: 0; }
-.exo { 
+.exo {
   background-color: #f8f8f8;
   border-left: solid 12px #ffccaa;
   border-top-right-radius: 12px;
@@ -89,22 +82,18 @@ pre.tt code { padding-top: 0; }
   font-size: 100px;
   color: #ee5522;
 }
-#servparam .encadré { position: fixed; bottom: 1550px; left: 400px; width: 600px;}
-#servparam .encadré::after { content: '⬇'; position: absolute; bottom: -120px; left: 300px; font-weight: bold; font-size: 100px; color: #ee5522;}
-#regparam .encadré { position: fixed; bottom: 1250px; left: 200px; width: 600px;}
-#regparam .encadré::after { content: '⬇'; position: absolute; bottom: -120px; left: 100px; font-weight: bold; font-size: 100px; color: #ee5522;}
-#regparam2 .encadré { position: fixed; bottom: 1200px; left: 200px; width: 600px;}
-#regparam2 .encadré::after { content: '⬇'; position: absolute; bottom: -120px; left: 230px; font-weight: bold; font-size: 100px; color: #ee5522;}
-#regparam3 .encadré { position: fixed; bottom: 1250px; left: 200px; width: 600px;}
-#regparam3 .encadré::after { content: '⬇'; position: absolute; bottom: -120px; left: 230px; font-weight: bold; font-size: 100px; color: #ee5522;}
-#regparam4 .encadré { position: fixed; bottom: 1250px; left: 200px; width: 600px;}
-#regparam4 .encadré::after { content: '⬇'; position: absolute; bottom: -140px; left: 300px; font-weight: bold; font-size: 100px; color: #ee5522;}
-#regparam5 .encadré { position: fixed; bottom: 1680px; left: 650px; width: 600px;}
-#regparam5 .encadré::after { content: '⬇'; position: absolute; bottom: -80px; left: 150px; font-weight: bold; font-size: 100px; color: #ee5522;}
+#servparam .encadré { position: absolute; left: 400px; width: 600px;}
+#servparam .encadré::after { content: '⬇'; position: absolute; top: -120px; left: 250px; font-weight: bold; font-size: 100px; color: #ee5522;}
+#regparam .encadré { position: absolute; bottom: -100px; left: 200px; width: 600px;}
+#regparam .encadré::after { content: '⬇'; position: absolute; top: -120px; left: 40px; font-weight: bold; font-size: 100px; color: #ee5522;}
+#regparam2 .encadré { position: absolute; bottom: -100px; left: 200px; width: 600px;}
+#regparam2 .encadré::after { content: '⬇'; position: absolute; top: -100px; left: 140px; font-weight: bold; font-size: 100px; color: #ee5522;}
+#regparam3 .encadré { position: absolute; bottom: -150px; left: 200px; width: 600px;}
+#regparam3 .encadré::after { content: '⬇'; position: absolute; top: -100px; left: 140px; font-weight: bold; font-size: 100px; color: #ee5522;}
+#regparam4 .encadré { position: absolute; bottom: -150px; left: 200px; width: 600px;}
+#regparam4 .encadré::after { content: '⬇'; position: absolute; top: -115px; left: 110px; font-weight: bold; font-size: 100px; color: #ee5522;}
+#regparam5 .encadré { position: absolute; bottom: 120px; left: 550px; width: 600px;}
 </style>
-
-<slip-slip style="width: 100%;" auto-enter scale="1" delay="1">
-  <slip-body style="margin-top: 0;">
 
 {.columns #title}
 >{.col style="flex: 0 0;"}
@@ -129,11 +118,7 @@ pre.tt code { padding-top: 0; }
 {.comment .right}
 Use arrow keys to navigate
 
- </slip-body>
-</slip-slip>
-<div class="slip-group">
-<slip-slip style="width: 33.33%;" auto-enter scale="0.3333" delay="1">
-  <slip-body>
+{pause up}
 
 ## [Step 1:]{.step} Install
 
@@ -150,17 +135,14 @@ $ opam install ocsigen-start ocsipersist-sqlite-config
 
 {.comment}
 You can find these slides on [ocsigen.org](https://ocsigen.org/talks/tutochat.html) \
-and the source code of the sides with the solution of
+and the source code of the slides with the solution of
 exercices [on Github](https://github.com/ocsigen/quickstart-guide).
 
 {.comment}
 Refer to the main <a href="https://ocsigen.org/tuto/latest/manual/basics" target="_blank">one page user manual</a>
 to get more explanations.
 
- </slip-body>
-</slip-slip>
-<slip-slip style="width: 33.33%;" auto-enter scale="0.3333" delay="1">
-  <slip-body>
+{pause up}
 
 
 [//]: ![Ocsigen](ocsigen-bubbles-large.png)
@@ -204,7 +186,7 @@ to get more explanations.
 Jérôme Vouillon, Vincent Balat<br/>
 Pierre Chambart, Grégoire Henry, Benedikt Becker,<br/>
 Vasilis Papavasileiou, Gabriel Radanne, Hugo Heuzard,<br/>
-Benjamin Canou, Boris Yakobowski, Jan Rochel, Idir Lankri,<br/> 
+Benjamin Canou, Boris Yakobowski, Jan Rochel, Idir Lankri,<br/>
 Jérémie Dimino, Romain Calascibetta, Raphaël Proust, Anton Bachin, Baptiste Strazzulla,<br/>
 Julien Sagot, Stéphane Glondu, Gabriel Kerneis, Denis Berthod, Thorsten Ohl,<br/>
 Danny Willems, Kate Deplaix, Enguerrand Decorne, Grégoire Lionnet, <br/>
@@ -216,30 +198,18 @@ Jérôme Velleine, Charles Oran, Pierre Clairambault,
 Cécile Herbelin]{style="font-size: smaller;"}
 …
 
-  </slip-body>
-</slip-slip>
-
-<slip-slip style="width: 33.33%;" auto-enter scale="0.3333" delay="1">
-  <slip-body style="margin-top: 0;">
+{pause up}
 
 ## Example app: Be Sport
 
 The sports social network
 [https://besport.com/news](https://besport.com/news)
 
+{style="position: relative; height: 1000px;"}
+><img alt="Ocsigen" src="besport1.png" width="67%" style="position: absolute;top: 0;right: 50px;border: 1px solid #444;"/>
+><img alt="Ocsigen" src="besport2.png" width="350px" style="position: absolute;top: 300px;left: 110px;border: 1px solid #444;"/>
 
-<img alt="Ocsigen" src="besport1.png" width="67%" style="position: absolute;bottom: 0;right: 50px;border: 1px solid #444;"/>
-
-<img alt="Ocsigen" src="besport2.png" width="350px" style="position: absolute;bottom: 60px;left: 110px;border: 1px solid #444;"/>
-
-  </slip-body>
-</slip-slip>
-
-</div>
-<div class="slip-group">
-
-<slip-slip style="width: 33.33%;" auto-enter scale="0.3333" delay="1">
-  <slip-body>
+{pause up}
 
 {.partimg}
 ![Ocsigen](ocsigen-bubbles-large.png)
@@ -250,11 +220,7 @@ The sports social network
 {.partsubtitle}
 ## Write your website in OCaml
 
-  </slip-body>
-</slip-slip>
-
-<slip-slip style="width: 33.33%;" auto-enter scale="0.3333" delay="1">
-  <slip-body>
+{pause up}
 
 ## [Step 2:]{.step} Ocsigen Server
 
@@ -291,7 +257,7 @@ Where `config` is something like:
 {.server}
 ```ocaml
 let () =
-  Ocsigen_server.start 
+  Ocsigen_server.start
        [ Ocsigen_server.host [Staticmod.run ~dir:"static" ()]]
 ```
 Example of Dune file for this program:
@@ -314,11 +280,7 @@ Find more complex configuration examples in the
 
 {#downserver}
 
-  </slip-body>
-</slip-slip>
-
-<slip-slip style="width: 33.33%; overflow: hidden;" auto-enter scale="0.3333" delay="1">
-  <slip-body>
+{pause up}
 
 ## [Step 3:]{.step} Generating pages with Eliom
 
@@ -339,18 +301,19 @@ let myservice =
     ~meth:(Eliom_service.Get Eliom_parameter.unit)
     ()
 ```
-{.hidden #servparam .server}
->```ocaml
->let myservice =
->   Eliom_service.create
->     ~path:(Eliom_service.Path ["foo"])
->     ~meth:(Eliom_service.Get (Eliom_parameter.(string "myparam" ** int "i")))
->     ()
->```
->{#servparamexpl .encadré}
->>Use module `Eliom_parameter` to specify which GET or POST parameters you want your page to take.
->>
->>Eliom checks types automatically and converts them to OCaml values
+{.relative}
+>{.unstatic #servparam .server}
+>>```ocaml
+>>let myservice =
+>>   Eliom_service.create
+>>     ~path:(Eliom_service.Path ["foo"])
+>>     ~meth:(Eliom_service.Get (Eliom_parameter.(string "myparam" ** int "i")))
+>>     ()
+>>```
+>>{#servparamexpl .encadré}
+>>>Use module `Eliom_parameter` to specify which GET or POST parameters you want your page to take.
+>>>
+>>>Eliom checks types automatically and converts them to OCaml values
 
 
 Register a handler:
@@ -365,88 +328,93 @@ let () =
                                     (body [h1 [txt "Hello"]])))
 ```
 
-{.hidden #regparam .server}
->```ocaml
->let () =
->   Eliom_registration.Html.register ~service:myservice
->     (fun (myparam, _i) () ->
->       Lwt.return
->          Eliom_content.Html.F.(html (head (title (txt "The title")) [])
->                                     (body [h1 [txt myparam]])))
->```
->{#regparamexpl .encadré}
->>The service handler now takes as first argument something of type `string * int`
+{.relative}
+>{.unstatic #regparam .server}
+>>```ocaml
+>>let () =
+>>   Eliom_registration.Html.register ~service:myservice
+>>     (fun (myparam, _i) () ->
+>>       Lwt.return
+>>          Eliom_content.Html.F.(html (head (title (txt "The title")) [])
+>>                                     (body [h1 [txt myparam]])))
+>>```
+>>{#regparamexpl .encadré}
+>>>The service handler now takes as first argument something of type `string * int`
 
-{.hidden #regparam2 .server}
->```ocaml
->let () =
->   Eliom_registration.File.register ~service:myservice
->     (fun (_myparam, _i) () ->
->       Lwt.return "filename")
->```
->{.encadré}
->>Services can return other types of content.
+{.relative}
+>{.unstatic #regparam2 .server}
+>>```ocaml
+>>let () =
+>>   Eliom_registration.File.register ~service:myservice
+>>     (fun (_myparam, _i) () ->
+>>       Lwt.return "filename")
+>>```
+>>{.encadré}
+>>>Services can return other types of content.
+>>>
+>>>For example, we can return a file
+
+{.relative}
+>{.unstatic #regparam3 .server}
+>>```ocaml
+>>let () =
+>>   let a = ref 0 in
+>>   Eliom_registration.Action.register ~service:myservice
+>>     (fun (myparam, _i) () ->
+>>       a := a + 1;
+>>       Lwt.return ())
+>>```
+>>{.encadré}
+>>>or an *action*.
+>>>
+>>>Actions are services performing a side-effect.
+>>>Handlers do not return any value.
+>>>By default, the current page is regenerated.
+
+{.relative}
+>{.unstatic #regparam4 .server}
+>>```ocaml
+>>let () =
+>>   Eliom_registration.Html.register ~service:myservice
+>>     (fun (myparam, _i) () ->
+>>       Lwt.return ([%html{|<html><head><title></title></head>
+>>                            <body><h1>Hello</h1></body>
+>>                           </html>|})
+>>```
+>>{.encadré}
+>>>A PPX extension provided by Tyxml makes it possible to use
+>>>regular HTML syntax if you prefer
+
+{.relative}
+>{.unstatic #regparam5 .server}
+>>```ocaml
+>>let () =
+>>   Eliom_registration.Html.register ~service:myservice
+>>     (fun (myparam, _i) () ->
+>>       Lwt.return
+>>          Eliom_content.Html.F.(html (head (title (txt "The title")) [])
+>>                                     (body [p [p [txt myparam]]])))
+>>                                               ^^^^^^^^^^^^^^^
+>> Error: This expression has type [> p ] elt = 'a elt
+>>        but an expression was expected of type [< p_content ] elt = 'b elt
 >>
->>For example, we can return a file:
-
-{.hidden #regparam3 .server}
->```ocaml
->let () =
->   let a = ref 0 in
->   Eliom_registration.Action.register ~service:myservice
->     (fun (myparam, _i) () ->
->       a := a + 1;
->       Lwt.return ())
->```
->{.encadré}
->>or an *action*.
+>>       Type 'a = [> `P ] is not compatible with type
+>>             'b = [< `A of phrasing_without_interactive
+>>                   | `Abbr
+>>                   | `Audio of phrasing_without_media
+>>                   ...
+>>                   | `Output
+>>                   | `PCDATA
+>>                   | `Progress
+>>                   | `Q
+>>                   ...
+>>                   | `Wbr ]
 >>
->>Actions are services performing a side-effect.
->>Handlers do not return any value.
->>By default, the current page is regenerated.
-
-{.hidden #regparam4 .server}
->```ocaml
->let () =
->   Eliom_registration.Html.register ~service:myservice
->     (fun (myparam, _i) () ->
->       Lwt.return ([%html{|<html><head><title></title></head>
->                            <body><h1>Hello</h1></body>
->                           </html>|})
->```
->{.encadré}
->>A PPX extension provided by Tyxml makes it possible to use
->>regular HTML syntax if you prefer 
-
-{.hidden #regparam5 .server}
->```ocaml
->let () =
->   Eliom_registration.Html.register ~service:myservice
->     (fun (myparam, _i) () ->
->       Lwt.return
->          Eliom_content.Html.F.(html (head (title (txt "The title")) [])
->                                     (body [p [p [txt myparam]]])))
->                                               ^^^^^^^^^^^^^^^
-> Error: This expression has type [> p ] elt = 'a elt
->        but an expression was expected of type [< p_content ] elt = 'b elt
-> 
->       Type 'a = [> `P ] is not compatible with type
->             'b = [< `A of phrasing_without_interactive
->                   | `Abbr
->                   | `Audio of phrasing_without_media
->                   ...
->                   | `Output
->                   | `PCDATA
->                   | `Progress
->                   | `Q
->                   ...
->                   | `Wbr ]
-> 
->      The second variant type does not allow tag(s) `P
->```
->{.encadré}
->>Tyxml type-checks your HTML!
->>This makes sure at compile time your program will never generate incorrect pages!
+>>      The second variant type does not allow tag(s) `P
+>>```
+>>{.encadré}
+>>>Tyxml type-checks your HTML!
+>>>This makes sure at compile time your program will never generate incorrect pages!
 
 {pause #tyxmlend down-at-unpause=sdkjf}
 
@@ -454,8 +422,8 @@ Start the server with static files and Eliom:
 
 {.server}
 ```ocaml
-let () = 
-  Ocsigen_server.start 
+let () =
+  Ocsigen_server.start
     ~command_pipe:"local/var/run/mysite-cmd"
     ~logdir:"local/var/log/mysite"
     ~datadir:"local/var/data/mysite"
@@ -479,74 +447,81 @@ Go to [http://localhost:8080/foo](http://localhost:8080/foo) to test your progra
 
 {pause focus-at-unpause=servunit exec-at-unpause}
 ```slip-script
-document.querySelector("#servunit").classList.add("focused")
+slip.setClass(document.querySelector("#servunit"), "focused", true);
 ```
 
-{pause unstatic-at-unpause="servunit" static-at-unpause="servparam" exec-at-unpause}
+{pause unfocus-at-unpause="servunit" static-at-unpause="servparam" focus-at-unpause=servparam exec-at-unpause}
 ```slip-script
-document.querySelector("#servunit").classList.remove("focused")
-document.querySelector("#servparam").classList.add("focused")
+slip.setClass(document.querySelector("#servunit"), "focused", false);
+slip.setClass(document.querySelector("#servparam"), "focused", true);
+slip.setClass(document.querySelector("#servunit"), "unstatic", true);
 ```
 
-{pause unstatic-at-unpause="servparamexpl" focus-at-unpause=regunit exec-at-unpause}
+{pause unfocus-at-unpause="servparam" focus-at-unpause=regunit exec-at-unpause}
 ```slip-script
-document.querySelector("#servparam").classList.remove("focused")
-document.querySelector("#regunit").classList.add("focused")
+slip.setClass(document.querySelector("#servparam"), "focused", false);
+slip.setClass(document.querySelector("#regunit"), "focused", true);
+slip.setClass(document.querySelector("#servparamexpl"), "unstatic", true);
 ```
 
-{pause unstatic-at-unpause="regunit" static-at-unpause="regparam" focus-at-unpause=regparam exec-at-unpause}
+{pause unfocus-at-unpause="regunit" static-at-unpause="regparam" focus-at-unpause=regparam exec-at-unpause}
 ```slip-script
-document.querySelector("#regunit").classList.remove("focused")
-document.querySelector("#regparam").classList.add("focused")
+slip.setClass(document.querySelector("#regunit"), "focused", false);
+slip.setClass(document.querySelector("#regparam"), "focused", true);
+slip.setClass(document.querySelector("#regunit"), "unstatic", true);
 ```
 
-{pause unstatic-at-unpause="regparam" static-at-unpause="regparam2" focus-at-unpause=regparam2 exec-at-unpause}
+{pause unfocus-at-unpause="regparam" static-at-unpause="regparam2" focus-at-unpause=regparam2 exec-at-unpause}
 ```slip-script
-document.querySelector("#regparam").classList.remove("focused")
-document.querySelector("#regparam2").classList.add("focused")
+slip.setClass(document.querySelector("#regparam"), "focused", false);
+slip.setClass(document.querySelector("#regparam2"), "focused", true);
+slip.setClass(document.querySelector("#regparam"), "unstatic", true);
 ```
 
-{pause unstatic-at-unpause="regparam2" static-at-unpause="regparam3" focus-at-unpause=regparam3 exec-at-unpause}
+{pause unfocus-at-unpause="regparam2" static-at-unpause="regparam3" focus-at-unpause=regparam3 exec-at-unpause}
 ```slip-script
-document.querySelector("#regparam2").classList.remove("focused")
-document.querySelector("#regparam3").classList.add("focused")
+slip.setClass(document.querySelector("#regparam2"), "focused", false);
+slip.setClass(document.querySelector("#regparam3"), "focused", true);
+slip.setClass(document.querySelector("#regparam2"), "unstatic", true);
 ```
 
-{pause unstatic-at-unpause="regparam3 regparamexpl" static-at-unpause="regparam" focus-at-unpause=regparam exec-at-unpause}
+{pause unfocus-at-unpause="regparam3" static-at-unpause="regparam" focus-at-unpause=regparam exec-at-unpause}
 ```slip-script
-document.querySelector("#regparam3").classList.remove("focused")
-document.querySelector("#regparam").classList.add("focused")
+slip.setClass(document.querySelector("#regparam3"), "focused", false);
+slip.setClass(document.querySelector("#regparam"), "focused", true);
+slip.setClass(document.querySelector("#regparam3"), "unstatic", true);
+slip.setClass(document.querySelector("#regparamexpl"), "unstatic", true);
 ```
 
-{pause unstatic-at-unpause="regparam" static-at-unpause="regparam4" focus-at-unpause=regparam4 exec-at-unpause}
+{pause unfocus-at-unpause="regparam" static-at-unpause="regparam4" focus-at-unpause=regparam4 exec-at-unpause}
 ```slip-script
-document.querySelector("#regparam").classList.remove("focused")
-document.querySelector("#regparam4").classList.add("focused")
+slip.setClass(document.querySelector("#regparam"), "focused", false);
+slip.setClass(document.querySelector("#regparam4"), "focused", true);
+slip.setClass(document.querySelector("#regparam"), "unstatic", true);
 ```
 
-{pause unstatic-at-unpause="regparam4" static-at-unpause="regparam" focus-at-unpause=regparam exec-at-unpause}
+{pause unfocus-at-unpause="regparam4" static-at-unpause="regparam" focus-at-unpause=regparam exec-at-unpause}
 ```slip-script
-document.querySelector("#regparam4").classList.remove("focused")
-document.querySelector("#regparam").classList.add("focused")
+slip.setClass(document.querySelector("#regparam4"), "focused", false);
+slip.setClass(document.querySelector("#regparam"), "focused", true);
+slip.setClass(document.querySelector("#regparam4"), "unstatic", true);
 ```
 
-{pause unstatic-at-unpause="regparam" static-at-unpause="regparam5" focus-at-unpause=regparam5 exec-at-unpause}
+{pause unfocus-at-unpause="regparam" static-at-unpause="regparam5" focus-at-unpause=regparam5 exec-at-unpause}
 ```slip-script
-document.querySelector("#regparam").classList.remove("focused")
-document.querySelector("#regparam5").classList.add("focused")
+slip.setClass(document.querySelector("#regparam"), "focused", false);
+slip.setClass(document.querySelector("#regparam5"), "focused", true);
+slip.setClass(document.querySelector("#regparam"), "unstatic", true);
 ```
 
 {pause down-at-unpause="tyxmlend" unfocus-at-unpause="regparam5" exec-at-unpause}
 ```slip-script
-document.querySelector("#regparam5").classList.remove("focused")
+slip.setClass(document.querySelector("#regparam5"), "focused", false);
 ```
 
 {#servicesdown}
 
-  </slip-body>
-</slip-slip>
-<slip-slip style="width: 33.33%;" auto-enter scale="0.3333" delay="1">
-  <slip-body>
+{pause up}
 
 ## Sessions: scoped references
 
@@ -554,7 +529,7 @@ Server-side session data is stored in *Eliom references*:
 
 {#eref1 .server}
 ```ocaml
-let r = 
+let r =
   Eliom_reference.eref
      ~scope:Eliom_common.default_session_scope 0
 
@@ -564,9 +539,9 @@ let f () =
   Eliom_reference.set r (v + 1);
 ```
 
-{#eref2 .hidden .server}
+{#eref2 .invisible .server}
 ```ocaml
-let r = 
+let r =
   Eliom_reference.eref
      ~persistent:"myrefname"
      ~scope:Eliom_common.default_session_scope 0
@@ -590,10 +565,7 @@ let f () =
 >|**Site**|`site_scope`|
 >|**Global**|`global_scope`|
 
-  </slip-body>
-</slip-slip>
-<slip-slip style="width: 33.33%;" auto-enter scale="0.3333" delay="1">
-  <slip-body>
+{pause up}
 
 ## [Step 4:]{.step} Implement a basic login mechanism
 
@@ -627,10 +599,7 @@ Check that you can share session data across multiple browsers.
 
 {#endstep4}
 
-  </slip-body>
-</slip-slip>
-<slip-slip style="width: 33.33%;" auto-enter scale="0.3333" delay="1">
-  <slip-body>
+{pause up}
 
 <img alt="Ocsigen" src="ocsigen-bubbles-large.png" width="1200px" style="position: absolute; top: -650px; right: -300px;"/>
 
@@ -638,7 +607,7 @@ Check that you can share session data across multiple browsers.
 
 Services have many other features:
 * Services can be identified by a **path**<br/>
-and/or by a name 
+and/or by a name
 added automatically by Eliom as (GET or POST) parameter
 * **Secure services** (csrf-safe, secure sessions, https only …)
 * **Dynamic creation of services** [Continuation based Web Programming]{.encadré  style="position: relative; left: 40px; top: 20px;"}
@@ -657,12 +626,7 @@ The form data will be saved in the closure!
 
 [Functional Web Programming!]{.encadré style="position: relative; left: 700px; top: -100px;"}
 
-  </slip-body>
-</slip-slip>
-</div>
-<div class="slip-group">
-<slip-slip style="width: 33.33%;" auto-enter scale="0.3333" delay="1">
-  <slip-body>
+{pause up}
 
 {.partimg}
 ![Ocsigen](ocsigen-bubbles-large.png)
@@ -673,10 +637,7 @@ The form data will be saved in the closure!
 {.partsubtitle}
 ## Write a Web and mobile app in OCaml
 
-  </slip-body>
-</slip-slip>
-<slip-slip style="width: 33.33%;" auto-enter scale="0.3333" delay="1">
-  <slip-body>
+{pause up}
 
 ## Running code on the client
 
@@ -699,10 +660,9 @@ let%client () = print_endline "Hello"
 See the result in your browser's console.
 
 <div style="display: flex; justify-content: space-around;">
-<slip-slip style="width: 44%;" auto-enter scale="0.44" delay="1">
-  <slip-body>
+<div id="clser">
 
-{#clser}
+{style="zoom: 44%; width: 800px;"}
 >{.server}
 >```ocaml
 >let%server () = ...
@@ -716,17 +676,17 @@ See the result in your browser's console.
 >let%shared () = ...
 >```
 
-  </slip-body>
-</slip-slip>
-<slip-slip style="width: 44%;" auto-enter scale="0.44" delay="1">
-  <slip-body style="text-align: center;">
-<img id="clserimg" alt="Client-server code" src="client-server.svg" width="600px"/>
-  </slip-body>
-</slip-slip>
+</div>
+<div id="clserimg">
+ <img alt="Client-server code" src="client-server.svg" width="400px"/>
+</div>
 </div>
 
+{pause focus-at-unpause=clser}
 
-{pause down-at-unpause=clientdown1}
+{pause unfocus-at-unpause=clser focus-at-unpause=clserimg}
+
+{pause  unfocus-at-unpause=clserimg down-at-unpause=clientdown1}
 
 ### Injections: using server-side values in client side code
 
@@ -761,7 +721,7 @@ let%client () = ... let%lwt v = f 22 in ...
 
 {pause up-at-unpause=clientdown2}
 
-### Client-values: inserting client-side code in your pages 
+### Client-values: inserting client-side code in your pages
 
 {.server #onclick}
 ```ocaml
@@ -801,17 +761,14 @@ On this example, you can see a few new concepts:
 {#clientdown3}
 
 <div style="display: flex; justify-content: space-around;">
-<slip-slip style="width: 44%;" auto-enter scale="0.44" delay="1">
-  <slip-body style="text-align: center;">
-<img id="clserimg" alt="Client-server code" src="client-server-req.svg" width="1200px"/>
-  </slip-body>
-</slip-slip>
+<div id="clserimg2" style="text-align: center;">
+ <img alt="Client-server code" src="client-server-req.svg" width="400px"/>
 </div>
+</div>
+ 
+{pause focus-at-unpause=clserimg2}
 
-  </slip-body>
-</slip-slip>
-<slip-slip style="width: 33.33%;" auto-enter scale="0.3333" delay="1">
-  <slip-body>
+{pause unfocus-at-unpause=clserimg2 up}
 
 ## Client-side services
 
@@ -843,10 +800,7 @@ If the service is registered on both sides,
 the server side version will be used for the first call (or for indexing by search engines)
 the client side version will be used for subsequent calls (or on the mobile app)
 
-  </slip-body>
-</slip-slip>
-<slip-slip style="width: 33.33%;" auto-enter scale="0.3333" delay="1">
-  <slip-body>
+{pause up}
 
 <img alt="Ocsigen" src="ocsigen-bubbles-large.png" width="1200px" style="position: absolute; top: -720px; right: -500px;"/>
 
@@ -872,11 +826,7 @@ generated page every time you connect or disconnect).
 {.comment}
 See the solution <a target="_blank" href="https://github.com/ocsigen/quickstart-guide/blob/Step5/myapp/myapp.eliom">here</a>.
 
-
-  </slip-body>
-</slip-slip>
-<slip-slip style="width: 33.33%;" auto-enter scale="0.3333" delay="1">
-  <slip-body>
+{pause up}
 
 ## [Step 6:]{.step} Send a message to the server
 
@@ -888,13 +838,10 @@ See the solution <a target="_blank" href="https://github.com/ocsigen/quickstart-
 
 Hints:
 * This time, we won't submit the form to a new service, but use a RPC. Use regular Tyxml `input` fields instead of the `Form` module.
-* Take example either on the [onclick]{} example above or 
+* Take example either on the [onclick]{} example above or
   use [Lwt_js_events]{}.
 
-  </slip-body>
-</slip-slip>
-<slip-slip style="width: 33.33%;" auto-enter scale="0.3333" delay="1">
-  <slip-body>
+{pause up}
 
 ## Sending a message to the client
 
@@ -916,12 +863,12 @@ module%server Notif = Eliom_notif.Make_Simple (struct
   let get_identity = ...
 end)
 ```
-Call `Notif.listen` from server side 
+Call `Notif.listen` from server side
 if you want to be notified when there is a new message send on a resource.
 
 If you want to send a message to all users listening on a given resource, call function `Notif.notify` from server side.
 
-On client side, `~%(Notif.client_ev ())` is a React event of type 
+On client side, `~%(Notif.client_ev ())` is a React event of type
 `(key, notif) React.E.t`. Use it to receive the messages.
 
 {pause down-at-unpause=notifdown}
@@ -930,15 +877,12 @@ Example:
 
 {.client}
 ```ocaml
-React.E.map (fun notification -> ...) ~%(Notif.client_ev ()) 
+React.E.map (fun notification -> ...) ~%(Notif.client_ev ())
 ```
 
 {#notifdown}
 
-  </slip-body>
-</slip-slip>
-<slip-slip style="width: 33.33%;" auto-enter scale="0.3333" delay="1">
-  <slip-body>
+{pause up}
 
 ## [Step 7:]{.step} Send a message to another user
 
@@ -962,12 +906,7 @@ Hints:
 {.comment}
 See the solution <a target="_blank" href="https://github.com/ocsigen/quickstart-guide/blob/Step7/myapp/myapp.eliom">here</a>.
 
-  </slip-body>
-</slip-slip>
-</div>
-<div class="slip-group">
-<slip-slip style="width: 33.33%;" auto-enter scale="0.3333" delay="1">
-  <slip-body>
+{pause up}
 
 {.partimg}
 ![Ocsigen](ocsigen-bubbles-large.png)
@@ -975,32 +914,33 @@ See the solution <a target="_blank" href="https://github.com/ocsigen/quickstart-
 {.parttitle}
 # Going further
 
-  </slip-body>
-</slip-slip>
-<slip-slip style="width: 33.33%;" auto-enter scale="0.3333" delay="1">
-  <slip-body>
+{pause up}
 
 ## Ocsigen Toolkit
 
 *Client-server widgets*
 
-{style="height: 700px;"}
+{style="position: relative; height: 900px;"}
+>
+><img alt="Ocsigen" src="toolkit-cal.png" width="400px" style="position: absolute; top: 50px; right: 100px;"/>
+><img alt="Ocsigen" src="toolkit-tabs.png" width="400px" style="position: absolute; top: 400px; left: 100px;"/>
+><img alt="Ocsigen" src="toolkit-tip.png" width="400px" style="position: absolute; top: 100px; left: 250px;"/>
+><img alt="Ocsigen" src="toolkit-tongue.png" width="400px" style="position: absolute; top: 550px; right: 300px;"/>
 
-<img alt="Ocsigen" src="toolkit-cal.png" width="400px" style="position: absolute; top: 200px; right: 100px;"/>
-<img alt="Ocsigen" src="toolkit-tabs.png" width="400px" style="position: absolute; top: 550px; left: 100px;"/>
-<img alt="Ocsigen" src="toolkit-tip.png" width="400px" style="position: absolute; top: 300px; left: 500px;"/>
-<img alt="Ocsigen" src="toolkit-tongue.png" width="400px" style="position: absolute; top: 700px; right: 300px;"/>
 
-
-  </slip-body>
-</slip-slip>
-<slip-slip style="width: 33.33%;" auto-enter scale="0.3333" delay="1">
-  <slip-body>
+{pause up}
 
 ## Ocsigen Start
 
+{style="position: relative;"}
+><img alt="Ocsigen" src="start1.png" width="500px" style="position: absolute; top: 0px; right: 0px;"/>
+><img alt="Ocsigen" src="start2.png" width="500px" style="position: absolute; top: 100px; right: 200px;"/>
+><img alt="Ocsigen" src="start3.png" width="500px" style="position: absolute; top: 200px; right: 100px;"/>
+><img alt="Ocsigen" src="start-mobile-1.png" width="250px" style="position: absolute; top: 400px; right: 140px; border: 1px solid #ddd;"/>
+><img alt="Ocsigen" src="start-mobile-4.png" width="250px" style="position: absolute; top: 500px; right: -50px; border: 1px solid #ddd;"/>
+
 **Library**<br/>
-user management, passwords, etc. 
+user management, passwords, etc.
 
 **Application template**
 
@@ -1015,18 +955,12 @@ eliom-distillery --template os.pgocaml -name myapp
 ```
 Then read the README file
 
-<img alt="Ocsigen" src="start1.png" width="500px" style="position: absolute; top: 100px; right: 100px;"/>
-<img alt="Ocsigen" src="start2.png" width="500px" style="position: absolute; top: 200px; right: 300px;"/>
-<img alt="Ocsigen" src="start3.png" width="500px" style="position: absolute; top: 300px; right: 200px;"/>
-<img alt="Ocsigen" src="start-mobile-1.png" width="250px" style="position: absolute; top: 500px; right: 240px; border: 1px solid #ddd;"/>
-<img alt="Ocsigen" src="start-mobile-4.png" width="250px" style="position: absolute; top: 600px; right: 50px; border: 1px solid #ddd;"/>
+{style="height: 400px;"}
 
-  </slip-body>
-</slip-slip>
-<slip-slip style="width: 33.33%; overflow: hidden;" auto-enter scale="0.3333" delay="1">
-  <slip-body>
+{pause up}
 
-<img alt="Ocsigen" src="mob.jpeg" width="140%" style="position: absolute; top: 0px; left: -820px;"/>
+{style="position: relative;"}
+><img alt="Ocsigen" src="mob.jpeg" width="160%" style="position: absolute; top: -20px; left: -900px;"/>
 
 {style="width: 500px; position: absolute; right: 0;"}
 >## Mobile apps
@@ -1040,12 +974,9 @@ Then read the README file
 >
 >Use Ocsigen Start to test
 
-{style="height: 1900px;"}
+{style="height: 1200px;"}
 
-  </slip-body>
-</slip-slip>
-<slip-slip style="width: 33.33%; overflow: hidden;" auto-enter scale="0.3333" delay="1">
-  <slip-body>
+{pause up}
 
 ## How to learn more?
 
@@ -1058,6 +989,3 @@ and look at each example in Ocsigen Start's template.
 <img alt="Ocsigen" src="ocsigen-bubbles-large.png" width="800px"/><br/>
 [Slides powered by [Slipshow](https://github.com/panglesd/slipshow)]{style="color: #aaa"}.
 
-  </slip-body>
-</slip-slip>
-</div>
