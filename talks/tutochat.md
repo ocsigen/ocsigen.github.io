@@ -20,11 +20,12 @@ code { font-size: smaller; }
 .col {
     align-self: center;
 }
-#title { position: relative; }
+#title { position: relative; margin-left: -110px; }
 #title img { width: 1000px; }
 #mainh1 {
     flex: 4 1;
     text-align: center;
+    width: 400px;
 }
 .vspace { height: 1em; }
 .center { text-align: center; }
@@ -188,11 +189,11 @@ Pierre Chambart, Grégoire Henry, Benedikt Becker,<br/>
 Vasilis Papavasileiou, Gabriel Radanne, Hugo Heuzard,<br/>
 Benjamin Canou, Boris Yakobowski, Jan Rochel, Idir Lankri,<br/>
 Jérémie Dimino, Romain Calascibetta, Raphaël Proust, Anton Bachin, Baptiste Strazzulla,<br/>
-Julien Sagot, Stéphane Glondu, Gabriel Kerneis, Denis Berthod, Thorsten Ohl,<br/>
-Danny Willems, Kate Deplaix, Enguerrand Decorne, Grégoire Lionnet, <br/>
+Jules Aguillon, Julien Sagot, Stéphane Glondu, Gabriel Kerneis, Denis Berthod, Thorsten Ohl,<br/>
+Javaid Habib, Danny Willems, Kate Deplaix, Enguerrand Decorne, Grégoire Lionnet, <br/>
 Jaap Boender, Gabriel Scherer, Gabriel Cardoso, Yuta Sato, Sora Morimoto,<br/>
 Christophe Lecointe, Arnaud Parant, Jérôme Maloberti, Charly Chevalier, <br/>
-[Jean-Henri Granarolo, Simon Castellan, Barbara Lepage, Séverine Maingaud,<br/>
+[Nicolas Osborne, Jean-Henri Granarolo, Simon Castellan, Barbara Lepage, Séverine Maingaud,<br/>
 Mauricio Fernandez, Michael Laporte, Nataliya Guts, Archibald Pontier,<br/>
 Jérôme Velleine, Charles Oran, Pierre Clairambault,
 Cécile Herbelin]{style="font-size: smaller;"}
