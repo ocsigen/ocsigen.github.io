@@ -2136,7 +2136,7 @@ let f () =
   let%lwt v = Eliom_reference.get r in
   Eliom_reference.set r (v + 1);
 </code></pre>
-<pre id="eref2" class="server invisible"><code class="language-ocaml">let r =
+<pre id="eref2" class="server unstatic"><code class="language-ocaml">let r =
   Eliom_reference.eref
      ~persistent:&quot;myrefname&quot;
      ~scope:Eliom_common.default_session_scope 0
