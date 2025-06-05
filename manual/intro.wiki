@@ -5,6 +5,7 @@
 == Multi-tier programming for Web and mobile apps
 == Android, iOS, Web (Server & client) with the same code
 == Full-stack modular Web framework for OCaml with advanced type-checking
+== WASM ready!
 
 [[@@class="main-button"@@wiki("tuto"):latest/manual/basics|Get started now!]]
 
@@ -122,11 +123,11 @@ It can run as a **Web app**, or as a **mobile app** (based on Web technologies).
 
 <<div class="main-page-section main-page-section-js_of_ocaml"|
 <<div class="main-page-section-content"|
-== Js_of_ocaml
-===@@class="subtitle" Optimizing compiler for OCaml/Reason to Javascript
+== Js_of_ocaml/Wasm_of_ocaml
+===@@class="subtitle" Optimizing compiler for OCaml/Reason to Javascript and WASM
 
 <<div class="horiz-blocks"|
-Js_of_ocaml translates your OCaml or Reason programs to Javascript.
+Js_of_ocaml translates your OCaml or Reason programs to Javascript or WASM.
 You can choose between readable or optimized JavaScript.
 
 Js_of_ocaml operates from compiled OCaml bytecode programs.
