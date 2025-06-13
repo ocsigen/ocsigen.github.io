@@ -14,6 +14,8 @@
 <<div class="main-page-section main-page-section-partners"|
 
 *@@class="sponsormain"@ @@ [[http://besport.com|{{@@class="logo-besport"@@site:img/besport.svg|Be Sport}}]]
+* [[https://tarides.com|{{@@class="logo-tarides"@@site:/img/tarides.svg|Tarides}}]]
+* [[https://www.janestreet.com|{{@@class="logo-janestreet"@@site:/img/janestreet.svg|Jane Street}}]]
 * [[http://www.univ-paris-diderot.fr|{{@@class="logo-diderot"@@site:img/diderot.png|Université Paris Diderot}}]]
 
 * [[http://www.cnrs.fr|{{@@class="logo-cnrs"@@site:/img/cnrs.png|CNRS}}]]
@@ -34,7 +36,7 @@
 <<div class="main-page-news-1"|
 === New programmer's guide!
 
-A new programmer’s guide for Ocsigen has just been released
+A new programmer's guide for Ocsigen has just been released
 <<a_manual project="tuto" chapter="basics"|here> >.
 It describes in one page everything you need to know to become
 a fully operational OCaml Web and mobile developer.
