@@ -3,27 +3,27 @@
 
 <<header |=Installing Ocsigen>>
 
-To install Ocsigen, just download the packages you want using
-[[https://opam.ocaml.org/|opam]],
-the OCaml package manager.
+All Ocsigen packages are available via [[https://opam.ocaml.org/|opam]], the OCaml package manager.
 
-If you plan to build a Web and/or mobile app with Ocsigen,
-[[wiki("ocsigen-start"):|Ocsigen-start]] is a good place to start:
+===Full-stack Web and mobile apps
+
+For client-server applications with mobile support, start with [[wiki("ocsigen-start"):|Ocsigen Start]]:
 {{{
 $ opam install ocsigen-start
 }}}
+Then read the [[wiki("tuto"):latest/manual/basics|getting started guide]].
 
-If you want to start with a website with few client-side features,
-you will probably need only [[wiki("eliom"):|Eliom]] to begin with:
+===Server-side websites
+
+For traditional websites with minimal client-side code, [[wiki("eliom"):|Eliom]] alone is enough:
 {{{
 $ opam install ocsipersist-sqlite-config eliom
 }}}
+See the [[wiki("tuto"):latest/manual/basics-server|server-side programming documentation]].
 
-Please read the [[wiki("tuto"):latest/manual/basics|one page documentation]] first,
-if you plan to write a client-server Web (or/and mobile) app,\\
-or the [[wiki("tuto"):latest/manual/basics-server|Server-side programming documentation]],
-if you want to learn traditional Web site programming in OCaml.\\
-Several tutorials are available [[wiki("tuto"):|here]].
+===More resources
+
+Browse all [[wiki("tuto"):|tutorials]] to find the best starting point for your project.
 
 >>
 >>

@@ -11,7 +11,7 @@
 <<div class="main-page-project"|
   ===Js_of_ocaml
 
-  Optimizing compiler from OCaml/Reason to Javascript.
+  Compile OCaml to JS and WebAssembly. Run in any browser.
 
 >>
 >>
@@ -19,7 +19,7 @@
 <<div class="main-page-project"|
   ===Eliom
 
-  Multi-tier language and framework for multi-platform apps.
+  Write client and server as one program. Deploy to Web and mobile.
 
 >>
 >>
@@ -27,37 +27,36 @@
 <<div class="main-page-project"|
   ===Server
 
-  Full-featured and extensible Web Server.
+  Production-ready Web server with native OCaml integration.
 >>
 >>
 <<link wiki="lwt"|
 <<div class="main-page-project"|
   ===Lwt
 
-  Cooperative threading library.
+  Concurrent programming made simple — no callback hell.
 >>
 >>
-
 
 <<link wiki="tyxml"|
 <<div class="main-page-project"|
   ===Tyxml
 
-  Static type-checking for HTML and SVG.
+  Type-safe HTML/SVG generation. Invalid markup won't compile.
 >>
 >>
 <<link wiki="ocsigen-toolkit"|
 <<div class="main-page-project"|
   ===Ocsigen Toolkit
 
-  Native OCaml widgets for browsers (client side only or client-server).
+  Ready-to-use UI widgets for Web and mobile apps.
 >>
 >>
 <<link wiki="ocsigen-start"|
 <<div class="main-page-project"|
   ===Start
 
-  A full-featured app to use as code example for your own projects.
+  Complete starter app with users, notifications, and mobile support.
 >>
 >>
 
@@ -65,7 +64,7 @@
 <<div class="main-page-project"|
   ===Ocsipersist
 
-  Persistent references and key-value stores for OCaml programs.
+  Key-value store for data that survives server restarts.
 
 >>
 >>

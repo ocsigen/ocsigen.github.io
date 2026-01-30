@@ -127,6 +127,12 @@ form#googlesearch {
   background-color: #099be6;
   border-radius: 3px;
   font-size: 22px;
+  transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+}
+.main-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(9, 155, 230, 0.4);
+  background-color: #0ab3ff;
 }
 a.main-button,
 a.main-button:visited {
@@ -304,10 +310,10 @@ li.drawermainmenu-current a {
   padding: 35px;
 }
 .main-page-news-1 {
-  background-color: #ffffdd;
+  background-color: #f0f7ff;
 }
 .main-page-news-2 {
-  background-color: #73c6ed;
+  background-color: #094489;
   color: white;
 }
 .main-page-section-multitier {
@@ -417,8 +423,13 @@ pre[class*="language-"].main-page-section-js_of_ocaml-js {
   background-position: 127% 220%;
   margin: 20px;
   border-radius: 4px;
-  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
   overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.main-page-project:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 .main-page-project h3::before {
   content: "";
