@@ -105,14 +105,13 @@ Come and learn Ocsigen at
 <<div class="main-page-section main-page-section-multitier"|
 <<div class="main-page-section-content"|
 == Eliom
-===@@class="subtitle"@@ Multi-tier language for multi-platform apps
+===@@class="subtitle"@@ Client and server code that compile together
 
 <<div class="horiz-blocks"|
-Eliom extends OCaml/Reason into a **multi-tier language**
-making it possible to write your whole application (client and server parts)
-as a **single program**!
+Eliom lets you write **client and server code in the same file, and as a single program**.
+The compiler checks that they stay consistent — **no more broken APIs**!
 
-It can run as a **Web app**, or as a **mobile app** (based on Web technologies).
+A single codebase compiles to a **Web app** and to **mobile apps** for iOS and Android.
 >>
 
 <<div class="main-page-section-multitier-schema"|
@@ -125,18 +124,15 @@ It can run as a **Web app**, or as a **mobile app** (based on Web technologies).
 
 <<div class="main-page-section main-page-section-js_of_ocaml"|
 <<div class="main-page-section-content"|
-== Js_of_ocaml/Wasm_of_ocaml
-===@@class="subtitle" Optimizing compiler for OCaml/Reason to Javascript and WASM
+== Js_of_ocaml / Wasm_of_ocaml
+===@@class="subtitle"@@ Your OCaml code, running in the browser at near-native speed
 
 <<div class="horiz-blocks"|
-Js_of_ocaml translates your OCaml or Reason programs to Javascript or WASM.
-You can choose between readable or optimized JavaScript.
+Compile any OCaml program to **JavaScript** or **WebAssembly**.
+WASM delivers near-native performance; JS ensures compatibility with all browsers.
 
-Js_of_ocaml operates from compiled OCaml bytecode programs.
-You don't even need the source code, and you don't need to recompile
-all the OCaml libraries you use.
-
-Easy interfacing with Javascript libraries.
+Works directly from OCaml bytecode — **use any OCaml library without recompiling**.
+Seamless interop with JavaScript libraries.
 >>
 
 <<div class="main-page-section-js_of_ocaml-schema"|
@@ -189,7 +185,7 @@ function(d){var b=d,c=1,a=1;for(;;){if(0===b)return a;var b=b-1|0,e=a+c|0,c=a,a=
 <<div class="main-page-project"|
   ===Js_of_ocaml
 
-  Optimizing compiler from OCaml/Reason to Javascript.
+  Compile OCaml to JS and WebAssembly. Run in any browser.
 
 >>
 >>
@@ -197,7 +193,7 @@ function(d){var b=d,c=1,a=1;for(;;){if(0===b)return a;var b=b-1|0,e=a+c|0,c=a,a=
 <<div class="main-page-project"|
   ===Eliom
 
-  Multi-tier language and framework for multi-platform apps.
+  Write client and server as one program. Deploy to Web and mobile.
 
 >>
 >>
@@ -205,42 +201,42 @@ function(d){var b=d,c=1,a=1;for(;;){if(0===b)return a;var b=b-1|0,e=a+c|0,c=a,a=
 <<div class="main-page-project"|
   ===Server
 
-  Full-featured and extensible Web Server.
+  Production-ready Web server with native OCaml integration.
 >>
 >>
 <<link wiki="lwt"|
 <<div class="main-page-project"|
   ===Lwt
 
-  Cooperative threading library.
+  Concurrent programming made simple — no callback hell.
 >>
 >>
 <<link wiki="ocsipersist"|
 <<div class="main-page-project"|
   ===Ocsipersist
 
-  Persistent data for OCaml.
+  Key-value store for data that survives server restarts.
 >>
 >>
 <<link wiki="tyxml"|
 <<div class="main-page-project"|
   ===Tyxml
 
-  Static type-checking for HTML and SVG.
+  Type-safe HTML/SVG generation. Invalid markup won't compile.
 >>
 >>
 <<link wiki="ocsigen-toolkit"|
 <<div class="main-page-project"|
   ===Ocsigen Toolkit
 
-  Native OCaml widgets for browsers (client side only or client-server).
+  Ready-to-use UI widgets for Web and mobile apps.
 >>
 >>
 <<link wiki="ocsigen-start"|
 <<div class="main-page-project"|
   ===Start
 
-  A full-featured app to use as code example for your own projects.
+  Complete starter app with users, notifications, and mobile support.
 >>
 >>
 
