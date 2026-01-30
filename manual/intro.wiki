@@ -1,11 +1,11 @@
 <<head-css|.page-header{background-color:rgba(0,0,0,0.2) !important;}>>
 <<div class="main-page-section main-page-section-header"|
 
-= The next generation Web and mobile framework
-== Multi-tier programming for Web and mobile apps
-== Android, iOS, Web (Server & client) with the same code
-== Full-stack modular Web framework for OCaml with advanced type-checking
-== WASM ready!
+= Next-level full-stack development
+== Write your app once — deploy on Web, Android, iOS
+== Unique multi-tier architecture: client and server in a single program
+== Type-safe from database to UI — catch errors before they happen
+== Runs natively in WebAssembly (with JavaScript fallback)
 
 [[@@class="main-button"@@wiki("tuto"):latest/manual/basics|Get started now!]]
 
