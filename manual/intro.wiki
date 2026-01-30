@@ -82,7 +82,7 @@ We have recently released the following Ocsigen packages:
 Ocsigen Start 1.3.0, Ocsigen Toolkit 2.0.0, Eliom 6.5.0, Js_of_ocaml 3.3.0,
 Lwt 4.1.0, Ocsigen Server 2.11.0, TyXML 4.3.0
 
-The releases restore compatibility with the latest OCaml and as usual bring about a fair amount of bugfixes end enhancements.
+The releases restore compatibility with the latest OCaml and as usual bring about a fair amount of bugfixes and enhancements.
 
 Everything is available in opam. `opam install ocsigen-start` will pull in all the other packages.
 > >

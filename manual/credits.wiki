@@ -22,7 +22,7 @@ It received funding from [[http://inria.fr|Inria]] and the
 * //Ubiquitous Content Framework// (FUI project, [[http://www.systematic-paris-region.org|System@tic cluster]])
 
 
-It also receive funding from [[https://janestreet.com/|Jane Street]].
+It also receives funding from [[https://janestreet.com/|Jane Street]].
 
 ==Contact
 

@@ -4,7 +4,7 @@
 
 <<header |=Contributing to Ocsigen>>
 
-==For individual contributers
+==For individual contributors
 To contribute to an Ocsigen project, first see the guidelines it provides. It
 will give you the directives on how to make your contribution. Once ready,
 create a //Pull Request// on the repository and wait for feedback!
@@ -30,7 +30,7 @@ accepted!
 # On branch ##wikidoc##, {{{cp -r dev X.Y.Z}}}, where {{{X.Y.Z}}} is the new version's number. Commit changes, do a PR, wait for the documentation to be regenerated, and check the documentation on the website.
 # Update file CHANGES
 # On ##master##, update opam configuration file.
-# {{{git tag <version>}}} puis {{{git push --tags}}}
+# {{{git tag <version>}}} then {{{git push --tags}}}
 # Create a release on GitHub.
 # {{{opam publish}}} and wait for the package to be accepted.
 <<|# Manually update symbolic link {{{latest}}} on branch {{{gh-pages}}} //(How to automatize this?)//>>
