@@ -534,6 +534,20 @@ body.reason .reasonwarning {
   padding: 1px 15px;
   border-radius: 10px;
 }
+.quickstart {
+  background: #fcf0eb;
+  border-left: 6px solid #ff8d52;
+  border-radius: 10px;
+  padding: 10px 20px;
+  margin: 20px 0;
+  font-size: 105%;
+}
+.quickstart > strong:first-child {
+  display: block;
+  font-size: 1.3em;
+  color: #094489;
+  margin-bottom: 0.3em;
+}
 /****** Client-server switch button *****/
 
 /* <pre> is shared among the original and automatically translated code, so we
