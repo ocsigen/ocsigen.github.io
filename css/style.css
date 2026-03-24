@@ -502,6 +502,7 @@ pre[class*="language-"].main-page-section-js_of_ocaml-js {
 }
 /****** Reason switch button (from html_of_wiki) *****/
 button#reason {
+  display: none;
   position: fixed;
   right: 20px;
   top: 120px;
