@@ -534,7 +534,7 @@ body.reason .reasonwarning {
   padding: 1px 15px;
   border-radius: 10px;
 }
-.quickstart {
+.quickstart-block {
   background: linear-gradient(135deg, #fff5f0 0%, #fce8de 100%);
   border-radius: 12px;
   padding: 25px 30px;
@@ -544,7 +544,7 @@ body.reason .reasonwarning {
   position: relative;
   overflow: hidden;
 }
-.quickstart::before {
+.quickstart-block::before {
   content: "";
   position: absolute;
   top: 0;
@@ -554,14 +554,14 @@ body.reason .reasonwarning {
   background: linear-gradient(180deg, #ff8d52, #094489);
   border-radius: 12px 0 0 12px;
 }
-.quickstart > strong:first-child {
+.quickstart-block > strong:first-child {
   display: block;
   font-size: 1.4em;
   color: #094489;
   margin-bottom: 0.5em;
   letter-spacing: -0.01em;
 }
-.quickstart pre {
+.quickstart-block pre {
   background-color: #001a39 !important;
   color: #e8e8e8 !important;
   border: none !important;
@@ -570,7 +570,7 @@ body.reason .reasonwarning {
   padding: 15px 20px !important;
   font-size: 0.92em;
 }
-.quickstart pre code {
+.quickstart-block pre code {
   color: #e8e8e8 !important;
   text-shadow: none !important;
 }
