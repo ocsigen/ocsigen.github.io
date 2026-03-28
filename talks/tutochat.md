@@ -432,7 +432,7 @@ let () =
     [
       Ocsigen_server.host
        [ Staticmod.run ~dir:"local/var/www/mysite" ()
-       ; Eliom.run () ]
+       ; Eliom.App.run () ]
     ]
 ```
 {pause #sdkjf down-at-unpause=servicesdown}
