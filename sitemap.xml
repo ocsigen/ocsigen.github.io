@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Homepage -->
+  <url><loc>https://ocsigen.org/</loc></url>
+
+  <!-- Main sections -->
+  <url><loc>https://ocsigen.org/home/intro.html</loc></url>
+  <url><loc>https://ocsigen.org/home/install.html</loc></url>
+  <url><loc>https://ocsigen.org/home/projects.html</loc></url>
+  <url><loc>https://ocsigen.org/home/papers.html</loc></url>
+  <url><loc>https://ocsigen.org/home/contributing.html</loc></url>
+  <url><loc>https://ocsigen.org/home/credits.html</loc></url>
+  <url><loc>https://ocsigen.org/home/occduce.html</loc></url>
+
+  <!-- Project landing pages (each hosts its own docs/manual) -->
+  <url><loc>https://ocsigen.org/eliom/</loc></url>
+  <url><loc>https://ocsigen.org/js_of_ocaml/</loc></url>
+  <url><loc>https://ocsigen.org/lwt/</loc></url>
+  <url><loc>https://ocsigen.org/ocsigenserver/</loc></url>
+  <url><loc>https://ocsigen.org/ocsigen-start/</loc></url>
+  <url><loc>https://ocsigen.org/ocsigen-toolkit/</loc></url>
+  <url><loc>https://ocsigen.org/ocsipersist/</loc></url>
+  <url><loc>https://ocsigen.org/tyxml/</loc></url>
+  <url><loc>https://ocsigen.org/html_of_wiki/</loc></url>
+  <url><loc>https://ocsigen.org/ocsigen-i18n/</loc></url>
+  <url><loc>https://ocsigen.org/ocsimore/</loc></url>
+  <url><loc>https://ocsigen.org/tuto/</loc></url>
+
+  <!-- Demos and talks -->
+  <url><loc>https://ocsigen.org/graffiti/</loc></url>
+  <url><loc>https://ocsigen.org/talks/tutochat.html</loc></url>
+</urlset>
