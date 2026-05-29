@@ -1,0 +1,93 @@
+{0 Projects}
+
+{1 Main projects}
+
+{%wodoc:div class=main-page-projects%}
+
+{%wodoc:a class=main-page-project-link href=../js_of_ocaml/%}{%wodoc:div class=main-page-project%}
+
+{2 Js_of_ocaml}
+
+Compile OCaml to JS and WebAssembly. Run in any browser.
+
+{%wodoc:end%}{%wodoc:end%}
+
+{%wodoc:a class=main-page-project-link href=../eliom/%}{%wodoc:div class=main-page-project%}
+
+{2 Eliom}
+
+Write client and server as one program. Deploy to Web and mobile.
+
+{%wodoc:end%}{%wodoc:end%}
+
+{%wodoc:a class=main-page-project-link href=../ocsigenserver/%}{%wodoc:div class=main-page-project%}
+
+{2 Server}
+
+Production-ready Web server with native OCaml integration.
+
+{%wodoc:end%}{%wodoc:end%}
+
+{%wodoc:a class=main-page-project-link href=../lwt/%}{%wodoc:div class=main-page-project%}
+
+{2 Lwt}
+
+Concurrent programming made simple — no callback hell.
+
+{%wodoc:end%}{%wodoc:end%}
+
+{%wodoc:a class=main-page-project-link href=../tyxml/%}{%wodoc:div class=main-page-project%}
+
+{2 Tyxml}
+
+Type-safe HTML/SVG generation. Invalid markup won't compile.
+
+{%wodoc:end%}{%wodoc:end%}
+
+{%wodoc:a class=main-page-project-link href=../ocsigen-toolkit/%}{%wodoc:div class=main-page-project%}
+
+{2 Ocsigen Toolkit}
+
+Ready-to-use UI widgets for Web and mobile apps.
+
+{%wodoc:end%}{%wodoc:end%}
+
+{%wodoc:a class=main-page-project-link href=../ocsigen-start/%}{%wodoc:div class=main-page-project%}
+
+{2 Start}
+
+Complete starter app with users, notifications, and mobile support.
+
+{%wodoc:end%}{%wodoc:end%}
+
+{%wodoc:a class=main-page-project-link href=https://github.com/ocsigen/ocsipersist%}{%wodoc:div class=main-page-project%}
+
+{2 Ocsipersist}
+
+Key-value store for data that survives server restarts.
+
+{%wodoc:end%}{%wodoc:end%}
+
+{%wodoc:end%}
+
+{1 Experimental projects}
+
+{%wodoc:div class=main-page-projects%}
+
+{%wodoc:a class=main-page-project-link href=https://github.com/ocsigen/macaque%}{%wodoc:div class=main-page-project%}
+
+{2 Macaque}
+
+An experimental language for type-safe database queries.
+
+{%wodoc:end%}{%wodoc:end%}
+
+{%wodoc:a class=main-page-project-link href=https://github.com/ocsigen/oclosure%}{%wodoc:div class=main-page-project%}
+
+{2 OClosure}
+
+An OCaml binding of the Google Closure widget library. (unmaintained)
+
+{%wodoc:end%}{%wodoc:end%}
+
+{%wodoc:end%}

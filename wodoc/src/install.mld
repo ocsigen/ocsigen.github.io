@@ -1,0 +1,32 @@
+{0 Installing Ocsigen}
+
+All Ocsigen packages are available via {{:https://opam.ocaml.org/}opam}, the
+OCaml package manager.
+
+{2 Full-stack Web and mobile apps}
+
+For client-server applications with mobile support, start with
+{{:../ocsigen-start/}Ocsigen Start}:
+
+{@sh[
+$ opam install ocsigen-start
+]}
+
+Then read the {{:../tuto/latest/manual/basics}getting started guide}.
+
+{2 Server-side websites}
+
+For traditional websites with minimal client-side code,
+{{:../eliom/}Eliom} alone is enough:
+
+{@sh[
+$ opam install ocsipersist-sqlite-config eliom
+]}
+
+See the {{:../tuto/latest/manual/basics-server}server-side programming
+documentation}.
+
+{2 More resources}
+
+Browse all {{:../tuto/}tutorials} to find the best starting point for your
+project.
