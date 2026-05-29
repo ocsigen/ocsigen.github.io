@@ -1,8 +1,13 @@
-/* Documentation-specific tweaks for the themed Ocsigen Server doc pages.
-   The page chrome comes from /css/style.css; odoc.support/odoc.css styles the
-   API signatures and code. This file glues the two together. */
+/* Styling for the themed Ocsigen Server documentation.
 
-/* Project sub-header: title + version selector */
+   The page chrome and base typography come from the site stylesheet
+   (/css/style.css). We deliberately do NOT load odoc's own stylesheet: it
+   resets every element and lays the whole page out as a grid, which fights the
+   site chrome. odoc's content fragment only needs styling for a small set of
+   API-signature classes (.spec, .odoc-spec, .spec-doc); everything else
+   (prose, lists, code, headings) is plain HTML the site already styles. */
+
+/* ---- Project sub-header: title + version selector ---- */
 .project-subheader {
   display: flex;
   align-items: baseline;
@@ -15,7 +20,7 @@
 .project-subheader .project-title a { text-decoration: none; }
 .docversion select { font: inherit; padding: 0.2em 0.4em; }
 
-/* Two columns: a sticky local table of contents on the left, content right. */
+/* ---- Two columns: sticky local TOC on the left, content on the right ---- */
 .project-page .twocols {
   display: flex;
   align-items: flex-start;
@@ -31,9 +36,44 @@
 .project-page .leftcol:empty { display: none; }
 .project-page .rightcol {
   flex: 1 1 auto;
-  min-width: 0; /* allow code blocks to scroll instead of overflowing */
+  min-width: 0; /* let code blocks scroll instead of overflowing */
 }
 
-/* Keep odoc's local toc readable inside the left column. */
-.project-page .leftcol .odoc-toc ul { list-style: none; padding-left: 1rem; }
-.project-page .leftcol .odoc-toc > ul { padding-left: 0; }
+/* Local table of contents */
+.odoc-toc ul { list-style: none; padding-left: 1rem; margin: 0.2em 0; }
+.odoc-toc > ul { padding-left: 0; }
+.odoc-toc a { text-decoration: none; }
+.odoc-toc a:hover { text-decoration: underline; }
+
+/* ---- API signatures (val / type / module declarations) ---- */
+.odoc-spec { margin: 1.4em 0; }
+
+.spec {
+  font-family: "DejaVu Sans Mono", "Consolas", monospace;
+  font-size: 0.92em;
+  line-height: 1.5;
+  background: #f6f9fc;
+  border-left: 3px solid #0e7eff;
+  border-radius: 0 3px 3px 0;
+  padding: 0.5em 0.8em;
+  overflow-x: auto;
+}
+.spec.type   { border-left-color: #ff8d52; }
+.spec.module { border-left-color: #094489; }
+.spec code { background: none; padding: 0; font: inherit; }
+
+.spec .keyword { color: #094489; font-weight: bold; }
+.spec .arrow { color: #888; }
+.spec .label, .spec .optlabel { color: #2e8eff; }
+.spec .xref-unresolved { color: inherit; border-bottom: 1px dotted #bbb; }
+
+/* The documentation attached to a declaration */
+.spec-doc { margin: 0.3em 0 0 1.2em; }
+.spec-doc > *:first-child { margin-top: 0; }
+
+/* Heading hover-anchors odoc leaves in the content */
+.rightcol a.anchor { opacity: 0; text-decoration: none; padding-right: 0.3em; }
+.rightcol :hover > a.anchor { opacity: 0.4; }
+
+/* odoc's up/index breadcrumb nav at the top of API pages */
+.rightcol nav.odoc-nav { font-size: 0.85em; color: #555; margin-bottom: 1em; }

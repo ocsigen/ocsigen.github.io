@@ -8,6 +8,7 @@
 # in the site template by `wodoc assemble`, mirroring odoc's directory layout
 # so odoc's relative page-to-page links keep working. Asset paths in the
 # template are absolute (/wodoc/..., /css/...), so they are depth-independent.
+# odoc's own stylesheet is intentionally not used (see ocsigenserver.css).
 #
 # Usage: build.sh <label> <git-ref> [opam-switch]
 #   label        output subdir and version label (e.g. latest, dev)
@@ -41,7 +42,6 @@ HTML="$WT/_build/default/_doc/_html"
 
 rm -rf "$OUT"
 mkdir -p "$OUT"
-cp -r "$HTML/odoc.support" "$OUT/odoc.support"
 
 # Per-version template: substitute the absolute base path and pre-select the
 # current version in the version selector.
