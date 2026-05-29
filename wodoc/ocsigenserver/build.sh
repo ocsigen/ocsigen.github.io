@@ -51,10 +51,15 @@ sed -e "s#{{base}}#$BASE#g" \
     "$HERE/template.html" >"$TMPL"
 
 # Assemble every generated page, mirroring odoc's ocsigenserver/ subtree.
+# The "current" id is the page's own name so the matching entry is highlighted
+# in the left-column navigation: a manual page x.html -> x; module pages keep
+# their subtree name (not in the manual nav, so nothing is highlighted).
 (cd "$HTML/ocsigenserver" && find . -name '*.html') | while read -r page; do
   rel="${page#./}"
-  mkdir -p "$OUT/$(dirname "$rel")"
-  "$WODOC" assemble --template "$TMPL" --current ocsigenserver \
+  dir="$(dirname "$rel")"
+  if [ "$dir" = "." ]; then current="$(basename "$rel" .html)"; else current="$dir"; fi
+  mkdir -p "$OUT/$dir"
+  "$WODOC" assemble --template "$TMPL" --current "$current" \
     "$HTML/ocsigenserver/$rel" >"$OUT/$rel"
 done
 

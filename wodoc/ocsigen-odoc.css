@@ -20,34 +20,20 @@
   color: #ff8d52;
 }
 
-/* ---- Version selector (top of the left column) ---- */
+/* The page layout (.project-page, .twocols, .leftcol, .rightcol) is provided by
+   the site stylesheet; we only add what is specific to the doc pages below. */
+
+/* ---- Left column: version selector + manual navigation (doctree) ---- */
 .leftcol .docversion { margin-bottom: 1.2em; }
 .docversion select { font: inherit; padding: 0.2em 0.4em; }
 
-/* ---- Two columns: sticky local TOC on the left, content on the right ---- */
-.project-page .twocols {
-  display: flex;
-  align-items: flex-start;
-  gap: 2rem;
-  padding: 1rem 2rem 3rem;
+.leftcol .doctree a { text-decoration: none; }
+.leftcol .doctree a:hover { text-decoration: underline; }
+.leftcol .doctree h3 { font-weight: normal; }
+.leftcol .doctree .current > a {
+  font-weight: bold;
+  color: #ff8d52;
 }
-.project-page .leftcol {
-  flex: 0 0 16rem;
-  position: sticky;
-  top: 1rem;
-  font-size: 0.9em;
-}
-.project-page .leftcol:empty { display: none; }
-.project-page .rightcol {
-  flex: 1 1 auto;
-  min-width: 0; /* let code blocks scroll instead of overflowing */
-}
-
-/* Local table of contents */
-.odoc-toc ul { list-style: none; padding-left: 1rem; margin: 0.2em 0; }
-.odoc-toc > ul { padding-left: 0; }
-.odoc-toc a { text-decoration: none; }
-.odoc-toc a:hover { text-decoration: underline; }
 
 /* ---- API signatures (val / type / module declarations) ---- */
 .odoc-spec { margin: 1.4em 0; }
