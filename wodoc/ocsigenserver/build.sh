@@ -8,7 +8,7 @@
 # in the site template by `wodoc assemble`, mirroring odoc's directory layout
 # so odoc's relative page-to-page links keep working. Asset paths in the
 # template are absolute (/wodoc/..., /css/...), so they are depth-independent.
-# odoc's own stylesheet is intentionally not used (see ocsigenserver.css).
+# odoc's own stylesheet is intentionally not used (see /wodoc/ocsigen-odoc.css).
 #
 # Usage: build.sh <label> <git-ref> [opam-switch]
 #   label        output subdir and version label (e.g. latest, dev)

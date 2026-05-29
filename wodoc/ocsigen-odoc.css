@@ -1,11 +1,24 @@
-/* Styling for the themed Ocsigen Server documentation.
+/* The Ocsigen theme for odoc/wodoc-generated documentation pages (manual + API),
+   layered on top of /css/style.css. wodoc (the tool) imposes no styling; this
+   theme belongs to the site and is shared by every project's doc
+   (ocsigenserver, eliom, toolkit, start, ...). The per-project differences live
+   in the HTML template (active menu entry, project title, version list).
 
-   The page chrome and base typography come from the site stylesheet
-   (/css/style.css). We deliberately do NOT load odoc's own stylesheet: it
-   resets every element and lays the whole page out as a grid, which fights the
-   site chrome. odoc's content fragment only needs styling for a small set of
-   API-signature classes (.spec, .odoc-spec, .spec-doc); everything else
-   (prose, lists, code, headings) is plain HTML the site already styles. */
+   We deliberately do NOT load odoc's own stylesheet: it resets every element
+   and lays the whole page out as a grid, which fights the site chrome. odoc's
+   content fragment only needs styling for a small set of API-signature classes
+   (.spec, .odoc-spec, .spec-doc); prose, lists, code and headings are plain
+   HTML the site stylesheet already handles. */
+
+/* ---- Active navigation entry (the "current" class wodoc adds on the element
+   carrying data-wodoc-page) mapped to the site's menu-current look ---- */
+.page-header .mainmenu p.current {
+  border-bottom: 4px solid #64caff;
+}
+.drawermainmenu li.current a {
+  font-weight: bold;
+  color: #ff8d52;
+}
 
 /* ---- Project sub-header: title + version selector ---- */
 .project-subheader {
