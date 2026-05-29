@@ -20,17 +20,8 @@
   color: #ff8d52;
 }
 
-/* ---- Project sub-header: title + version selector ---- */
-.project-subheader {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 1rem;
-  padding: 1rem 2rem 0;
-}
-.project-subheader .project-title { margin: 0; }
-.project-subheader .project-title a { text-decoration: none; }
+/* ---- Version selector (top of the left column) ---- */
+.leftcol .docversion { margin-bottom: 1.2em; }
 .docversion select { font: inherit; padding: 0.2em 0.4em; }
 
 /* ---- Two columns: sticky local TOC on the left, content on the right ---- */
