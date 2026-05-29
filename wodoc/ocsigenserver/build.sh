@@ -64,4 +64,21 @@ sed -e "s#{{base}}#$BASE#g" \
 done
 
 rm -f "$TMPL"
+
+# The project home redirects to the first manual page (Quick start). The API
+# reference lives on its own page (api.html); the manual navigation is the
+# left-column doctree, so the landing needs no table of contents of its own.
+cat >"$OUT/index.html" <<EOF
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="refresh" content="0; url=quickstart.html"/>
+  <link rel="canonical" href="quickstart.html"/>
+  <title>Ocsigen Server documentation</title>
+</head>
+<body><p>Redirecting to the <a href="quickstart.html">Ocsigen Server manual</a>.</p></body>
+</html>
+EOF
+
 echo "built $LABEL: $(find "$OUT" -name '*.html' | wc -l) pages -> $OUT"
