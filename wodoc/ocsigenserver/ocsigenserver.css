@@ -1,0 +1,39 @@
+/* Documentation-specific tweaks for the themed Ocsigen Server doc pages.
+   The page chrome comes from /css/style.css; odoc.support/odoc.css styles the
+   API signatures and code. This file glues the two together. */
+
+/* Project sub-header: title + version selector */
+.project-subheader {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem 2rem 0;
+}
+.project-subheader .project-title { margin: 0; }
+.project-subheader .project-title a { text-decoration: none; }
+.docversion select { font: inherit; padding: 0.2em 0.4em; }
+
+/* Two columns: a sticky local table of contents on the left, content right. */
+.project-page .twocols {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  padding: 1rem 2rem 3rem;
+}
+.project-page .leftcol {
+  flex: 0 0 16rem;
+  position: sticky;
+  top: 1rem;
+  font-size: 0.9em;
+}
+.project-page .leftcol:empty { display: none; }
+.project-page .rightcol {
+  flex: 1 1 auto;
+  min-width: 0; /* allow code blocks to scroll instead of overflowing */
+}
+
+/* Keep odoc's local toc readable inside the left column. */
+.project-page .leftcol .odoc-toc ul { list-style: none; padding-left: 1rem; }
+.project-page .leftcol .odoc-toc > ul { padding-left: 0; }
