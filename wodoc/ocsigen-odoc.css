@@ -35,6 +35,20 @@
   color: #ff8d52;
 }
 
+/* ---- In-page outline (odoc's local TOC) at the top of the content ---- */
+.rightcol .odoc-tocs {
+  margin: 0 0 1.5em;
+  padding: 0.6em 1em;
+  background: #f6f9fc;
+  border-left: 3px solid #64caff;
+  border-radius: 0 3px 3px 0;
+  font-size: 0.92em;
+}
+.rightcol .odoc-toc ul { list-style: none; margin: 0.2em 0; padding-left: 1.2em; }
+.rightcol .odoc-toc > ul { padding-left: 0; }
+.rightcol .odoc-toc a { text-decoration: none; }
+.rightcol .odoc-toc a:hover { text-decoration: underline; }
+
 /* ---- API signatures (val / type / module declarations) ---- */
 .odoc-spec { margin: 1.4em 0; }
 
