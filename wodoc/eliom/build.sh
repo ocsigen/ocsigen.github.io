@@ -97,19 +97,19 @@ done
 
 rm -f "$TMPL_SERVER" "$TMPL_CLIENT" "$TMPL_OTHER" "$NAV_SERVER" "$NAV_CLIENT"
 
-# 4. Redirect cross-references to Ocsigen-family dependencies from ocaml.org to
-#    ocsigen.org (the module path after /doc/ is identical to our wodoc output).
-#    Non-Ocsigen deps (stdlib, react, cohttp…) keep their ocaml.org links.
-#    NOTE: starter table — refine the targets as each project moves to wodoc.
+# 4. Cross-project links must work on BOTH ocaml.org and ocsigen.org. odoc's
+#    --remap already points dependency links at ocaml.org, which is a valid
+#    absolute target from either site, so we keep that by default. A dependency
+#    is redirected to ocsigen.org ONLY once its own wodoc documentation is
+#    actually deployed there at the matching path (otherwise the link would 404
+#    on ocsigen.org). The module path after /doc/ is identical between odoc and
+#    our wodoc output, so the redirect is a clean prefix rewrite. Add entries
+#    here as each project goes live under /wodoc/<project>/.
 redirect_dep() { # <pkg> <ocsigen.org base (no trailing slash)>
   find "$OUT" -name '*.html' -exec sed -i -E \
     "s#https://ocaml.org/p/$1/[^/]+/doc/#$2/#g" {} +
 }
-redirect_dep ocsigenserver  "https://ocsigen.org/wodoc/ocsigenserver/latest"
-redirect_dep lwt            "https://ocsigen.org/lwt"
-redirect_dep tyxml          "https://ocsigen.org/tyxml"
-redirect_dep js_of_ocaml    "https://ocsigen.org/js_of_ocaml"
-redirect_dep reactiveData   "https://ocsigen.org/reactiveData"
-redirect_dep ocsipersist    "https://ocsigen.org/ocsipersist"
+# (none yet — all Ocsigen deps keep their ocaml.org links until their wodoc doc
+#  is deployed, e.g. redirect_dep ocsigenserver "https://ocsigen.org/wodoc/ocsigenserver/latest")
 
 echo "built eliom $LABEL: $(find "$OUT" -name '*.html' | wc -l) pages -> $OUT"
