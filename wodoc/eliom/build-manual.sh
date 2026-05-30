@@ -49,14 +49,23 @@ for ol in "$WORK"/odoc/page-*.odocl; do
 done
 
 # 3. manual navigation (from the wikicreole menu) + per-version template
-NAV="$(mktemp)"
+# The left column shows both the manual nav (from menu.wiki) and the API nav
+# (server side by default; from the deriving branch's server.indexdoc), so one
+# can jump from the manual to the API. The unified template.html is used with an
+# empty side (manual prose carries no server/client colour).
+API_REF="${API_REF:-deriving}"
+NAV_MANUAL="$(mktemp)"; NAV_API="$(mktemp)"
 git -C "$ELIOM_SRC" show "$REF:doc/dev/manual/menu.wiki" > "$WORK/menu.wiki"
-python3 "$HERE/gen-manual-nav.py" "$WORK/menu.wiki" "$BASE" > "$NAV"
+git -C "$ELIOM_SRC" show "$API_REF:doc/server.indexdoc" > "$WORK/server.indexdoc"
+python3 "$HERE/gen-manual-nav.py" "$WORK/menu.wiki" "$BASE" > "$NAV_MANUAL"
+python3 "$HERE/gen-nav.py" "$WORK/server.indexdoc" "$BASE" eliom.server > "$NAV_API"
 TMPL="$(mktemp)"
 sed -e "s#{{base}}#$BASE#g" \
+    -e "s#{{side}}##g" \
     -e "s#<option value=\"$BASE/#<option selected value=\"$BASE/#" \
-    -e "/{{nav}}/r $NAV" -e "/{{nav}}/d" \
-    "$HERE/template-manual.html" > "$TMPL"
+    -e "/{{manual_nav}}/r $NAV_MANUAL" -e "/{{manual_nav}}/d" \
+    -e "/{{api_nav}}/r $NAV_API" -e "/{{api_nav}}/d" \
+    "$HERE/template.html" > "$TMPL"
 
 # 4. assemble each generated page
 for f in "$WORK"/html/*.html; do
@@ -64,5 +73,5 @@ for f in "$WORK"/html/*.html; do
   "$WODOC" assemble --template "$TMPL" --current eliom "$f" > "$OUT/$name"
 done
 
-rm -f "$NAV" "$TMPL"
+rm -f "$NAV_MANUAL" "$NAV_API" "$TMPL"
 echo "built eliom manual $LABEL: $(find "$OUT" -name '*.html' | wc -l) pages -> $OUT"

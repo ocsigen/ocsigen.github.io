@@ -58,23 +58,27 @@ fi
 rm -rf "$OUT"
 mkdir -p "$OUT"
 
-# 2. Curated, section-grouped module navigation per side, from the project's
-#    index (excludes internal modules). Built once; injected into the template.
-NAV_SERVER="$(mktemp)"; NAV_CLIENT="$(mktemp)"
+# 2. Left-column navigation: the manual (from menu.wiki) AND the curated,
+#    section-grouped module list per side (from server/client.indexdoc, internal
+#    modules excluded). Both are shown on every page so one can move between the
+#    manual and the API. Built once; injected into the template.
+NAV_MANUAL="$(mktemp)"; NAV_SERVER="$(mktemp)"; NAV_CLIENT="$(mktemp)"
 git -C "$ELIOM_SRC" show "$ELIOM_REF:doc/server.indexdoc" >"$WORK/server.indexdoc"
 git -C "$ELIOM_SRC" show "$ELIOM_REF:doc/client.indexdoc" >"$WORK/client.indexdoc"
+git -C "$ELIOM_SRC" show "wikidoc:doc/dev/manual/menu.wiki" >"$WORK/menu.wiki"
 python3 "$HERE/gen-nav.py" "$WORK/server.indexdoc" "$BASE" eliom.server >"$NAV_SERVER"
 python3 "$HERE/gen-nav.py" "$WORK/client.indexdoc" "$BASE" eliom.client >"$NAV_CLIENT"
+python3 "$HERE/gen-manual-nav.py" "$WORK/menu.wiki" "$BASE" >"$NAV_MANUAL"
 
 # 3. Per-side templates: substitute the absolute base path and side class, select
-#    the current version, and inject the side's module navigation at {{nav}}.
+#    the current version, and inject the manual nav and the side's module nav.
 mk_template() {
-  side="$1"; navfile="$2"
+  side="$1"; apinav="$2"
   sed -e "s#{{base}}#$BASE#g" \
       -e "s#{{side}}#$side#g" \
       -e "s#<option value=\"$BASE/#<option selected value=\"$BASE/#" \
-      -e "/{{nav}}/r $navfile" \
-      -e "/{{nav}}/d" \
+      -e "/{{manual_nav}}/r $NAV_MANUAL" -e "/{{manual_nav}}/d" \
+      -e "/{{api_nav}}/r $apinav" -e "/{{api_nav}}/d" \
       "$HERE/template.html"
 }
 TMPL_SERVER="$(mktemp)"; mk_template server "$NAV_SERVER" >"$TMPL_SERVER"
@@ -95,21 +99,26 @@ TMPL_OTHER="$(mktemp)";  mk_template ""      "$NAV_SERVER" >"$TMPL_OTHER"
   "$WODOC" assemble --template "$tmpl" --current eliom "$SRC/$rel" >"$OUT/$rel"
 done
 
-rm -f "$TMPL_SERVER" "$TMPL_CLIENT" "$TMPL_OTHER" "$NAV_SERVER" "$NAV_CLIENT"
+rm -f "$TMPL_SERVER" "$TMPL_CLIENT" "$TMPL_OTHER" \
+      "$NAV_MANUAL" "$NAV_SERVER" "$NAV_CLIENT"
 
-# 4. Cross-project links must work on BOTH ocaml.org and ocsigen.org. odoc's
-#    --remap already points dependency links at ocaml.org, which is a valid
-#    absolute target from either site, so we keep that by default. A dependency
-#    is redirected to ocsigen.org ONLY once its own wodoc documentation is
-#    actually deployed there at the matching path (otherwise the link would 404
-#    on ocsigen.org). The module path after /doc/ is identical between odoc and
-#    our wodoc output, so the redirect is a clean prefix rewrite. Add entries
-#    here as each project goes live under /wodoc/<project>/.
-redirect_dep() { # <pkg> <ocsigen.org base (no trailing slash)>
+# 4. Redirect cross-references to Ocsigen-family dependencies from ocaml.org
+#    (odoc --remap's target) to ocsigen.org, where they will all live under
+#    /wodoc/<project>/latest/. The module path after /doc/ is identical between
+#    odoc and our wodoc output, so this is a clean prefix rewrite. Until a
+#    project's wodoc doc is actually deployed these links 404 on ocsigen.org —
+#    acceptable for now, as the whole ecosystem is migrated before going live.
+#    Non-Ocsigen deps (stdlib, react, cohttp, …) keep their ocaml.org links so
+#    they work from both sites.
+redirect_dep() { # <pkg> <project> : ocaml.org/p/<pkg> -> ocsigen.org/wodoc/<project>/latest
   find "$OUT" -name '*.html' -exec sed -i -E \
-    "s#https://ocaml.org/p/$1/[^/]+/doc/#$2/#g" {} +
+    "s#https://ocaml.org/p/$1/[^/]+/doc/#https://ocsigen.org/wodoc/$2/latest/#g" {} +
 }
-# (none yet — all Ocsigen deps keep their ocaml.org links until their wodoc doc
-#  is deployed, e.g. redirect_dep ocsigenserver "https://ocsigen.org/wodoc/ocsigenserver/latest")
+redirect_dep ocsigenserver ocsigenserver
+redirect_dep lwt           lwt
+redirect_dep tyxml         tyxml
+redirect_dep js_of_ocaml   js_of_ocaml
+redirect_dep reactiveData  reactiveData
+redirect_dep ocsipersist   ocsipersist
 
 echo "built eliom $LABEL: $(find "$OUT" -name '*.html' | wc -l) pages -> $OUT"

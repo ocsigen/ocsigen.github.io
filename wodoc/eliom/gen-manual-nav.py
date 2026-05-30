@@ -11,7 +11,17 @@ import re
 import sys
 
 menu, base = sys.argv[1], sys.argv[2]
-out = ['<nav class="api-nav">', "<h3>Manual</h3>"]
+out = ['<nav class="api-nav manual-nav">', "<h3>Manual</h3>"]
+open_ul = False
+
+
+def close():
+    global open_ul
+    if open_ul:
+        out.append("</ul>")
+        open_ul = False
+
+
 for raw in open(menu):
     line = raw.rstrip("\n")
     m = re.match(r"^(=+)\s*(.*)$", line)
@@ -21,12 +31,16 @@ for raw in open(menu):
     link = re.match(r"\[\[([^|\]]+)\|([^\]]+)\]\]", text)
     if link:
         page, title = link.group(1).strip(), link.group(2).strip()
+        if not open_ul:
+            out.append('<ul class="api-section">')
+            open_ul = True
         out.append(
-            f'<a class="manual-link" href="{base}/manual/{page}.html">'
-            f"{html.escape(title)}</a>"
+            f'<li><a href="{base}/manual/{page}.html">{html.escape(title)}</a></li>'
         )
     elif text and "<<" not in text and "[[" not in text:
         # a plain section heading (== Server-side programming, === Services)
+        close()
         out.append(f"<h4>{html.escape(text)}</h4>")
+close()
 out.append("</nav>")
 sys.stdout.write("\n".join(out) + "\n")
