@@ -93,3 +93,29 @@
 
 /* odoc's up/index breadcrumb nav at the top of API pages */
 .rightcol nav.odoc-nav { font-size: 0.85em; color: #555; margin-bottom: 1em; }
+
+/* ---- Client/server API distinction (Eliom, Toolkit, …) ----
+   Server-side API on a blue background, client-side on a yellow one. Pages
+   without a side (e.g. Ocsigen Server) keep the default blue .spec above. */
+.wodoc-server .spec { background: #f1f7ff; border-left-color: #0e7eff; }
+.wodoc-client .spec { background: #fff9e6; border-left-color: #e8b500; }
+
+/* Server/client switch (in the left column) */
+.cs-switch { display: flex; margin-bottom: 1em; }
+.cs-switch button {
+  flex: 1;
+  font: inherit;
+  padding: 0.3em 0.5em;
+  border: 1px solid #cbd6e2;
+  background: #eef2f7;
+  color: #333;
+  cursor: pointer;
+}
+.cs-switch .cs-server { border-radius: 4px 0 0 4px; border-right: none; }
+.cs-switch .cs-client { border-radius: 0 4px 4px 0; }
+/* highlight the current side */
+.wodoc-server .cs-switch .cs-server { background: #0e7eff; color: #fff; border-color: #0e7eff; }
+.wodoc-client .cs-switch .cs-client { background: #e8b500; color: #fff; border-color: #e8b500; }
+
+.leftcol .api-home { margin: 0.2em 0; font-size: 0.9em; }
+.leftcol .api-home a { text-decoration: none; }
