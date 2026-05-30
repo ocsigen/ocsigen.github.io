@@ -37,7 +37,10 @@ for path in $PAGES; do
   git -C "$ELIOM_SRC" show "$REF:$path" > "$WORK/$name.wiki"
   "$WODOC" convert "$WORK/$name.wiki" > "$WORK/$name.mld"
   "$WODOC" preprocess "$WORK/$name.mld" > "$WORK/pp-$name.mld"
-  odoc compile "$WORK/pp-$name.mld" -I "$WORK/odoc" -o "$WORK/odoc/page-$name.odoc" 2>/dev/null
+  # --package gives the pages a common parent so inter-chapter {{!page-X}}
+  # references resolve.
+  odoc compile "$WORK/pp-$name.mld" --package eliom -I "$WORK/odoc" \
+    -o "$WORK/odoc/page-$name.odoc" 2>/dev/null
 done
 
 # 2. link + html-generate
@@ -67,8 +70,8 @@ sed -e "s#{{base}}#$BASE#g" \
     -e "/{{api_nav}}/r $NAV_API" -e "/{{api_nav}}/d" \
     "$HERE/template.html" > "$TMPL"
 
-# 4. assemble each generated page
-for f in "$WORK"/html/*.html; do
+# 4. assemble each generated page (odoc puts them under html/<package>/)
+for f in "$WORK"/html/eliom/*.html; do
   name=$(basename "$f")
   "$WODOC" assemble --template "$TMPL" --current eliom "$f" > "$OUT/$name"
 done
