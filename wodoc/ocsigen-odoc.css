@@ -61,6 +61,25 @@
 .rightcol .odoc-toc a { text-decoration: none; }
 .rightcol .odoc-toc a:hover { text-decoration: underline; }
 
+/* odoc's global sidebar (whole package tree) in the left column. It nests
+   package "eliom" > "Library eliom.X" > module > submodules. We collapse the
+   chrome: drop the package level, show only the current library's subtree
+   (the one holding the current module), and hide the "Library eliom.X" labels
+   — the project name is in the header and the side in the switch. */
+.leftcol .odoc-toc ul { list-style: none; padding-left: 1rem; margin: 0.2em 0; }
+.leftcol .odoc-toc a { text-decoration: none; }
+.leftcol .odoc-toc a:hover { text-decoration: underline; }
+.leftcol .odoc-toc .current_unit { font-weight: bold; }
+/* hide the package "eliom" link at the very top */
+.leftcol .odoc-global-toc > ul > li > a { display: none; }
+.leftcol .odoc-global-toc > ul > li > ul { padding-left: 0; }
+/* show only the library subtree that contains the current module */
+.leftcol .odoc-global-toc > ul > li > ul > li:not(:has(.current_unit)) { display: none; }
+/* hide the "Library eliom.X" label (direct contents of the library <li>),
+   keep its module list (restored on the inner <ul>) */
+.leftcol .odoc-global-toc > ul > li > ul > li { font-size: 0; }
+.leftcol .odoc-global-toc > ul > li > ul > li > ul { font-size: 0.9rem; padding-left: 0; }
+
 /* ---- API signatures (val / type / module declarations) ---- */
 .odoc-spec { margin: 1.4em 0; }
 
@@ -76,7 +95,14 @@
 }
 .spec.type   { border-left-color: #ff8d52; }
 .spec.module { border-left-color: #094489; }
-.spec code { background: none; padding: 0; font: inherit; }
+.spec code {
+  background: none;
+  padding: 0;
+  font: inherit;
+  /* preserve the line breaks/indentation odoc inserts in long signatures
+     (e.g. one labelled argument per line) instead of collapsing them */
+  white-space: pre-wrap;
+}
 
 .spec .keyword { color: #094489; font-weight: bold; }
 .spec .arrow { color: #888; }
@@ -97,8 +123,9 @@
 /* ---- Client/server API distinction (Eliom, Toolkit, …) ----
    Server-side API on a blue background, client-side on a yellow one. Pages
    without a side (e.g. Ocsigen Server) keep the default blue .spec above. */
-.wodoc-server .spec { background: #f1f7ff; border-left-color: #0e7eff; }
-.wodoc-client .spec { background: #fff9e6; border-left-color: #e8b500; }
+/* Same palette as the site's pre.server / pre.client code blocks. */
+.wodoc-server .spec { background: #ddeeff; border-left-color: #5cacee; }
+.wodoc-client .spec { background: #ffffdd; border-left-color: #d4df67; }
 
 /* Server/client switch (in the left column) */
 .cs-switch { display: flex; margin-bottom: 1em; }
@@ -113,9 +140,6 @@
 }
 .cs-switch .cs-server { border-radius: 4px 0 0 4px; border-right: none; }
 .cs-switch .cs-client { border-radius: 0 4px 4px 0; }
-/* highlight the current side */
-.wodoc-server .cs-switch .cs-server { background: #0e7eff; color: #fff; border-color: #0e7eff; }
-.wodoc-client .cs-switch .cs-client { background: #e8b500; color: #fff; border-color: #e8b500; }
-
-.leftcol .api-home { margin: 0.2em 0; font-size: 0.9em; }
-.leftcol .api-home a { text-decoration: none; }
+/* highlight the current side, matching the site's switch colours */
+.wodoc-server .cs-switch .cs-server { background: #5cacee; color: #fff; border-color: #5cacee; }
+.wodoc-client .cs-switch .cs-client { background: #d4df67; color: #333; border-color: #d4df67; }
