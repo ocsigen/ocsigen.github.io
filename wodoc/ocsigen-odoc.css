@@ -109,7 +109,9 @@
 .leftcol .api-nav ul.api-section { list-style: none; padding-left: 0; margin: 0.2em 0; }
 .leftcol .api-nav li { line-height: 1.5; }
 
-/* Current location: highlighted entry, with an accent bar tying it to the nav. */
+/* Current location: highlighted entry, with an accent bar tying it to the nav.
+   The accent follows the side (blue on server, yellow on client) to match the
+   page's API colour and not confuse the reader. */
 .leftcol .api-nav li.current > a {
   display: block;
   font-weight: bold;
@@ -119,6 +121,11 @@
   margin-left: -0.5em;
   padding: 0.1em 0.4em 0.1em calc(0.5em - 3px);
   border-radius: 0 3px 3px 0;
+}
+.wodoc-client .leftcol .api-nav li.current > a {
+  color: #8a6a00;
+  background: #fff8df;
+  border-left-color: #e8b500;
 }
 
 /* ---- API signatures (val / type / module declarations) ---- */
@@ -169,7 +176,10 @@
 .wodoc-client .spec { background: #ffffdd; border-left-color: #d4df67; }
 
 /* Server/client switch (in the left column) */
-.cs-switch { display: flex; margin-bottom: 1em; }
+/* The server/client switch only makes sense on API pages, not in the manual. */
+.cs-switch { display: none; margin-bottom: 1em; }
+.wodoc-server .cs-switch,
+.wodoc-client .cs-switch { display: flex; }
 .cs-switch button {
   flex: 1;
   font: inherit;
@@ -183,4 +193,4 @@
 .cs-switch .cs-client { border-radius: 0 4px 4px 0; }
 /* highlight the current side, matching the site's switch colours */
 .wodoc-server .cs-switch .cs-server { background: #5cacee; color: #fff; border-color: #5cacee; }
-.wodoc-client .cs-switch .cs-client { background: #d4df67; color: #333; border-color: #d4df67; }
+.wodoc-client .cs-switch .cs-client { background: #ffcf40; color: #333; border-color: #ffcf40; }
