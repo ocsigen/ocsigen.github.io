@@ -124,8 +124,13 @@
 }
 .wodoc-client .leftcol .api-nav li.current > a {
   color: #8a6a00;
-  background: #fff8df;
-  border-left-color: #e8b500;
+  background: #ffffdd; /* old charter: pre.client background */
+  border-left-color: #ffec8b; /* old charter: pre.client border */
+}
+/* the page outline box follows the side colour too (blue server, yellow client) */
+.wodoc-client .leftcol .page-toc {
+  background: #ffffdd;
+  border-left-color: #ffec8b;
 }
 
 /* ---- API signatures (val / type / module declarations) ---- */
@@ -193,4 +198,4 @@
 .cs-switch .cs-client { border-radius: 0 4px 4px 0; }
 /* highlight the current side, matching the site's switch colours */
 .wodoc-server .cs-switch .cs-server { background: #5cacee; color: #fff; border-color: #5cacee; }
-.wodoc-client .cs-switch .cs-client { background: #ffcf40; color: #333; border-color: #ffcf40; }
+.wodoc-client .cs-switch .cs-client { background: #ffec8b; color: #333; border-color: #ffec8b; }
