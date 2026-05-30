@@ -33,29 +33,53 @@ BASE="/wodoc/eliom/$LABEL"
 
 eval "$(opam env --switch="$SWITCH" --set-switch)"
 
+# Eliom source (for the curated per-side index) and the git ref matching the
+# switch (modernize builds the deriving/dev API, 5.4.0 the released master).
+ELIOM_SRC="${ELIOM_SRC:-/home/balat/prog/kroko/ocsigen/eliom}"
+case "$SWITCH" in
+  *modernize*) ELIOM_REF="${ELIOM_REF:-deriving}" ;;
+  *)           ELIOM_REF="${ELIOM_REF:-master}" ;;
+esac
+
 WORK="$(mktemp -d /home/balat/temp/eliom-doc-XXXXXX)"
 trap 'rm -rf "$WORK"' EXIT
 
 # 1. Build the API with odoc-driver (only eliom's own pages, deps -> ocaml.org).
-odoc_driver eliom --remap --html-dir "$WORK/html" >/dev/null 2>&1
-SRC="$WORK/html/eliom"
-[ -d "$SRC" ] || { echo "odoc_driver produced no eliom output" >&2; exit 1; }
+#    Set REUSE_HTML=<dir> (containing eliom/) to skip this slow step when only
+#    iterating on the theme/template.
+if [ -n "$REUSE_HTML" ]; then
+  SRC="$REUSE_HTML/eliom"
+else
+  odoc_driver eliom --remap --html-dir "$WORK/html" >/dev/null 2>&1
+  SRC="$WORK/html/eliom"
+fi
+[ -d "$SRC" ] || { echo "no eliom output in $SRC" >&2; exit 1; }
 
 rm -rf "$OUT"
 mkdir -p "$OUT"
 
-# 2. Per-side templates: substitute the absolute base path, the current version
-#    in the selector, and the side class (for server/client colouring).
+# 2. Curated, section-grouped module navigation per side, from the project's
+#    index (excludes internal modules). Built once; injected into the template.
+NAV_SERVER="$(mktemp)"; NAV_CLIENT="$(mktemp)"
+git -C "$ELIOM_SRC" show "$ELIOM_REF:doc/server.indexdoc" >"$WORK/server.indexdoc"
+git -C "$ELIOM_SRC" show "$ELIOM_REF:doc/client.indexdoc" >"$WORK/client.indexdoc"
+python3 "$HERE/gen-nav.py" "$WORK/server.indexdoc" "$BASE" eliom.server >"$NAV_SERVER"
+python3 "$HERE/gen-nav.py" "$WORK/client.indexdoc" "$BASE" eliom.client >"$NAV_CLIENT"
+
+# 3. Per-side templates: substitute the absolute base path and side class, select
+#    the current version, and inject the side's module navigation at {{nav}}.
 mk_template() {
-  side="$1"
+  side="$1"; navfile="$2"
   sed -e "s#{{base}}#$BASE#g" \
       -e "s#{{side}}#$side#g" \
       -e "s#<option value=\"$BASE/#<option selected value=\"$BASE/#" \
+      -e "/{{nav}}/r $navfile" \
+      -e "/{{nav}}/d" \
       "$HERE/template.html"
 }
-TMPL_SERVER="$(mktemp)"; mk_template server >"$TMPL_SERVER"
-TMPL_CLIENT="$(mktemp)"; mk_template client >"$TMPL_CLIENT"
-TMPL_OTHER="$(mktemp)";  mk_template ""      >"$TMPL_OTHER"
+TMPL_SERVER="$(mktemp)"; mk_template server "$NAV_SERVER" >"$TMPL_SERVER"
+TMPL_CLIENT="$(mktemp)"; mk_template client "$NAV_CLIENT" >"$TMPL_CLIENT"
+TMPL_OTHER="$(mktemp)";  mk_template ""      "$NAV_SERVER" >"$TMPL_OTHER"
 
 # 3. Assemble every page, mirroring odoc-driver's eliom/ subtree so the relative
 #    cross-links keep working. The side (from the path) selects the template,
@@ -71,7 +95,7 @@ TMPL_OTHER="$(mktemp)";  mk_template ""      >"$TMPL_OTHER"
   "$WODOC" assemble --template "$tmpl" --current eliom "$SRC/$rel" >"$OUT/$rel"
 done
 
-rm -f "$TMPL_SERVER" "$TMPL_CLIENT" "$TMPL_OTHER"
+rm -f "$TMPL_SERVER" "$TMPL_CLIENT" "$TMPL_OTHER" "$NAV_SERVER" "$NAV_CLIENT"
 
 # 4. Redirect cross-references to Ocsigen-family dependencies from ocaml.org to
 #    ocsigen.org (the module path after /doc/ is identical to our wodoc output).

@@ -61,24 +61,31 @@
 .rightcol .odoc-toc a { text-decoration: none; }
 .rightcol .odoc-toc a:hover { text-decoration: underline; }
 
-/* odoc's global sidebar (whole package tree) in the left column. It nests
-   package "eliom" > "Library eliom.X" > module > submodules. We collapse the
-   chrome: drop the package level, show only the current library's subtree
-   (the one holding the current module), and hide the "Library eliom.X" labels
-   — the project name is in the header and the side in the switch. */
+/* Left column = the page's own table of contents ("On this page") followed by
+   a curated, section-grouped module list (.api-nav, built from the project's
+   index by build.sh). odoc's verbose global sidebar is hidden in favour of it. */
 .leftcol .odoc-toc ul { list-style: none; padding-left: 1rem; margin: 0.2em 0; }
 .leftcol .odoc-toc a { text-decoration: none; }
 .leftcol .odoc-toc a:hover { text-decoration: underline; }
-.leftcol .odoc-toc .current_unit { font-weight: bold; }
-/* hide the package "eliom" link at the very top */
-.leftcol .odoc-global-toc > ul > li > a { display: none; }
-.leftcol .odoc-global-toc > ul > li > ul { padding-left: 0; }
-/* show only the library subtree that contains the current module */
-.leftcol .odoc-global-toc > ul > li > ul > li:not(:has(.current_unit)) { display: none; }
-/* hide the "Library eliom.X" label (direct contents of the library <li>),
-   keep its module list (restored on the inner <ul>) */
-.leftcol .odoc-global-toc > ul > li > ul > li { font-size: 0; }
-.leftcol .odoc-global-toc > ul > li > ul > li > ul { font-size: 0.9rem; padding-left: 0; }
+.leftcol .odoc-global-toc { display: none; }
+/* "On this page": hide the whole block (incl. its heading) when the page has no
+   local sections */
+.leftcol .page-toc h3 { font-size: 1em; margin: 0 0 0.3em; }
+.leftcol .page-toc { margin-bottom: 1.2em; }
+.leftcol .page-toc:not(:has(.odoc-local-toc a)) { display: none; }
+
+/* Curated module navigation */
+.leftcol .api-nav h3 { font-size: 1em; margin: 0 0 0.3em; }
+.leftcol .api-nav h4 {
+  font-size: 0.85em;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #777;
+  margin: 1em 0 0.2em;
+}
+.leftcol .api-nav ul.api-section { list-style: none; padding-left: 0.5rem; margin: 0.2em 0; }
+.leftcol .api-nav a { text-decoration: none; }
+.leftcol .api-nav a:hover { text-decoration: underline; }
 
 /* ---- API signatures (val / type / module declarations) ---- */
 .odoc-spec { margin: 1.4em 0; }
