@@ -35,6 +35,18 @@
   color: #ff8d52;
 }
 
+/* ---- Inline code: light blue, matching the previous site's .teletype ---- */
+.rightcol code {
+  color: #0ca9dc;
+  font-family: monospace;
+}
+/* but not block code or API signatures, which keep their own colours */
+.rightcol pre code,
+.rightcol .spec code {
+  color: inherit;
+  font-family: inherit;
+}
+
 /* ---- In-page outline (odoc's local TOC) at the top of the content ---- */
 .rightcol .odoc-tocs {
   margin: 0 0 1.5em;
