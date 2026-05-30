@@ -178,7 +178,7 @@
    without a side (e.g. Ocsigen Server) keep the default blue .spec above. */
 /* Same palette as the site's pre.server / pre.client code blocks. */
 .wodoc-server .spec { background: #ddeeff; border-left-color: #5cacee; }
-.wodoc-client .spec { background: #ffffdd; border-left-color: #d4df67; }
+.wodoc-client .spec { background: #ffffdd; border-left-color: #ffec8b; }
 
 /* Server/client switch (in the left column) */
 /* The server/client switch only makes sense on API pages, not in the manual. */
