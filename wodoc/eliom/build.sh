@@ -95,8 +95,14 @@ TMPL_OTHER="$(mktemp)";  mk_template ""      "$NAV_SERVER" >"$TMPL_OTHER"
     eliom.client*) tmpl="$TMPL_CLIENT" ;;
     *)             tmpl="$TMPL_OTHER" ;;
   esac
+  # the current module (Eliom.X / Eliom.X.Y) is highlighted in the API nav
+  current=""
+  case "$rel" in
+    eliom.server/Eliom/*/index.html | eliom.client/Eliom/*/index.html)
+      m="${rel#eliom.*/Eliom/}"; m="${m%/index.html}"; current="${m//\//.}" ;;
+  esac
   mkdir -p "$OUT/$(dirname "$rel")"
-  "$WODOC" assemble --template "$tmpl" --current eliom "$SRC/$rel" >"$OUT/$rel"
+  "$WODOC" assemble --template "$tmpl" --current "$current" "$SRC/$rel" >"$OUT/$rel"
 done
 
 rm -f "$TMPL_SERVER" "$TMPL_CLIENT" "$TMPL_OTHER" \

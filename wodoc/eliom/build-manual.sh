@@ -70,10 +70,11 @@ sed -e "s#{{base}}#$BASE#g" \
     -e "/{{api_nav}}/r $NAV_API" -e "/{{api_nav}}/d" \
     "$HERE/template.html" > "$TMPL"
 
-# 4. assemble each generated page (odoc puts them under html/<package>/)
+# 4. assemble each generated page (odoc puts them under html/<package>/); the
+#    current page is highlighted in the manual nav via --current <page>.
 for f in "$WORK"/html/eliom/*.html; do
   name=$(basename "$f")
-  "$WODOC" assemble --template "$TMPL" --current eliom "$f" > "$OUT/$name"
+  "$WODOC" assemble --template "$TMPL" --current "${name%.html}" "$f" > "$OUT/$name"
 done
 
 rm -f "$NAV_MANUAL" "$NAV_API" "$TMPL"

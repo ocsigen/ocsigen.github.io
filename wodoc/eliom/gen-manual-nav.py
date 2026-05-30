@@ -35,7 +35,8 @@ for raw in open(menu):
             out.append('<ul class="api-section">')
             open_ul = True
         out.append(
-            f'<li><a href="{base}/manual/{page}.html">{html.escape(title)}</a></li>'
+            f'<li data-wodoc-page="{page}">'
+            f'<a href="{base}/manual/{page}.html">{html.escape(title)}</a></li>'
         )
     elif text and "<<" not in text and "[[" not in text:
         # a plain section heading (== Server-side programming, === Services)

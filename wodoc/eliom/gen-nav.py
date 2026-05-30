@@ -54,7 +54,10 @@ for title, mods in sections:
         out.append(f"<h4>{html.escape(title)}</h4>")
     out.append('<ul class="api-section">')
     for mod in mods:
-        out.append(f'<li><a href="{page_url(mod)}">{html.escape(mod)}</a></li>')
+        out.append(
+            f'<li data-wodoc-page="{html.escape(mod)}">'
+            f'<a href="{page_url(mod)}">{html.escape(mod)}</a></li>'
+        )
     out.append("</ul>")
     first = False
 out.append("</nav>")
