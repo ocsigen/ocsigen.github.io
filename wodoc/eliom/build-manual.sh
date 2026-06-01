@@ -35,7 +35,9 @@ PAGES=$(git -C "$ELIOM_SRC" ls-tree -r --name-only "$REF" -- doc/dev/manual \
 for path in $PAGES; do
   name=$(basename "$path" .wiki)
   git -C "$ELIOM_SRC" show "$REF:$path" > "$WORK/$name.wiki"
-  "$WODOC" convert "$WORK/$name.wiki" > "$WORK/$name.mld"
+  # the manual has no side; its bare <<a_api|...>> references are server-side,
+  # linked relatively into the server API (../eliom.server/...).
+  "$WODOC" convert --api-side server "$WORK/$name.wiki" > "$WORK/$name.mld"
   "$WODOC" preprocess "$WORK/$name.mld" > "$WORK/pp-$name.mld"
   # --package gives the pages a common parent so inter-chapter {{!page-X}}
   # references resolve.
