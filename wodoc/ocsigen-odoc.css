@@ -257,3 +257,23 @@
 .leftcol .manual-nav .ml4 { padding-left: 1.8em; }
 .leftcol .manual-nav .ml5 { padding-left: 2.7em; }
 .leftcol .manual-nav .ml6 { padding-left: 3.6em; }
+
+/* ---- API includes: continue the side-coloured rule down the open include ----
+   The include header already carries the blue/yellow spec bar; move it onto the
+   whole <details> so it runs from the header down to the last member, and indent
+   the members, making it clear where the include ends. */
+.rightcol .odoc-include > details {
+  border-left: 3px solid #0e7eff;
+  border-radius: 3px 0 0 3px;
+  padding-left: 0.8em;            /* breathing space to the right of the rule */
+}
+.wodoc-server .rightcol .odoc-include > details { border-left-color: #5cacee; }
+.wodoc-client .rightcol .odoc-include > details { border-left-color: #ffec8b; }
+/* the include header keeps its bar-less look, but its background extends back to
+   the rule (negative margin) while its text stays aligned with the members */
+.rightcol .odoc-include > details > summary.spec.include {
+  border-left: none;
+  margin-left: -0.8em;
+  padding-left: 0.8em;
+}
+.rightcol .odoc-include > details > .odoc-spec { margin: 0; }
