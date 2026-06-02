@@ -44,12 +44,20 @@ esac
 WORK="$(mktemp -d /home/balat/temp/eliom-doc-XXXXXX)"
 trap 'rm -rf "$WORK"' EXIT
 
-# 1. Build the API with odoc-driver (only eliom's own pages, deps -> ocaml.org).
-#    Set REUSE_HTML=<dir> (containing eliom/) to skip this slow step when only
-#    iterating on the theme/template.
+# 1. Build the manual + API together with odoc-driver on the installed eliom
+#    package (manual .mld declared by the package's (documentation) stanza, so
+#    {{!page-X}} and {!Module} references resolve in the same run). The package
+#    must be installed from the documented branch (prerequisite). The installed
+#    manual .mld carry {%wodoc:%} markers; preprocess them in place so odoc keeps
+#    them as HTML comments for the render pass (idempotent — safe to re-run).
+#    Set REUSE_HTML=<dir> (containing eliom/) to skip this slow step.
 if [ -n "$REUSE_HTML" ]; then
   SRC="$REUSE_HTML/eliom"
 else
+  PAGES="$(opam var --switch="$SWITCH" doc)/eliom/odoc-pages"
+  if [ -d "$PAGES" ]; then
+    for f in "$PAGES"/*.mld; do "$WODOC" preprocess "$f" >"$f.pp" && mv "$f.pp" "$f"; done
+  fi
   odoc_driver eliom --remap --html-dir "$WORK/html" >/dev/null 2>&1
   SRC="$WORK/html/eliom"
 fi
@@ -95,11 +103,14 @@ TMPL_OTHER="$(mktemp)";  mk_template ""      "$NAV_SERVER" >"$TMPL_OTHER"
     eliom.client*) tmpl="$TMPL_CLIENT" ;;
     *)             tmpl="$TMPL_OTHER" ;;
   esac
-  # the current module (Eliom.X / Eliom.X.Y) is highlighted in the API nav
+  # highlight the current entry: the module (Eliom.X) in the API nav, or the
+  # page name in the manual nav (manual pages sit at the package root).
   current=""
   case "$rel" in
     eliom.server/Eliom/*/index.html | eliom.client/Eliom/*/index.html)
       m="${rel#eliom.*/Eliom/}"; m="${m%/index.html}"; current="${m//\//.}" ;;
+    */*) ;;
+    *.html) current="${rel%.html}" ;;
   esac
   mkdir -p "$OUT/$(dirname "$rel")"
   "$WODOC" assemble --template "$tmpl" --current "$current" "$SRC/$rel" >"$OUT/$rel"
