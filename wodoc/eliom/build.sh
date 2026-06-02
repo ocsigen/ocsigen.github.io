@@ -52,6 +52,13 @@ case "$SWITCH" in
   *modernize*) ELIOM_REF="${ELIOM_REF:-deriving}" ;;
   *)           ELIOM_REF="${ELIOM_REF:-master}" ;;
 esac
+# The manual nav (menu.wiki) comes from the wikidoc branch, in the directory
+# matching the documented version: dev for the dev branch, 11.x for the release
+# (its module names match the installed package).
+case "$SWITCH" in
+  *modernize*) MANUAL_VER="${MANUAL_VER:-dev}" ;;
+  *)           MANUAL_VER="${MANUAL_VER:-11.x}" ;;
+esac
 
 WORK="$(mktemp -d /home/balat/temp/eliom-doc-XXXXXX)"
 trap 'rm -rf "$WORK"' EXIT
@@ -85,7 +92,7 @@ mkdir -p "$OUT"
 NAV_MANUAL="$(mktemp)"; NAV_SERVER="$(mktemp)"; NAV_CLIENT="$(mktemp)"
 git -C "$ELIOM_SRC" show "$ELIOM_REF:doc/server.indexdoc" >"$WORK/server.indexdoc"
 git -C "$ELIOM_SRC" show "$ELIOM_REF:doc/client.indexdoc" >"$WORK/client.indexdoc"
-git -C "$ELIOM_SRC" show "wikidoc:doc/dev/manual/menu.wiki" >"$WORK/menu.wiki"
+git -C "$ELIOM_SRC" show "wikidoc:doc/$MANUAL_VER/manual/menu.wiki" >"$WORK/menu.wiki"
 python3 "$HERE/gen-nav.py" "$WORK/server.indexdoc" "$BASE" eliom.server >"$NAV_SERVER"
 python3 "$HERE/gen-nav.py" "$WORK/client.indexdoc" "$BASE" eliom.client >"$NAV_CLIENT"
 python3 "$HERE/gen-manual-nav.py" "$WORK/menu.wiki" "$BASE" >"$NAV_MANUAL"
