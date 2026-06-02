@@ -199,3 +199,33 @@
 /* highlight the current side, matching the site's switch colours */
 .wodoc-server .cs-switch .cs-server { background: #5cacee; color: #fff; border-color: #5cacee; }
 .wodoc-client .cs-switch .cs-client { background: #ffec8b; color: #333; border-color: #ffec8b; }
+
+/* Code-block syntax highlighting. odoc 3.x does not colour code blocks itself
+   (it emits <pre class="language-..">) and defers to a client-side highlighter;
+   we load odoc's bundled highlight.js and give its tokens a light palette,
+   readable over the server (blue) and client (yellow) block backgrounds.
+   No background here, so the server/client block colours show through. */
+.rightcol .hljs-comment,
+.rightcol .hljs-quote { color: #6a737d; font-style: italic; }
+.rightcol .hljs-keyword,
+.rightcol .hljs-selector-tag,
+.rightcol .hljs-literal,
+.rightcol .hljs-section,
+.rightcol .hljs-link { color: #d73a49; }
+.rightcol .hljs-string,
+.rightcol .hljs-number,
+.rightcol .hljs-regexp,
+.rightcol .hljs-meta .hljs-string { color: #032f62; }
+.rightcol .hljs-type,
+.rightcol .hljs-title,
+.rightcol .hljs-class .hljs-title,
+.rightcol .hljs-name,
+.rightcol .hljs-built_in { color: #6f42c1; }
+.rightcol .hljs-symbol,
+.rightcol .hljs-bullet,
+.rightcol .hljs-attribute,
+.rightcol .hljs-variable,
+.rightcol .hljs-template-variable,
+.rightcol .hljs-meta { color: #e36209; }
+.rightcol .hljs-emphasis { font-style: italic; }
+.rightcol .hljs-strong { font-weight: 600; }

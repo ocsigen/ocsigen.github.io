@@ -6,6 +6,12 @@
   <title>{{title}} — Eliom</title>
   <link rel="stylesheet" href="/css/style.css"/>
   <link rel="stylesheet" href="/wodoc/ocsigen-odoc.css"/>
+  <!-- odoc emits code blocks as <pre class="language-..">; highlight them
+       client-side with odoc's bundled highlight.js. Loaded in <head> with
+       initHighlightingOnLoad (registers before DOMContentLoaded), exactly as
+       odoc's own pages do. -->
+  <script src="{{base}}/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
 </head>
 <body class="wodoc-page wodoc-doc wodoc-{{side}}">
   <div class="page-header">

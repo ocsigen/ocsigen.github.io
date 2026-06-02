@@ -172,6 +172,18 @@ redirect_dep js_of_ocaml   js_of_ocaml
 redirect_dep reactiveData  reactiveData
 redirect_dep ocsipersist   ocsipersist
 
+# 4b. odoc emits code blocks as <pre class="language-..">, highlighted client-side.
+#     Ship odoc's bundled highlight.js at the version root so {{base}}/highlight.pack.js
+#     resolves (odoc-driver already produced it next to the eliom/ tree; fall back
+#     to `odoc support-files` in REUSE mode if absent).
+PACK="$(dirname "$SRC")/highlight.pack.js"
+if [ -f "$PACK" ]; then
+  cp "$PACK" "$OUT/highlight.pack.js"
+else
+  SF="$(mktemp -d)"; odoc support-files -o "$SF" >/dev/null 2>&1 \
+    && cp "$SF/highlight.pack.js" "$OUT/highlight.pack.js"; rm -rf "$SF"
+fi
+
 # 5. Optionally (re)point `latest` at this build: a relative git symlink, served
 #    fine by GitHub Pages (as the live eliom site does with latest -> 11.x).
 if [ -n "$LATEST" ]; then
