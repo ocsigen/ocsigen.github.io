@@ -58,7 +58,7 @@
       <nav class="leftcol">
         <div class="docversion">
           <label>Version:
-            <select onchange="if(this.value)location.href=this.value">
+            <select id="wodoc-version" onchange="wodocVersion(this.value)">
 {{versions}}
             </select>
           </label>
@@ -91,6 +91,31 @@
       var np = p.replace(/\/eliom\.(server|client)\//, '/eliom.' + side + '/');
       location.href = np !== p ? np : '{{base}}/eliom.' + side + '/Eliom/index.html';
     }
+    // Switch documentation version, staying on the same page / API module:
+    // only the version segment of the current path is swapped.
+    function wodocVersion(v) {
+      if (!v) return;
+      var re = new RegExp('^({{pub}}/)[^/]+');
+      var p = location.pathname;
+      location.href = re.test(p) ? p.replace(re, '$1' + v) : '{{pub}}/' + v + '/index.html';
+    }
+    // The current version comes from the URL, not the build: the same files are
+    // served under <version>/ and the `latest` symlink, so mark the selected
+    // option from the path (e.g. show "latest" when viewing /latest/...).
+    (function () {
+      var sel = document.getElementById('wodoc-version');
+      var m = location.pathname.match(new RegExp('^{{pub}}/([^/]+)'));
+      if (sel && m) {
+        var ok = false, i;
+        for (i = 0; i < sel.options.length; i++)
+          if (sel.options[i].value === m[1]) { sel.selectedIndex = i; ok = true; break; }
+        if (!ok) {
+          var o = document.createElement('option');
+          o.value = m[1]; o.textContent = m[1]; o.selected = true;
+          sel.insertBefore(o, sel.firstChild);
+        }
+      }
+    })();
   </script>
 </body>
 </html>

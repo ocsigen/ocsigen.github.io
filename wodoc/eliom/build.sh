@@ -90,27 +90,31 @@ python3 "$HERE/gen-nav.py" "$WORK/server.indexdoc" "$BASE" eliom.server >"$NAV_S
 python3 "$HERE/gen-nav.py" "$WORK/client.indexdoc" "$BASE" eliom.client >"$NAV_CLIENT"
 python3 "$HERE/gen-manual-nav.py" "$WORK/menu.wiki" "$BASE" >"$NAV_MANUAL"
 
-# 2b. Version <select> options (the one place that is cross-version, hence
-#     absolute): `latest` plus every sibling version directory, this build's
-#     label marked selected. $OUT already exists (mkdir above), so $LABEL shows.
+# 2b. Version <select> options: `latest` plus every sibling version directory.
+#     The option value is the bare version name; wodocVersion() swaps just that
+#     segment of the current URL so the reader stays on the same page / API
+#     module. The selected option is set client-side from the URL (not here):
+#     the same files are served under <version>/ and the `latest` symlink, so a
+#     build-time "selected" would be wrong under one of the two paths. $OUT
+#     exists (mkdir above) so this build's dir is already listed.
 VERSIONS="$(mktemp)"
 {
-  echo "              <option value=\"$PUB/latest/index.html\">latest</option>"
+  echo "              <option value=\"latest\">latest</option>"
   for d in "$HERE"/*/; do
     v="$(basename "$d")"
     [ "$v" = latest ] && continue
-    sel=""; [ "$v" = "$LABEL" ] && sel=" selected"
-    echo "              <option$sel value=\"$PUB/$v/index.html\">$v</option>"
+    echo "              <option value=\"$v\">$v</option>"
   done
 } >"$VERSIONS"
 
-# 3. Per-side templates: set the side class, inject the version <select> and the
-#    manual + side module nav. {{base}} is left as a token: `wodoc assemble`
-#    fills it per page with the relative path to the version root, so links stay
-#    version-relative.
+# 3. Per-side templates: set the side class and the absolute publish base (for
+#    the version <select>), inject the version options and the manual + side
+#    module nav. {{base}} is left as a token: `wodoc assemble` fills it per page
+#    with the relative path to the version root, so links stay version-relative.
 mk_template() {
   side="$1"; apinav="$2"
   sed -e "s#{{side}}#$side#g" \
+      -e "s#{{pub}}#$PUB#g" \
       -e "/{{versions}}/r $VERSIONS" -e "/{{versions}}/d" \
       -e "/{{manual_nav}}/r $NAV_MANUAL" -e "/{{manual_nav}}/d" \
       -e "/{{api_nav}}/r $apinav" -e "/{{api_nav}}/d" \
