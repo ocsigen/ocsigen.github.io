@@ -284,3 +284,14 @@
   color: #b0b0b0;
   font-size: 0.8em;
 }
+
+/* ---- Burger copy of the left menu (mobile) ----
+   .how-doctree mirrors the left column inside the dark drawer; most .leftcol
+   rules don't apply here, so the drawer's white-on-dark + blue-heading styles
+   make it legible. Restore the list reset and the manual's per-level indent. */
+.how-doctree ul { list-style: none; padding-left: 0; margin: 0.2em 0; }
+.how-doctree .manual-nav .ml3 { padding-left: 0.9em; }
+.how-doctree .manual-nav .ml4 { padding-left: 1.8em; }
+.how-doctree .manual-nav .ml5 { padding-left: 2.7em; }
+.how-doctree .manual-nav .ml6 { padding-left: 3.6em; }
+.how-doctree .docversion { margin: 0.5em 0 1em; }

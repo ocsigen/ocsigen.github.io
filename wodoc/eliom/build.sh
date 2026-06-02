@@ -114,18 +114,21 @@ VERSIONS="$(mktemp)"
   done
 } >"$VERSIONS"
 
-# 3. Per-side templates: set the side class and the absolute publish base (for
-#    the version <select>), inject the version options and the manual + side
-#    module nav. {{base}} is left as a token: `wodoc assemble` fills it per page
-#    with the relative path to the version root, so links stay version-relative.
+# 3. Per-side templates. First expand {{leftnav}} (the single-sourced left-menu
+#    fragment) into BOTH its slots — the left column and the burger drawer — so
+#    the menu structure is defined once and the two can never drift. Then set the
+#    side class and publish base, and fill the version/manual/api holes (now
+#    present in both copies). {{base}} stays a token: `wodoc assemble` fills it
+#    per page with the relative path to the version root.
 mk_template() {
   side="$1"; apinav="$2"
-  sed -e "s#{{side}}#$side#g" \
-      -e "s#{{pub}}#$PUB#g" \
-      -e "/{{versions}}/r $VERSIONS" -e "/{{versions}}/d" \
-      -e "/{{manual_nav}}/r $NAV_MANUAL" -e "/{{manual_nav}}/d" \
-      -e "/{{api_nav}}/r $apinav" -e "/{{api_nav}}/d" \
-      "$HERE/template.html"
+  sed -e "/{{leftnav}}/r $HERE/leftnav.html" -e "/{{leftnav}}/d" \
+      "$HERE/template.html" \
+  | sed -e "s#{{side}}#$side#g" \
+        -e "s#{{pub}}#$PUB#g" \
+        -e "/{{versions}}/r $VERSIONS" -e "/{{versions}}/d" \
+        -e "/{{manual_nav}}/r $NAV_MANUAL" -e "/{{manual_nav}}/d" \
+        -e "/{{api_nav}}/r $apinav" -e "/{{api_nav}}/d"
 }
 TMPL_SERVER="$(mktemp)"; mk_template server "$NAV_SERVER" >"$TMPL_SERVER"
 TMPL_CLIENT="$(mktemp)"; mk_template client "$NAV_CLIENT" >"$TMPL_CLIENT"

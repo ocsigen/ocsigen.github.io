@@ -49,6 +49,12 @@
           <li class="drawermainmenu-project" data-wodoc-page="ocsigen-toolkit"><a href="/ocsigen-toolkit/">Toolkit</a></li>
           <li class="drawermainmenu-project" data-wodoc-page="ocsigen-start"><a href="/ocsigen-start/">Start</a></li>
         </ul>
+        <!-- On mobile the left column is hidden; its menu lives here in the
+             burger (.how-doctree, shown only on narrow screens), as the old site
+             did. Same single-sourced nav fragment as the left column. -->
+        <nav class="how-doctree">
+          {{leftnav}}
+        </nav>
       </nav>
     </aside>
   </div>
@@ -56,26 +62,7 @@
   <div class="project-page">
     <div class="twocols">
       <nav class="leftcol">
-        <div class="docversion">
-          <label>Version:
-            <select id="wodoc-version" onchange="wodocVersion(this.value)">
-{{versions}}
-            </select>
-          </label>
-        </div>
-
-        <div class="cs-switch">
-          <button type="button" class="cs-server" onclick="wodocSwitch('server')">Server API</button>
-          <button type="button" class="cs-client" onclick="wodocSwitch('client')">Client API</button>
-        </div>
-
-        <div class="page-toc">
-          <h3>On this page</h3>
-          {{toc}}
-        </div>
-
-        {{manual_nav}}
-        {{api_nav}}
+        {{leftnav}}
       </nav>
       <article class="rightcol">
         {{preamble}}
@@ -101,11 +88,12 @@
     }
     // The current version comes from the URL, not the build: the same files are
     // served under <version>/ and the `latest` symlink, so mark the selected
-    // option from the path (e.g. show "latest" when viewing /latest/...).
+    // option from the path (e.g. show "latest" when viewing /latest/...). There
+    // are two selectors (left column + burger), hence a class, not an id.
     (function () {
-      var sel = document.getElementById('wodoc-version');
       var m = location.pathname.match(new RegExp('^{{pub}}/([^/]+)'));
-      if (sel && m) {
+      if (!m) return;
+      document.querySelectorAll('.wodoc-version').forEach(function (sel) {
         var ok = false, i;
         for (i = 0; i < sel.options.length; i++)
           if (sel.options[i].value === m[1]) { sel.selectedIndex = i; ok = true; break; }
@@ -114,7 +102,7 @@
           o.value = m[1]; o.textContent = m[1]; o.selected = true;
           sel.insertBefore(o, sel.firstChild);
         }
-      }
+      });
     })();
   </script>
 </body>
