@@ -277,3 +277,10 @@
   padding-left: 0.8em;
 }
 .rightcol .odoc-include > details > .odoc-spec { margin: 0; }
+
+/* Ordered-list numbers: very discreet (small and pale), so the list content
+   stands out rather than the markers. */
+.rightcol ol > li::marker {
+  color: #b0b0b0;
+  font-size: 0.8em;
+}
