@@ -29,7 +29,19 @@ SWITCH="$2"
 HERE="$(cd "$(dirname "$0")" && pwd)"
 WODOC="${WODOC:-wodoc}"
 OUT="$HERE/$LABEL"
-BASE="/wodoc/eliom/$LABEL"
+# Internal links (nav + template) are kept version-relative: they use the
+# literal {{base}} token, which `wodoc assemble` fills per page with the
+# relative path to the version root (".", "..", "../.."). This way a version's
+# pages never mention the version, so the whole tree works unchanged under both
+# /<version>/ and the `latest` symlink (the scheme the eliom gh-pages uses).
+BASE="{{base}}"
+# Absolute publish base, used only for the cross-version <select> (which by
+# definition jumps between versions). /wodoc/eliom while previewing here; on the
+# eliom gh-pages it will be /eliom.
+PUB="${PUB:-/wodoc/eliom}"
+# Also (re)point `latest` at this build (LATEST=1) — a git symlink, served fine
+# by GitHub Pages, as on the current eliom site (latest -> 11.x).
+LATEST="${LATEST:-}"
 
 eval "$(opam env --switch="$SWITCH" --set-switch)"
 
@@ -78,13 +90,28 @@ python3 "$HERE/gen-nav.py" "$WORK/server.indexdoc" "$BASE" eliom.server >"$NAV_S
 python3 "$HERE/gen-nav.py" "$WORK/client.indexdoc" "$BASE" eliom.client >"$NAV_CLIENT"
 python3 "$HERE/gen-manual-nav.py" "$WORK/menu.wiki" "$BASE" >"$NAV_MANUAL"
 
-# 3. Per-side templates: substitute the absolute base path and side class, select
-#    the current version, and inject the manual nav and the side's module nav.
+# 2b. Version <select> options (the one place that is cross-version, hence
+#     absolute): `latest` plus every sibling version directory, this build's
+#     label marked selected. $OUT already exists (mkdir above), so $LABEL shows.
+VERSIONS="$(mktemp)"
+{
+  echo "              <option value=\"$PUB/latest/index.html\">latest</option>"
+  for d in "$HERE"/*/; do
+    v="$(basename "$d")"
+    [ "$v" = latest ] && continue
+    sel=""; [ "$v" = "$LABEL" ] && sel=" selected"
+    echo "              <option$sel value=\"$PUB/$v/index.html\">$v</option>"
+  done
+} >"$VERSIONS"
+
+# 3. Per-side templates: set the side class, inject the version <select> and the
+#    manual + side module nav. {{base}} is left as a token: `wodoc assemble`
+#    fills it per page with the relative path to the version root, so links stay
+#    version-relative.
 mk_template() {
   side="$1"; apinav="$2"
-  sed -e "s#{{base}}#$BASE#g" \
-      -e "s#{{side}}#$side#g" \
-      -e "s#<option value=\"$BASE/#<option selected value=\"$BASE/#" \
+  sed -e "s#{{side}}#$side#g" \
+      -e "/{{versions}}/r $VERSIONS" -e "/{{versions}}/d" \
       -e "/{{manual_nav}}/r $NAV_MANUAL" -e "/{{manual_nav}}/d" \
       -e "/{{api_nav}}/r $apinav" -e "/{{api_nav}}/d" \
       "$HERE/template.html"
@@ -112,12 +139,19 @@ TMPL_OTHER="$(mktemp)";  mk_template ""      "$NAV_SERVER" >"$TMPL_OTHER"
     */*) ;;
     *.html) current="${rel%.html}" ;;
   esac
+  # relative path from this page to the version root (".", "..", "../..", …),
+  # so the {{base}} links never mention the version.
+  slashes="${rel//[!\/]/}"; depth=${#slashes}
+  if [ "$depth" -eq 0 ]; then base="."; else
+    base=""; for _ in $(seq 1 "$depth"); do base="../$base"; done; base="${base%/}"
+  fi
   mkdir -p "$OUT/$(dirname "$rel")"
-  "$WODOC" assemble --template "$tmpl" --current "$current" "$SRC/$rel" >"$OUT/$rel"
+  "$WODOC" assemble --template "$tmpl" --current "$current" --base "$base" \
+    "$SRC/$rel" >"$OUT/$rel"
 done
 
 rm -f "$TMPL_SERVER" "$TMPL_CLIENT" "$TMPL_OTHER" \
-      "$NAV_MANUAL" "$NAV_SERVER" "$NAV_CLIENT"
+      "$NAV_MANUAL" "$NAV_SERVER" "$NAV_CLIENT" "$VERSIONS"
 
 # 4. Redirect cross-references to Ocsigen-family dependencies from ocaml.org
 #    (odoc --remap's target) to ocsigen.org, where they will all live under
@@ -137,5 +171,12 @@ redirect_dep tyxml         tyxml
 redirect_dep js_of_ocaml   js_of_ocaml
 redirect_dep reactiveData  reactiveData
 redirect_dep ocsipersist   ocsipersist
+
+# 5. Optionally (re)point `latest` at this build: a relative git symlink, served
+#    fine by GitHub Pages (as the live eliom site does with latest -> 11.x).
+if [ -n "$LATEST" ]; then
+  ln -sfn "$LABEL" "$HERE/latest"
+  echo "latest -> $LABEL"
+fi
 
 echo "built eliom $LABEL: $(find "$OUT" -name '*.html' | wc -l) pages -> $OUT"

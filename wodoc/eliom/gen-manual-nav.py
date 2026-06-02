@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Build the manual's left-column navigation from its wikicreole menu
 (doc/dev/manual/menu.wiki): == / === headings become section labels and
-[[page|Title]] links become entries pointing at <base>/manual/<page>.html.
+[[page|Title]] links become entries pointing at <base>/<page>.html (odoc-driver
+puts the package's .mld manual pages at the package root, alongside the API).
 
 External <<a_manual project="tuto" ...>> entries are skipped (they live in the
 tutorial). Usage: gen-manual-nav.py <menu.wiki> <base-url>
@@ -36,7 +37,7 @@ for raw in open(menu):
             open_ul = True
         out.append(
             f'<li data-wodoc-page="{page}">'
-            f'<a href="{base}/manual/{page}.html">{html.escape(title)}</a></li>'
+            f'<a href="{base}/{page}.html">{html.escape(title)}</a></li>'
         )
     elif text and "<<" not in text and "[[" not in text:
         # a plain section heading (== Server-side programming, === Services)
