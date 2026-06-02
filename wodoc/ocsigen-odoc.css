@@ -206,26 +206,30 @@
    readable over the server (blue) and client (yellow) block backgrounds.
    No background here, so the server/client block colours show through. */
 .rightcol .hljs-comment,
-.rightcol .hljs-quote { color: #6a737d; font-style: italic; }
+.rightcol .hljs-quote,
+.rightcol .hljs-meta { color: #6a737d; font-style: italic; }
 .rightcol .hljs-keyword,
-.rightcol .hljs-selector-tag,
-.rightcol .hljs-literal,
-.rightcol .hljs-section,
-.rightcol .hljs-link { color: #d73a49; }
+.rightcol .hljs-selector-tag { color: #cf222e; }
 .rightcol .hljs-string,
-.rightcol .hljs-number,
-.rightcol .hljs-regexp,
-.rightcol .hljs-meta .hljs-string { color: #032f62; }
+.rightcol .hljs-regexp { color: #0a3069; }
 .rightcol .hljs-type,
+.rightcol .hljs-built_in,
+.rightcol .hljs-class,
+.rightcol .hljs-constructor,
+.rightcol .hljs-module { color: #0e7490; }      /* modules / types: teal */
 .rightcol .hljs-title,
-.rightcol .hljs-class .hljs-title,
-.rightcol .hljs-name,
-.rightcol .hljs-built_in { color: #6f42c1; }
+.rightcol .hljs-function,
+.rightcol .hljs-section { color: #953800; }      /* function names: amber */
+.rightcol .hljs-literal,
+.rightcol .hljs-number,
 .rightcol .hljs-symbol,
-.rightcol .hljs-bullet,
-.rightcol .hljs-attribute,
 .rightcol .hljs-variable,
-.rightcol .hljs-template-variable,
-.rightcol .hljs-meta { color: #e36209; }
+.rightcol .hljs-attribute { color: #6f4e00; }
+.rightcol .hljs-subst { color: #9a6700; }         /* ~%x client-value injection */
 .rightcol .hljs-emphasis { font-style: italic; }
 .rightcol .hljs-strong { font-weight: 600; }
+
+/* Eliom ppx side markers (let%client / %server / %shared), coloured by tier */
+.rightcol .hljs-eliom-client { color: #9a6700; font-weight: 600; }  /* dark yellow */
+.rightcol .hljs-eliom-server { color: #08489c; font-weight: 600; }  /* blue */
+.rightcol .hljs-eliom-shared { color: #1a7f37; font-weight: 600; }  /* green */

@@ -183,6 +183,8 @@ else
   SF="$(mktemp -d)"; odoc support-files -o "$SF" >/dev/null 2>&1 \
     && cp "$SF/highlight.pack.js" "$OUT/highlight.pack.js"; rm -rf "$SF"
 fi
+# Eliom ppx highlighting tweaks + highlighting start-up
+cp "$HERE/eliom-highlight.js" "$OUT/eliom-highlight.js"
 
 # 5. Optionally (re)point `latest` at this build: a relative git symlink, served
 #    fine by GitHub Pages (as the live eliom site does with latest -> 11.x).
