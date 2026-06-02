@@ -28,6 +28,7 @@ for raw in open(menu):
     m = re.match(r"^(=+)\s*(.*)$", line)
     if not m:
         continue
+    level = len(m.group(1))  # number of '=' : the menu nesting depth
     text = m.group(2).strip()
     link = re.match(r"\[\[([^|\]]+)\|([^\]]+)\]\]", text)
     if link:
@@ -36,13 +37,14 @@ for raw in open(menu):
             out.append('<ul class="api-section">')
             open_ul = True
         out.append(
-            f'<li data-wodoc-page="{page}">'
+            f'<li class="ml{level}" data-wodoc-page="{page}">'
             f'<a href="{base}/{page}.html">{html.escape(title)}</a></li>'
         )
     elif text and "<<" not in text and "[[" not in text:
-        # a plain section heading (== Server-side programming, === Services)
+        # a plain section heading (== Server-side programming, === Services);
+        # the level drives the left indentation (see ocsigen-odoc.css .mlN)
         close()
-        out.append(f"<h4>{html.escape(text)}</h4>")
+        out.append(f'<h4 class="ml{level}">{html.escape(text)}</h4>')
 close()
 out.append("</nav>")
 sys.stdout.write("\n".join(out) + "\n")

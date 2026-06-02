@@ -249,3 +249,11 @@
 .rightcol .hljs-eliom-client { color: #9a6700; font-weight: 600; }  /* dark yellow */
 .rightcol .hljs-eliom-server { color: #08489c; font-weight: 600; }  /* blue */
 .rightcol .hljs-eliom-shared { color: #1a7f37; font-weight: 600; }  /* green */
+
+/* ---- Manual navigation: indent each menu level (==/===/====) ---- */
+/* gen-manual-nav.py tags every heading/entry with .mlN (N = number of '=' in
+   menu.wiki); deeper levels shift a little further right, like the old site. */
+.leftcol .manual-nav .ml3 { padding-left: 0.9em; }
+.leftcol .manual-nav .ml4 { padding-left: 1.8em; }
+.leftcol .manual-nav .ml5 { padding-left: 2.7em; }
+.leftcol .manual-nav .ml6 { padding-left: 3.6em; }
