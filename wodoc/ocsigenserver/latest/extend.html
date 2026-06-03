@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Writing an extension for Ocsigen server — Ocsigen Server</title>
+  <link rel="stylesheet" href="/css/style.css"/>
+  <link rel="stylesheet" href="/wodoc/ocsigen-odoc.css"/>
+</head>
+<body class="wodoc-page wodoc-doc">
+  <div class="page-header">
+    <p class="logo-ocsigen"><a href="/"><img src="/img/ocsigen-white.svg" alt="Ocsigen"/></a></p>
+    <p class="logo-subproject">Server</p>
+
+    <div class="mainmenu">
+      <p class="mainmenu-home" data-wodoc-page="githubio"><a href="/">Home</a></p>
+      <p class="mainmenu-doc" data-wodoc-page="tuto"><a href="/tuto/">Doc</a></p>
+      <p data-wodoc-page="eliom"><a href="/eliom/">Eliom</a></p>
+      <p data-wodoc-page="js_of_ocaml"><a href="/js_of_ocaml/">Js_of_ocaml</a></p>
+      <p class="mainmenu-current"><a href="/wodoc/ocsigenserver/latest/index.html">Server</a></p>
+      <p data-wodoc-page="lwt"><a href="/lwt/">Lwt</a></p>
+      <p data-wodoc-page="tyxml"><a href="/tyxml/">Tyxml</a></p>
+      <p data-wodoc-page="ocsigen-start"><a href="/ocsigen-start/">Start</a></p>
+    </div>
+
+    <form id="googlesearch" action="https://google.com/search">
+      <input name="q" id="gsearch-box" placeholder="Search using Google"/>
+      <label for="gsearch-box"><img src="/img/search.svg" alt="" id="gsearch-icon"/></label>
+      <input type="submit" id="gsearch-submit" onclick="document.getElementById('gsearch-box').value += ' site:ocsigen.org';"/>
+    </form>
+
+    <aside class="how-drawer">
+      <input id="how-drawer-toggle" type="checkbox"/>
+      <label for="how-drawer-toggle" id="how-drawer-label"><span class="how-drawer-icon"></span></label>
+      <nav class="how-drawer-content">
+        <ul class="drawermainmenu">
+          <li class="drawermainmenu-home" data-wodoc-page="githubio"><a href="/">Home</a></li>
+          <li class="drawermainmenu-doc" data-wodoc-page="tuto"><a href="/tuto/">Doc</a></li>
+          <li class="drawermainmenu-project" data-wodoc-page="eliom"><a href="/eliom/">Eliom</a></li>
+          <li class="drawermainmenu-project" data-wodoc-page="js_of_ocaml"><a href="/js_of_ocaml/">Js_of_ocaml</a></li>
+          <li class="drawermainmenu-project drawermainmenu-current"><a href="/wodoc/ocsigenserver/latest/index.html">Server</a></li>
+          <li class="drawermainmenu-project" data-wodoc-page="lwt"><a href="/lwt/">Lwt</a></li>
+          <li class="drawermainmenu-project" data-wodoc-page="tyxml"><a href="/tyxml/">Tyxml</a></li>
+          <li class="drawermainmenu-project" data-wodoc-page="ocsigen-toolkit"><a href="/ocsigen-toolkit/">Toolkit</a></li>
+          <li class="drawermainmenu-project" data-wodoc-page="ocsigen-start"><a href="/ocsigen-start/">Start</a></li>
+        </ul>
+      </nav>
+    </aside>
+  </div>
+
+  <div class="project-page">
+    <div class="twocols">
+      <nav class="leftcol">
+        <div class="docversion">
+          <label>Version:
+            <select onchange="if(this.value)location.href=this.value">
+              <option selected value="/wodoc/ocsigenserver/latest/index.html">7.0 (latest)</option>
+              <option value="/wodoc/ocsigenserver/dev/index.html">dev</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="doctree">
+          <h1><a href="/wodoc/ocsigenserver/latest/index.html">Ocsigen Server</a></h1>
+          <h2>Usage</h2>
+          <h3 data-wodoc-page="quickstart"><a href="/wodoc/ocsigenserver/latest/quickstart.html">Quick start</a></h3>
+          <h3 data-wodoc-page="launching"><a href="/wodoc/ocsigenserver/latest/launching.html">Launching the server</a></h3>
+          <h3 data-wodoc-page="config"><a href="/wodoc/ocsigenserver/latest/config.html">Configuration file</a></h3>
+          <h3 data-wodoc-page="staticlink"><a href="/wodoc/ocsigenserver/latest/staticlink.html">Using as a library</a></h3>
+          <h2>Extensions</h2>
+          <h3 data-wodoc-page="staticmod"><a href="/wodoc/ocsigenserver/latest/staticmod.html">Staticmod</a></h3>
+          <h3 data-wodoc-page="eliom"><a href="/wodoc/ocsigenserver/latest/eliom.html">Eliom</a></h3>
+          <h3 data-wodoc-page="extendconfiguration"><a href="/wodoc/ocsigenserver/latest/extendconfiguration.html">Extendconfiguration</a></h3>
+          <h3 data-wodoc-page="accesscontrol"><a href="/wodoc/ocsigenserver/latest/accesscontrol.html">Accesscontrol</a></h3>
+          <h3 data-wodoc-page="authbasic"><a href="/wodoc/ocsigenserver/latest/authbasic.html">Authbasic</a></h3>
+          <h3 data-wodoc-page="deflatemod"><a href="/wodoc/ocsigenserver/latest/deflatemod.html">Deflatemod</a></h3>
+          <h3 data-wodoc-page="redirectmod"><a href="/wodoc/ocsigenserver/latest/redirectmod.html">Redirectmod</a></h3>
+          <h3 data-wodoc-page="revproxy"><a href="/wodoc/ocsigenserver/latest/revproxy.html">Revproxy</a></h3>
+          <h3 data-wodoc-page="rewritemod"><a href="/wodoc/ocsigenserver/latest/rewritemod.html">Rewritemod</a></h3>
+          <h3 data-wodoc-page="outputfilter"><a href="/wodoc/ocsigenserver/latest/outputfilter.html">Outputfilter</a></h3>
+          <h3 data-wodoc-page="userconf"><a href="/wodoc/ocsigenserver/latest/userconf.html">Userconf</a></h3>
+          <h3 data-wodoc-page="cors"><a href="/wodoc/ocsigenserver/latest/cors.html">CORS</a></h3>
+          <h2>Developer documentation</h2>
+          <h3 data-wodoc-page="extend" class="current"><a href="/wodoc/ocsigenserver/latest/extend.html">Writing an extension</a></h3>
+          <h2>API</h2>
+          <h3 data-wodoc-page="api"><a href="/wodoc/ocsigenserver/latest/api.html">API reference</a></h3>
+        </div>
+      </nav>
+      <article class="rightcol">
+        <header class="odoc-preamble"><h1 id="writing-an-extension-for-ocsigen-server">Writing an extension for Ocsigen server</h1><p>This page describes how to extend Ocsigen's server. This can be used to create new ways to generate pages (like Apache modules), to filter and change the requests (for example, rewriting of URLS), to extend the syntax of the configuration file.</p></header>
+        <nav class="odoc-toc odoc-local-toc"><ul><li><a href="#filtering-the-requests-or-writing-a-module-to-generate-pages">Filtering the requests or writing a module to generate pages</a></li><li><a href="#filtering-the-outputs">Filtering the outputs</a></li><li><a href="#extending-the-configuration-file">Extending the configuration file</a><ul><li><a href="#extending-the-configuration-file-for-an-extension">Extending the configuration file for an extension</a></li><li><a href="#giving-parameters-to-an-extension">Giving parameters to an extension</a></li></ul></li><li><a href="#catching-the-request-before-it-is-fully-read">Catching the request before it is fully read</a></li><li><a href="#adding-new-commands-for-the-server">Adding new commands for the server</a></li></ul></nav>
+        <div class="odoc-content"><h3 id="filtering-the-requests-or-writing-a-module-to-generate-pages">Filtering the requests or writing a module to generate pages</h3><p>You can take as example the files <code>staticmod.ml</code> or <code>accesscontrol.ml</code> from Ocsigen Server's distribution.</p><p>The type of request is <code>Ocsigen_extensions.request_info</code> (have a look at it in the interface of module <a href="Ocsigen_extensions/index.html"><code>Ocsigen_extensions</code></a>).</p><p>Each extensions loaded in the configuration file tries to handle the request and returns something of type <code>Extensions.answer</code>. If the page is not found by the extension (<code>Ext_not_found</code>), the following one will try to handle the request. If the page is found, the answer is <code>Ext_found r</code>. An extension can also modify the request before giving it to the next one (answer <code>Ext_continue_with of Extensions.request_info</code>), etc.</p><h3 id="filtering-the-outputs">Filtering the outputs</h3><p>It is also possible to create extensions that will filter the output of the server (for example to compress it). It is very similar to the previous one. Have a look at the file <code>deflatemod.ml</code> for an example.</p><h3 id="extending-the-configuration-file">Extending the configuration file</h3><h4 id="extending-the-configuration-file-for-an-extension">Extending the configuration file for an extension</h4><p>The parsing of Ocsigen's configuration file is using a very basic xml parser (package <code>xml-light</code>). The function to be registered by the <code>Extensions.register_extension</code> function takes two parameters: the path of the web site and the xml subtree.</p><pre>let parse_config path = function
+    Xml.Element (&quot;tag&quot;, attr, content) -&gt; ...
+      (* Do what you want here *)
+  | Xml.Element _ -&gt;
+      raise (Extensions.Bad_config_tag_for_extension t)
+  | _ -&gt; raise (Extensions.Error_in_config_file &quot;(my extension)&quot;)</pre><p>The module <code>Parseconfig</code> defines functions to parse strings or sizes (in bytes, GB etc).</p><h4 id="giving-parameters-to-an-extension">Giving parameters to an extension</h4><p>Extensions may take parameters in the configuration file. During the loading of the extension, the function <code>Extensions.get_config ()</code> returns the xml tree between <code>&lt;extension&gt;</code> and <code>&lt;/extension&gt;</code> (or <code>&lt;library&gt;</code> and <code>&lt;/library&gt;</code>). Write a parser for that tree.</p><h3 id="catching-the-request-before-it-is-fully-read">Catching the request before it is fully read</h3><p>For some extensions of the Web server, it is necessary to catch the request before it has been fully read (especially before the body of the request has been read). For example it is the case if you want to write a (reverse) proxy.</p><h3 id="adding-new-commands-for-the-server">Adding new commands for the server</h3><p>If you want to add your own commands for the server command pipe, do something like:</p><pre>let () =
+  Ocsigen_extensions.register_command_function ~prefix:&quot;yourextensionname&quot;
+    (fun s c -&gt; match c with
+       | [&quot;mycommand&quot;] -&gt; ...
+       | _ -&gt; raise Ocsigen_extensions.Unknown_command)</pre></div>
+      </article>
+    </div>
+  </div>
+</body>
+</html>
