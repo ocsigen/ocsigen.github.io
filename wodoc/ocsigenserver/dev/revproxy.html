@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Revproxy — Ocsigen Server</title>
+  <link rel="stylesheet" href="/css/style.css"/>
+  <link rel="stylesheet" href="/wodoc/ocsigen-odoc.css"/>
+</head>
+<body class="wodoc-page wodoc-doc">
+  <div class="page-header">
+    <p class="logo-ocsigen"><a href="/"><img src="/img/ocsigen-white.svg" alt="Ocsigen"/></a></p>
+    <p class="logo-subproject">Server</p>
+
+    <div class="mainmenu">
+      <p class="mainmenu-home" data-wodoc-page="githubio"><a href="/">Home</a></p>
+      <p class="mainmenu-doc" data-wodoc-page="tuto"><a href="/tuto/">Doc</a></p>
+      <p data-wodoc-page="eliom"><a href="/eliom/">Eliom</a></p>
+      <p data-wodoc-page="js_of_ocaml"><a href="/js_of_ocaml/">Js_of_ocaml</a></p>
+      <p class="mainmenu-current"><a href="/wodoc/ocsigenserver/dev/index.html">Server</a></p>
+      <p data-wodoc-page="lwt"><a href="/lwt/">Lwt</a></p>
+      <p data-wodoc-page="tyxml"><a href="/tyxml/">Tyxml</a></p>
+      <p data-wodoc-page="ocsigen-start"><a href="/ocsigen-start/">Start</a></p>
+    </div>
+
+    <form id="googlesearch" action="https://google.com/search">
+      <input name="q" id="gsearch-box" placeholder="Search using Google"/>
+      <label for="gsearch-box"><img src="/img/search.svg" alt="" id="gsearch-icon"/></label>
+      <input type="submit" id="gsearch-submit" onclick="document.getElementById('gsearch-box').value += ' site:ocsigen.org';"/>
+    </form>
+
+    <aside class="how-drawer">
+      <input id="how-drawer-toggle" type="checkbox"/>
+      <label for="how-drawer-toggle" id="how-drawer-label"><span class="how-drawer-icon"></span></label>
+      <nav class="how-drawer-content">
+        <ul class="drawermainmenu">
+          <li class="drawermainmenu-home" data-wodoc-page="githubio"><a href="/">Home</a></li>
+          <li class="drawermainmenu-doc" data-wodoc-page="tuto"><a href="/tuto/">Doc</a></li>
+          <li class="drawermainmenu-project" data-wodoc-page="eliom"><a href="/eliom/">Eliom</a></li>
+          <li class="drawermainmenu-project" data-wodoc-page="js_of_ocaml"><a href="/js_of_ocaml/">Js_of_ocaml</a></li>
+          <li class="drawermainmenu-project drawermainmenu-current"><a href="/wodoc/ocsigenserver/dev/index.html">Server</a></li>
+          <li class="drawermainmenu-project" data-wodoc-page="lwt"><a href="/lwt/">Lwt</a></li>
+          <li class="drawermainmenu-project" data-wodoc-page="tyxml"><a href="/tyxml/">Tyxml</a></li>
+          <li class="drawermainmenu-project" data-wodoc-page="ocsigen-toolkit"><a href="/ocsigen-toolkit/">Toolkit</a></li>
+          <li class="drawermainmenu-project" data-wodoc-page="ocsigen-start"><a href="/ocsigen-start/">Start</a></li>
+        </ul>
+      </nav>
+    </aside>
+  </div>
+
+  <div class="project-page">
+    <div class="twocols">
+      <nav class="leftcol">
+        <div class="docversion">
+          <label>Version:
+            <select onchange="if(this.value)location.href=this.value">
+              <option value="/wodoc/ocsigenserver/latest/index.html">7.0 (latest)</option>
+              <option selected value="/wodoc/ocsigenserver/dev/index.html">dev</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="doctree">
+          <h1><a href="/wodoc/ocsigenserver/dev/index.html">Ocsigen Server</a></h1>
+          <h2>Usage</h2>
+          <h3 data-wodoc-page="quickstart"><a href="/wodoc/ocsigenserver/dev/quickstart.html">Quick start</a></h3>
+          <h3 data-wodoc-page="launching"><a href="/wodoc/ocsigenserver/dev/launching.html">Launching the server</a></h3>
+          <h3 data-wodoc-page="config"><a href="/wodoc/ocsigenserver/dev/config.html">Configuration file</a></h3>
+          <h3 data-wodoc-page="staticlink"><a href="/wodoc/ocsigenserver/dev/staticlink.html">Using as a library</a></h3>
+          <h2>Extensions</h2>
+          <h3 data-wodoc-page="staticmod"><a href="/wodoc/ocsigenserver/dev/staticmod.html">Staticmod</a></h3>
+          <h3 data-wodoc-page="eliom"><a href="/wodoc/ocsigenserver/dev/eliom.html">Eliom</a></h3>
+          <h3 data-wodoc-page="extendconfiguration"><a href="/wodoc/ocsigenserver/dev/extendconfiguration.html">Extendconfiguration</a></h3>
+          <h3 data-wodoc-page="accesscontrol"><a href="/wodoc/ocsigenserver/dev/accesscontrol.html">Accesscontrol</a></h3>
+          <h3 data-wodoc-page="authbasic"><a href="/wodoc/ocsigenserver/dev/authbasic.html">Authbasic</a></h3>
+          <h3 data-wodoc-page="deflatemod"><a href="/wodoc/ocsigenserver/dev/deflatemod.html">Deflatemod</a></h3>
+          <h3 data-wodoc-page="redirectmod"><a href="/wodoc/ocsigenserver/dev/redirectmod.html">Redirectmod</a></h3>
+          <h3 data-wodoc-page="revproxy" class="current"><a href="/wodoc/ocsigenserver/dev/revproxy.html">Revproxy</a></h3>
+          <h3 data-wodoc-page="rewritemod"><a href="/wodoc/ocsigenserver/dev/rewritemod.html">Rewritemod</a></h3>
+          <h3 data-wodoc-page="outputfilter"><a href="/wodoc/ocsigenserver/dev/outputfilter.html">Outputfilter</a></h3>
+          <h3 data-wodoc-page="userconf"><a href="/wodoc/ocsigenserver/dev/userconf.html">Userconf</a></h3>
+          <h3 data-wodoc-page="cors"><a href="/wodoc/ocsigenserver/dev/cors.html">CORS</a></h3>
+          <h2>Developer documentation</h2>
+          <h3 data-wodoc-page="extend"><a href="/wodoc/ocsigenserver/dev/extend.html">Writing an extension</a></h3>
+          <h2>API</h2>
+          <h3 data-wodoc-page="api"><a href="/wodoc/ocsigenserver/dev/api.html">API reference</a></h3>
+        </div>
+      </nav>
+      <article class="rightcol">
+        <header class="odoc-preamble"><h1 id="revproxy">Revproxy</h1><p>Revproxy is a reverse proxy for Ocsigen.</p><p>This module allows to transmit some requests to another Web server using the HTTP or HTTPS protocol. For example if you want to use Ocsigen together with another Web server (Apache, Tomcat, etc. or even another Ocsigen).</p></header>
+        <nav class="odoc-toc odoc-local-toc"><ul><li><a href="#configuration">Configuration</a></li><li><a href="#technical-details">Technical details</a></li></ul></nav>
+        <div class="odoc-content"><h3 id="configuration">Configuration</h3><p>To use that extension, load OCamlfind package <code>ocsigenserver.ext.revproxy</code>, either from your Dune file (if you are using static linking), or from the configuration file:</p><pre>&lt;extension findlib-package=&quot;ocsigenserver.ext.revproxy&quot;/&gt;</pre><p>This page describes the configuration file options. If you are building a statically linked executable without configuration file, use the corresponding functions from module <a href="Revproxy/index.html"><code>Revproxy</code></a>.</p><p>Here are some examples of configuration file options:</p><pre>&lt;revproxy suburl=&quot;(.*)&quot; dest=&quot;http://my.newaddress.org:8080/\1&quot;/&gt;
+&lt;revproxy suburl=&quot;dir/(.*)\.html&quot; dest=&quot;https://my.newaddress.org/\1.php&quot;/&gt;
+&lt;revproxy fullurl=&quot;http://(.*).mydomain.org:(80|8080)/(.*)&quot; dest=&quot;http://\1.my.newdomain.org:\2/\3&quot;/&gt;</pre><p>regexp is a regular expression using PERL syntax (PCRE). The destination URL is built from dest, where \i corresponds to the i-th part between parenthesis of the regular expression (was $i in older versions).</p><p>Add the attribute <code>keephost=&quot;keephost&quot;</code> if you want to send the original <code>Host</code> header to the distant server. Otherwise, it will be computed from <code>dest</code>.</p><p>Add the attribute <code>nopipeline=&quot;nopipeline&quot;</code> if for some reason you don't want to pipeline reverse proxy's requests. With that option, the reverse proxy will open a new connection for all requests, instead of trying to reuse connections. You probably don't need that, but if you do, please contact us to tell us what is the problem. Thank you!</p><p>You probably also need to rewrite locations in the output (if the server is doing redirections). For example:</p><pre>&lt;outputfilter header=&quot;location&quot; regexp=&quot;http://my.newaddress.org/(.*)&quot; dest=&quot;http://my.publicaddress.org/\1&quot;/&gt;</pre><p>Note that if you are using ocsigen behind a reverse proxy handling X-Forward-For and X-Forward-Proto headers ( like the revproxy module ), you should allow ocsigen to use those informations, using accesscontrol extension</p><pre>&lt;if&gt;
+	&lt;ip value=&quot;ip of the proxy&quot;/&gt;
+	&lt;then&gt;
+	 	&lt;allow-forward-for/&gt;
+    		&lt;allow-forward-proto/&gt;
+	&lt;/then&gt;
+&lt;/if&gt;</pre><h3 id="technical-details">Technical details</h3><ul><li>The reverse proxy does no caching for now.</li><li>The reverse proxy does pipeline the requests for server it trusts for pipelining. But current trusting criteria are probably too strong. They will probably evolve soon.</li></ul></div>
+      </article>
+    </div>
+  </div>
+</body>
+</html>
