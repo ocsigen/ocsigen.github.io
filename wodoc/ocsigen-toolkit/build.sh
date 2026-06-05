@@ -136,9 +136,9 @@ TMPL_OTHER="$(mktemp)";  mk_template ""      "$NAV_SERVER" >"$TMPL_OTHER"
 (cd "$SRC" && find . -name '*.html') | while read -r page; do
   rel="${page#./}"
   case "$rel" in
-    ocsigen-toolkit.server*) tmpl="$TMPL_SERVER" ;;
-    ocsigen-toolkit.client*) tmpl="$TMPL_CLIENT" ;;
-    *)                       tmpl="$TMPL_OTHER" ;;
+    ocsigen-toolkit.server*) tmpl="$TMPL_SERVER"; side="server" ;;
+    ocsigen-toolkit.client*) tmpl="$TMPL_CLIENT"; side="client" ;;
+    *)                       tmpl="$TMPL_OTHER"; side="" ;;
   esac
   # highlight the current entry: the module in the API nav, or the page name in
   # the manual nav (manual pages sit at the package root).
@@ -166,25 +166,22 @@ TMPL_OTHER="$(mktemp)";  mk_template ""      "$NAV_SERVER" >"$TMPL_OTHER"
   mkdir -p "$OUT/$(dirname "$rel")"
   "$WODOC" assemble --template "$tmpl" --current "$current" --base "$base" \
     "$SRC/$rel" >"$OUT/$rel"
+
+  # 3c. Rewrite cross-references to sibling Ocsigen projects (which odoc --remap
+  #    points at https://ocaml.org/p/<pkg>/<ver>/doc/...) to RELATIVE links into
+  #    their wodoc docs. relroot is the path from this page up to the shared root
+  #    holding eliom/, ocsigen-toolkit/, … ($base reaches the version root, two
+  #    more levels the parent of all projects). Relative keeps links valid
+  #    wherever that root is mounted (preview /wodoc/ or final layout) and under
+  #    the `latest` symlink — like the manual's links (report piège #10). The
+  #    shared resolver handles multi-library deps like Eliom (lib dir + side +
+  #    flat-module mapping) and leaves non-hosted deps (lwt, tyxml, …) on ocaml.org.
+  relroot="$base/../.."
+  python3 "$HERE/../resolve-deps.py" "$side" "$relroot" "$OUT/$rel"
 done
 
 rm -f "$TMPL_SERVER" "$TMPL_CLIENT" "$TMPL_OTHER" \
       "$NAV_MANUAL" "$NAV_SERVER" "$NAV_CLIENT" "$VERSIONS"
-
-# 4. Redirect cross-references to Ocsigen-family dependencies from ocaml.org
-#    (odoc --remap's target) to ocsigen.org, where they will all live under
-#    /wodoc/<project>/latest/. The module path after /doc/ is identical between
-#    odoc and our wodoc output, so this is a clean prefix rewrite.
-redirect_dep() { # <pkg> <project>
-  find "$OUT" -name '*.html' -exec sed -i -E \
-    "s#https://ocaml.org/p/$1/[^/]+/doc/#https://ocsigen.org/wodoc/$2/latest/#g" {} +
-}
-redirect_dep eliom         eliom
-redirect_dep ocsigenserver ocsigenserver
-redirect_dep lwt           lwt
-redirect_dep tyxml         tyxml
-redirect_dep js_of_ocaml   js_of_ocaml
-redirect_dep reactiveData  reactiveData
 
 # 4b. Ship odoc's bundled highlight.js at the version root so
 #     {{base}}/highlight.pack.js resolves.

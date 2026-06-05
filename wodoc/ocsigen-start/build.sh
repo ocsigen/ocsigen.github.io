@@ -167,21 +167,18 @@ TMPL_OTHER="$(mktemp)";  mk_template ""      "$NAV_SERVER" >"$TMPL_OTHER"
   "$WODOC" assemble --template "$tmpl" --current "$current" --base "$base" \
     "$SRC/$rel" >"$OUT/$rel"
 
-  # 3c. Rewrite cross-references to Ocsigen-family dependencies (which odoc
-  #    --remap points at https://ocaml.org/p/<pkg>/<ver>/doc/...) to RELATIVE
-  #    links into the sibling project doc. relroot is the path from this page up
-  #    to the shared root that holds eliom/, ocsigen-start/, … ($base reaches the
-  #    version root; two more levels reach the parent of all projects). Relative
-  #    keeps the links valid wherever that root is mounted (preview /wodoc/ or the
-  #    final layout) and under the `latest` symlink — like the manual's links.
+  # 3c. Rewrite cross-references to sibling Ocsigen projects (which odoc --remap
+  #    points at https://ocaml.org/p/<pkg>/<ver>/doc/...) to RELATIVE links into
+  #    their wodoc docs. relroot is the path from this page up to the shared root
+  #    that holds eliom/, ocsigen-toolkit/, … ($base reaches the version root,
+  #    two more levels the parent of all projects). Relative keeps the links
+  #    valid wherever that root is mounted (preview /wodoc/ or final layout) and
+  #    under the `latest` symlink — like the manual's links (report piège #10).
+  #    The shared resolver handles multi-library deps (eliom, ocsigen-toolkit:
+  #    lib dir + side + flat-module mapping) and leaves non-hosted deps (lwt,
+  #    tyxml, …) on ocaml.org.
   relroot="$base/../.."
-  for dep in ocsigenserver lwt tyxml js_of_ocaml reactiveData ocsigen-toolkit; do
-    sed -i -E "s#https://ocaml.org/p/$dep/[^/]+/doc/#$relroot/$dep/latest/#g" "$OUT/$rel"
-  done
-  # Eliom is multi-library (eliom.server / eliom.client share module names) and
-  # eliom 12's wrapped-module odoc metadata leaves many refs unresolved; its
-  # rewrite needs the page side and maps to the flat layout present on both sides.
-  [ -n "$side" ] && python3 "$HERE/resolve-eliom-refs.py" "$side" "$relroot" "$OUT/$rel"
+  python3 "$HERE/../resolve-deps.py" "$side" "$relroot" "$OUT/$rel"
 done
 
 rm -f "$TMPL_SERVER" "$TMPL_CLIENT" "$TMPL_OTHER" \
