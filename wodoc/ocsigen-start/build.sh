@@ -179,13 +179,25 @@ redirect_dep() { # <pkg> <project>
   find "$OUT" -name '*.html' -exec sed -i -E \
     "s#https://ocaml.org/p/$1/[^/]+/doc/#https://ocsigen.org/wodoc/$2/latest/#g" {} +
 }
-redirect_dep eliom           eliom
 redirect_dep ocsigenserver   ocsigenserver
 redirect_dep ocsigen-toolkit ocsigen-toolkit
 redirect_dep lwt             lwt
 redirect_dep tyxml           tyxml
 redirect_dep js_of_ocaml     js_of_ocaml
 redirect_dep reactiveData    reactiveData
+
+# 4a-bis. Eliom needs special handling (it is a multi-library package): its
+#    modules live under eliom.server/ and eliom.client/ in the Eliom wodoc doc,
+#    and eliom 12's wrapped-module odoc metadata leaves some canonical refs
+#    unresolved. resolve-eliom-refs.py rewrites BOTH the resolved
+#    ocaml.org/p/eliom links and the unresolved spans to the matching
+#    eliom.<side>/<flat-module> page (the flat layout exists on both sides), so
+#    every Eliom reference points at the deployed Eliom doc. The side comes from
+#    the page's library subtree; manual pages (no side) carry no such refs.
+find "$OUT/ocsigen-start.server" -name '*.html' -exec \
+  python3 "$HERE/resolve-eliom-refs.py" server {} + 2>/dev/null || true
+find "$OUT/ocsigen-start.client" -name '*.html' -exec \
+  python3 "$HERE/resolve-eliom-refs.py" client {} + 2>/dev/null || true
 
 # 4b. Ship odoc's bundled highlight.js at the version root so
 #     {{base}}/highlight.pack.js resolves.
