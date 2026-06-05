@@ -18,14 +18,20 @@ Both are mapped to the FLAT module layout (`Eliom_content/Html/…`), which exis
 on both sides (the wrapped `Eliom/…` tree is only complete on the client), so the
 target always exists regardless of the page side.
 
-Usage: resolve-eliom-refs.py <server|client> <file.html>...
+Links are RELATIVE: <relroot> is the path from the page up to the shared project
+root (the directory that holds eliom/, ocsigen-start/, …). This keeps the links
+correct wherever that root is mounted (preview /wodoc/… or the final layout) and
+under the `latest` symlink, exactly like the manual's cross-project links.
+
+Usage: resolve-eliom-refs.py <server|client> <relroot> <file.html>...
 """
 import html
 import re
 import sys
 
 SIDE = sys.argv[1]
-BASE = f"https://ocsigen.org/wodoc/eliom/latest/eliom.{SIDE}"
+RELROOT = sys.argv[2]
+BASE = f"{RELROOT}/eliom/latest/eliom.{SIDE}"
 
 
 def flat_module(comp):
@@ -75,7 +81,7 @@ def fix_unresolved(m):
     return f'<a href="{url}">{html.escape(text)}</a>'
 
 
-for path in sys.argv[2:]:
+for path in sys.argv[3:]:
     src = open(path).read()
     out = UNRESOLVED.sub(fix_unresolved, RESOLVED.sub(fix_resolved, src))
     if out != src:

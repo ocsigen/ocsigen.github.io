@@ -136,9 +136,9 @@ TMPL_OTHER="$(mktemp)";  mk_template ""      "$NAV_SERVER" >"$TMPL_OTHER"
 (cd "$SRC" && find . -name '*.html') | while read -r page; do
   rel="${page#./}"
   case "$rel" in
-    ocsigen-start.server*) tmpl="$TMPL_SERVER" ;;
-    ocsigen-start.client*) tmpl="$TMPL_CLIENT" ;;
-    *)                       tmpl="$TMPL_OTHER" ;;
+    ocsigen-start.server*) tmpl="$TMPL_SERVER"; side="server" ;;
+    ocsigen-start.client*) tmpl="$TMPL_CLIENT"; side="client" ;;
+    *)                       tmpl="$TMPL_OTHER"; side="" ;;
   esac
   # highlight the current entry: the module in the API nav, or the page name in
   # the manual nav (manual pages sit at the package root).
@@ -166,38 +166,26 @@ TMPL_OTHER="$(mktemp)";  mk_template ""      "$NAV_SERVER" >"$TMPL_OTHER"
   mkdir -p "$OUT/$(dirname "$rel")"
   "$WODOC" assemble --template "$tmpl" --current "$current" --base "$base" \
     "$SRC/$rel" >"$OUT/$rel"
+
+  # 3c. Rewrite cross-references to Ocsigen-family dependencies (which odoc
+  #    --remap points at https://ocaml.org/p/<pkg>/<ver>/doc/...) to RELATIVE
+  #    links into the sibling project doc. relroot is the path from this page up
+  #    to the shared root that holds eliom/, ocsigen-start/, … ($base reaches the
+  #    version root; two more levels reach the parent of all projects). Relative
+  #    keeps the links valid wherever that root is mounted (preview /wodoc/ or the
+  #    final layout) and under the `latest` symlink — like the manual's links.
+  relroot="$base/../.."
+  for dep in ocsigenserver lwt tyxml js_of_ocaml reactiveData ocsigen-toolkit; do
+    sed -i -E "s#https://ocaml.org/p/$dep/[^/]+/doc/#$relroot/$dep/latest/#g" "$OUT/$rel"
+  done
+  # Eliom is multi-library (eliom.server / eliom.client share module names) and
+  # eliom 12's wrapped-module odoc metadata leaves many refs unresolved; its
+  # rewrite needs the page side and maps to the flat layout present on both sides.
+  [ -n "$side" ] && python3 "$HERE/resolve-eliom-refs.py" "$side" "$relroot" "$OUT/$rel"
 done
 
 rm -f "$TMPL_SERVER" "$TMPL_CLIENT" "$TMPL_OTHER" \
       "$NAV_MANUAL" "$NAV_SERVER" "$NAV_CLIENT" "$VERSIONS"
-
-# 4. Redirect cross-references to Ocsigen-family dependencies from ocaml.org
-#    (odoc --remap's target) to ocsigen.org, where they will all live under
-#    /wodoc/<project>/latest/. The module path after /doc/ is identical between
-#    odoc and our wodoc output, so this is a clean prefix rewrite.
-redirect_dep() { # <pkg> <project>
-  find "$OUT" -name '*.html' -exec sed -i -E \
-    "s#https://ocaml.org/p/$1/[^/]+/doc/#https://ocsigen.org/wodoc/$2/latest/#g" {} +
-}
-redirect_dep ocsigenserver   ocsigenserver
-redirect_dep ocsigen-toolkit ocsigen-toolkit
-redirect_dep lwt             lwt
-redirect_dep tyxml           tyxml
-redirect_dep js_of_ocaml     js_of_ocaml
-redirect_dep reactiveData    reactiveData
-
-# 4a-bis. Eliom needs special handling (it is a multi-library package): its
-#    modules live under eliom.server/ and eliom.client/ in the Eliom wodoc doc,
-#    and eliom 12's wrapped-module odoc metadata leaves some canonical refs
-#    unresolved. resolve-eliom-refs.py rewrites BOTH the resolved
-#    ocaml.org/p/eliom links and the unresolved spans to the matching
-#    eliom.<side>/<flat-module> page (the flat layout exists on both sides), so
-#    every Eliom reference points at the deployed Eliom doc. The side comes from
-#    the page's library subtree; manual pages (no side) carry no such refs.
-find "$OUT/ocsigen-start.server" -name '*.html' -exec \
-  python3 "$HERE/resolve-eliom-refs.py" server {} + 2>/dev/null || true
-find "$OUT/ocsigen-start.client" -name '*.html' -exec \
-  python3 "$HERE/resolve-eliom-refs.py" client {} + 2>/dev/null || true
 
 # 4b. Ship odoc's bundled highlight.js at the version root so
 #     {{base}}/highlight.pack.js resolves.
