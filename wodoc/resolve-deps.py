@@ -78,9 +78,11 @@ def dep_base(pkg):
 
 def fix_resolved(m):
     pkg, path = m.group(1), m.group(2)
-    if pkg in HOSTED:
+    # Source-view links (.../src/<lib>/<file>.ml.html): not all our docs render
+    # source, but ocaml.org always does — leave them there so they never 404.
+    if pkg in HOSTED and not path.startswith("src/"):
         return f'href="{dep_base(pkg)}/{flat_path(path, HOSTED[pkg][2])}"'
-    return m.group(0)  # not hosted: keep the ocaml.org link (it resolves there)
+    return m.group(0)  # not hosted / source view: keep the ocaml.org link
 
 
 RESOLVED = re.compile(r'href="https://ocaml\.org/p/([^/"]+)/[^/"]+/doc/([^"]+)"')
