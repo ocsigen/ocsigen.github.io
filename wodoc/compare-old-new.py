@@ -44,3 +44,8 @@ run("ELIOM dev (old dev vs new dev)", "https://ocsigen.org/eliom/dev/manual/%s.h
 oss_pages="accesscontrol authbasic config cors deflatemod eliom extend extendconfiguration launching outputfilter quickstart redirectmod revproxy rewritemod staticlink staticmod userconf".split()
 run("OCSIGENSERVER latest (old 7.0 vs new latest)", "https://ocsigen.org/ocsigenserver/7.0/manual/%s", "https://ocsigen.org/wodoc/ocsigenserver/latest/%s.html", oss_pages)
 run("OCSIGENSERVER dev (old dev vs new dev)", "https://ocsigen.org/ocsigenserver/dev/manual/%s", "https://ocsigen.org/wodoc/ocsigenserver/dev/%s.html", oss_pages)
+
+# Ocsigen Toolkit: the manual is a single page (intro).
+tk_pages="intro".split()
+run("TOOLKIT latest (old latest vs new latest)", "https://ocsigen.org/ocsigen-toolkit/latest/manual/%s.html", "https://ocsigen.org/wodoc/ocsigen-toolkit/latest/%s.html", tk_pages)
+run("TOOLKIT dev (old dev vs new dev)", "https://ocsigen.org/ocsigen-toolkit/dev/manual/%s.html", "https://ocsigen.org/wodoc/ocsigen-toolkit/dev/%s.html", tk_pages)

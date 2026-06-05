@@ -1,0 +1,206 @@
+#!/bin/bash
+# Build one version of the Ocsigen Toolkit documentation (server + client API +
+# manual) into wodoc/ocsigen-toolkit/<label>/, themed with the Ocsigen chrome and
+# a client/server switch.
+#
+# Like Eliom, Toolkit packages the server and client APIs as two libraries of the
+# SAME package (ocsigen-toolkit.server / ocsigen-toolkit.client) with the SAME
+# module names, so `dune build @doc` collides. We use odoc-driver (the engine
+# ocaml.org uses, in its patched build — see report §10 #1) on the *installed*
+# ocsigen-toolkit package, so the documented version is whatever is installed in
+# the given opam switch:
+#   dev    -> ocsigen-modernize switch  (toolkit 5.0.0~dev, modules Ot.Xxx)
+#   latest -> 5.4.0 switch              (toolkit released master, modules Ot_xxx)
+# `--remap` keeps only toolkit's pages (deps are not hosted; their cross-references
+# go to ocaml.org). We then rewrite the Ocsigen-family deps to ocsigen.org, and
+# theme each page with `wodoc assemble`, colouring the API by side.
+#
+# Usage: build.sh <label> <opam-switch>
+#   label        output subdir / version label (e.g. latest, dev)
+#   opam-switch  switch with odoc-driver + the installed ocsigen-toolkit
+#                (5.4.0 / ocsigen-modernize)
+#
+#   WODOC  path to the wodoc binary (default: wodoc from PATH/opam)
+set -e
+
+LABEL="$1"
+SWITCH="$2"
+[ -n "$LABEL" ] && [ -n "$SWITCH" ] || { echo "usage: build.sh <label> <opam-switch>" >&2; exit 2; }
+
+HERE="$(cd "$(dirname "$0")" && pwd)"
+WODOC="${WODOC:-wodoc}"
+OUT="$HERE/$LABEL"
+# Internal links (nav + template) are kept version-relative: they use the literal
+# {{base}} token, which `wodoc assemble` fills per page with the relative path to
+# the version root. This way a version's pages never mention the version, so the
+# whole tree works unchanged under both /<version>/ and the `latest` symlink.
+BASE="{{base}}"
+# Absolute publish base, used only for the cross-version <select>.
+PUB="${PUB:-/wodoc/ocsigen-toolkit}"
+# Also (re)point `latest` at this build (LATEST=1) — a git symlink, served fine
+# by GitHub Pages.
+LATEST="${LATEST:-}"
+
+eval "$(opam env --switch="$SWITCH" --set-switch)"
+
+# Toolkit source (for the curated per-side index) and the git ref matching the
+# switch. dev (modernize) wraps its modules in `Ot`; the released master uses
+# flat Ot_xxx module names (no wrapper) and a different index file.
+TK_SRC="${TK_SRC:-/home/balat/prog/kroko/ocsigen/ocsigen-toolkit}"
+case "$SWITCH" in
+  *modernize*)
+    TK_REF="${TK_REF:-modernize-mli-odoc}"
+    WRAPPER="${WRAPPER:-Ot}"
+    IDX_SERVER="${IDX_SERVER:-doc/server.indexdoc}"
+    IDX_CLIENT="${IDX_CLIENT:-doc/client.indexdoc}"
+    MANUAL_VER="${MANUAL_VER:-dev}"
+    ;;
+  *)
+    TK_REF="${TK_REF:-latest-mli-odoc}"
+    WRAPPER="${WRAPPER:-}"
+    IDX_SERVER="${IDX_SERVER:-doc/indexdoc.server}"
+    IDX_CLIENT="${IDX_CLIENT:-doc/indexdoc.client}"
+    MANUAL_VER="${MANUAL_VER:-2.7.0}"
+    ;;
+esac
+# {{wrapper}} token used by the template's client/server switch fallback URL:
+# "Ot/" on dev (modules live under the Ot wrapper), "" on master (flat modules).
+WRAP_SEG=""
+[ -n "$WRAPPER" ] && WRAP_SEG="$WRAPPER/"
+
+WORK="$(mktemp -d /home/balat/temp/toolkit-doc-XXXXXX)"
+trap 'rm -rf "$WORK"' EXIT
+
+# 1. Build the manual + API together with odoc-driver on the installed toolkit
+#    package (manual .mld declared by the package's (documentation) stanza, so
+#    {{!page-X}} and {!Module} references resolve in the same run). The package
+#    must be installed from the documented branch (prerequisite). The installed
+#    manual .mld carry {%wodoc:%} markers; preprocess them in place so odoc keeps
+#    them as HTML comments for the render pass (idempotent — safe to re-run).
+#    Set REUSE_HTML=<dir> (containing ocsigen-toolkit/) to skip this slow step.
+if [ -n "$REUSE_HTML" ]; then
+  SRC="$REUSE_HTML/ocsigen-toolkit"
+else
+  PAGES="$(opam var --switch="$SWITCH" doc)/ocsigen-toolkit/odoc-pages"
+  if [ -d "$PAGES" ]; then
+    for f in "$PAGES"/*.mld; do "$WODOC" preprocess "$f" >"$f.pp" && mv "$f.pp" "$f"; done
+  fi
+  odoc_driver ocsigen-toolkit --remap --html-dir "$WORK/html" >/dev/null 2>&1
+  SRC="$WORK/html/ocsigen-toolkit"
+fi
+[ -d "$SRC" ] || { echo "no ocsigen-toolkit output in $SRC" >&2; exit 1; }
+
+rm -rf "$OUT"
+mkdir -p "$OUT"
+
+# 2. Left-column navigation: the manual (from menu.wiki) AND the curated module
+#    list per side (from the per-side index). Both shown on every page.
+NAV_MANUAL="$(mktemp)"; NAV_SERVER="$(mktemp)"; NAV_CLIENT="$(mktemp)"
+git -C "$TK_SRC" show "$TK_REF:$IDX_SERVER" >"$WORK/server.indexdoc"
+git -C "$TK_SRC" show "$TK_REF:$IDX_CLIENT" >"$WORK/client.indexdoc"
+git -C "$TK_SRC" show "wikidoc:doc/$MANUAL_VER/manual/menu.wiki" >"$WORK/menu.wiki"
+python3 "$HERE/gen-nav.py" "$WORK/server.indexdoc" "$BASE" ocsigen-toolkit.server "$WRAPPER" >"$NAV_SERVER"
+python3 "$HERE/gen-nav.py" "$WORK/client.indexdoc" "$BASE" ocsigen-toolkit.client "$WRAPPER" >"$NAV_CLIENT"
+python3 "$HERE/gen-manual-nav.py" "$WORK/menu.wiki" "$BASE" >"$NAV_MANUAL"
+
+# 2b. Version <select> options: `latest` plus every sibling version directory.
+VERSIONS="$(mktemp)"
+{
+  echo "              <option value=\"latest\">latest</option>"
+  for d in "$HERE"/*/; do
+    v="$(basename "$d")"
+    [ "$v" = latest ] && continue
+    echo "              <option value=\"$v\">$v</option>"
+  done
+} >"$VERSIONS"
+
+# 3. Per-side templates. Expand {{leftnav}} into BOTH its slots (left column and
+#    burger drawer), then set side/publish base/wrapper and fill the holes.
+mk_template() {
+  side="$1"; apinav="$2"
+  sed -e "/{{leftnav}}/r $HERE/leftnav.html" -e "/{{leftnav}}/d" \
+      "$HERE/template.html" \
+  | sed -e "s#{{side}}#$side#g" \
+        -e "s#{{pub}}#$PUB#g" \
+        -e "s#{{wrapper}}#$WRAP_SEG#g" \
+        -e "/{{versions}}/r $VERSIONS" -e "/{{versions}}/d" \
+        -e "/{{manual_nav}}/r $NAV_MANUAL" -e "/{{manual_nav}}/d" \
+        -e "/{{api_nav}}/r $apinav" -e "/{{api_nav}}/d"
+}
+TMPL_SERVER="$(mktemp)"; mk_template server "$NAV_SERVER" >"$TMPL_SERVER"
+TMPL_CLIENT="$(mktemp)"; mk_template client "$NAV_CLIENT" >"$TMPL_CLIENT"
+TMPL_OTHER="$(mktemp)";  mk_template ""      "$NAV_SERVER" >"$TMPL_OTHER"
+
+# 3b. Assemble every page, mirroring odoc-driver's ocsigen-toolkit/ subtree so the
+#    relative cross-links keep working. The side (from the path) picks the template.
+(cd "$SRC" && find . -name '*.html') | while read -r page; do
+  rel="${page#./}"
+  case "$rel" in
+    ocsigen-toolkit.server*) tmpl="$TMPL_SERVER" ;;
+    ocsigen-toolkit.client*) tmpl="$TMPL_CLIENT" ;;
+    *)                       tmpl="$TMPL_OTHER" ;;
+  esac
+  # highlight the current entry: the module in the API nav, or the page name in
+  # the manual nav (manual pages sit at the package root).
+  current=""
+  if [ -n "$WRAPPER" ]; then
+    case "$rel" in
+      ocsigen-toolkit.server/$WRAPPER/*/index.html | ocsigen-toolkit.client/$WRAPPER/*/index.html)
+        m="${rel#ocsigen-toolkit.*/$WRAPPER/}"; m="${m%/index.html}"; current="${m//\//.}" ;;
+      */*) ;;
+      *.html) current="${rel%.html}" ;;
+    esac
+  else
+    case "$rel" in
+      ocsigen-toolkit.server/*/index.html | ocsigen-toolkit.client/*/index.html)
+        m="${rel#ocsigen-toolkit.*/}"; m="${m%/index.html}"; current="${m//\//.}" ;;
+      */*) ;;
+      *.html) current="${rel%.html}" ;;
+    esac
+  fi
+  # relative path from this page to the version root.
+  slashes="${rel//[!\/]/}"; depth=${#slashes}
+  if [ "$depth" -eq 0 ]; then base="."; else
+    base=""; for _ in $(seq 1 "$depth"); do base="../$base"; done; base="${base%/}"
+  fi
+  mkdir -p "$OUT/$(dirname "$rel")"
+  "$WODOC" assemble --template "$tmpl" --current "$current" --base "$base" \
+    "$SRC/$rel" >"$OUT/$rel"
+done
+
+rm -f "$TMPL_SERVER" "$TMPL_CLIENT" "$TMPL_OTHER" \
+      "$NAV_MANUAL" "$NAV_SERVER" "$NAV_CLIENT" "$VERSIONS"
+
+# 4. Redirect cross-references to Ocsigen-family dependencies from ocaml.org
+#    (odoc --remap's target) to ocsigen.org, where they will all live under
+#    /wodoc/<project>/latest/. The module path after /doc/ is identical between
+#    odoc and our wodoc output, so this is a clean prefix rewrite.
+redirect_dep() { # <pkg> <project>
+  find "$OUT" -name '*.html' -exec sed -i -E \
+    "s#https://ocaml.org/p/$1/[^/]+/doc/#https://ocsigen.org/wodoc/$2/latest/#g" {} +
+}
+redirect_dep eliom         eliom
+redirect_dep ocsigenserver ocsigenserver
+redirect_dep lwt           lwt
+redirect_dep tyxml         tyxml
+redirect_dep js_of_ocaml   js_of_ocaml
+redirect_dep reactiveData  reactiveData
+
+# 4b. Ship odoc's bundled highlight.js at the version root so
+#     {{base}}/highlight.pack.js resolves.
+PACK="$(dirname "$SRC")/highlight.pack.js"
+if [ -f "$PACK" ]; then
+  cp "$PACK" "$OUT/highlight.pack.js"
+else
+  SF="$(mktemp -d)"; odoc support-files -o "$SF" >/dev/null 2>&1 \
+    && cp "$SF/highlight.pack.js" "$OUT/highlight.pack.js"; rm -rf "$SF"
+fi
+cp "$HERE/toolkit-highlight.js" "$OUT/toolkit-highlight.js"
+
+# 5. Optionally (re)point `latest` at this build: a relative git symlink.
+if [ -n "$LATEST" ]; then
+  ln -sfn "$LABEL" "$HERE/latest"
+  echo "latest -> $LABEL"
+fi
+
+echo "built ocsigen-toolkit $LABEL: $(find "$OUT" -name '*.html' | wc -l) pages -> $OUT"

@@ -1,0 +1,25 @@
+<!-- The left-column navigation, single source of truth. build.sh injects this
+     fragment into BOTH the left column (desktop) and the burger drawer
+     (.how-doctree, mobile) via the leftnav hole, so the menu structure is
+     defined once and the two never drift. The version/manual/api/toc holes
+     inside are filled afterwards. -->
+<div class="docversion">
+  <label>Version:
+    <select class="wodoc-version" onchange="wodocVersion(this.value)">
+{{versions}}
+    </select>
+  </label>
+</div>
+
+<div class="cs-switch">
+  <button type="button" class="cs-server" onclick="wodocSwitch('server')">Server API</button>
+  <button type="button" class="cs-client" onclick="wodocSwitch('client')">Client API</button>
+</div>
+
+<div class="page-toc">
+  <h3>On this page</h3>
+  {{toc}}
+</div>
+
+{{manual_nav}}
+{{api_nav}}
