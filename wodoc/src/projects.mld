@@ -60,7 +60,7 @@ Complete starter app with users, notifications, and mobile support.
 
 {%wodoc:end%}{%wodoc:end%}
 
-{%wodoc:a class=main-page-project-link href=https://github.com/ocsigen/ocsipersist%}{%wodoc:div class=main-page-project%}
+{%wodoc:a class=main-page-project-link href=../ocsipersist/%}{%wodoc:div class=main-page-project%}
 
 {2 Ocsipersist}
 
@@ -98,7 +98,7 @@ An OCaml binding of the Google Closure widget library. (unmaintained)
 
 {%wodoc:end%}{%wodoc:end%}
 
-{%wodoc:a class=main-page-project-link href=https://github.com/ocsigen/html_of_wiki%}{%wodoc:div class=main-page-project%}
+{%wodoc:a class=main-page-project-link href=../html_of_wiki/%}{%wodoc:div class=main-page-project%}
 
 {2 html_of_wiki}
 
