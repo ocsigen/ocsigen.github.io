@@ -68,6 +68,14 @@ Key-value store for data that survives server restarts.
 
 {%wodoc:end%}{%wodoc:end%}
 
+{%wodoc:a class=main-page-project-link href=../wodoc/%}{%wodoc:div class=main-page-project%}
+
+{2 Wodoc}
+
+Build complete styled websites from your odoc documentation.
+
+{%wodoc:end%}{%wodoc:end%}
+
 {%wodoc:end%}
 
 {1 Experimental projects}
@@ -87,6 +95,14 @@ An experimental language for type-safe database queries.
 {2 OClosure}
 
 An OCaml binding of the Google Closure widget library. (unmaintained)
+
+{%wodoc:end%}{%wodoc:end%}
+
+{%wodoc:a class=main-page-project-link href=https://github.com/ocsigen/html_of_wiki%}{%wodoc:div class=main-page-project%}
+
+{2 html_of_wiki}
+
+The legacy wikicréole site and documentation generator, superseded by wodoc. (unmaintained)
 
 {%wodoc:end%}{%wodoc:end%}
 
