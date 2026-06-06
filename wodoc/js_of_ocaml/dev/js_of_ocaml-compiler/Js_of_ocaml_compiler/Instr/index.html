@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Module Js_of_ocaml_compiler.Instr — Js_of_ocaml</title>
+  <link rel="stylesheet" href="/css/style.css"/>
+  <link rel="stylesheet" href="/wodoc/ocsigen-odoc.css"/>
+  <!-- odoc emits code blocks as <pre class="language-..">; highlight them
+       client-side with odoc's bundled highlight.js (loaded in <head>, as odoc
+       does), plus Js_of_ocaml ppx tweaks. jsoo-highlight.js starts highlighting. -->
+  <script src="../../../highlight.pack.js"></script>
+  <script src="../../../jsoo-highlight.js"></script>
+</head>
+<body class="wodoc-page wodoc-doc">
+  <div class="page-header">
+    <p class="logo-ocsigen"><a href="/"><img src="/img/ocsigen-white.svg" alt="Ocsigen"/></a></p>
+    <p class="logo-subproject">Js_of_ocaml</p>
+
+    <div class="mainmenu">
+      <p class="mainmenu-home" data-wodoc-page="githubio"><a href="/">Home</a></p>
+      <p class="mainmenu-doc" data-wodoc-page="tuto"><a href="/tuto/">Doc</a></p>
+      <p class="mainmenu-current"><a href="../../../index.html">Js_of_ocaml</a></p>
+      <p data-wodoc-page="eliom"><a href="/wodoc/eliom/">Eliom</a></p>
+      <p data-wodoc-page="ocsigenserver"><a href="/wodoc/ocsigenserver/">Server</a></p>
+      <p data-wodoc-page="tyxml"><a href="/wodoc/tyxml/">TyXML</a></p>
+      <p data-wodoc-page="ocsigen-toolkit"><a href="/wodoc/ocsigen-toolkit/">Toolkit</a></p>
+    </div>
+
+    <form id="googlesearch" action="https://google.com/search">
+      <input name="q" id="gsearch-box" placeholder="Search using Google"/>
+      <label for="gsearch-box"><img src="/img/search.svg" alt="" id="gsearch-icon"/></label>
+      <input type="submit" id="gsearch-submit" onclick="document.getElementById('gsearch-box').value += ' site:ocsigen.org';"/>
+    </form>
+
+    <aside class="how-drawer">
+      <input id="how-drawer-toggle" type="checkbox"/>
+      <label for="how-drawer-toggle" id="how-drawer-label"><span class="how-drawer-icon"></span></label>
+      <nav class="how-drawer-content">
+        <ul class="drawermainmenu">
+          <li class="drawermainmenu-home" data-wodoc-page="githubio"><a href="/">Home</a></li>
+          <li class="drawermainmenu-doc" data-wodoc-page="tuto"><a href="/tuto/">Doc</a></li>
+          <li class="drawermainmenu-project" data-wodoc-page="eliom"><a href="/wodoc/eliom/">Eliom</a></li>
+          <li class="drawermainmenu-project drawermainmenu-current"><a href="../../../index.html">Js_of_ocaml</a></li>
+          <li class="drawermainmenu-project" data-wodoc-page="ocsigenserver"><a href="/wodoc/ocsigenserver/">Server</a></li>
+          <li class="drawermainmenu-project" data-wodoc-page="lwt"><a href="/lwt/">Lwt</a></li>
+          <li class="drawermainmenu-project" data-wodoc-page="tyxml"><a href="/wodoc/tyxml/">Tyxml</a></li>
+          <li class="drawermainmenu-project" data-wodoc-page="ocsigen-toolkit"><a href="/wodoc/ocsigen-toolkit/">Toolkit</a></li>
+          <li class="drawermainmenu-project" data-wodoc-page="ocsigen-start"><a href="/ocsigen-start/">Start</a></li>
+          <li class="drawermainmenu-page" data-wodoc-page="projects"><a href="/projects">Other projects</a></li>
+          <li class="drawermainmenu-page" data-wodoc-page="papers"><a href="/papers">Research papers</a></li>
+          <li class="drawermainmenu-page" data-wodoc-page="credits"><a href="/credits">Who does Ocsigen?</a></li>
+          <li class="drawermainmenu-page" data-wodoc-page="contributing"><a href="/contributing">Contributing</a></li>
+          <li class="drawermainmenu-page" data-wodoc-page="blog"><a href="/blog">Blog</a></li>
+          <li class="drawermainmenu-page" data-wodoc-page="install"><a href="/install">Installation</a></li>
+          <li class="drawermainmenu-page"><a href="https://github.com/ocsigen">Source code</a></li>
+        </ul>
+        <!-- On mobile the left column is hidden; its menu lives here in the
+             burger (.how-doctree, shown only on narrow screens), as the old site
+             did. Same single-sourced nav fragment as the left column. -->
+        <nav class="how-doctree">
+<!-- Left-column navigation, single source of truth. build.sh injects this into
+     BOTH the left column and the burger drawer via the leftnav hole. The
+     version/manual/toc holes inside are filled afterwards. The manual nav
+     (from docs/manual-wiki/menu.wiki + an appended API entry) carries the
+     manual pages and the "API reference" link. -->
+<div class="docversion">
+  <label>Version:
+    <select class="wodoc-version" onchange="wodocVersion(this.value)">
+              <option value="latest">latest</option>
+              <option value="6.3.1">6.3.1</option>
+              <option value="dev">dev</option>
+    </select>
+  </label>
+</div>
+
+<div class="page-toc">
+  <h3>On this page</h3>
+  
+</div>
+
+<nav class="api-nav manual-nav">
+<h3>Manual</h3>
+<h4 class="ml2">Getting Started</h4>
+<ul class="api-section">
+<li class="ml3" data-wodoc-page="overview"><a href="../../../js_of_ocaml/overview.html">Overview</a></li>
+<li class="ml3" data-wodoc-page="install"><a href="../../../js_of_ocaml/install.html">Installation</a></li>
+<li class="ml3" data-wodoc-page="quickstart"><a href="../../../js_of_ocaml/quickstart.html">Quick Start</a></li>
+</ul>
+<h4 class="ml2">Programming Guide</h4>
+<ul class="api-section">
+<li class="ml3" data-wodoc-page="javascript-interop"><a href="../../../js_of_ocaml/javascript-interop.html">JavaScript interop</a></li>
+<li class="ml3" data-wodoc-page="ppx"><a href="../../../js_of_ocaml/ppx.html">PPX syntax extension</a></li>
+<li class="ml3" data-wodoc-page="ppx-deriving"><a href="../../../js_of_ocaml/ppx-deriving.html">JSON derivation</a></li>
+<li class="ml3" data-wodoc-page="rev-bindings"><a href="../../../js_of_ocaml/rev-bindings.html">Export OCaml code to JavaScript</a></li>
+<li class="ml3" data-wodoc-page="errors"><a href="../../../js_of_ocaml/errors.html">Error handling</a></li>
+<li class="ml3"><a href="../../../js_of_ocaml/api.html">API</a></li>
+</ul>
+<h4 class="ml2">Lwt Support</h4>
+<ul class="api-section">
+<li class="ml3" data-wodoc-page="lwt"><a href="../../../js_of_ocaml/lwt.html">Lwt support</a></li>
+<li class="ml3"><a href="../../../js_of_ocaml-lwt/Js_of_ocaml_lwt/index.html">API</a></li>
+</ul>
+<h4 class="ml2">Compiler</h4>
+<ul class="api-section">
+<li class="ml3" data-wodoc-page="options"><a href="../../../js_of_ocaml/options.html">Command line options</a></li>
+<li class="ml3" data-wodoc-page="compilation-modes"><a href="../../../js_of_ocaml/compilation-modes.html">Compilation modes</a></li>
+<li class="ml3" data-wodoc-page="linker"><a href="../../../js_of_ocaml/linker.html">JavaScript primitives</a></li>
+<li class="ml3" data-wodoc-page="tailcall"><a href="../../../js_of_ocaml/tailcall.html">Tailcall optimization</a></li>
+<li class="ml3" data-wodoc-page="effects"><a href="../../../js_of_ocaml/effects.html">Effect handlers</a></li>
+<li class="ml3" data-wodoc-page="runtime-representation"><a href="../../../js_of_ocaml/runtime-representation.html">Runtime representation</a></li>
+</ul>
+<h4 class="ml2">Wasm_of_ocaml</h4>
+<ul class="api-section">
+<li class="ml3" data-wodoc-page="wasm_overview"><a href="../../../js_of_ocaml/wasm_overview.html">Overview</a></li>
+<li class="ml3" data-wodoc-page="wasm_runtime"><a href="../../../js_of_ocaml/wasm_runtime.html">Writing Wasm primitives</a></li>
+</ul>
+<h4 class="ml2">How-to Guides</h4>
+<ul class="api-section">
+<li class="ml3" data-wodoc-page="build-toplevel"><a href="../../../js_of_ocaml/build-toplevel.html">Build a toplevel or use Dynlink</a></li>
+<li class="ml3" data-wodoc-page="debug"><a href="../../../js_of_ocaml/debug.html">Debug a program</a></li>
+<li class="ml3" data-wodoc-page="performances"><a href="../../../js_of_ocaml/performances.html">Performance</a></li>
+<li class="ml3" data-wodoc-page="contribute"><a href="../../../js_of_ocaml/contribute.html">Contribute</a></li>
+</ul>
+<h4 class="ml2">Try it</h4>
+<ul class="api-section">
+<li class="ml3"><a href="../../../js_of_ocaml/files/toplevel/index.html">OCaml toplevel</a></li>
+<li class="ml3" data-wodoc-page="examples"><a href="../../../js_of_ocaml/examples.html">Examples and projects</a></li>
+</ul>
+</nav>
+<!-- end leftnav -->
+        </nav>
+      </nav>
+    </aside>
+  </div>
+
+  <div class="project-page">
+    <div class="twocols">
+      <nav class="leftcol">
+<!-- Left-column navigation, single source of truth. build.sh injects this into
+     BOTH the left column and the burger drawer via the leftnav hole. The
+     version/manual/toc holes inside are filled afterwards. The manual nav
+     (from docs/manual-wiki/menu.wiki + an appended API entry) carries the
+     manual pages and the "API reference" link. -->
+<div class="docversion">
+  <label>Version:
+    <select class="wodoc-version" onchange="wodocVersion(this.value)">
+              <option value="latest">latest</option>
+              <option value="6.3.1">6.3.1</option>
+              <option value="dev">dev</option>
+    </select>
+  </label>
+</div>
+
+<div class="page-toc">
+  <h3>On this page</h3>
+  
+</div>
+
+<nav class="api-nav manual-nav">
+<h3>Manual</h3>
+<h4 class="ml2">Getting Started</h4>
+<ul class="api-section">
+<li class="ml3" data-wodoc-page="overview"><a href="../../../js_of_ocaml/overview.html">Overview</a></li>
+<li class="ml3" data-wodoc-page="install"><a href="../../../js_of_ocaml/install.html">Installation</a></li>
+<li class="ml3" data-wodoc-page="quickstart"><a href="../../../js_of_ocaml/quickstart.html">Quick Start</a></li>
+</ul>
+<h4 class="ml2">Programming Guide</h4>
+<ul class="api-section">
+<li class="ml3" data-wodoc-page="javascript-interop"><a href="../../../js_of_ocaml/javascript-interop.html">JavaScript interop</a></li>
+<li class="ml3" data-wodoc-page="ppx"><a href="../../../js_of_ocaml/ppx.html">PPX syntax extension</a></li>
+<li class="ml3" data-wodoc-page="ppx-deriving"><a href="../../../js_of_ocaml/ppx-deriving.html">JSON derivation</a></li>
+<li class="ml3" data-wodoc-page="rev-bindings"><a href="../../../js_of_ocaml/rev-bindings.html">Export OCaml code to JavaScript</a></li>
+<li class="ml3" data-wodoc-page="errors"><a href="../../../js_of_ocaml/errors.html">Error handling</a></li>
+<li class="ml3"><a href="../../../js_of_ocaml/api.html">API</a></li>
+</ul>
+<h4 class="ml2">Lwt Support</h4>
+<ul class="api-section">
+<li class="ml3" data-wodoc-page="lwt"><a href="../../../js_of_ocaml/lwt.html">Lwt support</a></li>
+<li class="ml3"><a href="../../../js_of_ocaml-lwt/Js_of_ocaml_lwt/index.html">API</a></li>
+</ul>
+<h4 class="ml2">Compiler</h4>
+<ul class="api-section">
+<li class="ml3" data-wodoc-page="options"><a href="../../../js_of_ocaml/options.html">Command line options</a></li>
+<li class="ml3" data-wodoc-page="compilation-modes"><a href="../../../js_of_ocaml/compilation-modes.html">Compilation modes</a></li>
+<li class="ml3" data-wodoc-page="linker"><a href="../../../js_of_ocaml/linker.html">JavaScript primitives</a></li>
+<li class="ml3" data-wodoc-page="tailcall"><a href="../../../js_of_ocaml/tailcall.html">Tailcall optimization</a></li>
+<li class="ml3" data-wodoc-page="effects"><a href="../../../js_of_ocaml/effects.html">Effect handlers</a></li>
+<li class="ml3" data-wodoc-page="runtime-representation"><a href="../../../js_of_ocaml/runtime-representation.html">Runtime representation</a></li>
+</ul>
+<h4 class="ml2">Wasm_of_ocaml</h4>
+<ul class="api-section">
+<li class="ml3" data-wodoc-page="wasm_overview"><a href="../../../js_of_ocaml/wasm_overview.html">Overview</a></li>
+<li class="ml3" data-wodoc-page="wasm_runtime"><a href="../../../js_of_ocaml/wasm_runtime.html">Writing Wasm primitives</a></li>
+</ul>
+<h4 class="ml2">How-to Guides</h4>
+<ul class="api-section">
+<li class="ml3" data-wodoc-page="build-toplevel"><a href="../../../js_of_ocaml/build-toplevel.html">Build a toplevel or use Dynlink</a></li>
+<li class="ml3" data-wodoc-page="debug"><a href="../../../js_of_ocaml/debug.html">Debug a program</a></li>
+<li class="ml3" data-wodoc-page="performances"><a href="../../../js_of_ocaml/performances.html">Performance</a></li>
+<li class="ml3" data-wodoc-page="contribute"><a href="../../../js_of_ocaml/contribute.html">Contribute</a></li>
+</ul>
+<h4 class="ml2">Try it</h4>
+<ul class="api-section">
+<li class="ml3"><a href="../../../js_of_ocaml/files/toplevel/index.html">OCaml toplevel</a></li>
+<li class="ml3" data-wodoc-page="examples"><a href="../../../js_of_ocaml/examples.html">Examples and projects</a></li>
+</ul>
+</nav>
+<!-- end leftnav -->
+      </nav>
+      <article class="rightcol">
+        <header class="odoc-preamble"><h1>Module <code><span>Js_of_ocaml_compiler.Instr</span></code></h1></header>
+        <div class="odoc-content"><div class="odoc-spec"><div class="spec type anchored" id="type-t"><code><span><span class="keyword">type</span> t</span><span> = </span></code><ol><li id="type-t.ACC0" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">ACC0</span></span></code></li><li id="type-t.ACC1" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">ACC1</span></span></code></li><li id="type-t.ACC2" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">ACC2</span></span></code></li><li id="type-t.ACC3" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">ACC3</span></span></code></li><li id="type-t.ACC4" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">ACC4</span></span></code></li><li id="type-t.ACC5" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">ACC5</span></span></code></li><li id="type-t.ACC6" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">ACC6</span></span></code></li><li id="type-t.ACC7" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">ACC7</span></span></code></li><li id="type-t.ACC" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">ACC</span></span></code></li><li id="type-t.PUSH" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">PUSH</span></span></code></li><li id="type-t.PUSHACC0" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">PUSHACC0</span></span></code></li><li id="type-t.PUSHACC1" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">PUSHACC1</span></span></code></li><li id="type-t.PUSHACC2" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">PUSHACC2</span></span></code></li><li id="type-t.PUSHACC3" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">PUSHACC3</span></span></code></li><li id="type-t.PUSHACC4" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">PUSHACC4</span></span></code></li><li id="type-t.PUSHACC5" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">PUSHACC5</span></span></code></li><li id="type-t.PUSHACC6" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">PUSHACC6</span></span></code></li><li id="type-t.PUSHACC7" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">PUSHACC7</span></span></code></li><li id="type-t.PUSHACC" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">PUSHACC</span></span></code></li><li id="type-t.POP" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">POP</span></span></code></li><li id="type-t.ASSIGN" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">ASSIGN</span></span></code></li><li id="type-t.ENVACC1" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">ENVACC1</span></span></code></li><li id="type-t.ENVACC2" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">ENVACC2</span></span></code></li><li id="type-t.ENVACC3" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">ENVACC3</span></span></code></li><li id="type-t.ENVACC4" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">ENVACC4</span></span></code></li><li id="type-t.ENVACC" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">ENVACC</span></span></code></li><li id="type-t.PUSHENVACC1" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">PUSHENVACC1</span></span></code></li><li id="type-t.PUSHENVACC2" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">PUSHENVACC2</span></span></code></li><li id="type-t.PUSHENVACC3" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">PUSHENVACC3</span></span></code></li><li id="type-t.PUSHENVACC4" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">PUSHENVACC4</span></span></code></li><li id="type-t.PUSHENVACC" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">PUSHENVACC</span></span></code></li><li id="type-t.PUSH_RETADDR" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">PUSH_RETADDR</span></span></code></li><li id="type-t.APPLY" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">APPLY</span></span></code></li><li id="type-t.APPLY1" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">APPLY1</span></span></code></li><li id="type-t.APPLY2" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">APPLY2</span></span></code></li><li id="type-t.APPLY3" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">APPLY3</span></span></code></li><li id="type-t.APPTERM" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">APPTERM</span></span></code></li><li id="type-t.APPTERM1" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">APPTERM1</span></span></code></li><li id="type-t.APPTERM2" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">APPTERM2</span></span></code></li><li id="type-t.APPTERM3" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">APPTERM3</span></span></code></li><li id="type-t.RETURN" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">RETURN</span></span></code></li><li id="type-t.RESTART" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">RESTART</span></span></code></li><li id="type-t.GRAB" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">GRAB</span></span></code></li><li id="type-t.CLOSURE" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">CLOSURE</span></span></code></li><li id="type-t.CLOSUREREC" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">CLOSUREREC</span></span></code></li><li id="type-t.OFFSETCLOSUREM3" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">OFFSETCLOSUREM3</span></span></code></li><li id="type-t.OFFSETCLOSURE0" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">OFFSETCLOSURE0</span></span></code></li><li id="type-t.OFFSETCLOSURE3" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">OFFSETCLOSURE3</span></span></code></li><li id="type-t.OFFSETCLOSURE" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">OFFSETCLOSURE</span></span></code></li><li id="type-t.PUSHOFFSETCLOSUREM3" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">PUSHOFFSETCLOSUREM3</span></span></code></li><li id="type-t.PUSHOFFSETCLOSURE0" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">PUSHOFFSETCLOSURE0</span></span></code></li><li id="type-t.PUSHOFFSETCLOSURE3" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">PUSHOFFSETCLOSURE3</span></span></code></li><li id="type-t.PUSHOFFSETCLOSURE" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">PUSHOFFSETCLOSURE</span></span></code></li><li id="type-t.GETGLOBAL" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">GETGLOBAL</span></span></code></li><li id="type-t.PUSHGETGLOBAL" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">PUSHGETGLOBAL</span></span></code></li><li id="type-t.GETGLOBALFIELD" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">GETGLOBALFIELD</span></span></code></li><li id="type-t.PUSHGETGLOBALFIELD" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">PUSHGETGLOBALFIELD</span></span></code></li><li id="type-t.SETGLOBAL" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">SETGLOBAL</span></span></code></li><li id="type-t.ATOM0" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">ATOM0</span></span></code></li><li id="type-t.ATOM" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">ATOM</span></span></code></li><li id="type-t.PUSHATOM0" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">PUSHATOM0</span></span></code></li><li id="type-t.PUSHATOM" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">PUSHATOM</span></span></code></li><li id="type-t.MAKEBLOCK" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">MAKEBLOCK</span></span></code></li><li id="type-t.MAKEBLOCK1" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">MAKEBLOCK1</span></span></code></li><li id="type-t.MAKEBLOCK2" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">MAKEBLOCK2</span></span></code></li><li id="type-t.MAKEBLOCK3" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">MAKEBLOCK3</span></span></code></li><li id="type-t.MAKEFLOATBLOCK" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">MAKEFLOATBLOCK</span></span></code></li><li id="type-t.GETFIELD0" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">GETFIELD0</span></span></code></li><li id="type-t.GETFIELD1" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">GETFIELD1</span></span></code></li><li id="type-t.GETFIELD2" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">GETFIELD2</span></span></code></li><li id="type-t.GETFIELD3" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">GETFIELD3</span></span></code></li><li id="type-t.GETFIELD" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">GETFIELD</span></span></code></li><li id="type-t.GETFLOATFIELD" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">GETFLOATFIELD</span></span></code></li><li id="type-t.SETFIELD0" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">SETFIELD0</span></span></code></li><li id="type-t.SETFIELD1" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">SETFIELD1</span></span></code></li><li id="type-t.SETFIELD2" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">SETFIELD2</span></span></code></li><li id="type-t.SETFIELD3" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">SETFIELD3</span></span></code></li><li id="type-t.SETFIELD" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">SETFIELD</span></span></code></li><li id="type-t.SETFLOATFIELD" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">SETFLOATFIELD</span></span></code></li><li id="type-t.VECTLENGTH" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">VECTLENGTH</span></span></code></li><li id="type-t.GETVECTITEM" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">GETVECTITEM</span></span></code></li><li id="type-t.SETVECTITEM" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">SETVECTITEM</span></span></code></li><li id="type-t.GETBYTESCHAR" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">GETBYTESCHAR</span></span></code></li><li id="type-t.SETBYTESCHAR" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">SETBYTESCHAR</span></span></code></li><li id="type-t.BRANCH" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">BRANCH</span></span></code></li><li id="type-t.BRANCHIF" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">BRANCHIF</span></span></code></li><li id="type-t.BRANCHIFNOT" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">BRANCHIFNOT</span></span></code></li><li id="type-t.SWITCH" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">SWITCH</span></span></code></li><li id="type-t.BOOLNOT" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">BOOLNOT</span></span></code></li><li id="type-t.PUSHTRAP" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">PUSHTRAP</span></span></code></li><li id="type-t.POPTRAP" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">POPTRAP</span></span></code></li><li id="type-t.RAISE" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">RAISE</span></span></code></li><li id="type-t.CHECK_SIGNALS" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">CHECK_SIGNALS</span></span></code></li><li id="type-t.C_CALL1" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">C_CALL1</span></span></code></li><li id="type-t.C_CALL2" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">C_CALL2</span></span></code></li><li id="type-t.C_CALL3" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">C_CALL3</span></span></code></li><li id="type-t.C_CALL4" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">C_CALL4</span></span></code></li><li id="type-t.C_CALL5" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">C_CALL5</span></span></code></li><li id="type-t.C_CALLN" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">C_CALLN</span></span></code></li><li id="type-t.CONST0" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">CONST0</span></span></code></li><li id="type-t.CONST1" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">CONST1</span></span></code></li><li id="type-t.CONST2" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">CONST2</span></span></code></li><li id="type-t.CONST3" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">CONST3</span></span></code></li><li id="type-t.CONSTINT" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">CONSTINT</span></span></code></li><li id="type-t.PUSHCONST0" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">PUSHCONST0</span></span></code></li><li id="type-t.PUSHCONST1" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">PUSHCONST1</span></span></code></li><li id="type-t.PUSHCONST2" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">PUSHCONST2</span></span></code></li><li id="type-t.PUSHCONST3" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">PUSHCONST3</span></span></code></li><li id="type-t.PUSHCONSTINT" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">PUSHCONSTINT</span></span></code></li><li id="type-t.NEGINT" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">NEGINT</span></span></code></li><li id="type-t.ADDINT" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">ADDINT</span></span></code></li><li id="type-t.SUBINT" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">SUBINT</span></span></code></li><li id="type-t.MULINT" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">MULINT</span></span></code></li><li id="type-t.DIVINT" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">DIVINT</span></span></code></li><li id="type-t.MODINT" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">MODINT</span></span></code></li><li id="type-t.ANDINT" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">ANDINT</span></span></code></li><li id="type-t.ORINT" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">ORINT</span></span></code></li><li id="type-t.XORINT" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">XORINT</span></span></code></li><li id="type-t.LSLINT" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">LSLINT</span></span></code></li><li id="type-t.LSRINT" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">LSRINT</span></span></code></li><li id="type-t.ASRINT" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">ASRINT</span></span></code></li><li id="type-t.EQ" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">EQ</span></span></code></li><li id="type-t.NEQ" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">NEQ</span></span></code></li><li id="type-t.LTINT" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">LTINT</span></span></code></li><li id="type-t.LEINT" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">LEINT</span></span></code></li><li id="type-t.GTINT" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">GTINT</span></span></code></li><li id="type-t.GEINT" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">GEINT</span></span></code></li><li id="type-t.OFFSETINT" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">OFFSETINT</span></span></code></li><li id="type-t.OFFSETREF" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">OFFSETREF</span></span></code></li><li id="type-t.ISINT" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">ISINT</span></span></code></li><li id="type-t.GETMETHOD" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">GETMETHOD</span></span></code></li><li id="type-t.BEQ" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">BEQ</span></span></code></li><li id="type-t.BNEQ" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">BNEQ</span></span></code></li><li id="type-t.BLTINT" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">BLTINT</span></span></code></li><li id="type-t.BLEINT" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">BLEINT</span></span></code></li><li id="type-t.BGTINT" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">BGTINT</span></span></code></li><li id="type-t.BGEINT" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">BGEINT</span></span></code></li><li id="type-t.ULTINT" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">ULTINT</span></span></code></li><li id="type-t.UGEINT" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">UGEINT</span></span></code></li><li id="type-t.BULTINT" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">BULTINT</span></span></code></li><li id="type-t.BUGEINT" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">BUGEINT</span></span></code></li><li id="type-t.GETPUBMET" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">GETPUBMET</span></span></code></li><li id="type-t.GETDYNMET" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">GETDYNMET</span></span></code></li><li id="type-t.STOP" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">STOP</span></span></code></li><li id="type-t.EVENT" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">EVENT</span></span></code></li><li id="type-t.BREAK" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">BREAK</span></span></code></li><li id="type-t.RERAISE" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">RERAISE</span></span></code></li><li id="type-t.RAISE_NOTRACE" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">RAISE_NOTRACE</span></span></code></li><li id="type-t.GETSTRINGCHAR" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">GETSTRINGCHAR</span></span></code></li><li id="type-t.PERFORM" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">PERFORM</span></span></code></li><li id="type-t.RESUME" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">RESUME</span></span></code></li><li id="type-t.RESUMETERM" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">RESUMETERM</span></span></code></li><li id="type-t.REPERFORMTERM" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">REPERFORMTERM</span></span></code></li><li id="type-t.FIRST_UNIMPLEMENTED_OP" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">FIRST_UNIMPLEMENTED_OP</span></span></code></li></ol></div></div><div class="odoc-spec"><div class="spec type anchored" id="type-kind"><code><span><span class="keyword">type</span> kind</span><span> = </span></code><ol><li id="type-kind.KNullary" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">KNullary</span></span></code></li><li id="type-kind.KUnary" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">KUnary</span></span></code></li><li id="type-kind.KBinary" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">KBinary</span></span></code></li><li id="type-kind.KJump" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">KJump</span></span></code></li><li id="type-kind.KCond_jump" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">KCond_jump</span></span></code></li><li id="type-kind.KCmp_jump" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">KCmp_jump</span></span></code></li><li id="type-kind.KSwitch" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">KSwitch</span></span></code></li><li id="type-kind.KClosurerec" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">KClosurerec</span></span></code></li><li id="type-kind.KClosure" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">KClosure</span></span></code></li><li id="type-kind.KNullaryCall" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">KNullaryCall</span></span></code></li><li id="type-kind.KUnaryCall" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">KUnaryCall</span></span></code></li><li id="type-kind.KBinaryCall" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">KBinaryCall</span></span></code></li><li id="type-kind.KStop" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">KStop</span> <span class="keyword">of</span> int</span></code></li><li id="type-kind.K_will_not_happen" class="def variant constructor anchored"><code><span>| </span><span><span class="constructor">K_will_not_happen</span></span></code></li></ol></div></div><div class="odoc-spec"><div class="spec type anchored" id="type-desc"><code><span><span class="keyword">type</span> desc</span><span> = </span><span>{</span></code><ol><li id="type-desc.code" class="def record field anchored"><code><span>code : <a href="#type-t">t</a>;</span></code></li><li id="type-desc.kind" class="def record field anchored"><code><span>kind : <a href="#type-kind">kind</a>;</span></code></li><li id="type-desc.name" class="def record field anchored"><code><span>name : string;</span></code></li><li id="type-desc.opcode" class="def record field anchored"><code><span>opcode : int;</span></code></li></ol><code><span>}</span></code></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-find"><code><span><span class="keyword">val</span> find : <span><a href="#type-t">t</a> <span class="arrow">&#45;&gt;</span></span> <a href="#type-desc">desc</a></span></code></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-get_instr_exn"><code><span><span class="keyword">val</span> get_instr_exn : <span>string <span class="arrow">&#45;&gt;</span></span> <span>int <span class="arrow">&#45;&gt;</span></span> <a href="#type-desc">desc</a></span></code></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-gets"><code><span><span class="keyword">val</span> gets : <span>string <span class="arrow">&#45;&gt;</span></span> <span>int <span class="arrow">&#45;&gt;</span></span> int</span></code></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-getu"><code><span><span class="keyword">val</span> getu : <span>string <span class="arrow">&#45;&gt;</span></span> <span>int <span class="arrow">&#45;&gt;</span></span> int</span></code></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-gets32"><code><span><span class="keyword">val</span> gets32 : <span>string <span class="arrow">&#45;&gt;</span></span> <span>int <span class="arrow">&#45;&gt;</span></span> int32</span></code></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-getu32"><code><span><span class="keyword">val</span> getu32 : <span>string <span class="arrow">&#45;&gt;</span></span> <span>int <span class="arrow">&#45;&gt;</span></span> int32</span></code></div></div></div>
+      </article>
+    </div>
+  </div>
+
+  <script>
+    // Switch documentation version, staying on the same page when possible:
+    // only the version segment of the current path is swapped.
+    function wodocVersion(v) {
+      if (!v) return;
+      var re = new RegExp('^(/wodoc/js_of_ocaml/)[^/]+');
+      var p = location.pathname;
+      location.href = re.test(p) ? p.replace(re, '$1' + v) : '/wodoc/js_of_ocaml/' + v + '/index.html';
+    }
+    // The current version comes from the URL, not the build: the same files are
+    // served under <version>/ and the `latest` symlink, so mark the selected
+    // option from the path. There are two selectors (left column + burger).
+    (function () {
+      var m = location.pathname.match(new RegExp('^/wodoc/js_of_ocaml/([^/]+)'));
+      if (!m) return;
+      document.querySelectorAll('.wodoc-version').forEach(function (sel) {
+        var ok = false, i;
+        for (i = 0; i < sel.options.length; i++)
+          if (sel.options[i].value === m[1]) { sel.selectedIndex = i; ok = true; break; }
+        if (!ok) {
+          var o = document.createElement('option');
+          o.value = m[1]; o.textContent = m[1]; o.selected = true;
+          sel.insertBefore(o, sel.firstChild);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

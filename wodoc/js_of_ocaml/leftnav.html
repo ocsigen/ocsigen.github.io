@@ -1,0 +1,20 @@
+<!-- Left-column navigation, single source of truth. build.sh injects this into
+     BOTH the left column and the burger drawer via the leftnav hole. The
+     version/manual/toc holes inside are filled afterwards. The manual nav
+     (from docs/manual-wiki/menu.wiki + an appended API entry) carries the
+     manual pages and the "API reference" link. -->
+<div class="docversion">
+  <label>Version:
+    <select class="wodoc-version" onchange="wodocVersion(this.value)">
+{{versions}}
+    </select>
+  </label>
+</div>
+
+<div class="page-toc">
+  <h3>On this page</h3>
+  {{toc}}
+</div>
+
+{{manual_nav}}
+<!-- end leftnav -->

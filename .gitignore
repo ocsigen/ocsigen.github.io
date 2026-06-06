@@ -21,3 +21,5 @@ _site/
 /wodoc/tyxml/latest
 /wodoc/tuto/*/
 /wodoc/tuto/latest
+/wodoc/js_of_ocaml/*/
+/wodoc/js_of_ocaml/latest
