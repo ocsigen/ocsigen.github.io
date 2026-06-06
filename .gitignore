@@ -27,3 +27,5 @@ _site/
 !/wodoc/js_of_ocaml/demos/
 /wodoc/lwt/*/
 /wodoc/lwt/latest
+/wodoc/ocsipersist/*/
+/wodoc/ocsipersist/latest
