@@ -117,6 +117,20 @@ if [ -d "$WT/manual/files" ]; then
   cp -R "$WT/manual/files/." "$OUT/js_of_ocaml/files/"
 fi
 
+# Interactive "Try it" demos (toplevel, boulderdash, …). They are version-
+# independent and large (the toplevel alone is ~27 MB), so rather than rebuild
+# and commit them per version we keep ONE pre-built copy in demos/ (taken from a
+# past js_of_ocaml build) and symlink it into each version's files/. GitHub Pages
+# follows directory symlinks (same as the `latest` symlink, report §10 #4).
+if [ -d "$HERE/demos" ]; then
+  mkdir -p "$OUT/js_of_ocaml/files"
+  for d in "$HERE"/demos/*/; do
+    name="$(basename "$d")"
+    # from <ver>/js_of_ocaml/files/<demo> up to wodoc/js_of_ocaml/, then demos/
+    ln -sfn "../../../demos/$name" "$OUT/js_of_ocaml/files/$name"
+  done
+fi
+
 # Landing: the version root redirects to the package home (manual overview).
 cat >"$OUT/index.html" <<EOF
 <!DOCTYPE html>
