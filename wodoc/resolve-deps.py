@@ -151,10 +151,10 @@ def fix_unresolved(m):
         dirs, anchor = rest, ""
     url = f"{dep_base(pkg)}/{modhead}"
     url += "".join("/" + d for d in dirs) + f"/index.html{anchor}"
-    # wrap the label in <code>: an unresolved xref span carries no <code> (unlike
-    # a resolved odoc ref), so the link would otherwise render in the body font.
-    # <code> gives it monospace; .rightcol a code gives it the link colour.
-    return f'<a href="{url}"><code>{html.escape(label)}</code></a>'
+    # plain link; monospace is applied via CSS (.rightcol a[href*="/latest/"]),
+    # which also covers refs that already sit inside a <code> spec block without
+    # double-wrapping them.
+    return f'<a href="{url}">{html.escape(label)}</a>'
 
 
 for path in FILES:
