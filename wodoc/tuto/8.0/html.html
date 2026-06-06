@@ -305,7 +305,7 @@
       </nav>
       <article class="rightcol">
         
-        <h1 id="html-in-5-minutes">HTML in 5 minutes</h1><p>The Tyxml library makes it possible to type-check HTML pages. This means that your Ocsigen program will never generate pages which do not follow the recommendations from the W3C. For example a program that could generate a page with a paragraph inside another paragraph will be rejected at compile time.</p>
+        <header><h1 id="html-in-5-minutes">HTML in 5 minutes</h1></header><p>The Tyxml library makes it possible to type-check HTML pages. This means that your Ocsigen program will never generate pages which do not follow the recommendations from the W3C. For example a program that could generate a page with a paragraph inside another paragraph will be rejected at compile time.</p>
 <h2 id="typed-html">Typed HTML</h2><h3 id="tags">Tags</h3><p>Tyxml (or modules obtained by applying Tyxml functor, like <code>Eliom_content.Html.D</code>) defines a contructor function for each HTML tag, and for each attribute.</p><p>Example:</p><pre class="language-ocaml"><code>   html
      (head (title (txt &quot;Hello&quot;)) [])
      (body [ h1 [txt &quot;Hello&quot;] ;
