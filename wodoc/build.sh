@@ -36,7 +36,8 @@ for mld in "$HERE"/src/*.mld; do
   odoc compile "$WORK/$name.mld" -o "$WORK/page-$name.odoc"
   odoc link "$WORK/page-$name.odoc" -o "$WORK/page-$name.odocl"
   odoc html-generate "$WORK/page-$name.odocl" -o "$WORK/html"
-  "$WODOC" assemble --template "$template" --current "$current" $extra \
+  "$WODOC" assemble --template "$template" --menu "$HERE/menu.html" \
+    --current "$current" $extra \
     "$WORK/html/$name.html" >"$HERE/$name.html"
   echo "built $name.html"
 done

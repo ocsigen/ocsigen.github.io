@@ -62,6 +62,24 @@
   color: inherit;
   font-family: inherit;
 }
+/* Inline code that is a link takes the link colour (inherited from the <a>), so
+   clickable code stands out from plain inline code. */
+.rightcol a code {
+  color: inherit;
+}
+/* Code references that odoc left without a <code> wrapper, rendered monospace
+   like any other code identifier:
+   - links to an API page (a module/member page always ends in /index.html, so
+     this matches every API ref link regardless of project/version, but NOT a
+     manual page link such as ../eliom/clientserver-html.html);
+   - unresolved refs left as plain text (.xref-unresolved), e.g. deps we don't
+     host (lwt, tyxml, js_of_ocaml).
+   Links keep the link colour (plain <a>); refs already inside a <code> spec
+   block are monospace already, so this is a harmless no-op there. */
+.rightcol a[href*="/index.html"],
+.rightcol .xref-unresolved {
+  font-family: monospace;
+}
 
 /* ---- In-page outline (odoc's local TOC) at the top of the content ---- */
 .rightcol .odoc-tocs {

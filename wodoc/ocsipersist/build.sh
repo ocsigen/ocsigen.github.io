@@ -66,18 +66,24 @@ VERSIONS="$(mktemp)"
   done
 } >"$VERSIONS"
 
-# Page template: expand {{leftnav}} into both slots (left column + burger), fill
-# the static API nav, version/pub holes. The nav is hand-written (no manual).
+# Page template: fill only the version/pub holes. The shared top menu comes from
+# ../menu.html (via `wodoc assemble --menu`), and the left navigation from the
+# leftnav fragment below (via --leftnav, expanded by the tool into BOTH the left
+# column and the burger drawer). The nav is hand-written (no manual).
 TMPL="$(mktemp)"
-sed -e "/{{leftnav}}/r $HERE/leftnav.html" -e "/{{leftnav}}/d" "$HERE/template.html" \
-  | sed -e "s#{{pub}}#$PUB#g" \
-        -e "/{{versions}}/r $VERSIONS" -e "/{{versions}}/d" \
-        -e "/{{manual_nav}}/r $HERE/nav.html" -e "/{{manual_nav}}/d" \
-  >"$TMPL"
+sed -e "s#{{pub}}#$PUB#g" "$HERE/template.html" >"$TMPL"
 
-# Assemble every package page, mirroring odoc's tree. "current" highlights the
-# matching nav entry: the top package directory of the page (ocsipersist,
-# ocsipersist-sqlite, ...). Skip odoc's own global index/support assets.
+# Left navigation fragment: fill the version <select> and the static API nav;
+# {{base}} and {{toc}} stay as holes, filled per page by `wodoc assemble`.
+LEFTNAV="$(mktemp)"
+sed -e "/{{versions}}/r $VERSIONS" -e "/{{versions}}/d" \
+    -e "/{{manual_nav}}/r $HERE/nav.html" -e "/{{manual_nav}}/d" \
+    "$HERE/leftnav.html" >"$LEFTNAV"
+
+# Assemble every package page, mirroring odoc's tree. --current highlights the
+# matching left-nav entry: the top package directory of the page (ocsipersist,
+# ocsipersist-sqlite, ...); --menu-current highlights Ocsipersist in the shared
+# top menu. Skip odoc's own global index/support assets.
 (cd "$SRC" && find ocsipersist ocsipersist-lib ocsipersist-dbm ocsipersist-sqlite \
    ocsipersist-pgsql ocsipersist-dbm-config ocsipersist-sqlite-config \
    ocsipersist-pgsql-config -name '*.html') | while read -r rel; do
@@ -85,11 +91,14 @@ sed -e "/{{leftnav}}/r $HERE/leftnav.html" -e "/{{leftnav}}/d" "$HERE/template.h
   slashes="${rel//[!\/]/}"; depth=${#slashes}
   base=""; for _ in $(seq 1 "$depth"); do base="../$base"; done; base="${base%/}"
   mkdir -p "$OUT/$(dirname "$rel")"
-  "$WODOC" assemble --template "$TMPL" --current "$current" --base "$base" \
+  "$WODOC" assemble --template "$TMPL" --menu "$HERE/../menu.html" \
+    --subproject '<p class="logo-subproject">Ocsipersist</p>' \
+    --menu-current ocsipersist --leftnav "$LEFTNAV" \
+    --current "$current" --base "$base" \
     "$SRC/$rel" >"$OUT/$rel"
 done
 
-rm -f "$TMPL" "$VERSIONS"
+rm -f "$TMPL" "$LEFTNAV" "$VERSIONS"
 
 # Landing: the version root redirects to the main package overview.
 cat >"$OUT/index.html" <<EOF

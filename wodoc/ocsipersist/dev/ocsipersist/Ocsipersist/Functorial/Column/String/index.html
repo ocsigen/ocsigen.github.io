@@ -13,56 +13,76 @@
   <script src="../../../../../ocsipersist-highlight.js"></script>
 </head>
 <body class="wodoc-page wodoc-doc">
-  <div class="page-header">
-    <p class="logo-ocsigen"><a href="/"><img src="/img/ocsigen-white.svg" alt="Ocsigen"/></a></p>
-    <p class="logo-subproject">Ocsipersist</p>
+  <!-- Shared site menu — single source of truth for the header, top menu and
+     drawer of EVERY wodoc page (vitrine + all projects). Injected by
+     `wodoc assemble --menu`. Holes filled by the tool (braces omitted here so
+     this comment is not itself rewritten by the hole-filler):
+       subproject  the sub-project name shown next to the Ocsigen logo
+                   (empty on the vitrine), via --subproject
+       leftnav     the project's left navigation, expanded into BOTH the mobile
+                   drawer (below) and the left column (in the page template),
+                   via --leftnav
+     The current entry is highlighted by adding the `current` class to the
+     element carrying data-wodoc-page=<id>: --current on the vitrine (page id),
+     --menu-current in a project (the project id). Nothing is hardcoded here, so
+     this file is the ONLY place the menu is defined.
 
-    <div class="mainmenu">
-      <p class="mainmenu-home" data-wodoc-page="githubio"><a href="/">Home</a></p>
-      <p class="mainmenu-doc" data-wodoc-page="tuto"><a href="/wodoc/tuto/">Doc</a></p>
-      <p data-wodoc-page="eliom"><a href="/wodoc/eliom/">Eliom</a></p>
-      <p data-wodoc-page="js_of_ocaml"><a href="/wodoc/js_of_ocaml/">Js_of_ocaml</a></p>
-      <p data-wodoc-page="ocsigenserver"><a href="/wodoc/ocsigenserver/">Server</a></p>
-      <p data-wodoc-page="lwt"><a href="/wodoc/lwt/">Lwt</a></p>
-      <p data-wodoc-page="tyxml"><a href="/wodoc/tyxml/">Tyxml</a></p>
-      <p data-wodoc-page="ocsigen-start"><a href="/wodoc/ocsigen-start/">Start</a></p>
-    </div>
+     Links are absolute under /wodoc/ (the preview prefix), so they resolve from
+     both a vitrine page and a deep project page. At cutover, a single global
+     /wodoc/ -> / replacement in THIS file retargets the whole menu. -->
+<div class="page-header">
+  <p class="logo-ocsigen"><a href="/"><img src="/img/ocsigen-white.svg" alt="Ocsigen"/></a></p>
+  <p class="logo-subproject">Ocsipersist</p>
 
-    <form id="googlesearch" action="https://google.com/search">
-      <input name="q" id="gsearch-box" placeholder="Search using Google"/>
-      <label for="gsearch-box"><img src="/img/search.svg" alt="" id="gsearch-icon"/></label>
-      <input type="submit" id="gsearch-submit" onclick="document.getElementById('gsearch-box').value += ' site:ocsigen.org';"/>
-    </form>
+  <div class="mainmenu">
+    <p class="mainmenu-home" data-wodoc-page="githubio"><a href="/">Home</a></p>
+    <p class="mainmenu-doc" data-wodoc-page="tuto"><a href="/wodoc/tuto/">Doc</a></p>
+    <p data-wodoc-page="eliom"><a href="/wodoc/eliom/">Eliom</a></p>
+    <p data-wodoc-page="js_of_ocaml"><a href="/wodoc/js_of_ocaml/">Js_of_ocaml</a></p>
+    <p data-wodoc-page="ocsigenserver"><a href="/wodoc/ocsigenserver/">Server</a></p>
+    <p data-wodoc-page="lwt"><a href="/wodoc/lwt/">Lwt</a></p>
+    <p data-wodoc-page="tyxml"><a href="/wodoc/tyxml/">Tyxml</a></p>
+    <p data-wodoc-page="ocsigen-start"><a href="/wodoc/ocsigen-start/">Start</a></p>
+  </div>
 
-    <aside class="how-drawer">
-      <input id="how-drawer-toggle" type="checkbox"/>
-      <label for="how-drawer-toggle" id="how-drawer-label"><span class="how-drawer-icon"></span></label>
-      <nav class="how-drawer-content">
-        <ul class="drawermainmenu">
-          <li class="drawermainmenu-home" data-wodoc-page="githubio"><a href="/">Home</a></li>
-          <li class="drawermainmenu-doc" data-wodoc-page="tuto"><a href="/wodoc/tuto/">Doc</a></li>
-          <li class="drawermainmenu-project" data-wodoc-page="eliom"><a href="/wodoc/eliom/">Eliom</a></li>
-          <li class="drawermainmenu-project" data-wodoc-page="js_of_ocaml"><a href="/wodoc/js_of_ocaml/">Js_of_ocaml</a></li>
-          <li class="drawermainmenu-project" data-wodoc-page="ocsigenserver"><a href="/wodoc/ocsigenserver/">Server</a></li>
-          <li class="drawermainmenu-project" data-wodoc-page="lwt"><a href="/wodoc/lwt/">Lwt</a></li>
-          <li class="drawermainmenu-project" data-wodoc-page="tyxml"><a href="/wodoc/tyxml/">Tyxml</a></li>
-          <li class="drawermainmenu-project" data-wodoc-page="ocsigen-toolkit"><a href="/wodoc/ocsigen-toolkit/">Toolkit</a></li>
-          <li class="drawermainmenu-project" data-wodoc-page="ocsigen-start"><a href="/wodoc/ocsigen-start/">Start</a></li>
-          <li class="drawermainmenu-project drawermainmenu-current"><a href="../../../../../index.html">Ocsipersist</a></li>
-          <li class="drawermainmenu-project" data-wodoc-page="ocsigen-i18n"><a href="/wodoc/ocsigen-i18n/">i18n</a></li>
-          <li class="drawermainmenu-page" data-wodoc-page="projects"><a href="/projects">Other projects</a></li>
-          <li class="drawermainmenu-page" data-wodoc-page="papers"><a href="/papers">Research papers</a></li>
-          <li class="drawermainmenu-page" data-wodoc-page="credits"><a href="/credits">Who does Ocsigen?</a></li>
-          <li class="drawermainmenu-page" data-wodoc-page="contributing"><a href="/contributing">Contributing</a></li>
-          <li class="drawermainmenu-page" data-wodoc-page="blog"><a href="/blog">Blog</a></li>
-          <li class="drawermainmenu-page" data-wodoc-page="install"><a href="/install">Installation</a></li>
-          <li class="drawermainmenu-page"><a href="https://github.com/ocsigen">Source code</a></li>
-        </ul>
-        <!-- On mobile the left column is hidden; its menu lives here in the
-             burger (.how-doctree, shown only on narrow screens), as the old site
-             did. Same single-sourced nav fragment as the left column. -->
-        <nav class="how-doctree">
-<!-- The left-column navigation, single source of truth. build.sh injects this
+  <form id="googlesearch" action="https://google.com/search">
+    <input name="q" id="gsearch-box" placeholder="Search using Google"/>
+    <label for="gsearch-box"><img src="/img/search.svg" alt="" id="gsearch-icon"/></label>
+    <input type="submit" id="gsearch-submit" onclick="document.getElementById('gsearch-box').value += ' site:ocsigen.org';"/>
+  </form>
+
+  <aside class="how-drawer">
+    <input id="how-drawer-toggle" type="checkbox"/>
+    <label for="how-drawer-toggle" id="how-drawer-label"><span class="how-drawer-icon"></span></label>
+    <nav class="how-drawer-content">
+      <ul class="drawermainmenu">
+        <li class="drawermainmenu-home" data-wodoc-page="githubio"><a href="/">Home</a></li>
+        <li class="drawermainmenu-doc" data-wodoc-page="tuto"><a href="/wodoc/tuto/">Doc</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="eliom"><a href="/wodoc/eliom/">Eliom</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="js_of_ocaml"><a href="/wodoc/js_of_ocaml/">Js_of_ocaml</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="ocsigenserver"><a href="/wodoc/ocsigenserver/">Server</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="lwt"><a href="/wodoc/lwt/">Lwt</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="tyxml"><a href="/wodoc/tyxml/">Tyxml</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="ocsigen-toolkit"><a href="/wodoc/ocsigen-toolkit/">Toolkit</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="ocsigen-start"><a href="/wodoc/ocsigen-start/">Start</a></li>
+        <li class="drawermainmenu-project current" data-wodoc-page="ocsipersist"><a href="/wodoc/ocsipersist/">Ocsipersist</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="ocsigen-i18n"><a href="/wodoc/ocsigen-i18n/">i18n</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="html_of_wiki"><a href="/wodoc/html_of_wiki/">html_of_wiki</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="wodoc"><a href="/wodoc/wodoc/">Wodoc</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="ocsimore"><a href="/wodoc/ocsimore/">Ocsimore (<em>deprecated</em>)</a></li>
+        <li class="drawermainmenu-page" data-wodoc-page="projects"><a href="/wodoc/projects.html">Other projects</a></li>
+        <li class="drawermainmenu-page" data-wodoc-page="papers"><a href="/wodoc/papers.html">Research papers</a></li>
+        <li class="drawermainmenu-page" data-wodoc-page="credits"><a href="/wodoc/credits.html">Who does Ocsigen?</a></li>
+        <li class="drawermainmenu-page" data-wodoc-page="contributing"><a href="/wodoc/contributing.html">Contributing</a></li>
+        <li class="drawermainmenu-page" data-wodoc-page="blog"><a href="/blog">Blog</a></li>
+        <li class="drawermainmenu-page" data-wodoc-page="install"><a href="/wodoc/install.html">Installation</a></li>
+        <li class="drawermainmenu-page"><a href="https://github.com/ocsigen">Source code</a></li>
+      </ul>
+      <!-- On mobile the left column is hidden; its menu lives here in the burger
+           (.how-doctree, shown only on narrow screens), as the old site did.
+           Empty on the vitrine; the leftnav hole is filled (with the same
+           fragment as the left column) only on project pages. -->
+      <nav class="how-doctree"><!-- The left-column navigation, single source of truth. build.sh injects this
      fragment into BOTH the left column (desktop) and the burger drawer
      (.how-doctree, mobile) via the leftnav hole, so the menu structure is
      defined once and the two never drift. The version/manual/toc holes inside
@@ -114,15 +134,16 @@
     <li class="ml2" data-wodoc-page="Ppx"><a href="../../../../../Ppx/index.html">Ppx</a></li>
   </ul>
 </nav>
-        </nav>
-      </nav>
-    </aside>
-  </div>
+</nav>
+    </nav>
+  </aside>
+</div>
+
 
   <div class="project-page">
     <div class="twocols">
       <nav class="leftcol">
-<!-- The left-column navigation, single source of truth. build.sh injects this
+        <!-- The left-column navigation, single source of truth. build.sh injects this
      fragment into BOTH the left column (desktop) and the burger drawer
      (.how-doctree, mobile) via the leftnav hole, so the menu structure is
      defined once and the two never drift. The version/manual/toc holes inside
@@ -174,6 +195,7 @@
     <li class="ml2" data-wodoc-page="Ppx"><a href="../../../../../Ppx/index.html">Ppx</a></li>
   </ul>
 </nav>
+
       </nav>
       <article class="rightcol">
         <header class="odoc-preamble"><h1>Module <code><span>Column.String</span></code></h1></header>
