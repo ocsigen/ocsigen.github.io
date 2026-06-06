@@ -1026,6 +1026,14 @@ section.docblock > header > h2 {
   width: 400px;
   max-width: 100%;
 }
+/* An image carrying the "centered" class (wodoc puts the class on the <img>
+   itself, whereas html_of_wiki put it on the wrapping <p class="centered">):
+   center the block image. p.centered (text-align) still handles the old case. */
+img.centered {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
 /****** Mobile version ******/
 @media (max-width: 720px) {
   .smallscreen {
