@@ -1,0 +1,297 @@
+/* The Ocsigen theme for odoc/wodoc-generated documentation pages (manual + API),
+   layered on top of /css/style.css. wodoc (the tool) imposes no styling; this
+   theme belongs to the site and is shared by every project's doc
+   (ocsigenserver, eliom, toolkit, start, ...). The per-project differences live
+   in the HTML template (active menu entry, project title, version list).
+
+   We deliberately do NOT load odoc's own stylesheet: it resets every element
+   and lays the whole page out as a grid, which fights the site chrome. odoc's
+   content fragment only needs styling for a small set of API-signature classes
+   (.spec, .odoc-spec, .spec-doc); prose, lists, code and headings are plain
+   HTML the site stylesheet already handles. */
+
+/* ---- Active navigation entry (the "current" class wodoc adds on the element
+   carrying data-wodoc-page) mapped to the site's menu-current look ---- */
+.page-header .mainmenu p.current {
+  border-bottom: 4px solid #64caff;
+}
+.drawermainmenu li.current a {
+  font-weight: bold;
+  color: #ff8d52;
+}
+
+/* The page layout (.project-page, .twocols, .leftcol, .rightcol) is provided by
+   the site stylesheet; we only add what is specific to the doc pages below. */
+
+/* ---- Left column: version selector + manual navigation (doctree) ---- */
+.leftcol .docversion { margin-bottom: 1.2em; font-size: 0.9em; }
+.leftcol .docversion label {
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+  color: #5a6b7b;
+}
+.docversion select {
+  font: inherit;
+  flex: 1;
+  padding: 0.25em 0.5em;
+  border: 1px solid #cae1ff;
+  border-radius: 5px;
+  background: #fff;
+  color: #1a4f7a;
+  cursor: pointer;
+}
+.docversion select:hover { border-color: #5cacee; }
+
+.leftcol .doctree a { text-decoration: none; }
+.leftcol .doctree a:hover { text-decoration: underline; }
+.leftcol .doctree h3 { font-weight: normal; }
+.leftcol .doctree .current > a {
+  font-weight: bold;
+  color: #ff8d52;
+}
+
+/* ---- Inline code: light blue, matching the previous site's .teletype ---- */
+.rightcol code {
+  color: #0ca9dc;
+  font-family: monospace;
+}
+/* but not block code or API signatures, which keep their own colours */
+.rightcol pre code,
+.rightcol .spec code {
+  color: inherit;
+  font-family: inherit;
+}
+
+/* ---- In-page outline (odoc's local TOC) at the top of the content ---- */
+.rightcol .odoc-tocs {
+  margin: 0 0 1.5em;
+  padding: 0.6em 1em;
+  background: #f6f9fc;
+  border-left: 3px solid #64caff;
+  border-radius: 0 3px 3px 0;
+  font-size: 0.92em;
+}
+.rightcol .odoc-toc ul { list-style: none; margin: 0.2em 0; padding-left: 1.2em; }
+.rightcol .odoc-toc > ul { padding-left: 0; }
+.rightcol .odoc-toc a { text-decoration: none; }
+.rightcol .odoc-toc a:hover { text-decoration: underline; }
+
+/* Left column: three clearly separated blocks — the current page's outline
+   ("On this page"), the Manual navigation, and the API navigation. Each has its
+   own heading, and the current page/module is highlighted so you always see
+   where you are even as the page outline changes while browsing. odoc's verbose
+   global sidebar is hidden in favour of these. */
+.leftcol .odoc-global-toc { display: none; }
+.leftcol .odoc-toc ul { list-style: none; padding-left: 0.8rem; margin: 0.2em 0; }
+.leftcol .odoc-toc a,
+.leftcol .api-nav a { text-decoration: none; }
+.leftcol .odoc-toc a:hover,
+.leftcol .api-nav a:hover { text-decoration: underline; }
+
+/* Section headings (On this page / Manual / Modules) — small uppercase labels */
+.leftcol .page-toc h3,
+.leftcol .api-nav h3 {
+  font-size: 0.78em;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #8a97a8;
+  margin: 0 0 0.4em;
+}
+
+/* The page outline: a distinct boxed block, visually tied to the current page;
+   hidden when the page has no sections. */
+.leftcol .page-toc {
+  margin: 0 0 1.3em;
+  padding: 0.6em 0.8em;
+  background: #f6f9fc;
+  border-left: 3px solid #64caff;
+  border-radius: 0 3px 3px 0;
+}
+.leftcol .page-toc:not(:has(.odoc-local-toc a)) { display: none; }
+
+/* The Manual and API navs: separated by a rule, with sub-section labels. */
+.leftcol .api-nav {
+  margin: 0 0 1.3em;
+  padding-top: 1.1em;
+  border-top: 1px solid #e3e8ef;
+}
+.leftcol .api-nav h4 {
+  font-size: 0.85em;
+  font-weight: bold;
+  color: #555;
+  margin: 0.9em 0 0.2em;
+}
+.leftcol .api-nav ul.api-section { list-style: none; padding-left: 0; margin: 0.2em 0; }
+.leftcol .api-nav li { line-height: 1.5; }
+
+/* Current location: highlighted entry, with an accent bar tying it to the nav.
+   The accent follows the side (blue on server, yellow on client) to match the
+   page's API colour and not confuse the reader. */
+.leftcol .api-nav li.current > a {
+  display: block;
+  font-weight: bold;
+  color: #0e7eff;
+  background: #eaf3ff;
+  border-left: 3px solid #0e7eff;
+  margin-left: -0.5em;
+  padding: 0.1em 0.4em 0.1em calc(0.5em - 3px);
+  border-radius: 0 3px 3px 0;
+}
+.wodoc-client .leftcol .api-nav li.current > a {
+  color: #8a6a00;
+  background: #ffffdd; /* old charter: pre.client background */
+  border-left-color: #ffec8b; /* old charter: pre.client border */
+}
+/* the page outline box follows the side colour too (blue server, yellow client) */
+.wodoc-client .leftcol .page-toc {
+  background: #ffffdd;
+  border-left-color: #ffec8b;
+}
+
+/* ---- API signatures (val / type / module declarations) ---- */
+.odoc-spec { margin: 1.4em 0; }
+
+.spec {
+  font-family: "DejaVu Sans Mono", "Consolas", monospace;
+  font-size: 0.92em;
+  line-height: 1.5;
+  background: #f6f9fc;
+  border-left: 3px solid #0e7eff;
+  border-radius: 0 3px 3px 0;
+  padding: 0.5em 0.8em;
+  overflow-x: auto;
+}
+.spec.type   { border-left-color: #ff8d52; }
+.spec.module { border-left-color: #094489; }
+.spec code {
+  background: none;
+  padding: 0;
+  font: inherit;
+  /* preserve the line breaks/indentation odoc inserts in long signatures
+     (e.g. one labelled argument per line) instead of collapsing them */
+  white-space: pre-wrap;
+}
+
+.spec .keyword { color: #094489; font-weight: bold; }
+.spec .arrow { color: #888; }
+.spec .label, .spec .optlabel { color: #2e8eff; }
+.spec .xref-unresolved { color: inherit; border-bottom: 1px dotted #bbb; }
+
+/* The documentation attached to a declaration */
+.spec-doc { margin: 0.3em 0 0 1.2em; }
+.spec-doc > *:first-child { margin-top: 0; }
+
+/* Heading hover-anchors odoc leaves in the content */
+.rightcol a.anchor { opacity: 0; text-decoration: none; padding-right: 0.3em; }
+.rightcol :hover > a.anchor { opacity: 0.4; }
+
+/* odoc's up/index breadcrumb nav at the top of API pages */
+.rightcol nav.odoc-nav { font-size: 0.85em; color: #555; margin-bottom: 1em; }
+
+/* ---- Client/server API distinction (Eliom, Toolkit, …) ----
+   Server-side API on a blue background, client-side on a yellow one. Pages
+   without a side (e.g. Ocsigen Server) keep the default blue .spec above. */
+/* Same palette as the site's pre.server / pre.client code blocks. */
+.wodoc-server .spec { background: #ddeeff; border-left-color: #5cacee; }
+.wodoc-client .spec { background: #ffffdd; border-left-color: #ffec8b; }
+
+/* Server/client switch (in the left column) */
+/* The server/client switch only makes sense on API pages, not in the manual. */
+.cs-switch { display: none; margin-bottom: 1em; }
+.wodoc-server .cs-switch,
+.wodoc-client .cs-switch { display: flex; }
+.cs-switch button {
+  flex: 1;
+  font: inherit;
+  padding: 0.3em 0.5em;
+  border: 1px solid #cbd6e2;
+  background: #eef2f7;
+  color: #333;
+  cursor: pointer;
+}
+.cs-switch .cs-server { border-radius: 4px 0 0 4px; border-right: none; }
+.cs-switch .cs-client { border-radius: 0 4px 4px 0; }
+/* highlight the current side, matching the site's switch colours */
+.wodoc-server .cs-switch .cs-server { background: #5cacee; color: #fff; border-color: #5cacee; }
+.wodoc-client .cs-switch .cs-client { background: #ffec8b; color: #333; border-color: #ffec8b; }
+
+/* Code-block syntax highlighting. odoc 3.x does not colour code blocks itself
+   (it emits <pre class="language-..">) and defers to a client-side highlighter;
+   we load odoc's bundled highlight.js and give its tokens a light palette,
+   readable over the server (blue) and client (yellow) block backgrounds.
+   No background here, so the server/client block colours show through. */
+.rightcol .hljs-comment,
+.rightcol .hljs-quote,
+.rightcol .hljs-meta { color: #6a737d; font-style: italic; }
+.rightcol .hljs-keyword,
+.rightcol .hljs-selector-tag { color: #cf222e; }
+.rightcol .hljs-string,
+.rightcol .hljs-regexp { color: #0a3069; }
+.rightcol .hljs-type,
+.rightcol .hljs-built_in,
+.rightcol .hljs-class,
+.rightcol .hljs-constructor,
+.rightcol .hljs-module { color: #0e7490; }      /* modules / types: teal */
+.rightcol .hljs-title,
+.rightcol .hljs-function,
+.rightcol .hljs-section { color: #953800; }      /* function names: amber */
+.rightcol .hljs-literal,
+.rightcol .hljs-number,
+.rightcol .hljs-symbol,
+.rightcol .hljs-variable,
+.rightcol .hljs-attribute { color: #6f4e00; }
+.rightcol .hljs-subst { color: #9a6700; }         /* ~%x client-value injection */
+.rightcol .hljs-emphasis { font-style: italic; }
+.rightcol .hljs-strong { font-weight: 600; }
+
+/* Eliom ppx side markers (let%client / %server / %shared), coloured by tier */
+.rightcol .hljs-eliom-client { color: #9a6700; font-weight: 600; }  /* dark yellow */
+.rightcol .hljs-eliom-server { color: #08489c; font-weight: 600; }  /* blue */
+.rightcol .hljs-eliom-shared { color: #1a7f37; font-weight: 600; }  /* green */
+
+/* ---- Manual navigation: indent each menu level (==/===/====) ---- */
+/* gen-manual-nav.py tags every heading/entry with .mlN (N = number of '=' in
+   menu.wiki); deeper levels shift a little further right, like the old site. */
+.leftcol .manual-nav .ml3 { padding-left: 0.9em; }
+.leftcol .manual-nav .ml4 { padding-left: 1.8em; }
+.leftcol .manual-nav .ml5 { padding-left: 2.7em; }
+.leftcol .manual-nav .ml6 { padding-left: 3.6em; }
+
+/* ---- API includes: continue the side-coloured rule down the open include ----
+   The include header already carries the blue/yellow spec bar; move it onto the
+   whole <details> so it runs from the header down to the last member, and indent
+   the members, making it clear where the include ends. */
+.rightcol .odoc-include > details {
+  border-left: 3px solid #0e7eff;
+  border-radius: 3px 0 0 3px;
+  padding-left: 0.8em;            /* breathing space to the right of the rule */
+}
+.wodoc-server .rightcol .odoc-include > details { border-left-color: #5cacee; }
+.wodoc-client .rightcol .odoc-include > details { border-left-color: #ffec8b; }
+/* the include header keeps its bar-less look, but its background extends back to
+   the rule (negative margin) while its text stays aligned with the members */
+.rightcol .odoc-include > details > summary.spec.include {
+  border-left: none;
+  margin-left: -0.8em;
+  padding-left: 0.8em;
+}
+.rightcol .odoc-include > details > .odoc-spec { margin: 0; }
+
+/* Ordered-list numbers: very discreet (small and pale), so the list content
+   stands out rather than the markers. */
+.rightcol ol > li::marker {
+  color: #b0b0b0;
+  font-size: 0.8em;
+}
+
+/* ---- Burger copy of the left menu (mobile) ----
+   .how-doctree mirrors the left column inside the dark drawer; most .leftcol
+   rules don't apply here, so the drawer's white-on-dark + blue-heading styles
+   make it legible. Restore the list reset and the manual's per-level indent. */
+.how-doctree ul { list-style: none; padding-left: 0; margin: 0.2em 0; }
+.how-doctree .manual-nav .ml3 { padding-left: 0.9em; }
+.how-doctree .manual-nav .ml4 { padding-left: 1.8em; }
+.how-doctree .manual-nav .ml5 { padding-left: 2.7em; }
+.how-doctree .manual-nav .ml6 { padding-left: 3.6em; }
+.how-doctree .docversion { margin: 0.5em 0 1em; }
