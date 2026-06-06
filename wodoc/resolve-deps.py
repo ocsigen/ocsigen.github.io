@@ -87,23 +87,31 @@ def fix_resolved(m):
 
 RESOLVED = re.compile(r'href="https://ocaml\.org/p/([^/"]+)/[^/"]+/doc/([^"]+)"')
 
-# Unresolved refs to a hosted project: the head is either the bare wrapper
-# (`Eliom`, `Ot`, …) or a flat module (`Eliom_common`, `Ot_picture_uploader`).
-# odoc puts that qualified head inside the span; any further `.member` may sit
-# just after it as plain text. We match both and rebuild the whole path.
+# Unresolved refs to a hosted project. odoc renders an unresolved reference as
+# <span class="xref-unresolved" title="Fully.Qualified.name">visible text</span>
+# (sometimes with extra classes, e.g. "xref-unresolved row"). The `title` carries
+# the full qualified path, which is the reliable source for the link; the visible
+# text (a leaf, or a "val M.x" form) is kept as the link label. When there is no
+# title we fall back to the visible text. A leading kind word and the
+# "(Module.x ())" wrapping that odoc sometimes adds are stripped.
 WRAPPERS = {w: pkg for pkg, (_, _, w) in HOSTED.items()}
 UNRESOLVED = re.compile(
-    r'<span class="xref-unresolved">'
-    r"((?:" + "|".join(WRAPPERS) + r")(?:_[A-Za-z0-9_']+)?"
-    r"(?:\.[A-Za-z_][A-Za-z0-9_']*)*)</span>"
-    r"((?:\.[A-Za-z_][A-Za-z0-9_']*)*)"
+    r'<span class="xref-unresolved[^"]*"(?:\s+title="([^"]*)")?>([^<]*)</span>'
 )
+KIND = re.compile(r"^(val|type|module|exception|method|class)\s+")
 
 
 def fix_unresolved(m):
-    toks = (m.group(1) + m.group(2)).split(".")
+    title, text = m.group(1), m.group(2)
+    name = title if title else text
+    name = KIND.sub("", name.strip()).strip("() ")
+    toks = [t for t in name.split(".") if t]
+    if not toks:
+        return m.group(0)
     head = toks[0]
-    wrapper = next(w for w in WRAPPERS if head == w or head.startswith(w + "_"))
+    wrapper = next((w for w in WRAPPERS if head == w or head.startswith(w + "_")), None)
+    if wrapper is None:
+        return m.group(0)  # a dep we don't host (lwt, tyxml, …): leave as text
     pkg = WRAPPERS[wrapper]
     if head == wrapper:  # bare wrapper: next token is the (flat) module
         if len(toks) < 2:
@@ -111,13 +119,16 @@ def fix_unresolved(m):
         modhead, rest = flat_module(toks[1], wrapper), toks[2:]
     else:  # head is already a flat module name
         modhead, rest = head, toks[1:]
-    if rest and rest[-1][:1].islower():  # trailing value/type leaf
-        dirs, anchor = rest[:-1], f"#type-{rest[-1]}"
+    # a lowercase trailing token is a value/type leaf living on its parent page;
+    # default the anchor to #val- (the common case) — a wrong guess still lands
+    # on the right page, just without scrolling.
+    if rest and rest[-1][:1].islower():
+        dirs, anchor = rest[:-1], f"#val-{rest[-1]}"
     else:
         dirs, anchor = rest, ""
     url = f"{dep_base(pkg)}/{modhead}"
     url += "".join("/" + d for d in dirs) + f"/index.html{anchor}"
-    return f'<a href="{url}">{html.escape(m.group(1) + m.group(2))}</a>'
+    return f'<a href="{url}">{html.escape(text)}</a>'
 
 
 for path in sys.argv[3:]:
