@@ -94,6 +94,8 @@
 <li class="ml3" data-wodoc-page="api"><a href="../../api.html">API reference</a></li>
 </ul>
 </nav>
+<!-- end leftnav -->
+        </nav>
       </nav>
     </aside>
   </div>
@@ -135,6 +137,8 @@
 <li class="ml3" data-wodoc-page="api"><a href="../../api.html">API reference</a></li>
 </ul>
 </nav>
+<!-- end leftnav -->
+      </nav>
       <article class="rightcol">
         <header class="odoc-preamble"><h1>Module <code><span>Xml_print.Utf8</span></code></h1><p>Utf8 normalizer and encoder for HTML.</p><p>Given a <code>pp</code> function produced by one of the functors in <a href="../index.html"><code>Xml_print</code></a>, this modules is used as following:</p><pre class="language-ocaml"><code>  let encode x = fst (Xml_print.Utf8.normalize_html x) in
   Format.printf &quot;%a&quot; (Html.pp ~encode ()) document</code></pre></header>

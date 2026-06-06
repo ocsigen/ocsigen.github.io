@@ -94,6 +94,8 @@
 <li class="ml3" data-wodoc-page="api"><a href="../api.html">API reference</a></li>
 </ul>
 </nav>
+<!-- end leftnav -->
+        </nav>
       </nav>
     </aside>
   </div>
@@ -135,6 +137,8 @@
 <li class="ml3" data-wodoc-page="api"><a href="../api.html">API reference</a></li>
 </ul>
 </nav>
+<!-- end leftnav -->
+      </nav>
       <article class="rightcol">
         <header class="odoc-preamble"><h1>Module <code><span>Xml_stream</span></code></h1><p>Streaming IO to/from XML trees</p></header>
         <div class="odoc-content"><div class="odoc-spec"><div class="spec type anchored" id="type-name"><code><span><span class="keyword">type</span> name</span><span> = string * string</span></code></div></div><h3 id="input">Input</h3><div class="odoc-spec"><div class="spec type anchored" id="type-signal"><code><span><span class="keyword">type</span> signal</span><span> = </span><span>[ </span></code><ol><li id="type-signal.Comment" class="def variant constructor anchored"><code><span>| </span><span>`Comment <span class="keyword">of</span> string</span></code></li><li id="type-signal.End_element" class="def variant constructor anchored"><code><span>| </span><span>`End_element</span></code></li><li id="type-signal.Start_element" class="def variant constructor anchored"><code><span>| </span><span>`Start_element <span class="keyword">of</span> <a href="#type-name">name</a> * <span><span>(<a href="#type-name">name</a> * string)</span> list</span></span></code></li><li id="type-signal.Text" class="def variant constructor anchored"><code><span>| </span><span>`Text <span class="keyword">of</span> <span>string list</span></span></code></li></ol><code><span> ]</span></code></div></div><div class="odoc-spec"><div class="spec exception anchored" id="exception-Malformed_stream"><code><span><span class="keyword">exception</span> </span><span><span class="exception">Malformed_stream</span></span></code></div></div><div class="odoc-spec"><div class="spec module anchored" id="module-Import"><code><span><span class="keyword">module</span> <a href="Import/index.html">Import</a></span><span> (<a href="Import/argument-1-Xml/index.html">Xml</a> : <a href="../Xml_sigs/module-type-T/index.html">Xml_sigs.T</a>) : <span class="keyword">sig</span> ... <span class="keyword">end</span></span></code></div></div></div>
