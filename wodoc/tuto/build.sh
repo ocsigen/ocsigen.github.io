@@ -83,7 +83,7 @@ SRC="$WORK/html/tuto"
 #    <relroot> is the path from a page up to the shared /wodoc root that holds
 #    eliom/, ocsigen-toolkit/, …: a page at <pub>/<label>/X.html sits two levels
 #    below it.
-python3 "$HERE/../resolve-deps.py" server "../.." "$SRC"/*.html
+python3 "$HERE/../resolve-deps.py" --self tuto server "../.." "$SRC"/*.html
 
 # 4. left-column navigation, from this version's wikicreole menu.
 NAV_MANUAL="$(mktemp)"

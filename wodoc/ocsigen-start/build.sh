@@ -178,7 +178,7 @@ TMPL_OTHER="$(mktemp)";  mk_template ""      "$NAV_SERVER" >"$TMPL_OTHER"
   #    lib dir + side + flat-module mapping) and leaves non-hosted deps (lwt,
   #    tyxml, …) on ocaml.org.
   relroot="$base/../.."
-  python3 "$HERE/../resolve-deps.py" "$side" "$relroot" "$OUT/$rel"
+  python3 "$HERE/../resolve-deps.py" --self ocsigen-start "$side" "$relroot" "$OUT/$rel"
 done
 
 rm -f "$TMPL_SERVER" "$TMPL_CLIENT" "$TMPL_OTHER" \

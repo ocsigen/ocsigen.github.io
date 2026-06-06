@@ -27,14 +27,27 @@ that holds eliom/, ocsigen-toolkit/, … This keeps them correct wherever that
 root is mounted (preview /wodoc/… or the final layout) and under the `latest`
 symlink — exactly like the manual's cross-project links (report piège #10).
 
-Usage: resolve-deps.py <server|client|""> <relroot> <file.html>...
+Usage: resolve-deps.py [--self <pkg>] <server|client|""> <relroot> <file.html>...
+
+[--self <pkg>] is the package currently being documented (e.g. eliom). Unresolved
+references that point back to it are LEFT AS TEXT instead of being linked: on a
+project's own pages a leftover xref is an internal/hidden module (report #6),
+which must not become a (possibly 404) self-link. Cross-project references are
+linked as usual. A manual-only build with no API of its own (tuto) can pass its
+own name (or omit the flag): its refs never point to itself.
 """
 import html
 import re
 import sys
 
-SIDE = sys.argv[1] or "server"  # manual pages (no side) seldom carry API refs
-RELROOT = sys.argv[2]
+argv = sys.argv[1:]
+SELF = ""
+if argv and argv[0] == "--self":
+    SELF = argv[1]
+    argv = argv[2:]
+SIDE = argv[0] or "server"  # manual pages (no side) seldom carry API refs
+RELROOT = argv[1]
+FILES = argv[2:]
 
 # Hosted Ocsigen projects we redirect into /wodoc. Per pkg: (project dir under
 # the shared root, is-multi-library, wrapper module). The wrapper is the module
@@ -87,40 +100,61 @@ def fix_resolved(m):
 
 RESOLVED = re.compile(r'href="https://ocaml\.org/p/([^/"]+)/[^/"]+/doc/([^"]+)"')
 
-# Unresolved refs to a hosted project: the head is either the bare wrapper
-# (`Eliom`, `Ot`, …) or a flat module (`Eliom_common`, `Ot_picture_uploader`).
-# odoc puts that qualified head inside the span; any further `.member` may sit
-# just after it as plain text. We match both and rebuild the whole path.
+# Unresolved refs to a hosted project. odoc renders an unresolved reference as
+#   <span class="xref-unresolved" title="Fully.Qualified.name">visible</span>
+# (sometimes with extra classes, e.g. "xref-unresolved row"; older odoc omits the
+# title and leaves any trailing `.member` as plain text just after the span). The
+# `title` carries the full qualified path and is the reliable source for the URL;
+# the visible text (+ any trailing members) is kept as the link label.
 WRAPPERS = {w: pkg for pkg, (_, _, w) in HOSTED.items()}
 UNRESOLVED = re.compile(
-    r'<span class="xref-unresolved">'
-    r"((?:" + "|".join(WRAPPERS) + r")(?:_[A-Za-z0-9_']+)?"
-    r"(?:\.[A-Za-z_][A-Za-z0-9_']*)*)</span>"
-    r"((?:\.[A-Za-z_][A-Za-z0-9_']*)*)"
+    r'<span class="xref-unresolved[^"]*"(?:\s+title="([^"]*)")?>([^<]*)</span>'
+    r"((?:\.[A-Za-z_][A-Za-z0-9_']*)*)"  # optional trailing .members outside span
 )
+KIND = re.compile(r"^(val|type|module|exception|method|class)\s+")
 
 
 def fix_unresolved(m):
-    toks = (m.group(1) + m.group(2)).split(".")
+    title, visible, trailing = m.group(1), m.group(2), m.group(3)
+    label = visible + trailing
+    # qualified name: prefer the title (full path); else the displayed text,
+    # minus a leading kind word and odoc's "(Module.x ())" wrapping.
+    raw = title if title else label
+    kindm = KIND.match(raw.strip())
+    kind = kindm.group(1) if kindm else ""
+    name = KIND.sub("", raw.strip()).strip("() ")
+    toks = [t for t in name.split(".") if t]
+    if not toks:
+        return m.group(0)
     head = toks[0]
-    wrapper = next(w for w in WRAPPERS if head == w or head.startswith(w + "_"))
+    wrapper = next(
+        (w for w in WRAPPERS if head == w or head.startswith(w + "_")), None
+    )
+    if wrapper is None:
+        return m.group(0)  # a dep we don't host (lwt, tyxml, …): leave as text
     pkg = WRAPPERS[wrapper]
+    if pkg == SELF:
+        return m.group(0)  # self-reference on the project's own pages: keep text
     if head == wrapper:  # bare wrapper: next token is the (flat) module
         if len(toks) < 2:
             return m.group(0)
         modhead, rest = flat_module(toks[1], wrapper), toks[2:]
     else:  # head is already a flat module name
         modhead, rest = head, toks[1:]
-    if rest and rest[-1][:1].islower():  # trailing value/type leaf
+    # a lowercase trailing token is a value/type leaf on its parent's page; a
+    # wrong guess still lands on the right page, just without scrolling.
+    if rest and (kind in ("val", "method") or (not kind and rest[-1][:1].islower())):
+        dirs, anchor = rest[:-1], f"#val-{rest[-1]}"
+    elif rest and kind == "type":
         dirs, anchor = rest[:-1], f"#type-{rest[-1]}"
     else:
         dirs, anchor = rest, ""
     url = f"{dep_base(pkg)}/{modhead}"
     url += "".join("/" + d for d in dirs) + f"/index.html{anchor}"
-    return f'<a href="{url}">{html.escape(m.group(1) + m.group(2))}</a>'
+    return f'<a href="{url}">{html.escape(label)}</a>'
 
 
-for path in sys.argv[3:]:
+for path in FILES:
     src = open(path).read()
     out = UNRESOLVED.sub(fix_unresolved, RESOLVED.sub(fix_resolved, src))
     if out != src:

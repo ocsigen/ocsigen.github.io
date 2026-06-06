@@ -173,7 +173,7 @@ TMPL_OTHER="$(mktemp)";  mk_template ""      "$NAV_SERVER" >"$TMPL_OTHER"
   #    shared resolver handles multi-library deps (lib dir + side + flat-module
   #    mapping) and leaves non-hosted deps (lwt, tyxml, …) on ocaml.org.
   relroot="$base/../.."
-  python3 "$HERE/../resolve-deps.py" "$side" "$relroot" "$OUT/$rel"
+  python3 "$HERE/../resolve-deps.py" --self eliom "$side" "$relroot" "$OUT/$rel"
 done
 
 rm -f "$TMPL_SERVER" "$TMPL_CLIENT" "$TMPL_OTHER" \
