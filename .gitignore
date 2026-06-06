@@ -25,3 +25,5 @@ _site/
 /wodoc/js_of_ocaml/latest
 # but demos/ is a tracked source (pre-built interactive examples, reused as-is)
 !/wodoc/js_of_ocaml/demos/
+/wodoc/lwt/*/
+/wodoc/lwt/latest
