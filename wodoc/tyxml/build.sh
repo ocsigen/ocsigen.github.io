@@ -53,12 +53,13 @@ SRC="$WT/_build/default/_doc/_html/tyxml"
 rm -rf "$OUT"
 mkdir -p "$OUT"
 
-# Manual left-column nav, from the wikicreole menu + an appended API entry so the
-# curated API page (docs/api.mld -> api.html) shows up under "TyXML - API".
+# Manual left-column nav, from a CANONICAL menu kept here (not the per-branch
+# docs/manual-wiki/menu.wiki, which drifts between versions — e.g. 4.6.0 lacks the
+# "TyXML - API" heading and uses different indent levels). The manual pages are the
+# same across versions, so one menu keeps the nav identical everywhere. It already
+# includes the API section pointing at the curated docs/api.mld -> api.html.
 NAV_MANUAL="$(mktemp)"
-cat "$WT/docs/manual-wiki/menu.wiki" > "$WT/menu.wiki"
-printf '===[[api|API reference]]\n' >> "$WT/menu.wiki"
-python3 "$HERE/gen-manual-nav.py" "$WT/menu.wiki" "{{base}}" >"$NAV_MANUAL"
+python3 "$HERE/gen-manual-nav.py" "$HERE/menu.wiki" "{{base}}" >"$NAV_MANUAL"
 
 # Version <select> options: every sibling version directory.
 VERSIONS="$(mktemp)"
