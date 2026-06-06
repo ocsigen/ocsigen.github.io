@@ -1,0 +1,228 @@
+{0 Ocsimore's wiki extension}
+
+Creating several wikis (associated to several paths)
+allows to give different rights for subdirectories of the site.
+
+{2 Wiki syntax}
+
+The wiki is using {{:http://www.wikicreole.org}Wikicreole}'s syntax (but it is possible to plug another
+syntax).
+
+{image:creole_cheat_sheet.png}
+
+It supports extensions with the following syntax:
+
+[<<extensionname arg1='value1' arg2='value2' >>]
+or
+[<<extensionname arg1='value1' arg2='value2' |data>>]
+
+See below for predefined extensions.
+
+It also supports attributes with the following syntax:
+[@@name="value"; name= "value"@@]
+Put attribute just after the openning tag.
+For example:
+[//@@class="important"@@some text//]
+
+For now, attributes [class] and [id] are defined for each tag, and
+the semantics is the one of xhtml class and id attributes.
+
+Sometimes it is possible to put several sets of attributes
+(tables, rows, list items).
+Examples:
+
+[|@@...attributes for full table...@...attributes for row...@...attributes for cell...@@ first cell| ... |]
+
+[*@@...attributes for full list...@...attributes for item...@@ text]
+
+{3 Links}
+
+Links are created with the syntax [[[target]]] or [[[target|content]]]
+where [target] is the target of the link and [content] is the optional
+content of the link.
+
+There are five kinds for the target of a link which might occur in the database.
+
+- [[[wiki(id):page]]]: A link to a certain [page] in a given wiki with [id] (see below for
+  abbreviations).
+- [[[wiki:page]]]: A link to a certain [page] of the currently displayed wiki
+- [[[site:href]]]: A link relative to the root of the full site, for example towards a page that
+  is not in a wiki (where [href] may contain characters like [?] or [&])
+- [[[href:path]]]: You can also create links by a simple href, i.e.
+  [[[href:path]]] is displayed as [<a href="path">...</a>]. The
+  [href] may also contain GET-parameters.
+
+The targets of all those links may be prefixed with [http+] or [htpps+]
+to enforce a specific HTTP-protocol.
+
+Additionally, you can create an absolute link towards web site by putting the
+whole URL in double brackets, for example: [[[http://server/page|...]]]
+{e Warning: it is recommended to use absolute URLs only for external links!}
+
+{4 Abbreviations for links}
+
+Additionally, there are abbreviation for easily creating (relative) links. Those are
+replaced by the above forms {e when creating the preview of wikibox} or before
+saving. Possible problems with relative links are shown in the preview.
+
+This replacement usually depends on the wiki page (i.e. a page wiki and a page path)
+where the wikibox is edited. NB that the page wiki may be different to the wiki
+of the edited wikibox.
+
+The examples for the following rules for resolving relative links are given for
+wiki page [/wiki25/a/b/c], i.e. the page wiki [wiki(25)] and the page
+path [a/b/c].
+
++ An empty path refers to the current url:
+  - [[[]]] => [[[wiki(25):a/b/c]]]
+  - [[[#anchor]]] => [[[wiki(25):a/b/c#anchor]]]
++ Relative paths are interpreted like in hrefs in [a]-elements in HTML:
+  - [[[.]]] => [[[wiki(25):/a/b]]]
+  - [[[xyz]]], [[[./xyz]]] => [[[wiki(25):a/b/xyz]]]
+  - [[[..]]] => [[[wiki(25):a]]]
+  - [[[../xyz]]] => [[[wiki(25):a/xyz]]]
+  - [[[c/xyz]]] => [[[wiki(25):a/b/c/xyz]]]
+
+  NB that, for example, [[[xyz]]] was resolved to [[[wiki(25):a/b/c/xyz]]]
+  if the page path was [a/b/c/] (note the trailing slash).
++ Moreover, for absolute paths and relative paths applied to the current page
+  path [addr], it is always attempted to refer to the wiki page [e/f] of
+  the wiki with the longest path [wikipath] such that [addr == wikipath/e/f].
+  E.g. if there was [wiki(42)] registered on [a/b/sub]:
+  - [[[sub/xyz]]] => [[[wiki(42):a/b/c/xyz]]]
++ We will provide basic support for resolving complete paths to a wiki and a
+  path, like:
+  - [[[/a/b/c]]] => [[[wiki(ix):e/f]]]
+  such that prefix/e/f = /a/b/c where prefix is the URL of wiki(ix).
+  Currently only for prefix = a || prefix = /a (this not consistent in the DB).
++ Other wikis can be referred to by their title:
+  - [[[wiki("title"):path]]] => [[[wiki(ix):path]]]
+  where ["title"] is the title of the wiki with index [ix].
+
+{3 Additions}
+
+{t
+  | Syntax | Result |
+  |--------|--------|
+  | [--] | en dash (–) |
+  | [---] | em dash (—) |
+  | [##Monospace##] | monospace |
+  | [^^Superscript^^] | superscript |
+  | [,,Subscripted,,] | subscript |
+  | [__Underline__] | underline |
+  | [/-Line-through-/] | line-through |
+  | [;title : definition] | definition list |
+}
+
+{3 Predefined extensions}
+
+[<<div class='...' id='...' |data>>]
+creates a <div> box.
+
+[<<span class='...' id='...' |data>>]
+creates a <span> box.
+
+[<<wikibox box='j' >>]
+displays the wikibox number j from current wiki.
+Other optional arguments are possible:
+- [wiki='i'] to display a box from another wiki
+- [cols='i'] (number of columns of the edition window)
+- [rows='i'] (number of rows of the edition window)
+- [class='...'] (class xml attribute to use for the box)
+- [delayed=''] to delay the loading of the wikibox content
+
+If you want to create a new wikibox, do not put the box argument.
+A wikibox may be a container. Just put [<<content>>] inside it.
+To use a container, use the syntax:
+[<<wikibox box='j' | put here the content >>]
+
+[<<|...>>] comment (will not be displayed)
+
+[<<menu item='link|text of the item' item='...' ... >>]
+displays a menu
+
+[<<loginbox>>]
+displays a login box
+Optional parameters:
+- [user_prompt='login:']
+- [pwd_prompt='pwd:']
+- [auth_error='Wrong login or password']
+
+[<<logoutlink>>]
+[<<logoutbutton>>]
+display a logout link or button
+
+[<<raw arg1='value1' arg2='value2' | data >>]
+displays the string ["<<arg1='value1' arg2='value2' | data >>"]
+(for debugging purpose).
+
+Conditional display w.r.t. groups: (EXPERIMENTAL)
+- [<<cond ingroup='users'|data>>]
+- [<<cond notingroup='users'|data>>]
+- [<<cond error='autherror'|data>>] (wrong user or password)
+
+[<<username>>] displays the name of the user.
+
+[<<nonattachedlink wiki='...' page='...'|...>>] is like [[[...|...]]]
+for links,
+but instead of using a link towards another page, it uses a non-attached
+service (i.e. the path in the URL won't change, only parameters).
+Use this if you do not want to go to another URL.
+The wiki argument is optional.
+other optional arguments:
+protocol='https' or protocol='http' (will create absolute links)
+fragment="..." to create a link containing a # (link to a portion of page with
+an id attribute)
+class, id
+
+[<<object wiki='...' data='...' type='...'>>]
+allows to include an objet in the page (see [<object>] xhtml tag).
+The wiki argument is optional.
+other optional arguments:
+protocol="https" or protocol="http" (will create absolute links)
+fragment="..." to create a link containing a # (link to a portion of page with
+an id attribute)
+class, id
+
+[<<cancellink|...>>] is a link towards the same page without special
+parameters. Use it if you want to cancel the edition of a page for example.
+The text after the vertical bar is the text of the link.
+
+[<<link wiki='...' page='...'|...>>] is like
+[[[...|...]]] for links,
+but for block level links.
+The wiki argument is optional.
+other optional arguments:
+protocol="https" or protocol="http" (will create absolute links)
+fragment="..." to create a link containing a # (link to a portion of page with
+an id attribute)
+class, id
+
+{e deprecated! now use the extended syntax for links} [<<img wiki='...' name='...' |...>>] is like
+[{{...|...}}] for images,
+but allows links towards images from other wikis
+(will compute the URL from the URL of the wiki).
+The wiki argument is optional.
+other optional arguments:
+protocol="https" or protocol="http" (will create absolute links)
+class, id
+
+{2 Groups hierarchy}
+For each wiki:
+{v
+       -------- WikiAdmin(w)------------------------------------------------------------------------
+      /                 |                 \             \                \         \                \
+WikiboxesAdmins(w)   FilesAdmins(w)  SubWikiboxes    Wikipages    CssCreators(w)  Wikiboxes    FilesUploaders(w)
+     |                  |             Creators(w)    Creators(w)                 Deletors(w)
+WikiboxesWriters(w)  FilesWriters(w)          \       /
+     |                  |                   GenWikiboxes
+WikiboxesReaders(w)  FilesReaders(w)         Creators(w)
+
+
+WikiboxAdmin(wb)
+   |
+WikiboxWriter(wb)
+   |
+WikiboxReader(wb)
+v}
+The generic permissions of the wiki can be overridden on a per-wikibox basis, using the groups Wikibox*

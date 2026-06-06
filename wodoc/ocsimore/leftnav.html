@@ -1,0 +1,25 @@
+<!-- The left-column navigation, single source of truth. build.sh injects this
+     fragment into BOTH the left column (desktop) and the burger drawer
+     (.how-doctree, mobile) via the leftnav hole. The version/manual/toc holes
+     inside are filled afterwards. -->
+<div class="docversion">
+  <label>Version:
+    <select class="wodoc-version" onchange="wodocVersion(this.value)">
+{{versions}}
+    </select>
+  </label>
+</div>
+
+<div class="page-toc">
+  <h3>On this page</h3>
+  {{toc}}
+</div>
+
+{{manual_nav}}
+
+<nav class="api-nav">
+  <h3>API</h3>
+  <ul class="api-section">
+    <li class="ml2" data-wodoc-page="api"><a href="{{base}}/api/index.html">API reference</a></li>
+  </ul>
+</nav>

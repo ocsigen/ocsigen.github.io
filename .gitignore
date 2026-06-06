@@ -13,3 +13,7 @@ _site/
 /wodoc/ocsigen-start/latest
 /wodoc/ocsigen-i18n/*/
 /wodoc/ocsigen-i18n/latest
+# ocsimore is single-version + frozen; ignore only the generated version dir and
+# symlink (mld/ and api-snapshot/ are tracked sources, not generated).
+/wodoc/ocsimore/0.5/
+/wodoc/ocsimore/latest

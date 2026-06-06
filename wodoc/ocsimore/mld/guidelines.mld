@@ -1,0 +1,145 @@
+{0 Guidelines and implementation notes}
+(work in progress)
+
+If you want to contribute to Ocsimore and/or write your own
+extensions, we recommend to follow these guidelines. Have a look at
+the forum code for an example.
+
+{3 Generic advices:}
+
+- Try to make things as generic and configurable as possible.
+
+- The use of classes allows to extend widgets or modify their behaviour.
+Decompose each of them into several methods, one for each subtask to perform
+(retrieve data, display ...) and for each widget kind.
+
+The instantiation of classes must be done in a separate module, that
+can be rewritten by programmers who want to redefine some methods.
+
+- The creation and registration of services is also done in this
+  separate module that can be loaded several times inside the
+  [<host>] section of the configuration file. 
+{b ??}
+
+  Usually, widgets depend on services, and service handlers depend on
+  widgets. This means that there is an instance of classes for each
+  site. For example, create services, then give them as parameters to
+  the class constructor to create the object, then register services.
+
+- Use as much as possible the same naming scheme for methods.
+For example:
+- [private retrieve_data] or [retrieve_]...
+- [private display] or [display_...]
+ for displaying the widget from retrieved data
+
+- Use as much as possible the same names for labels.
+
+{3 More specific instructions}
+
+{4 Decomposing your extension}
+
+Decompose your extension [X] in 8 parts
+; [X_createdb.sql]
+: SQL creation of the tables related to your extension.
+; [X_sql.ml]
+: database requests, using lwt-pgocaml.
+; [X_cache.ml]
+: Cache on database requests, using the Cache module.
+  For all cached SQL-related functions,, we use a name ending with [_] in
+  [X_sql.ml] and without the [_] in [X_cache.ml], to remember that
+  we must not call the functions from [X_sql.ml] directly.
+  (The SQL and Cache modules are merged for [Wiki] and [User]. However,
+  the convention on the name of functions above is followed.)
+; [X.ml]
+: Higher level functions needed by the module. Also, creation of the
+  groups specific to the extension, using the module [Users], and of the
+  inclusions between those groups.
+; [X_data.ml]
+: database access with cache and verification of permissions.
+  It has almost the same interface as [X_sql.ml] and [X_cache.ml], 
+  calls the cached function if authorized,
+  then filters the result  to remove forbidden content (if needed).
+  They may fail with exception [Ocsimore_common.Permission_denied].
+; [X_services.ml]
+: definition of the services needed by the extension. They
+  may not be registered, as the content they send may depend on what
+  is returned by [X_widgets] (see below).
+; [X_widgets.ml]
+: Widgets for generating the parts of the HTML-page defined by the extension.
+  Those may call the services of the previous module for buttons and links.
+  We typically use classes for this module.
+  Each widget takes an optional [?classe] label of type string list for the
+  [class] HTML5 attribute. Each widget has its own attribute names.
+; [X_wikiext.ml]
+: The wiki syntax extensions you define for your module
+; [X_site.ml]
+: A separate module (not linked in ocsimore.cma) to be loaded
+  dynamically from configuration file inside the [<host>] section.
+  It will instantiate the widget classes, register the services
+  and register the wiki extensions.
+
+{4 Data}
+Data is stored in Eliom references of a matching scope:
+- (Persistent) session data is stored in (persistent) references of scope [Eliom_common.session]
+- If you need a per-request cache for a certain function, you may use the module [Ocsimore_lib.Request_cache]
+   >
+
+{4 Catching exceptions}
+To be sure that all exceptions occurring during a DB request are catched
+and result in an error message in the box, I use the method
+[Widget.widget_with_error_box#bind_or_display_error]
+
+{4 Creating new extensions for wikicreole}
+If you create a new box, you probably want to have a syntax to place it
+inside a wikibox. To so that, use the function
+[Wiki_syntax.add_extension].
+If you want a preparsing (i.e. do some action before saving the wikibox in
+the database, like creating a new wikibox for [~<<wikibox box='new'>>]),
+use the function [Wiki_syntax.add_preparser_extension].
+See examples in [Wiki_syntaxl] and [Wiki_widgets]
+
+{4 Groups}
+Groups and users are the same notion. The only difference is that users have
+a password. A user can belong to a group that belongs to another group, etc.
+It is recommended to create groups for each task you want. For example
+readers and writers of wiki. Users are added to groups accordingly.
+
+Predefined users/groups:
+ - admin: a special user who belongs to all groups
+ - anonymous: non authenticated user
+ - users: group of authenticated users
+ - nobody: a special user with no right at all 
+ (for example when the user does not exist)
+
+You can also create generic groups, that are parameterized by an
+abstracted integer, using [User_sql.new_parametrized_group].  For
+example, there exists the group of the administrators of the wiki 3.  Then
+you can add generic inclusions between generic groups, using
+[User_sql.add_generic_inclusion]. As an example the administrators of a
+given wiki are also readers of this wiki.
+
+You may want to compute the permission for one user at the beginning of
+the request.  To do that, you may create a record with boolean fields for each
+possible action (for one forum, one box in a wiki, one wiki, etc.).  The
+function that will compute this can be memorised in a session cache to
+avoid to compute several times the same thing.  See module [Forum] for an
+example.
+Notice however that group inclusion calls are automatically cached. Thus
+you may not need your own caching mechanism if you only do simple requests.
+
+Warning: Even if two groups are equal, it is often more convenient to
+create both in order to avoid errors. For example if you have three possible
+actions : read, write, set permissions, and you want an "admin" group,
+meaning all three. And if you want the following generic inclusions:
+admin > set-perm > write > read
+Here, admin = set-perm, as admin is in no other group.
+But it is convenient to have both of them.
+Thus, you will not need to remember the group hierarchy when you want to test
+rights.
+If you want to test if a user has right to set permissions, just test whether
+he is in the group set-perm.
+If you want to give all rights to an user, put it in group admin.
+It is also more tolerant to changes in group hierarchy.
+
+
+
