@@ -29,3 +29,7 @@ _site/
 /wodoc/lwt/latest
 /wodoc/ocsipersist/*/
 /wodoc/ocsipersist/latest
+# html_of_wiki: single-version, manual-only; mld/ + menu.wiki are tracked
+# sources, only the generated version dir and symlink are ignored.
+/wodoc/html_of_wiki/2.0/
+/wodoc/html_of_wiki/latest
