@@ -17,3 +17,5 @@ _site/
 # symlink (mld/ and api-snapshot/ are tracked sources, not generated).
 /wodoc/ocsimore/0.5/
 /wodoc/ocsimore/latest
+/wodoc/tyxml/*/
+/wodoc/tyxml/latest
