@@ -7,7 +7,7 @@
 (pub /ocsipersist)
 (profile release)                       ; dune build @doc --profile release
 (landing ocsipersist/index.html)
-(highlight ocsipersist-highlight.js)
+;; no (highlight …): Ocsipersist has no ppx, so wodoc's default starter is enough.
 (packages ocsipersist ocsipersist-lib ocsipersist-dbm ocsipersist-sqlite
           ocsipersist-pgsql ocsipersist-dbm-config ocsipersist-sqlite-config
           ocsipersist-pgsql-config)
