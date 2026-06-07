@@ -5,98 +5,93 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <title>html_of_wiki — html_of_wiki</title>
   <link rel="stylesheet" href="/css/style.css"/>
-  <link rel="stylesheet" href="/wodoc/ocsigen-odoc.css"/>
-  <!-- Page styles from the manual's original <<head-css>> (dropped at
-       conversion): the few presentational classes its prose uses. -->
-  <style>
-    .monospace { font-family: monospace }
-    .rewind { color: purple }
-    .manproject { color: red }
-    .mandir { color: orange }
-    .manchap { color: red }
-    .chapterintro {
-      background-color: #F8F8F8;
-      padding: 5px 25px;
-      margin: 0 auto 1.5em;
-      border-radius: 8px;
-      box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-      font-style: italic;
-    }
-  </style>
-  <!-- odoc emits code blocks as <pre class="language-..">; highlight them
-       client-side with odoc's bundled highlight.js. -->
+  <link rel="stylesheet" href="/css/ocsigen-odoc.css"/>
   <script src="./highlight.pack.js"></script>
-  <script src="./how-highlight.js"></script>
+  <script src="./wodoc-highlight.js"></script>
 </head>
 <body class="wodoc-page wodoc-doc">
-  <div class="page-header">
-    <p class="logo-ocsigen"><a href="/"><img src="/img/ocsigen-white.svg" alt="Ocsigen"/></a></p>
-    <p class="logo-subproject">html_of_wiki</p>
+  <!-- Shared site menu — THE single source of truth for the header, top menu and
+     drawer of EVERY Ocsigen doc page (vitrine + all projects). Canonical copy
+     lives here in ocsigen.github.io; each project's build fetches it. Injected
+     by `wodoc assemble --menu`. Holes filled by the tool (braces omitted here so
+     this comment is not itself rewritten by the hole-filler):
+       subproject  the sub-project name shown next to the Ocsigen logo
+                   (empty on the vitrine), via --subproject
+       leftnav     the project's left navigation, expanded into BOTH the mobile
+                   drawer (below) and the left column (in the page template),
+                   via --leftnav
+     The current entry is highlighted by adding the `current` class to the
+     element carrying data-wodoc-page=<id>: --current on the vitrine (page id),
+     --menu-current in a project (the project id). Nothing is hardcoded here, so
+     this file is the ONLY place the menu is defined.
 
-    <div class="mainmenu">
-      <p class="mainmenu-home" data-wodoc-page="githubio"><a href="/">Home</a></p>
-      <p class="mainmenu-doc" data-wodoc-page="tuto"><a href="/wodoc/tuto/">Doc</a></p>
-      <p data-wodoc-page="eliom"><a href="/wodoc/eliom/">Eliom</a></p>
-      <p data-wodoc-page="js_of_ocaml"><a href="/wodoc/js_of_ocaml/">Js_of_ocaml</a></p>
-      <p data-wodoc-page="ocsigenserver"><a href="/wodoc/ocsigenserver/">Server</a></p>
-      <p data-wodoc-page="lwt"><a href="/wodoc/lwt/">Lwt</a></p>
-      <p data-wodoc-page="tyxml"><a href="/wodoc/tyxml/">Tyxml</a></p>
-      <p data-wodoc-page="ocsigen-start"><a href="/wodoc/ocsigen-start/">Start</a></p>
-    </div>
+     Links are the FINAL site paths (/<project>/, /<page>): the target layout
+     where each project is served at ocsigen.org/<project>/ — no transitional
+     /wodoc/ prefix. -->
+<div class="page-header">
+  <p class="logo-ocsigen"><a href="/"><img src="/img/ocsigen-white.svg" alt="Ocsigen"/></a></p>
+  <p class="logo-subproject">html_of_wiki</p>
 
-    <form id="googlesearch" action="https://google.com/search">
-      <input name="q" id="gsearch-box" placeholder="Search using Google"/>
-      <label for="gsearch-box"><img src="/img/search.svg" alt="" id="gsearch-icon"/></label>
-      <input type="submit" id="gsearch-submit" onclick="document.getElementById('gsearch-box').value += ' site:ocsigen.org';"/>
-    </form>
+  <div class="mainmenu">
+    <p class="mainmenu-home" data-wodoc-page="githubio"><a href="/">Home</a></p>
+    <p class="mainmenu-doc" data-wodoc-page="tuto"><a href="/tuto/">Doc</a></p>
+    <p data-wodoc-page="eliom"><a href="/eliom/">Eliom</a></p>
+    <p data-wodoc-page="js_of_ocaml"><a href="/js_of_ocaml/">Js_of_ocaml</a></p>
+    <p data-wodoc-page="ocsigenserver"><a href="/ocsigenserver/">Server</a></p>
+    <p data-wodoc-page="lwt"><a href="/lwt/">Lwt</a></p>
+    <p data-wodoc-page="tyxml"><a href="/tyxml/">Tyxml</a></p>
+    <p data-wodoc-page="ocsigen-start"><a href="/ocsigen-start/">Start</a></p>
+  </div>
 
-    <aside class="how-drawer">
-      <input id="how-drawer-toggle" type="checkbox"/>
-      <label for="how-drawer-toggle" id="how-drawer-label"><span class="how-drawer-icon"></span></label>
-      <nav class="how-drawer-content">
-        <ul class="drawermainmenu">
-          <li class="drawermainmenu-home" data-wodoc-page="githubio"><a href="/">Home</a></li>
-          <li class="drawermainmenu-doc" data-wodoc-page="tuto"><a href="/wodoc/tuto/">Doc</a></li>
-          <li class="drawermainmenu-project" data-wodoc-page="eliom"><a href="/wodoc/eliom/">Eliom</a></li>
-          <li class="drawermainmenu-project" data-wodoc-page="js_of_ocaml"><a href="/wodoc/js_of_ocaml/">Js_of_ocaml</a></li>
-          <li class="drawermainmenu-project" data-wodoc-page="ocsigenserver"><a href="/wodoc/ocsigenserver/">Server</a></li>
-          <li class="drawermainmenu-project" data-wodoc-page="lwt"><a href="/wodoc/lwt/">Lwt</a></li>
-          <li class="drawermainmenu-project" data-wodoc-page="tyxml"><a href="/wodoc/tyxml/">Tyxml</a></li>
-          <li class="drawermainmenu-project" data-wodoc-page="ocsigen-toolkit"><a href="/wodoc/ocsigen-toolkit/">Toolkit</a></li>
-          <li class="drawermainmenu-project" data-wodoc-page="ocsigen-start"><a href="/wodoc/ocsigen-start/">Start</a></li>
-          <li class="drawermainmenu-project" data-wodoc-page="ocsipersist"><a href="/wodoc/ocsipersist/">Ocsipersist</a></li>
-          <li class="drawermainmenu-project" data-wodoc-page="ocsigen-i18n"><a href="/wodoc/ocsigen-i18n/">i18n</a></li>
-          <li class="drawermainmenu-project drawermainmenu-current"><a href="./index.html">html_of_wiki</a></li>
-          <li class="drawermainmenu-page" data-wodoc-page="projects"><a href="/projects">Other projects</a></li>
-          <li class="drawermainmenu-page" data-wodoc-page="papers"><a href="/papers">Research papers</a></li>
-          <li class="drawermainmenu-page" data-wodoc-page="credits"><a href="/credits">Who does Ocsigen?</a></li>
-          <li class="drawermainmenu-page" data-wodoc-page="contributing"><a href="/contributing">Contributing</a></li>
-          <li class="drawermainmenu-page" data-wodoc-page="blog"><a href="/blog">Blog</a></li>
-          <li class="drawermainmenu-page" data-wodoc-page="install"><a href="/install">Installation</a></li>
-          <li class="drawermainmenu-page"><a href="https://github.com/ocsigen">Source code</a></li>
-        </ul>
-        <nav class="how-doctree">
-<!-- The left-column navigation, single source of truth. build.sh injects this
-     fragment into BOTH the left column (desktop) and the burger drawer
-     (.how-doctree, mobile) via the leftnav hole, so the menu structure is
-     defined once and the two never drift. The version/manual/toc holes inside
-     are filled afterwards. tuto is a manual-only project (no API), so there is
-     no API navigation section. -->
-<div class="docversion">
+  <form id="googlesearch" action="https://google.com/search">
+    <input name="q" id="gsearch-box" placeholder="Search using Google"/>
+    <label for="gsearch-box"><img src="/img/search.svg" alt="" id="gsearch-icon"/></label>
+    <input type="submit" id="gsearch-submit" onclick="document.getElementById('gsearch-box').value += ' site:ocsigen.org';"/>
+  </form>
+
+  <aside class="how-drawer">
+    <input id="how-drawer-toggle" type="checkbox"/>
+    <label for="how-drawer-toggle" id="how-drawer-label"><span class="how-drawer-icon"></span></label>
+    <nav class="how-drawer-content">
+      <ul class="drawermainmenu">
+        <li class="drawermainmenu-home" data-wodoc-page="githubio"><a href="/">Home</a></li>
+        <li class="drawermainmenu-doc" data-wodoc-page="tuto"><a href="/tuto/">Doc</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="eliom"><a href="/eliom/">Eliom</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="js_of_ocaml"><a href="/js_of_ocaml/">Js_of_ocaml</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="ocsigenserver"><a href="/ocsigenserver/">Server</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="lwt"><a href="/lwt/">Lwt</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="tyxml"><a href="/tyxml/">Tyxml</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="ocsigen-toolkit"><a href="/ocsigen-toolkit/">Toolkit</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="ocsigen-start"><a href="/ocsigen-start/">Start</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="ocsipersist"><a href="/ocsipersist/">Ocsipersist</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="ocsigen-i18n"><a href="/ocsigen-i18n/">i18n</a></li>
+        <li class="drawermainmenu-project current" data-wodoc-page="html_of_wiki"><a href="/html_of_wiki/">html_of_wiki</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="wodoc"><a href="/wodoc/">Wodoc</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="ocsimore"><a href="/ocsimore/">Ocsimore (<em>deprecated</em>)</a></li>
+        <li class="drawermainmenu-page" data-wodoc-page="projects"><a href="/projects">Other projects</a></li>
+        <li class="drawermainmenu-page" data-wodoc-page="papers"><a href="/papers">Research papers</a></li>
+        <li class="drawermainmenu-page" data-wodoc-page="credits"><a href="/credits">Who does Ocsigen?</a></li>
+        <li class="drawermainmenu-page" data-wodoc-page="contributing"><a href="/contributing">Contributing</a></li>
+        <li class="drawermainmenu-page" data-wodoc-page="blog"><a href="/blog">Blog</a></li>
+        <li class="drawermainmenu-page" data-wodoc-page="install"><a href="/install">Installation</a></li>
+        <li class="drawermainmenu-page"><a href="https://github.com/ocsigen">Source code</a></li>
+      </ul>
+      <!-- On mobile the left column is hidden; its menu lives here in the burger
+           (.how-doctree, shown only on narrow screens), as the old site did.
+           Empty on the vitrine; the leftnav hole is filled (with the same
+           fragment as the left column) only on project pages. -->
+      <nav class="how-doctree"><div class="docversion">
   <label>Version:
     <select class="wodoc-version" onchange="wodocVersion(this.value)">
-              <option value="latest">latest</option>
-              <option value="2.0">2.0</option>
-              <option value="mld">mld</option>
+      <option value="latest">latest</option>
+      <option value="2.0">2.0</option>
     </select>
   </label>
 </div>
-
 <div class="page-toc">
   <h3>On this page</h3>
   <nav class="odoc-toc odoc-local-toc"><ul><li><a href="#install">Installation</a></li><li><a href="#what-you-will-learn-here">What you will learn here</a></li><li><a href="#the-wikicréole">The wikicréole</a></li><li><a href="#wikistd">The standard</a></li><li><a href="#wikiadd">Syntax additions</a><ul><li><a href="#supported-links-syntaxes">Supported links syntaxes</a></li><li><a href="#decorations">Decorations</a></li><li><a href="#definition-lists">Definition lists</a></li><li><a href="#inline-html-classes">Inline HTML classes</a></li><li><a href="#extensions">Extensions</a></li></ul></li><li><a href="#ohow">How to use ohow (one_html_of_wiki)</a></li><li><a href="#basic-usage">Basic usage</a></li><li><a href="#advanced-usage">Advanced usage</a><ul><li><a href="#templates">Templates</a><ul><li><a href="#wiki_in_template">wiki_in_template</a></li></ul></li><li><a href="#linkexts">Link extensions</a></li><li><a href="#doctree">The &lt;&lt;doctree&gt;&gt; extension</a></li><li><a href="#docversion">The &lt;&lt;docversion&gt;&gt; extension</a></li><li><a href="#the-&lt;&lt;client-server-switch&gt;&gt;-extension">The &lt;&lt;client-server-switch&gt;&gt; extension</a></li></ul></li><li><a href="#legacy">Legacy support</a></li><li><a href="#higher-level-documentation-generators">Higher level documentation generators</a></li><li><a href="#dop">dop</a><ul><li><a href="#conf">Configuration file</a></li><li><a href="#cli">Command-line interface</a></li><li><a href="#examples">Examples</a><ul><li><a href="#minimal-example">Minimal example</a></li><li><a href="#more-examples">More examples</a></li></ul></li></ul></li><li><a href="#quickdop">quickdop</a><ul><li><a href="#usage">Usage</a></li></ul></li><li><a href="#ext">Built-in wikicréole extensions</a></li><li><a href="#nameless-extension">Nameless extension</a></li><li><a href="#code-and-code-inline">code and code-inline</a></li><li><a href="#div,-span,-nav,-pre">div, span, nav, pre</a></li><li><a href="#googlesearch">googlesearch</a></li><li><a href="#wip-and-wip-inline">wip and wip-inline</a></li><li><a href="#when-local-and-unless-local">when-local and unless-local</a></li><li><a href="#when-project">when-project</a></li><li><a href="#script">script</a></li><li><a href="#head-script">head-script</a></li><li><a href="#head-css">head-css</a></li></ul></nav>
 </div>
-
 <nav class="api-nav manual-nav">
 <h3>Manual</h3>
 <h4 class="ml1">html_of_wiki</h4>
@@ -134,35 +129,27 @@
 <li class="ml2"><a href="./index.html#TODO">html_of_wiki internals overview (TODO)</a></li>
 </ul>
 </nav>
-        </nav>
-      </nav>
-    </aside>
-  </div>
+</nav>
+    </nav>
+  </aside>
+</div>
+
 
   <div class="project-page">
     <div class="twocols">
       <nav class="leftcol">
-<!-- The left-column navigation, single source of truth. build.sh injects this
-     fragment into BOTH the left column (desktop) and the burger drawer
-     (.how-doctree, mobile) via the leftnav hole, so the menu structure is
-     defined once and the two never drift. The version/manual/toc holes inside
-     are filled afterwards. tuto is a manual-only project (no API), so there is
-     no API navigation section. -->
-<div class="docversion">
+        <div class="docversion">
   <label>Version:
     <select class="wodoc-version" onchange="wodocVersion(this.value)">
-              <option value="latest">latest</option>
-              <option value="2.0">2.0</option>
-              <option value="mld">mld</option>
+      <option value="latest">latest</option>
+      <option value="2.0">2.0</option>
     </select>
   </label>
 </div>
-
 <div class="page-toc">
   <h3>On this page</h3>
   <nav class="odoc-toc odoc-local-toc"><ul><li><a href="#install">Installation</a></li><li><a href="#what-you-will-learn-here">What you will learn here</a></li><li><a href="#the-wikicréole">The wikicréole</a></li><li><a href="#wikistd">The standard</a></li><li><a href="#wikiadd">Syntax additions</a><ul><li><a href="#supported-links-syntaxes">Supported links syntaxes</a></li><li><a href="#decorations">Decorations</a></li><li><a href="#definition-lists">Definition lists</a></li><li><a href="#inline-html-classes">Inline HTML classes</a></li><li><a href="#extensions">Extensions</a></li></ul></li><li><a href="#ohow">How to use ohow (one_html_of_wiki)</a></li><li><a href="#basic-usage">Basic usage</a></li><li><a href="#advanced-usage">Advanced usage</a><ul><li><a href="#templates">Templates</a><ul><li><a href="#wiki_in_template">wiki_in_template</a></li></ul></li><li><a href="#linkexts">Link extensions</a></li><li><a href="#doctree">The &lt;&lt;doctree&gt;&gt; extension</a></li><li><a href="#docversion">The &lt;&lt;docversion&gt;&gt; extension</a></li><li><a href="#the-&lt;&lt;client-server-switch&gt;&gt;-extension">The &lt;&lt;client-server-switch&gt;&gt; extension</a></li></ul></li><li><a href="#legacy">Legacy support</a></li><li><a href="#higher-level-documentation-generators">Higher level documentation generators</a></li><li><a href="#dop">dop</a><ul><li><a href="#conf">Configuration file</a></li><li><a href="#cli">Command-line interface</a></li><li><a href="#examples">Examples</a><ul><li><a href="#minimal-example">Minimal example</a></li><li><a href="#more-examples">More examples</a></li></ul></li></ul></li><li><a href="#quickdop">quickdop</a><ul><li><a href="#usage">Usage</a></li></ul></li><li><a href="#ext">Built-in wikicréole extensions</a></li><li><a href="#nameless-extension">Nameless extension</a></li><li><a href="#code-and-code-inline">code and code-inline</a></li><li><a href="#div,-span,-nav,-pre">div, span, nav, pre</a></li><li><a href="#googlesearch">googlesearch</a></li><li><a href="#wip-and-wip-inline">wip and wip-inline</a></li><li><a href="#when-local-and-unless-local">when-local and unless-local</a></li><li><a href="#when-project">when-project</a></li><li><a href="#script">script</a></li><li><a href="#head-script">head-script</a></li><li><a href="#head-css">head-css</a></li></ul></nav>
 </div>
-
 <nav class="api-nav manual-nav">
 <h3>Manual</h3>
 <h4 class="ml1">html_of_wiki</h4>
@@ -200,6 +187,7 @@
 <li class="ml2"><a href="./index.html#TODO">html_of_wiki internals overview (TODO)</a></li>
 </ul>
 </nav>
+
       </nav>
       <article class="rightcol">
         
@@ -336,12 +324,12 @@ $ tree
   <script>
     function wodocVersion(v) {
       if (!v) return;
-      var re = new RegExp('^(/wodoc/html_of_wiki/)[^/]+');
+      var re = new RegExp('^(/html_of_wiki/)[^/]+');
       var p = location.pathname;
-      location.href = re.test(p) ? p.replace(re, '$1' + v) : '/wodoc/html_of_wiki/' + v + '/index.html';
+      location.href = re.test(p) ? p.replace(re, '$1' + v) : '/html_of_wiki/' + v + '/index.html';
     }
     (function () {
-      var m = location.pathname.match(new RegExp('^/wodoc/html_of_wiki/([^/]+)'));
+      var m = location.pathname.match(new RegExp('^/html_of_wiki/([^/]+)'));
       if (!m) return;
       document.querySelectorAll('.wodoc-version').forEach(function (sel) {
         var ok = false, i;

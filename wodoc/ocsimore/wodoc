@@ -1,0 +1,16 @@
+;; Declarative wodoc config for the Ocsimore documentation.
+;; Ocsimore is ARCHIVED (2014, ocamlbuild, dev-era Eliom): it no longer builds
+;; with modern dune/odoc, so there is no `dune build @doc`. The wikicreole manual
+;; was converted once to standalone odoc pages (mld/*.mld, tracked here — the
+;; legacy repo is untouched), built straight with odoc (mld-dir). The API can't
+;; be recompiled, so the original generated API is mirrored verbatim under api/
+;; (static-copy). The manual nav comes from the wikicreole menu.
+(project ocsimore)
+(title Ocsimore)
+(pub /ocsimore)
+(mld-dir mld)
+(manual-menu menu.wiki)
+(highlight ocsimore-highlight.js)
+(landing index.html)
+(static-copy api-snapshot api)
+(static-copy mld/creole_cheat_sheet.png creole_cheat_sheet.png)
