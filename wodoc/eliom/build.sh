@@ -93,8 +93,10 @@ NAV_MANUAL="$(mktemp)"; NAV_SERVER="$(mktemp)"; NAV_CLIENT="$(mktemp)"
 git -C "$ELIOM_SRC" show "$ELIOM_REF:doc/server.indexdoc" >"$WORK/server.indexdoc"
 git -C "$ELIOM_SRC" show "$ELIOM_REF:doc/client.indexdoc" >"$WORK/client.indexdoc"
 git -C "$ELIOM_SRC" show "wikidoc:doc/$MANUAL_VER/manual/menu.wiki" >"$WORK/menu.wiki"
-python3 "$HERE/gen-nav.py" "$WORK/server.indexdoc" "$BASE" eliom.server >"$NAV_SERVER"
-python3 "$HERE/gen-nav.py" "$WORK/client.indexdoc" "$BASE" eliom.client >"$NAV_CLIENT"
+# Pass $SRC (the generated HTML tree) so gen-nav can detect the wrapped (dev) vs
+# flat (12.x latest) module layout and emit working links for either.
+python3 "$HERE/gen-nav.py" "$WORK/server.indexdoc" "$BASE" eliom.server "$SRC" >"$NAV_SERVER"
+python3 "$HERE/gen-nav.py" "$WORK/client.indexdoc" "$BASE" eliom.client "$SRC" >"$NAV_CLIENT"
 python3 "$HERE/gen-manual-nav.py" "$WORK/menu.wiki" "$BASE" >"$NAV_MANUAL"
 
 # 2b. Version <select> options: `latest` plus every sibling version directory.
@@ -149,7 +151,11 @@ TMPL_OTHER="$(mktemp)";  mk_template ""      "$NAV_SERVER" >"$TMPL_OTHER"
   current=""
   case "$rel" in
     eliom.server/Eliom/*/index.html | eliom.client/Eliom/*/index.html)
+      # wrapped layout (dev): strip the lib + Eliom/ wrapper
       m="${rel#eliom.*/Eliom/}"; m="${m%/index.html}"; current="${m//\//.}" ;;
+    eliom.server/*/index.html | eliom.client/*/index.html)
+      # flat layout (12.x latest): strip the lib only
+      m="${rel#eliom.*/}"; m="${m%/index.html}"; current="${m//\//.}" ;;
     */*) ;;
     *.html) current="${rel%.html}" ;;
   esac
