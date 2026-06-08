@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Class type Lwt_engine.t — Lwt</title>
+  <title>Module Lwt_runtime_events.Trace — Lwt</title>
   <link rel="stylesheet" href="/css/style.css"/>
   <link rel="stylesheet" href="/wodoc/ocsigen-odoc.css"/>
   <!-- odoc emits code blocks as <pre class="language-..">; highlight them
@@ -196,15 +196,8 @@
 <!-- end leftnav -->
       </nav>
       <article class="rightcol">
-        <header class="odoc-preamble"><h1>Class type <code><span>Lwt_engine.t</span></code></h1><p>Type of engines.</p></header>
-        <div class="odoc-content"><div class="odoc-spec"><div class="spec inherit"><code><span><span class="keyword">inherit</span> <a href="../class-abstract/index.html">abstract</a></span></code></div></div><div class="odoc-spec"><div class="spec method anchored" id="method-id"><code><span><span class="keyword">method</span> id : <a href="../index.html#type-engine_id">engine_id</a></span></code></div></div><div class="odoc-spec"><div class="spec method anchored" id="method-iter"><code><span><span class="keyword">method</span> iter : <span>bool <span class="arrow">&#45;&gt;</span></span> unit</span></code></div></div><div class="odoc-spec"><div class="spec method anchored" id="method-cleanup"><code><span><span class="keyword">method</span> <span class="keyword">private</span> cleanup : unit</span></code></div></div><div class="odoc-spec"><div class="spec method anchored" id="method-register_readable"><code><span><span class="keyword">method</span> <span class="keyword">private</span> register_readable : <span><span class="xref-unresolved">Unix</span>.file_descr <span class="arrow">&#45;&gt;</span></span>
-  <span><span>(<span>unit <span class="arrow">&#45;&gt;</span></span> unit)</span> <span class="arrow">&#45;&gt;</span></span>
-  <span>unit <span class="xref-unresolved">Stdlib</span>.Lazy.t</span></span></code></div></div><div class="odoc-spec"><div class="spec method anchored" id="method-register_writable"><code><span><span class="keyword">method</span> <span class="keyword">private</span> register_writable : <span><span class="xref-unresolved">Unix</span>.file_descr <span class="arrow">&#45;&gt;</span></span>
-  <span><span>(<span>unit <span class="arrow">&#45;&gt;</span></span> unit)</span> <span class="arrow">&#45;&gt;</span></span>
-  <span>unit <span class="xref-unresolved">Stdlib</span>.Lazy.t</span></span></code></div></div><div class="odoc-spec"><div class="spec method anchored" id="method-register_timer"><code><span><span class="keyword">method</span> <span class="keyword">private</span> register_timer : <span>float <span class="arrow">&#45;&gt;</span></span>
-  <span>bool <span class="arrow">&#45;&gt;</span></span>
-  <span><span>(<span>unit <span class="arrow">&#45;&gt;</span></span> unit)</span> <span class="arrow">&#45;&gt;</span></span>
-  <span>unit <span class="xref-unresolved">Stdlib</span>.Lazy.t</span></span></code></div></div></div>
+        <header class="odoc-preamble"><h1>Module <code><span>Lwt_runtime_events.Trace</span></code></h1></header>
+        <div class="odoc-content"><div class="odoc-spec"><div class="spec type anchored" id="type-t"><code><span><span class="keyword">type</span> t</span><span> = </span><span>{</span></code><ol><li id="type-t.kind" class="def record field anchored"><code><span>kind : <span class="xref-unresolved">Runtime_events</span>.Type.span;</span></code></li><li id="type-t.context" class="def record field anchored"><code><span>context : <span>string option</span>;</span></code></li><li id="type-t.filename" class="def record field anchored"><code><span>filename : string;</span></code></li><li id="type-t.line" class="def record field anchored"><code><span>line : int;</span></code></li></ol><code><span>}</span></code></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-t"><code><span><span class="keyword">val</span> t : <span><a href="#type-t">t</a> <span class="xref-unresolved">Runtime_events</span>.Type.t</span></span></code></div></div><div class="odoc-spec"><div class="spec type extension anchored" id="extension-decl-T"><code><span><span class="keyword">type</span> <span class="xref-unresolved">Runtime_events</span>.User.tag += </span></code><ol><li id="extension-T" class="def variant extension anchored"><code><span>| </span><span><span class="extension">T</span></span></code></li></ol></div><div class="spec-doc"><p>Span event indicating that a promise is taking time to resolve. The event indicates the location of the bind for the promise. These events are automatically emitted by code produced by the lwt_ppx syntax extension.</p></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-span"><code><span><span class="keyword">val</span> span : <span><a href="#type-t">t</a> <span class="xref-unresolved">Runtime_events</span>.User.t</span></span></code></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-emit"><code><span><span class="keyword">val</span> emit : <span><a href="#type-t">t</a> <span class="arrow">&#45;&gt;</span></span> unit</span></code></div></div></div>
       </article>
     </div>
   </div>

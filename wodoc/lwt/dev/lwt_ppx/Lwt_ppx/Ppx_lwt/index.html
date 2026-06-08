@@ -77,7 +77,7 @@
 
 <div class="page-toc">
   <h3>On this page</h3>
-  <nav class="odoc-toc odoc-local-toc"><ul><li><a href="#ppx-extensions">Ppx extensions</a></li></ul></nav>
+  <nav class="odoc-toc odoc-local-toc"><ul><li><a href="#ppx-extensions">Ppx extensions</a><ul><li><a href="#lwt-binding">Lwt binding</a></li><li><a href="#sequencing-promises">Sequencing promises</a></li><li><a href="#exception-handling">Exception handling</a></li><li><a href="#finalizer">Finalizer</a></li><li><a href="#assertion">Assertion</a></li><li><a href="#for-loop">For loop</a></li><li><a href="#while-loop">While loop</a></li><li><a href="#pattern-matching">Pattern matching</a></li><li><a href="#conditional">Conditional</a></li></ul></li></ul></nav>
 </div>
 
 <nav class="api-nav manual-nav">
@@ -148,7 +148,7 @@
 
 <div class="page-toc">
   <h3>On this page</h3>
-  <nav class="odoc-toc odoc-local-toc"><ul><li><a href="#ppx-extensions">Ppx extensions</a></li></ul></nav>
+  <nav class="odoc-toc odoc-local-toc"><ul><li><a href="#ppx-extensions">Ppx extensions</a><ul><li><a href="#lwt-binding">Lwt binding</a></li><li><a href="#sequencing-promises">Sequencing promises</a></li><li><a href="#exception-handling">Exception handling</a></li><li><a href="#finalizer">Finalizer</a></li><li><a href="#assertion">Assertion</a></li><li><a href="#for-loop">For loop</a></li><li><a href="#while-loop">While loop</a></li><li><a href="#pattern-matching">Pattern matching</a></li><li><a href="#conditional">Conditional</a></li></ul></li></ul></nav>
 </div>
 
 <nav class="api-nav manual-nav">
@@ -197,13 +197,16 @@
       </nav>
       <article class="rightcol">
         <header class="odoc-preamble"><h1>Module <code><span>Lwt_ppx.Ppx_lwt</span></code></h1><p>Ppx syntax extension for Lwt</p></header>
-        <div class="odoc-content"><h3 id="ppx-extensions">Ppx extensions</h3><p>This Ppx extension adds various syntactic shortcut for lwt programming. It needs <a href="https://github.com/ocaml-ppx/ppx_tools">ppx_tools</a>.</p><p>To use it, simply use the ocamlfind package <code>lwt_ppx</code>.</p><p>This extension adds the following syntax:</p><ul><li>lwt-binding:</li></ul><pre class="language-ocaml"><code>let%lwt ch = get_char stdin in
+        <div class="odoc-content"><h3 id="ppx-extensions">Ppx extensions</h3><p>This Ppx extension adds various syntactic shortcut for lwt programming. It needs <a href="https://github.com/ocaml-ppx/ppx_tools">ppx_tools</a>.</p><p>To use it, simply use the ocamlfind package <code>lwt_ppx</code>.</p><p>This extension adds the following syntax:</p><h4 id="lwt-binding">Lwt binding</h4><pre class="language-ocaml"><code>let%lwt ch = get_char stdin in
 code</code></pre><p>is the same as <code>bind (get_char stdin) (fun ch -&gt; code)</code>.</p><p>Moreover, it supports parallel binding:</p><pre class="language-ocaml"><code>let%lwt x = do_something1 ()
 and y = do_something2 in
 code</code></pre><p>will run <code>do_something1 ()</code> and <code>do_something2 ()</code>, then bind their results to <code>x</code> and <code>y</code>. It is the same as:</p><pre class="language-ocaml"><code>let t1 = do_something1
 and t2 = do_something2 in
 bind t1 (fun x -&gt; bind t2 (fun y -&gt; code))</code></pre><p>Due to a <a href="https://github.com/ocaml/ocaml/issues/7758">bug</a> in the OCaml parser, if you'd like to put a type constraint on the variable, please write</p><pre class="language-ocaml"><code>let (foo : int) = do_something in
-code</code></pre><p>Not using parentheses will confuse the OCaml parser.</p><ul><li>exception catching:</li></ul><pre class="language-ocaml"><code>try%lwt
+code</code></pre><p>Not using parentheses will confuse the OCaml parser.</p><h4 id="sequencing-promises">Sequencing promises</h4><pre class="language-ocaml"><code>&lt;expr1&gt;;%lwt
+&lt;expr2&gt;</code></pre><p>For example:</p><pre class="language-ocaml"><code>Lwt_io.printl &quot;Hello,&quot;;%lwt
+Lwt_io.printl &quot;world!&quot;</code></pre><p>is expanded to:</p><pre class="language-ocaml"><code>bind (Lwt_io.printl &quot;Hello,&quot;) (fun () -&gt;
+      Lwt_io.printl &quot;world!&quot;)</code></pre><h4 id="exception-handling">Exception handling</h4><pre class="language-ocaml"><code>try%lwt
   &lt;expr&gt;
 with
   &lt;branches&gt;</code></pre><p>For example:</p><pre class="language-ocaml"><code>try%lwt
@@ -217,20 +220,20 @@ with
         prerr_endline msg;
         return ()
     | exn -&gt;
-        Lwt.reraise exn)</code></pre><p>Note that the <code>exn -&gt; Lwt.reraise exn</code> branch is automatically added when needed.</p><ul><li>finalizer:</li></ul><pre class="language-ocaml"><code>  (&lt;expr&gt;) [%finally &lt;expr&gt;]</code></pre><p>You can use <code>[%lwt.finally ...]</code> instead of <code>[%finally ...]</code>.</p><ul><li>assertion:</li></ul><pre class="language-ocaml"><code>  assert%lwt &lt;expr&gt;</code></pre><ul><li>for loop:</li></ul><pre class="language-ocaml"><code>for%lwt i = &lt;expr&gt; to &lt;expr&gt; do
+        Lwt.reraise exn)</code></pre><p>Note that the <code>exn -&gt; Lwt.reraise exn</code> branch is automatically added when needed.</p><h4 id="finalizer">Finalizer</h4><pre class="language-ocaml"><code>  (&lt;expr&gt;) [%finally &lt;expr&gt;]</code></pre><p>You can use <code>[%lwt.finally ...]</code> instead of <code>[%finally ...]</code>.</p><h4 id="assertion">Assertion</h4><pre class="language-ocaml"><code>  assert%lwt &lt;expr&gt;</code></pre><h4 id="for-loop">For loop</h4><pre class="language-ocaml"><code>for%lwt i = &lt;expr&gt; to &lt;expr&gt; do
   &lt;expr&gt;
 done</code></pre><p>and:</p><pre class="language-ocaml"><code>for%lwt i = &lt;expr&gt; downto &lt;expr&gt; do
   &lt;expr&gt;
-done</code></pre><ul><li>while loop:</li></ul><pre class="language-ocaml"><code>while%lwt &lt;expr&gt; do
+done</code></pre><h4 id="while-loop">While loop</h4><pre class="language-ocaml"><code>while%lwt &lt;expr&gt; do
   &lt;expr&gt;
-done</code></pre><ul><li>pattern matching:</li></ul><pre class="language-ocaml"><code>match%lwt &lt;expr&gt; with
+done</code></pre><h4 id="pattern-matching">Pattern matching</h4><pre class="language-ocaml"><code>match%lwt &lt;expr&gt; with
   | &lt;patt_1&gt; -&gt; &lt;expr_1&gt;
       ...
   | &lt;patt_n&gt; -&gt; &lt;expr_n&gt;</code></pre><p>Exception cases are also supported:</p><pre class="language-ocaml"><code>match%lwt &lt;expr&gt; with
   | exception &lt;exn&gt; -&gt; &lt;expr_1&gt;
   | &lt;patt_2&gt; -&gt; &lt;expr_2&gt;
       ...
-  | &lt;patt_n&gt; -&gt; &lt;expr_n&gt;</code></pre><ul><li>conditional:</li></ul><pre class="language-ocaml"><code>if%lwt &lt;expr&gt; then
+  | &lt;patt_n&gt; -&gt; &lt;expr_n&gt;</code></pre><h4 id="conditional">Conditional</h4><pre class="language-ocaml"><code>if%lwt &lt;expr&gt; then
   &lt;expr_1&gt;
 else
   &lt;expr_2&gt;</code></pre><p>and</p><pre class="language-ocaml"><code>  if%lwt &lt;expr&gt; then &lt;expr_1&gt;</code></pre><div class="odoc-spec"><div class="spec class anchored" id="class-mapper"><code><span><span class="keyword">class</span> </span><span>mapper</span><span> : <span class="xref-unresolved">Ppxlib</span>.Ast_traverse.map</span></code></div></div></div>
