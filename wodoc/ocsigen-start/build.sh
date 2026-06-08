@@ -195,6 +195,15 @@ else
 fi
 cp "$HERE/start-highlight.js" "$OUT/start-highlight.js"
 
+# 4c. Manual assets (screenshots, downloadable demos) referenced as files/... by
+#     the intro: they live in the wikidoc branch (doc/<ver>/manual/files), not in
+#     the package source, so copy them next to the pages.
+if git -C "$OS_SRC" rev-parse --verify -q "wikidoc:doc/$MANUAL_VER/manual/files" >/dev/null; then
+  mkdir -p "$OUT/files"
+  git -C "$OS_SRC" archive "wikidoc:doc/$MANUAL_VER/manual/files" | tar -x -C "$OUT/files"
+  echo "copied manual files -> $OUT/files"
+fi
+
 # 5. Optionally (re)point `latest` at this build: a relative git symlink.
 if [ -n "$LATEST" ]; then
   ln -sfn "$LABEL" "$HERE/latest"
