@@ -68,6 +68,14 @@ Key-value store for data that survives server restarts.
 
 {%wodoc:end%}{%wodoc:end%}
 
+{%wodoc:a class=main-page-project-link href=../reactiveData/%}{%wodoc:div class=main-page-project%}
+
+{2 ReactiveData}
+
+Declarative events and signals (FRP) for incremental, reactive data.
+
+{%wodoc:end%}{%wodoc:end%}
+
 {%wodoc:a class=main-page-project-link href=../wodoc/%}{%wodoc:div class=main-page-project%}
 
 {2 Wodoc}
