@@ -200,4 +200,19 @@ if [ -n "$LATEST" ]; then
   echo "latest -> $LABEL"
 fi
 
+# 6. Project-root redirect: ocsigen.org/wodoc/eliom/ -> the `latest` version.
+#    Stable target (always `latest/`), so it is written on every build.
+cat > "$HERE/index.html" <<'EOF'
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="refresh" content="0; url=latest/index.html"/>
+  <link rel="canonical" href="latest/index.html"/>
+  <title>Eliom documentation</title>
+</head>
+<body><p>Redirecting to the <a href="latest/index.html">Eliom documentation</a>.</p></body>
+</html>
+EOF
+
 echo "built eliom $LABEL: $(find "$OUT" -name '*.html' | wc -l) pages -> $OUT"
