@@ -1,37 +1,3 @@
 _opam/
 _site/
 2026-05-29-ocsigen-doc-rationalization.md
-# Generated per-version doc output (rebuilt by each project's build.sh),
-# including the `latest` symlink that points at the newest version dir.
-/wodoc/ocsigenserver/*/
-/wodoc/eliom/*/
-/wodoc/eliom/latest
-/wodoc/ocsigenserver/latest
-/wodoc/ocsigen-toolkit/*/
-/wodoc/ocsigen-toolkit/latest
-/wodoc/ocsigen-start/*/
-/wodoc/ocsigen-start/latest
-/wodoc/ocsigen-i18n/*/
-/wodoc/ocsigen-i18n/latest
-# ocsimore is single-version + frozen; ignore only the generated version dir and
-# symlink (mld/ and api-snapshot/ are tracked sources, not generated).
-/wodoc/ocsimore/0.5/
-/wodoc/ocsimore/latest
-/wodoc/tyxml/*/
-/wodoc/tyxml/latest
-/wodoc/tuto/*/
-/wodoc/tuto/latest
-/wodoc/js_of_ocaml/*/
-/wodoc/js_of_ocaml/latest
-# but demos/ is a tracked source (pre-built interactive examples, reused as-is)
-!/wodoc/js_of_ocaml/demos/
-/wodoc/lwt/*/
-/wodoc/lwt/latest
-/wodoc/ocsipersist/*/
-/wodoc/ocsipersist/latest
-/wodoc/reactiveData/*/
-/wodoc/reactiveData/latest
-# html_of_wiki: single-version, manual-only; mld/ + menu.wiki are tracked
-# sources, only the generated version dir and symlink are ignored.
-/wodoc/html_of_wiki/2.0/
-/wodoc/html_of_wiki/latest
