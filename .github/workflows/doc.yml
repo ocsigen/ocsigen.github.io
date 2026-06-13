@@ -1,0 +1,57 @@
+# Build the parts of the site that ocsigen.github.io hosts itself with wodoc:
+#  - the vitrine (home + projects/install/credits/papers/contributing), from
+#    doc/vitrine/*.mld, into the site root;
+#  - the two ARCHIVED projects served here as static .mld sites (their repos no
+#    longer build): ocsimore -> /ocsimore/, html_of_wiki -> /html_of_wiki/.
+# The active projects build their own doc on their own gh-pages; this workflow
+# only covers what lives in THIS repo. Generated pages are committed (GitHub
+# Pages serves the repo). Runs on changes to the doc sources or the shared menu.
+name: Documentation
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - "doc/**"
+      - ".github/workflows/doc.yml"
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    if: github.repository == 'ocsigen/ocsigen.github.io'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up OCaml
+        uses: ocaml/setup-ocaml@v3
+        with:
+          ocaml-compiler: "5.4.0"
+
+      - name: Install wodoc and odoc
+        run: |
+          opam pin add -n wodoc https://github.com/ocsigen/wodoc.git
+          opam install wodoc odoc
+
+      - name: Build the vitrine + archived sites
+        run: |
+          MENU="$PWD/doc/menu.html"
+          ( cd doc/vitrine && OUT="$PWD/../.." opam exec -- bash build.sh )
+          ( cd doc/ocsimore && rm -rf "$PWD/../../ocsimore" \
+            && opam exec -- wodoc build --config wodoc \
+                 --out "$PWD/../../ocsimore/0.5" --label 0.5 --menu "$MENU" --latest )
+          ( cd doc/html_of_wiki && rm -rf "$PWD/../../html_of_wiki" \
+            && opam exec -- wodoc build --config wodoc \
+                 --out "$PWD/../../html_of_wiki/2.0" --label 2.0 --menu "$MENU" --latest )
+
+      - name: Commit the regenerated pages
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A intro.html index.html projects.html install.html credits.html \
+                     papers.html contributing.html ocsimore html_of_wiki
+          git diff --cached --quiet || git commit -m "Rebuild vitrine + archived docs [skip ci]"
+          git push
