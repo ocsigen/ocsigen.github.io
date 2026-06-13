@@ -815,10 +815,6 @@ code[class*="language-"]::before {
   z-index: -1;
 }
 
-code.language-ocaml::before {
-  content: "OCaml";
-}
-
 code.language-reason::before {
   content: "Reason";
 }
@@ -827,7 +823,6 @@ code.language-javascript::before {
   content: "JavaScript";
 }
 
-code.language-ocaml::before,
 code.language-reason::before,
 code.language-javascript::before {
   position: absolute;
