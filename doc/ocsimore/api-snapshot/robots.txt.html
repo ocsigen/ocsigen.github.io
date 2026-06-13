@@ -1,0 +1,40 @@
+# robots.txt for ocsigen.org
+# Crawler rules per RFC 9309 (https://www.rfc-editor.org/rfc/rfc9309)
+
+User-agent: *
+Allow: /
+# Content usage preferences, https://contentsignals.org/
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
+
+# Explicit opt-in for AI crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+Sitemap: https://ocsigen.org/sitemap.xml

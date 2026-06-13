@@ -1,0 +1,116 @@
+{0 Configuring Ocsimore}
+
+Ocsimore can be configured by providing tags to the extension of Ocsigenserver which loads Ocsimore:
+{v
+    <extension findlib-package="ocsimore">
+      ...
+    </extension>
+v}
+
+{1 The Database}
+
+The database connection of Ocsimore (PSQL) is configured by the [database]-tag
+which allows the following optional attributes:
+
+{v
+    <extension findlib-package="ocsimore">
+      <database
+        name="..."
+        user="..."
+        host="..."
+        port="..."
+        socket-dir="..."
+        password-file="..." />
+      ...
+    </extension>
+v}
+
+Default is:
+
+{v
+    <extension findlib-package="ocsimore">
+      <database
+        name="ocsimore"
+        user="ocsimore"
+        host="localhost" />
+    </extension>
+v}
+
+{1 The Wiki}
+
+The Wiki is configured by the [wiki]-tag. It allows the following attributes:
+
+- [headings-backref="yes|no"]: If [yes], for all headings which have
+  an [id]- attribute, a ¶-symbol is appended to all headings ([h1],
+  ..., [h6]) which have an [id]-attribute. The symbol acts as a link to the
+  heading.
+
+{v
+  <wiki headings-backref="yes|no" />
+v}
+
+{1 The Administration Interface}
+
+Ocsimore's administration interface is configured by the content of
+the [administration]-tag. It allows the following attributes:
+
+- [path]: The URL-path where the administration interface is registered to
+   Ocsigen.
+
+{v
+  <extension findlib-package="ocsimore">
+    <administration
+      path="..."
+      />
+  </extension>
+v}
+
+{1 The [mailer]-tag}
+
+The [mailer]-tag allows to configure the program to send email (during user
+creation). The program is provided by the [bin]-attribute:
+
+{v
+  <extension findlib-package="ocsimore">
+    <mailer bin="..."/>
+    ...
+  </extension>
+v}
+
+{1 The [internationalization]-tag}
+
+This tag allowes to configure the internationalization of Ocsimore. The language
+of Ocsimore messages is set through the attribute [language].  Currently
+["english"] or ["francais"] are allowed.
+
+{v
+  <extension findlib-package="ocsimore">
+    <internationalization language="..."/>
+    ...
+  </extension>
+v}
+
+{1 The [internals]-tag}
+
+Attributes:
+
+- [aggregate-css="yes"|"no"]: Allows you to prevent Ocsimore from aggregating
+   the CSS files of a wiki into a single request.  The default ["yes"].
+   (Optional)
+- [application-name=<name>]: Specifies the name of the Eliom-application.
+   The default is ["ocsimore"]. (Optional)
+
+Undocumented sub-tags:
+
+- [group]
+
+{v
+    <extension module="ocsimore.cma">
+      <internals
+        application-name="..."
+        aggregate-css="..."
+       />
+    </extension>
+v}
+
+{1 The user module}

@@ -1,0 +1,9 @@
+=Ocsimore Manual
+==[[intro|Introduction]]
+==[[wiki|Wiki]]
+==[[forum|Forum]]
+==[[user|Users and groups]]
+==[[misc|Misc]]
+==[[guidelines|Writing extensions for Ocsimore]]
+==[[config|Configuration options]]
+==[[admin-interface|Administration interface]]

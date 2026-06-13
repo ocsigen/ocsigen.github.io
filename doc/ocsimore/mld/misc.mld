@@ -1,0 +1,14 @@
+{0 Predefined services}
+
+[ocsimoreadmin/login] a connection box (useful for example if you removed by
+mistake the login box from all pages)
+
+[ocsimoreadmin/wiki_edit?wikiid=n&boxid=m] to edit a wikibox
+
+{2 Clear the cache}
+
+Use the [ocsimore:clearcache] command to clear the database cache. Example:
+
+{v
+echo "ocsimore:clearcache" > /var/run/ocsigen_command
+v}

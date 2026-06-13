@@ -1,0 +1,65 @@
+{0 Ocsimore's forum extension}
+
+{2 Wiki syntax}
+
+[<<forum_threads_list forum="1">>]
+
+[<<forum_message_list forum="1">>]
+
+[<<forum_thread message="1">>]
+
+[<<forum_message message="1">>]
+
+{2 Group hierarchy}
+
+{3 For all forums}
+{v
+   forum_creators
+v}
+
+{3 For each forum}
+{v
+                                                   \     /
+                                               moderated_readers                
+                                   __________/        |
+                            \  /  /                \  |  /
+        \     /            readers                _creators            \   /
+  deletors_if_creators        |                       |         modifiers_if_creator
+         \ | /              \ | /                  \  |  /             \ | /
+       _deletors         _moderators      _creators_not_moderated     _modifiers
+               \________________\_______________      |      ____________/
+                                                 forum_admin
+
+                                                    admin
+
+
+v}
+
+
+{3 For each forum wiki (messages or comments)}
+{v
+                                                        forum_visible
+                                                              |
+                                                 _readersifmessagemoderated
+                         _______________________/         /   |            \
+                        /                                /    |             \
+ deletors_if_creator   /                                /     |              \      modifiers_if_creator
+          |           /                                /      |               \          |
+_deletors = wikiboxdel  _readersnotmod = wikiboxreaders   _creators      modifiers = wikiboxwriters
+                                       |               \      |
+                                 _moderators  _creators_notmod = wikiboxcreators
+
+                                                  admin
+v}
+
+{3 For threads with special rights}
+{v
+
+                     moderated_readers
+                    /         |
+                   /          |
+  comments_creators    readers_notmod
+          |
+comments_creators_notmod
+v}
+
