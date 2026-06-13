@@ -1,0 +1,42 @@
+/* Additions for the wodoc-generated pages, layered on top of css/style.css.
+
+   1. Map wodoc's generic "current" class (added on the element carrying
+      data-wodoc-page) to the site's menu-current look.
+   2. Section headings: odoc emits them directly (a container cannot wrap the
+      first heading — odoc would move it to the page preamble), so reproduce the
+      look of .main-page-section-content h2 (keeping the blue from h1..h4).
+   3. Image paths: style.css references images with absolute URLs (/img/...).
+      While the new site lives in the /wodoc/ subdirectory, rewrite the ones used
+      by these pages to relative URLs so they resolve both locally and once
+      deployed under /wodoc/. (To be removed when the site moves back to root.) */
+
+.page-header .mainmenu p.current {
+  border-bottom: 4px solid #64caff;
+}
+.drawermainmenu li.current a {
+  font-weight: bold;
+  color: #ff8d52;
+}
+
+.rightcol > .odoc-content > h2 {
+  font-size: 36px;
+  font-weight: normal;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 50px;
+}
+
+.main-page-project {
+  background-image: url("../img/ocsigen-bubbles-shadow-small.png");
+}
+.main-page-project h3::before {
+  background-image: url("../img/ocsigen-white.svg");
+}
+.main-page-section-header {
+  background-image: url("../img/cover-ocsigen.jpg");
+}
+@media (min-width: 1200px) {
+  body {
+    background-image: url("../img/ocsigen-bubbles-large.png");
+  }
+}

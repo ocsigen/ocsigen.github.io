@@ -1,5 +1,109 @@
 <!DOCTYPE html>
 <html>
-    <head><meta http-equiv="refresh" content="0; URL=home/papers.html" /></head>
-    <body></body>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Research papers — Ocsigen</title>
+  <link rel="stylesheet" href="/css/style.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.9.0/themes/prism.min.css"/>
+  <link rel="stylesheet" href="/css/wodoc.css"/>
+</head>
+<body class="odoc wodoc-page wodoc-home">
+  <!-- Shared site menu — THE single source of truth for the header, top menu and
+     drawer of EVERY Ocsigen doc page (vitrine + all projects). Canonical copy
+     lives here in ocsigen.github.io; each project's build fetches it. Injected
+     by `wodoc assemble --menu`. Holes filled by the tool (braces omitted here so
+     this comment is not itself rewritten by the hole-filler):
+       subproject  the sub-project name shown next to the Ocsigen logo
+                   (empty on the vitrine), via --subproject
+       leftnav     the project's left navigation, expanded into BOTH the mobile
+                   drawer (below) and the left column (in the page template),
+                   via --leftnav
+     The current entry is highlighted by adding the `current` class to the
+     element carrying data-wodoc-page=<id>: --current on the vitrine (page id),
+     --menu-current in a project (the project id). Nothing is hardcoded here, so
+     this file is the ONLY place the menu is defined.
+
+     Links are the FINAL site paths (/<project>/, /<page>): the target layout
+     where each project is served at ocsigen.org/<project>/ — no transitional
+     /wodoc/ prefix. -->
+<div class="page-header">
+  <p class="logo-ocsigen"><a href="/"><img src="/img/ocsigen-white.svg" alt="Ocsigen"/></a></p>
+  
+
+  <div class="mainmenu">
+    <p class="mainmenu-home current" data-wodoc-page="githubio"><a href="/">Home</a></p>
+    <p class="mainmenu-doc" data-wodoc-page="tuto"><a href="/tuto/">Doc</a></p>
+    <p data-wodoc-page="eliom"><a href="/eliom/">Eliom</a></p>
+    <p data-wodoc-page="js_of_ocaml"><a href="/js_of_ocaml/">Js_of_ocaml</a></p>
+    <p data-wodoc-page="ocsigenserver"><a href="/ocsigenserver/">Server</a></p>
+    <p data-wodoc-page="lwt"><a href="/lwt/">Lwt</a></p>
+    <p data-wodoc-page="tyxml"><a href="/tyxml/">Tyxml</a></p>
+    <p data-wodoc-page="ocsigen-start"><a href="/ocsigen-start/">Start</a></p>
+  </div>
+
+  <form id="googlesearch" action="https://google.com/search">
+    <input name="q" id="gsearch-box" placeholder="Search using Google"/>
+    <label for="gsearch-box"><img src="/img/search.svg" alt="" id="gsearch-icon"/></label>
+    <input type="submit" id="gsearch-submit" onclick="document.getElementById('gsearch-box').value += ' site:ocsigen.org';"/>
+  </form>
+
+  <aside class="how-drawer">
+    <input id="how-drawer-toggle" type="checkbox"/>
+    <label for="how-drawer-toggle" id="how-drawer-label"><span class="how-drawer-icon"></span></label>
+    <nav class="how-drawer-content">
+      <ul class="drawermainmenu">
+        <li class="drawermainmenu-home current" data-wodoc-page="githubio"><a href="/">Home</a></li>
+        <li class="drawermainmenu-doc" data-wodoc-page="tuto"><a href="/tuto/">Doc</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="eliom"><a href="/eliom/">Eliom</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="js_of_ocaml"><a href="/js_of_ocaml/">Js_of_ocaml</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="ocsigenserver"><a href="/ocsigenserver/">Server</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="lwt"><a href="/lwt/">Lwt</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="tyxml"><a href="/tyxml/">Tyxml</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="ocsigen-toolkit"><a href="/ocsigen-toolkit/">Toolkit</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="ocsigen-start"><a href="/ocsigen-start/">Start</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="ocsipersist"><a href="/ocsipersist/">Ocsipersist</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="reactiveData"><a href="/reactiveData/">ReactiveData</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="ocsigen-i18n"><a href="/ocsigen-i18n/">i18n</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="wodoc"><a href="/wodoc/">Wodoc</a></li>
+        <li class="drawermainmenu-page" data-wodoc-page="projects"><a href="/projects">Other projects</a></li>
+        <li class="drawermainmenu-page" data-wodoc-page="papers"><a href="/papers">Research papers</a></li>
+        <li class="drawermainmenu-page" data-wodoc-page="credits"><a href="/credits">Who does Ocsigen?</a></li>
+        <li class="drawermainmenu-page" data-wodoc-page="contributing"><a href="/contributing">Contributing</a></li>
+        <li class="drawermainmenu-page" data-wodoc-page="blog"><a href="/blog">Blog</a></li>
+        <li class="drawermainmenu-page" data-wodoc-page="install"><a href="/install">Installation</a></li>
+        <li class="drawermainmenu-page"><a href="https://github.com/ocsigen">Source code</a></li>
+      </ul>
+      <!-- On mobile the left column is hidden; its menu lives here in the burger
+           (.how-doctree, shown only on narrow screens), as the old site did.
+           Empty on the vitrine; the leftnav hole is filled (with the same
+           fragment as the left column) only on project pages. -->
+      <nav class="how-doctree"></nav>
+    </nav>
+  </aside>
+</div>
+
+
+  <div class="project-page"><div class="rightcol"><h1 id="research-papers">Research papers</h1><p>Gabriel Radanne<br/> <em>Tierless Web programming in ML</em><br/> PhD Thesis - 2017<br/> <b><a href="https://www.irif.fr/~gradanne/papers/phdthesis.pdf">pdf</a> <a href="https://www.irif.fr/~gradanne/papers/talk_phdthesis.pdf">slides</a></b></p><p>Gabriel Radanne - Jérôme Vouillon<br/> <em>Tierless modules</em><br/> Unpublished<br/> <b><a href="https://hal.archives-ouvertes.fr/hal-01485362">author version</a></b></p><p>Gabriel Radanne - Jérôme Vouillon<br/> <em>Tierless Web Programming in the Large</em><br/> The Web conference - Web programming track - 2018<br/> <b><a href="https://www.irif.fr/~gradanne/papers/eliom/web2018.pdf">author version</a></b></p><p>Gabriel Radanne , Jérôme Vouillon, and Vincent Balat<br/> <em>Eliom: A core ML language for tierless Web programming</em><br/> 28th symposium on Implementation and Application of Functional Languages, APLAS 2016, Hanoi, Vietnam, 2016<br/> <b><a href="https://www.irif.fr/_media/users/balat/2016aplas-eliom.pdf">pdf</a></b> <b><a href="https://www.irif.fr/~balat/publications/balat.bib">bib</a></b></p><p>Gabriel Radanne, Vincent Balat, Jérôme Vouillon and Vasilis Papavasileiou<br/> <em>Eliom: tierless Web programming from the ground up</em><br/> 14th Asian Symposium on Programming Languages and Systems, IFL 2016, KU Leuven, Belgium 2016<br/> <b><a href="https://www.irif.fr/~balat/publications/balat.bib">bib</a></b></p><p>Vincent Balat<br/> <em>Rethinking Web interaction: theory and implementation</em><br/> International Journal on Advances in Internet Technologies, vol 7, 2014<br/> <b><a href="https://www.irif.fr/~balat/publications/2014balat-rethinking2.pdf">pdf</a></b> <b><a href="https://www.irif.fr/~balat/publications/balat.bib">bib</a></b></p><p>Vincent Balat<br/> <em>Client-server Web applications widgets</em><br/> WWW 2013 dev track<br/> <b><a href="https://www.irif.fr/~balat/publications/2013balat-www-clserwidgets.pdf">pdf</a></b> <b><a href="https://www.irif.fr/~balat/publications/2013balat-www-clserwidgets.bib">bibtex</a></b></p><p>Vincent Balat<br/> <em>Rethinking Web interaction</em><br/> ICIW 2013<br/> <b><a href="https://www.irif.fr/~balat/publications/2013balat-rethinking.pdf">pdf</a></b> <b><a href="https://www.irif.fr/~balat/publications/balat.bib">bib</a></b></p><p>Benjamin Canou<br/> <em>Programmation Web Typée</em><br/> PhD Thesis - 2011<br/> <b><a href="http://www.benjamin.canou.fr/these.pdf">pdf</a></b> <b><a href="http://www.benjamin.canou.fr/soutenance.pdf">slides</a></b></p><p>Jérôme Vouillon, Vincent Balat<br/> <em>From bytecode to Javascript: the Js_of_ocaml compiler</em><br/> in journal <em>Software: Practice and Experience</em>, 2013<br/> <b><a href="https://www.irif.fr/~balat/publications/vouillon_balat-js_of_ocaml.pdf">pdf</a></b> <b><a href="https://www.irif.fr/~balat/publications/balat.bib">bib</a></b></p><p>Benjamin Canou, Emmanuel Chailloux, Vincent Botbol<br/> <em>Static Typing &amp; JavaScript Libraries: Towards a More Considerate Relationship</em><br/> World Wide Web (WWW) 2013, developer's track (PDF, slides)<br/> <b><a href="http://www.benjamin.canou.fr/papers/www_2013_canou.pdf">pdf</a></b></p><p>Benjamin Canou, Emmanuel Chailloux, Jérôme Vouillon<br/> <em>How to Run your Favorite Language in Web Browsers</em><br/> World Wide Web (WWW) 2012, developer's track<br/> <b><a href="http://www.benjamin.canou.fr/papers/www_2012_canou.pdf">pdf</a></b> <b><a href="http://www.benjamin.canou.fr/slides/www_2012_canou.pdf">slides</a></b></p><p>Benjamin Canou, Emmanuel Chailloux, and Vincent Balat<br/> A declarative-friendly API for Web document manipulation<br/> PADL 2013<br/> <b><a href="https://www.irif.fr/~balat/publications/2013padl-cdom.pdf">pdf</a></b> <b><a href="https://www.irif.fr/~balat/publications/balat.bib">bib</a></b></p><p>Vincent Balat, Pierre Chambart and Grégoire Henry<br/> <em>Client-server Web applications with Ocsigen</em><br/> World Wide Web Conference, developers track. WWW2012<br/> <b><a href="https://www.irif.fr/~balat/publications/www2012-ocsigen.pdf">pdf</a></b> <b><a href="https://www.irif.fr/~balat/publications/balat.bib">bib</a></b></p><p>Vincent Balat, Boris Yakobowski, Jérôme Vouillon<br/> <em>Experience Report: Ocsigen, a Web Programming Framework</em><br/> International Conference on Functional Programming, ACM, 2009.<br/> <b><a href="https://www.irif.fr/~balat/publications/2009icfp-ocsigen.pdf">pdf</a></b> <b><a href="https://www.irif.fr/~balat/publications/balat.bib">bib</a></b></p><p>Benjamin Canou, Vincent Balat, Emmanuel Chailloux <br/> <em>O'Browser: Objective Caml on browsers</em> <br/> ACM Sigplan Workshop on ML 2008. <br/> <b><a href="https://www.irif.fr/~balat/publications/2008mlworkshop-obrowser.pdf">pdf</a></b> <b><a href="https://www.irif.fr/~balat/publications/balat.bib">bib</a></b></p><p>Vincent Balat <br/> <em>Ocsigen: Typing Web Interaction with Objective Caml</em> <br/> ACM Sigplan Workshop on ML 2006. <br/> <b><a href="https://www.irif.fr/~balat/publications/2006mlworkshop-balat-ocsigen.pdf">pdf</a></b> <b><a href="https://www.irif.fr/~balat/publications/balat.bib">bib</a></b></p></div></div>
+
+
+  <div class="main-page-section main-page-section-about">
+    <div class="main-page-section-content">
+      <ul>
+        <li><a href="credits.html">Who does Ocsigen?</a></li>
+        <li><a href="papers.html">Research papers</a></li>
+        <li><a href="projects.html">All the projects</a></li>
+        <li><a href="contributing.html">Contributing</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="install.html">Installation</a></li>
+        <li><a href="https://github.com/ocsigen">Source code</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.9.0/components/prism-core.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.9.0/components/prism-clike.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.9.0/components/prism-ocaml.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.9.0/components/prism-javascript.min.js"></script>
+</body>
 </html>
