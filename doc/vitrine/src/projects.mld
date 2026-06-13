@@ -76,6 +76,14 @@ Declarative events and signals (FRP) for incremental, reactive data.
 
 {%wodoc:end%}{%wodoc:end%}
 
+{%wodoc:a class=main-page-project-link href=/ocsigen-i18n/%}{%wodoc:div class=main-page-project%}
+
+{2 Ocsigen i18n}
+
+Type-safe internationalization: translation functions generated at compile time.
+
+{%wodoc:end%}{%wodoc:end%}
+
 {%wodoc:a class=main-page-project-link href=/wodoc/%}{%wodoc:div class=main-page-project%}
 
 {2 Wodoc}
