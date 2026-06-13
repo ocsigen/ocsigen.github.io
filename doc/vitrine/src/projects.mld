@@ -98,11 +98,11 @@ An experimental language for type-safe database queries.
 
 {%wodoc:end%}{%wodoc:end%}
 
-{%wodoc:a class=main-page-project-link href=https://github.com/ocsigen/oclosure%}{%wodoc:div class=main-page-project%}
+{%wodoc:a class=main-page-project-link href=/ocsimore/%}{%wodoc:div class=main-page-project%}
 
-{2 OClosure}
+{2 Ocsimore}
 
-An OCaml binding of the Google Closure widget library. (unmaintained)
+A content management system written with Eliom (wiki, forum). (unmaintained)
 
 {%wodoc:end%}{%wodoc:end%}
 
@@ -111,6 +111,54 @@ An OCaml binding of the Google Closure widget library. (unmaintained)
 {2 html_of_wiki}
 
 The legacy wikicréole site and documentation generator, superseded by wodoc. (unmaintained)
+
+{%wodoc:end%}{%wodoc:end%}
+
+{%wodoc:a class=main-page-project-link href=https://github.com/ocsigen/oclosure%}{%wodoc:div class=main-page-project%}
+
+{2 OClosure}
+
+An OCaml binding of the Google Closure widget library. (unmaintained)
+
+{%wodoc:end%}{%wodoc:end%}
+
+{%wodoc:a class=main-page-project-link href=https://github.com/klakplok/goji%}{%wodoc:div class=main-page-project%}
+
+{2 Goji}
+
+OCaml binding generator for Javascript libraries. (unmaintained)
+
+{%wodoc:end%}{%wodoc:end%}
+
+{%wodoc:a class=main-page-project-link href=https://github.com/ocsigen/ojquery%}{%wodoc:div class=main-page-project%}
+
+{2 Ojquery}
+
+An OCaml binding for JQuery. (unmaintained)
+
+{%wodoc:end%}{%wodoc:end%}
+
+{%wodoc:a class=main-page-project-link href=https://github.com/ocsigen/obrowser%}{%wodoc:div class=main-page-project%}
+
+{2 O'Browser}
+
+An OCaml virtual machine in Javascript. (unmaintained)
+
+{%wodoc:end%}{%wodoc:end%}
+
+{%wodoc:a class=main-page-project-link href=https://github.com/ocsigen/ocsforge%}{%wodoc:div class=main-page-project%}
+
+{2 Ocsforge}
+
+Ocsimore module implementing collaborative development tools (forge).
+
+{%wodoc:end%}{%wodoc:end%}
+
+{%wodoc:a class=main-page-project-link href=/occduce%}{%wodoc:div class=main-page-project%}
+
+{2 Occduce}
+
+An experimental Eliom-like module for the CDuce language. (unmaintained)
 
 {%wodoc:end%}{%wodoc:end%}
 
