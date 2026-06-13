@@ -69,6 +69,15 @@
 >>
 >>
 
+<<link href="/wodoc/"|
+<<div class="main-page-project"|
+  ===Wodoc
+
+  Build a complete styled documentation website from your odoc sources.
+
+>>
+>>
+
 
 >>
 
