@@ -1,7 +1,7 @@
 #!/bin/bash
 # Build the Ocsigen site vitrine (home + projects/install/credits/papers/
 # contributing) from .mld sources into the site root, themed with the shared
-# Ocsigen chrome (wodoc). Replaces the old ohow/wikicréole build of these pages.
+# Ocsigen chrome (wodoc), with absolute /css//img//<project>/ links.
 #
 # Per page: preprocess -> odoc compile/link/html-generate -> assemble (renders the
 # {%wodoc:%} markers and fills the template). Links/assets are absolute (/css/,

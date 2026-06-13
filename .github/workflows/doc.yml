@@ -1,19 +1,20 @@
-# Build the parts of the site that ocsigen.github.io hosts itself with wodoc:
+# Build the parts of the site that ocsigen.github.io hosts itself with wodoc, on
+# every push to master:
 #  - the vitrine (home + projects/install/credits/papers/contributing), from
 #    doc/vitrine/*.mld, into the site root;
-#  - the two ARCHIVED projects served here as static .mld sites (their repos no
-#    longer build): ocsimore -> /ocsimore/, html_of_wiki -> /html_of_wiki/.
-# The active projects build their own doc on their own gh-pages; this workflow
-# only covers what lives in THIS repo. Generated pages are committed (GitHub
-# Pages serves the repo). Runs on changes to the doc sources or the shared menu.
+#  - the two ARCHIVED projects served from this repo (their own repos no longer
+#    build): ocsimore -> /ocsimore/, html_of_wiki -> /html_of_wiki/.
+# Every other (active) project builds and publishes its own documentation to its
+# own gh-pages branch; this workflow only covers what lives in THIS repo.
+# GitHub Pages serves the repo, so the generated pages are committed back to
+# master (with [skip ci] to avoid retriggering this workflow). Modelled on the
+# per-project Documentation workflows (setup-ocaml + wodoc), with the deploy step
+# adapted to a user/org site (commit to master) instead of a gh-pages branch.
 name: Documentation
 
 on:
   push:
     branches: [master]
-    paths:
-      - "doc/**"
-      - ".github/workflows/doc.yml"
   workflow_dispatch: {}
 
 jobs:
@@ -47,7 +48,7 @@ jobs:
             && opam exec -- wodoc build --config wodoc \
                  --out "$PWD/../../html_of_wiki/2.0" --label 2.0 --menu "$MENU" --latest )
 
-      - name: Commit the regenerated pages
+      - name: Commit the regenerated pages to master
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"

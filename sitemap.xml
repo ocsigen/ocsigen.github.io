@@ -3,14 +3,12 @@
   <!-- Homepage -->
   <url><loc>https://ocsigen.org/</loc></url>
 
-  <!-- Main sections -->
-  <url><loc>https://ocsigen.org/home/intro.html</loc></url>
-  <url><loc>https://ocsigen.org/home/install.html</loc></url>
-  <url><loc>https://ocsigen.org/home/projects.html</loc></url>
-  <url><loc>https://ocsigen.org/home/papers.html</loc></url>
-  <url><loc>https://ocsigen.org/home/contributing.html</loc></url>
-  <url><loc>https://ocsigen.org/home/credits.html</loc></url>
-  <url><loc>https://ocsigen.org/home/occduce.html</loc></url>
+  <!-- Main sections (vitrine, built from doc/vitrine/*.mld into the site root) -->
+  <url><loc>https://ocsigen.org/projects.html</loc></url>
+  <url><loc>https://ocsigen.org/install.html</loc></url>
+  <url><loc>https://ocsigen.org/papers.html</loc></url>
+  <url><loc>https://ocsigen.org/contributing.html</loc></url>
+  <url><loc>https://ocsigen.org/credits.html</loc></url>
 
   <!-- Project landing pages (each hosts its own docs/manual) -->
   <url><loc>https://ocsigen.org/eliom/</loc></url>
@@ -20,6 +18,7 @@
   <url><loc>https://ocsigen.org/ocsigen-start/</loc></url>
   <url><loc>https://ocsigen.org/ocsigen-toolkit/</loc></url>
   <url><loc>https://ocsigen.org/ocsipersist/</loc></url>
+  <url><loc>https://ocsigen.org/reactiveData/</loc></url>
   <url><loc>https://ocsigen.org/tyxml/</loc></url>
   <url><loc>https://ocsigen.org/html_of_wiki/</loc></url>
   <url><loc>https://ocsigen.org/ocsigen-i18n/</loc></url>

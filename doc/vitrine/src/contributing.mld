@@ -26,8 +26,8 @@ and one for its documentation on [wikidoc]---for your contribution to be
 accepted!
 
 {1 Create a release (for package maintainers)}
-+ Make sure the documentation on git branch [wikidoc] is {b up to date} with the code on [master].
-+ On branch [wikidoc], [cp -r dev X.Y.Z], where [X.Y.Z] is the new version's number. Commit changes, do a PR, wait for the documentation to be regenerated, and check the documentation on the website.
++ Make sure the documentation sources ([doc/*.mld] and the [.mli] comments) are {b up to date} with the code on [master]; the CI rebuilds the [dev] docs on every push to [master].
++ Freeze the current [dev] docs as the new version on the project's [gh-pages] branch: [wodoc release --site . --version X.Y.Z] (copies [dev/] to [X.Y.Z/] and repoints the [latest] symlink), then commit and push.
 + Update file CHANGES
 + On [master], update opam configuration file.
 + [git tag <version>] then [git push --tags]
@@ -38,49 +38,30 @@ accepted!
 on Github to create a blog post that will be published on OCaml Planet
 and Twitter's OCaml page
 
-Also do not forget to push on [wikidoc] as it will update the website
-automatically for the new version.
-
 {1 Local documentation generation}
-html_of_wiki can (to some extent) locally generate your documentation. Please
-find its manual {{:/html_of_wiki/}here}.
-Each project, on the [wikidoc] branch, contains a file [how.json]. Please
-ensure that its configuration is correct for your changes. The following
-steps require you to be at {e the root of the project}.
 
-- Install html_of_wiki on your computer. Please follow the instructions provided on the {{:https://github.com/ocsigen/html_of_wiki}project's homepage}.
-- Copy the [template] directory from the repository {{:https://github.com/ocsigen/ocsigen.github.io}ocsigen.github.io} and rename it [how_template]. You can use the following command:
+Every project's documentation is built by {{:/wodoc/}wodoc} (an odoc driver) from
+its [.mld] manual pages and [.mli] API comments, configured by a single
+[doc/wodoc] file in the project. To build it locally, from the project root:
 {[
-tmp=$(mktemp -d) && \
-git clone --depth 1 https://github.com/ocsigen/ocsigen.github.io.git $tmp && \
-mv $tmp/{template,how_template} && \
-mv $tmp/how_template .
+wodoc build --config doc/wodoc --out _doc-site/dev --label dev \
+  --menu https://ocsigen.org/doc/menu.html --local
 ]}
-- Use the following command to generate the documentation of the project, where [DOC] is the directory containing the documentation:
-{[
-quickdop -f DOCS _doc -t json -c how.json -viul
-]}
-
-If you want to avoid generating the whole documentation---just some parts of
-it---read the documentation of the tools {b [dop]} and {b [ohow]} in
-{{:/html_of_wiki/}the manual of html_of_wiki}.
+[--local] also fetches the shared [/css/] and [/img/] assets so the result is
+viewable offline ([cd _doc-site && python3 -m http.server], then open
+[localhost:8000/dev/]). See the project's [doc/README.md] for the exact command
+and the opam switch it needs.
 
 {1 Main site}
 
-Changes in the main site must be done in repository [ocsigen.github.io],
-branch [master], directory [manual]. Site generation must be done
-manually: [make deploy].
-
-{1 Generate the whole website locally (experimental)}
-
-One can generate the whole website locally using the {{:https://github.com/ocsigen/ocsigen.github.io/tree/local-build}local-build} branch of ocsigen.github.io repo.
-The branch contains git sub-modules for all projects documented on the website.
-
-- Install html_of_wiki. Please follow the instructions provided on the {{:https://github.com/ocsigen/html_of_wiki}project's homepage}.
-- execute the build.sh script to generate the whole website in the given directory:
-{[
-./build.sh _doc
-]}
+The vitrine (this site's home, projects, install, credits, papers, contributing)
+lives in repository [ocsigen.github.io], branch [master], directory
+[doc/vitrine/] ([.mld] sources). The two archived projects served directly from
+this repository, [ocsimore] and [html_of_wiki], live in [doc/ocsimore/] and
+[doc/html_of_wiki/]. A GitHub Action ([.github/workflows/doc.yml]) rebuilds them
+with wodoc on every push to [master] — nothing to run by hand. Every other
+(active) project builds and publishes its own documentation to its own
+[gh-pages] branch, served at [ocsigen.org/<project>/].
 
 {%wodoc:end%}
 {%wodoc:end%}
