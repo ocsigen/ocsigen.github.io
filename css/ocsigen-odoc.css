@@ -141,7 +141,12 @@
   margin: 0.9em 0 0.2em;
 }
 .leftcol .api-nav ul.api-section { list-style: none; padding-left: 0; margin: 0.2em 0; }
-.leftcol .api-nav li { line-height: 1.5; }
+/* Space the entries apart with padding so each reads as a distinct item, while
+   keeping a tight line-height so a wrapped (multi-line) entry stays compact.
+   Covers both the project menu (.api-nav) and the per-page "On this page"
+   outline (.odoc-toc), whose section titles often wrap. */
+.leftcol .api-nav li,
+.leftcol .odoc-toc li { line-height: 1.25; padding: 0.22em 0; }
 
 /* Current location: highlighted entry, with an accent bar tying it to the nav.
    The accent follows the side (blue on server, yellow on client) to match the
@@ -276,6 +281,22 @@
 .leftcol .manual-nav .ml5 { padding-left: 2.7em; }
 .leftcol .manual-nav .ml6 { padding-left: 3.6em; }
 
+/* ---- Project menu: separate each section ----
+   The manual-nav stacks several sections (Getting Started, Programming Guide,
+   …), each a small grey uppercase <h3> label. A thin top rule + breathing space
+   makes the groups read as distinct blocks. The first section stays flush under
+   the version selector. */
+.leftcol .api-nav.manual-nav h3 {
+  margin-top: 1.1em;
+  padding-top: 0.9em;
+  border-top: 1px solid #e3e8ef;
+}
+.leftcol .api-nav.manual-nav > h3:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+
 /* ---- API includes: continue the side-coloured rule down the open include ----
    The include header already carries the blue/yellow spec bar; move it onto the
    whole <details> so it runs from the header down to the last member, and indent
@@ -302,6 +323,31 @@
   color: #b0b0b0;
   font-size: 0.8em;
 }
+
+/* ---- Tables in manual content ----
+   odoc emits <table class="odoc-table"> with the first row as header cells
+   (rendered as <td>, not <th>) and each cell wrapped in a <p>. Since we don't
+   load odoc's own stylesheet, tables would otherwise fall back to the browser
+   default (no borders). Style them to match the site palette: collapsed
+   borders, a tinted header row, compact cells. */
+.rightcol .odoc-table {
+  border-collapse: collapse;
+  margin: 1.3em 0;
+  font-size: 0.95em;
+  line-height: 1.45;
+}
+.rightcol .odoc-table td {
+  border: 1px solid #d0d7de;
+  padding: 0.4em 0.8em;
+  text-align: left;
+  vertical-align: top;
+}
+.rightcol .odoc-table tr:first-child td {
+  background: #f6f9fc;
+  font-weight: bold;
+  color: #094489;
+}
+.rightcol .odoc-table td > p { margin: 0; }
 
 /* ---- Burger copy of the left menu (mobile) ----
    .how-doctree mirrors the left column inside the dark drawer; most .leftcol
