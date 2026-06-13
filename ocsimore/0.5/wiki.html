@@ -82,7 +82,6 @@
       <nav class="how-doctree"><div class="docversion">
   <label>Version:
     <select class="wodoc-version" onchange="wodocVersion(this.value)">
-      <option value="latest">latest</option>
       <option value="0.5">0.5</option>
     </select>
   </label>
@@ -91,20 +90,6 @@
   <h3>On this page</h3>
   <nav class="odoc-toc odoc-local-toc"><ul><li><a href="#wiki-syntax">Wiki syntax</a><ul><li><a href="#links">Links</a></li><li><a href="#additions">Additions</a></li><li><a href="#predefined-extensions">Predefined extensions</a></li></ul></li><li><a href="#groups-hierarchy">Groups hierarchy</a></li></ul></nav>
 </div>
-<nav class="api-nav manual-nav">
-<h3>Manual</h3>
-<h4 class="ml1">Ocsimore Manual</h4>
-<ul class="api-section">
-<li class="ml2" data-wodoc-page="intro"><a href="./intro.html">Introduction</a></li>
-<li class="ml2 current" data-wodoc-page="wiki"><a href="./wiki.html">Wiki</a></li>
-<li class="ml2" data-wodoc-page="forum"><a href="./forum.html">Forum</a></li>
-<li class="ml2" data-wodoc-page="user"><a href="./user.html">Users and groups</a></li>
-<li class="ml2" data-wodoc-page="misc"><a href="./misc.html">Misc</a></li>
-<li class="ml2" data-wodoc-page="guidelines"><a href="./guidelines.html">Writing extensions for Ocsimore</a></li>
-<li class="ml2" data-wodoc-page="config"><a href="./config.html">Configuration options</a></li>
-<li class="ml2" data-wodoc-page="admin-interface"><a href="./admin-interface.html">Administration interface</a></li>
-</ul>
-</nav>
 </nav>
     </nav>
   </aside>
@@ -117,7 +102,6 @@
         <div class="docversion">
   <label>Version:
     <select class="wodoc-version" onchange="wodocVersion(this.value)">
-      <option value="latest">latest</option>
       <option value="0.5">0.5</option>
     </select>
   </label>
@@ -126,20 +110,6 @@
   <h3>On this page</h3>
   <nav class="odoc-toc odoc-local-toc"><ul><li><a href="#wiki-syntax">Wiki syntax</a><ul><li><a href="#links">Links</a></li><li><a href="#additions">Additions</a></li><li><a href="#predefined-extensions">Predefined extensions</a></li></ul></li><li><a href="#groups-hierarchy">Groups hierarchy</a></li></ul></nav>
 </div>
-<nav class="api-nav manual-nav">
-<h3>Manual</h3>
-<h4 class="ml1">Ocsimore Manual</h4>
-<ul class="api-section">
-<li class="ml2" data-wodoc-page="intro"><a href="./intro.html">Introduction</a></li>
-<li class="ml2 current" data-wodoc-page="wiki"><a href="./wiki.html">Wiki</a></li>
-<li class="ml2" data-wodoc-page="forum"><a href="./forum.html">Forum</a></li>
-<li class="ml2" data-wodoc-page="user"><a href="./user.html">Users and groups</a></li>
-<li class="ml2" data-wodoc-page="misc"><a href="./misc.html">Misc</a></li>
-<li class="ml2" data-wodoc-page="guidelines"><a href="./guidelines.html">Writing extensions for Ocsimore</a></li>
-<li class="ml2" data-wodoc-page="config"><a href="./config.html">Configuration options</a></li>
-<li class="ml2" data-wodoc-page="admin-interface"><a href="./admin-interface.html">Administration interface</a></li>
-</ul>
-</nav>
 
       </nav>
       <article class="rightcol">
@@ -163,25 +133,49 @@ WikiboxReader(wb)</pre><p>The generic permissions of the wiki can be overridden 
   </div>
 
   <script>
+    var wodocPub = "/ocsimore";
+    // Switch version: keep the current page, swapping only the version segment.
     function wodocVersion(v) {
       if (!v) return;
-      var re = new RegExp('^(/ocsimore/)[^/]+');
+      var re = new RegExp('^(' + wodocPub + '/)[^/]+');
       var p = location.pathname;
-      location.href = re.test(p) ? p.replace(re, '$1' + v) : '/ocsimore/' + v + '/index.html';
+      location.href =
+        re.test(p) ? p.replace(re, '$1' + v) : wodocPub + '/' + v + '/index.html';
     }
+    // Build the version <select> from the project's versions.json (the single
+    // source of truth, refreshed on every build/release), so even older frozen
+    // pages list the current set. Falls back to the baked <option>s on failure.
     (function () {
-      var m = location.pathname.match(new RegExp('^/ocsimore/([^/]+)'));
-      if (!m) return;
-      document.querySelectorAll('.wodoc-version').forEach(function (sel) {
-        var ok = false, i;
+      var seg = (location.pathname.match(
+        new RegExp('^' + wodocPub + '/([^/]+)')) || [])[1];
+      function select(sel) {
+        var i;
         for (i = 0; i < sel.options.length; i++)
-          if (sel.options[i].value === m[1]) { sel.selectedIndex = i; ok = true; break; }
-        if (!ok) {
+          if (sel.options[i].value === seg) { sel.selectedIndex = i; return; }
+        if (seg) {
           var o = document.createElement('option');
-          o.value = m[1]; o.textContent = m[1]; o.selected = true;
+          o.value = seg; o.textContent = seg; o.selected = true;
           sel.insertBefore(o, sel.firstChild);
         }
-      });
+      }
+      fetch(wodocPub + '/versions.json')
+        .then(function (r) { if (!r.ok) throw 0; return r.json(); })
+        .then(function (m) {
+          var list = m.list || [], latest = m.latest;
+          document.querySelectorAll('.wodoc-version').forEach(function (sel) {
+            sel.innerHTML = '';
+            list.forEach(function (v) {
+              var o = document.createElement('option');
+              if (v === latest) { o.value = 'latest'; o.textContent = v + ' (latest)'; }
+              else { o.value = v; o.textContent = v; }
+              sel.appendChild(o);
+            });
+            select(sel);
+          });
+        })
+        .catch(function () {
+          document.querySelectorAll('.wodoc-version').forEach(select);
+        });
     })();
   </script>
 </body>

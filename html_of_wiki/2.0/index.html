@@ -82,7 +82,6 @@
       <nav class="how-doctree"><div class="docversion">
   <label>Version:
     <select class="wodoc-version" onchange="wodocVersion(this.value)">
-      <option value="latest">latest</option>
       <option value="2.0">2.0</option>
     </select>
   </label>
@@ -91,43 +90,6 @@
   <h3>On this page</h3>
   <nav class="odoc-toc odoc-local-toc"><ul><li><a href="#install">Installation</a></li><li><a href="#what-you-will-learn-here">What you will learn here</a></li><li><a href="#the-wikicréole">The wikicréole</a></li><li><a href="#wikistd">The standard</a></li><li><a href="#wikiadd">Syntax additions</a><ul><li><a href="#supported-links-syntaxes">Supported links syntaxes</a></li><li><a href="#decorations">Decorations</a></li><li><a href="#definition-lists">Definition lists</a></li><li><a href="#inline-html-classes">Inline HTML classes</a></li><li><a href="#extensions">Extensions</a></li></ul></li><li><a href="#ohow">How to use ohow (one_html_of_wiki)</a></li><li><a href="#basic-usage">Basic usage</a></li><li><a href="#advanced-usage">Advanced usage</a><ul><li><a href="#templates">Templates</a><ul><li><a href="#wiki_in_template">wiki_in_template</a></li></ul></li><li><a href="#linkexts">Link extensions</a></li><li><a href="#doctree">The &lt;&lt;doctree&gt;&gt; extension</a></li><li><a href="#docversion">The &lt;&lt;docversion&gt;&gt; extension</a></li><li><a href="#the-&lt;&lt;client-server-switch&gt;&gt;-extension">The &lt;&lt;client-server-switch&gt;&gt; extension</a></li></ul></li><li><a href="#legacy">Legacy support</a></li><li><a href="#higher-level-documentation-generators">Higher level documentation generators</a></li><li><a href="#dop">dop</a><ul><li><a href="#conf">Configuration file</a></li><li><a href="#cli">Command-line interface</a></li><li><a href="#examples">Examples</a><ul><li><a href="#minimal-example">Minimal example</a></li><li><a href="#more-examples">More examples</a></li></ul></li></ul></li><li><a href="#quickdop">quickdop</a><ul><li><a href="#usage">Usage</a></li></ul></li><li><a href="#ext">Built-in wikicréole extensions</a></li><li><a href="#nameless-extension">Nameless extension</a></li><li><a href="#code-and-code-inline">code and code-inline</a></li><li><a href="#div,-span,-nav,-pre">div, span, nav, pre</a></li><li><a href="#googlesearch">googlesearch</a></li><li><a href="#wip-and-wip-inline">wip and wip-inline</a></li><li><a href="#when-local-and-unless-local">when-local and unless-local</a></li><li><a href="#when-project">when-project</a></li><li><a href="#script">script</a></li><li><a href="#head-script">head-script</a></li><li><a href="#head-css">head-css</a></li></ul></nav>
 </div>
-<nav class="api-nav manual-nav">
-<h3>Manual</h3>
-<h4 class="ml1">html_of_wiki</h4>
-<ul class="api-section">
-<li class="ml3"><a href="./index.html#install">Installation</a></li>
-</ul>
-<h4 class="ml2">The wikicréole</h4>
-<ul class="api-section">
-<li class="ml3"><a href="./index.html#wikistd">Standard</a></li>
-<li class="ml3"><a href="./index.html#wikiadd">Additions</a></li>
-</ul>
-<h4 class="ml2">ohow</h4>
-<ul class="api-section">
-<li class="ml3"><a href="./index.html#ohow">Introduction</a></li>
-</ul>
-<h4 class="ml3">Advanced usage</h4>
-<ul class="api-section">
-<li class="ml4"><a href="./index.html#templates">Templates</a></li>
-<li class="ml4"><a href="./index.html#linkexts">Link extensions</a></li>
-<li class="ml4"><a href="./index.html#doctree">&lt;&lt;doctree&gt;&gt;</a></li>
-<li class="ml4"><a href="./index.html#docversion">&lt;&lt;docversion&gt;&gt;</a></li>
-<li class="ml3"><a href="./index.html#legacy">Legacy</a></li>
-</ul>
-<h4 class="ml2">dop</h4>
-<ul class="api-section">
-<li class="ml3"><a href="./index.html#dop">Introduction</a></li>
-<li class="ml3"><a href="./index.html#conf">Configuration file</a></li>
-<li class="ml3"><a href="./index.html#cli">Command line interface</a></li>
-<li class="ml3"><a href="./index.html#examples">Examples</a></li>
-</ul>
-<h4 class="ml2">quickdop</h4>
-<ul class="api-section">
-<li class="ml3"><a href="./index.html#quickdop">Introduction</a></li>
-<li class="ml2"><a href="./index.html#ext">Built-in wikicréole extensions</a></li>
-<li class="ml2"><a href="./index.html#TODO">html_of_wiki internals overview (TODO)</a></li>
-</ul>
-</nav>
 </nav>
     </nav>
   </aside>
@@ -140,7 +102,6 @@
         <div class="docversion">
   <label>Version:
     <select class="wodoc-version" onchange="wodocVersion(this.value)">
-      <option value="latest">latest</option>
       <option value="2.0">2.0</option>
     </select>
   </label>
@@ -149,43 +110,6 @@
   <h3>On this page</h3>
   <nav class="odoc-toc odoc-local-toc"><ul><li><a href="#install">Installation</a></li><li><a href="#what-you-will-learn-here">What you will learn here</a></li><li><a href="#the-wikicréole">The wikicréole</a></li><li><a href="#wikistd">The standard</a></li><li><a href="#wikiadd">Syntax additions</a><ul><li><a href="#supported-links-syntaxes">Supported links syntaxes</a></li><li><a href="#decorations">Decorations</a></li><li><a href="#definition-lists">Definition lists</a></li><li><a href="#inline-html-classes">Inline HTML classes</a></li><li><a href="#extensions">Extensions</a></li></ul></li><li><a href="#ohow">How to use ohow (one_html_of_wiki)</a></li><li><a href="#basic-usage">Basic usage</a></li><li><a href="#advanced-usage">Advanced usage</a><ul><li><a href="#templates">Templates</a><ul><li><a href="#wiki_in_template">wiki_in_template</a></li></ul></li><li><a href="#linkexts">Link extensions</a></li><li><a href="#doctree">The &lt;&lt;doctree&gt;&gt; extension</a></li><li><a href="#docversion">The &lt;&lt;docversion&gt;&gt; extension</a></li><li><a href="#the-&lt;&lt;client-server-switch&gt;&gt;-extension">The &lt;&lt;client-server-switch&gt;&gt; extension</a></li></ul></li><li><a href="#legacy">Legacy support</a></li><li><a href="#higher-level-documentation-generators">Higher level documentation generators</a></li><li><a href="#dop">dop</a><ul><li><a href="#conf">Configuration file</a></li><li><a href="#cli">Command-line interface</a></li><li><a href="#examples">Examples</a><ul><li><a href="#minimal-example">Minimal example</a></li><li><a href="#more-examples">More examples</a></li></ul></li></ul></li><li><a href="#quickdop">quickdop</a><ul><li><a href="#usage">Usage</a></li></ul></li><li><a href="#ext">Built-in wikicréole extensions</a></li><li><a href="#nameless-extension">Nameless extension</a></li><li><a href="#code-and-code-inline">code and code-inline</a></li><li><a href="#div,-span,-nav,-pre">div, span, nav, pre</a></li><li><a href="#googlesearch">googlesearch</a></li><li><a href="#wip-and-wip-inline">wip and wip-inline</a></li><li><a href="#when-local-and-unless-local">when-local and unless-local</a></li><li><a href="#when-project">when-project</a></li><li><a href="#script">script</a></li><li><a href="#head-script">head-script</a></li><li><a href="#head-css">head-css</a></li></ul></nav>
 </div>
-<nav class="api-nav manual-nav">
-<h3>Manual</h3>
-<h4 class="ml1">html_of_wiki</h4>
-<ul class="api-section">
-<li class="ml3"><a href="./index.html#install">Installation</a></li>
-</ul>
-<h4 class="ml2">The wikicréole</h4>
-<ul class="api-section">
-<li class="ml3"><a href="./index.html#wikistd">Standard</a></li>
-<li class="ml3"><a href="./index.html#wikiadd">Additions</a></li>
-</ul>
-<h4 class="ml2">ohow</h4>
-<ul class="api-section">
-<li class="ml3"><a href="./index.html#ohow">Introduction</a></li>
-</ul>
-<h4 class="ml3">Advanced usage</h4>
-<ul class="api-section">
-<li class="ml4"><a href="./index.html#templates">Templates</a></li>
-<li class="ml4"><a href="./index.html#linkexts">Link extensions</a></li>
-<li class="ml4"><a href="./index.html#doctree">&lt;&lt;doctree&gt;&gt;</a></li>
-<li class="ml4"><a href="./index.html#docversion">&lt;&lt;docversion&gt;&gt;</a></li>
-<li class="ml3"><a href="./index.html#legacy">Legacy</a></li>
-</ul>
-<h4 class="ml2">dop</h4>
-<ul class="api-section">
-<li class="ml3"><a href="./index.html#dop">Introduction</a></li>
-<li class="ml3"><a href="./index.html#conf">Configuration file</a></li>
-<li class="ml3"><a href="./index.html#cli">Command line interface</a></li>
-<li class="ml3"><a href="./index.html#examples">Examples</a></li>
-</ul>
-<h4 class="ml2">quickdop</h4>
-<ul class="api-section">
-<li class="ml3"><a href="./index.html#quickdop">Introduction</a></li>
-<li class="ml2"><a href="./index.html#ext">Built-in wikicréole extensions</a></li>
-<li class="ml2"><a href="./index.html#TODO">html_of_wiki internals overview (TODO)</a></li>
-</ul>
-</nav>
 
       </nav>
       <article class="rightcol">
@@ -321,25 +245,49 @@ $ tree
   </div>
 
   <script>
+    var wodocPub = "/html_of_wiki";
+    // Switch version: keep the current page, swapping only the version segment.
     function wodocVersion(v) {
       if (!v) return;
-      var re = new RegExp('^(/html_of_wiki/)[^/]+');
+      var re = new RegExp('^(' + wodocPub + '/)[^/]+');
       var p = location.pathname;
-      location.href = re.test(p) ? p.replace(re, '$1' + v) : '/html_of_wiki/' + v + '/index.html';
+      location.href =
+        re.test(p) ? p.replace(re, '$1' + v) : wodocPub + '/' + v + '/index.html';
     }
+    // Build the version <select> from the project's versions.json (the single
+    // source of truth, refreshed on every build/release), so even older frozen
+    // pages list the current set. Falls back to the baked <option>s on failure.
     (function () {
-      var m = location.pathname.match(new RegExp('^/html_of_wiki/([^/]+)'));
-      if (!m) return;
-      document.querySelectorAll('.wodoc-version').forEach(function (sel) {
-        var ok = false, i;
+      var seg = (location.pathname.match(
+        new RegExp('^' + wodocPub + '/([^/]+)')) || [])[1];
+      function select(sel) {
+        var i;
         for (i = 0; i < sel.options.length; i++)
-          if (sel.options[i].value === m[1]) { sel.selectedIndex = i; ok = true; break; }
-        if (!ok) {
+          if (sel.options[i].value === seg) { sel.selectedIndex = i; return; }
+        if (seg) {
           var o = document.createElement('option');
-          o.value = m[1]; o.textContent = m[1]; o.selected = true;
+          o.value = seg; o.textContent = seg; o.selected = true;
           sel.insertBefore(o, sel.firstChild);
         }
-      });
+      }
+      fetch(wodocPub + '/versions.json')
+        .then(function (r) { if (!r.ok) throw 0; return r.json(); })
+        .then(function (m) {
+          var list = m.list || [], latest = m.latest;
+          document.querySelectorAll('.wodoc-version').forEach(function (sel) {
+            sel.innerHTML = '';
+            list.forEach(function (v) {
+              var o = document.createElement('option');
+              if (v === latest) { o.value = 'latest'; o.textContent = v + ' (latest)'; }
+              else { o.value = v; o.textContent = v; }
+              sel.appendChild(o);
+            });
+            select(sel);
+          });
+        })
+        .catch(function () {
+          document.querySelectorAll('.wodoc-version').forEach(select);
+        });
     })();
   </script>
 </body>
