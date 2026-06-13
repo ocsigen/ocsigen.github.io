@@ -46,8 +46,6 @@
 *@@class="drawermainmenu-project"@@[[wiki("ocsigen-start"):|Start]]
 *@@class="drawermainmenu-project"@@[[wiki("ocsipersist"):|Ocsipersist]]
 *@@class="drawermainmenu-project"@@[[wiki("ocsigen-i18n"):|i18n]]
-*@@class="drawermainmenu-project"@@[[wiki("html_of_wiki"):|html_of_wiki]]
-*@@class="drawermainmenu-project"@@[[wiki("ocsimore"):|Ocsimore (//deprecated//)]]
 *@@class="drawermainmenu-page"@@[[site:/projects|Other projects]]
 *@@class="drawermainmenu-page"@@[[site:/papers|Research papers]]
 *@@class="drawermainmenu-page"@@[[site:/credits|Who does Ocsigen?]]

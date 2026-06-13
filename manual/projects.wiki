@@ -100,6 +100,16 @@
 >>
 >>
 
+<<link href="https://github.com/ocsigen/html_of_wiki"|
+<<div class="main-page-project"|
+  ===html_of_wiki
+
+  The legacy wikicréole site and documentation generator, superseded by wodoc.
+  (unmaintained)
+
+>>
+>>
+
 <<link href="https://github.com/ocsigen/oclosure"|
 <<div class="main-page-project"|
   ===OClosure
