@@ -47,6 +47,19 @@ jobs:
           ( cd doc/html_of_wiki && rm -rf "$PWD/../../html_of_wiki" \
             && opam exec -- wodoc build --config wodoc \
                  --out "$PWD/../../html_of_wiki/2.0" --label 2.0 --menu "$MENU" --latest )
+          # This is a Jekyll site (the blog), so there is no .nojekyll at the root.
+          # GitHub Pages' Jekyll build does not publish symlinks and drops the whole
+          # directory that contains one, so wodoc's `latest` symlink made
+          # /ocsimore/ and /html_of_wiki/ 404. Replace each `latest` symlink with a
+          # real copy of its target (versions.json, written by wodoc while the
+          # symlink still existed, already records the correct latest version).
+          for proj in ocsimore html_of_wiki; do
+            if [ -L "$proj/latest" ]; then
+              tgt=$(readlink "$proj/latest")
+              rm "$proj/latest"
+              cp -a "$proj/$tgt" "$proj/latest"
+            fi
+          done
 
       - name: Commit the regenerated pages to master
         run: |
