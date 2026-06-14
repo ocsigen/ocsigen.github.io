@@ -26,7 +26,10 @@ for mld in "$HERE"/src/*.mld; do
   extra=""
   case "$name" in
   projects) extra="--no-preamble" ;;                       # no visible page title
-  intro)    template="$HERE/template-home.html"; extra="--flat" ;;   # full-width home
+  intro)    template="$HERE/template-home.html"
+            # full-width home; expand its {%wodoc:blog-latest%} with the latest
+            # posts of the blog declared in doc/blog (served at /blog)
+            extra="--flat --blog-config $HERE/../blog/wodoc --blog-base blog" ;;
   credits | papers | contributing)
     template="$HERE/template-page.html"; extra="--flat" ;; # carry their own layout
   esac
