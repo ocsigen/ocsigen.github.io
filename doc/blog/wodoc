@@ -1,0 +1,13 @@
+; Declarative wodoc config for the Ocsigen blog (served at /blog).
+; The blog is built "flat" (like the vitrine, doc/vitrine) by doc/blog/build.sh,
+; not by the versioned `wodoc build`; this config only declares the (blog ...)
+; stanza that `wodoc blog-nav`, `wodoc blog-feed` and `assemble --blog-config`
+; read. Posts are doc/blog/posts/YYYY-MM-DD-slug.mld; they deploy at
+; /blog/posts/<slug>.html (relative to this config's cwd = doc/blog).
+(project blog)
+(title Blog)
+(blog
+ (dir posts)
+ (out posts)
+ (heading "Blog")
+ (latest 5))

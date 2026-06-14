@@ -1,0 +1,18 @@
+{0 A new home for the Ocsigen blog}
+
+@author The Ocsigen team
+
+The Ocsigen blog is back, and it is now built like the rest of the Ocsigen
+website: with {{:/wodoc/}wodoc}, our odoc-based static site generator. Each post
+is a plain [.mld] file — the same lightweight markup we use for the manuals and
+the API documentation — so writing an article is just adding a file.
+
+{1 How it works}
+
+A post lives in [doc/blog/posts/] and is named [YYYY-MM-DD-slug.mld]: the date in
+the file name is its publication date, and wodoc lists the posts newest first,
+both in the navigation on the left and on this page. The author comes from the
+standard odoc [@author] tag.
+
+The feed at [/feed.xml] is generated from the same sources, so it keeps working
+for the OCaml Planet aggregator exactly as before.
