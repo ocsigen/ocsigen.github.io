@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>html_of_wiki — html_of_wiki</title>
+  <link rel="stylesheet" href="/css/style.css"/>
+  <link rel="stylesheet" href="/css/ocsigen-odoc.css"/>
+  <script src="./highlight.pack.js"></script>
+  <script src="./wodoc-highlight.js"></script>
+</head>
+<body class="wodoc-page wodoc-doc">
+  <!-- Shared site menu — THE single source of truth for the header, top menu and
+     drawer of EVERY Ocsigen doc page (vitrine + all projects). Canonical copy
+     lives here in ocsigen.github.io; each project's build fetches it. Injected
+     by `wodoc assemble --menu`. Holes filled by the tool (braces omitted here so
+     this comment is not itself rewritten by the hole-filler):
+       subproject  the sub-project name shown next to the Ocsigen logo
+                   (empty on the vitrine), via --subproject
+       leftnav     the project's left navigation, expanded into BOTH the mobile
+                   drawer (below) and the left column (in the page template),
+                   via --leftnav
+     The current entry is highlighted by adding the `current` class to the
+     element carrying data-wodoc-page=<id>: --current on the vitrine (page id),
+     --menu-current in a project (the project id). Nothing is hardcoded here, so
+     this file is the ONLY place the menu is defined.
+
+     Links are the FINAL site paths (/<project>/, /<page>): the target layout
+     where each project is served at ocsigen.org/<project>/ — no transitional
+     /wodoc/ prefix. -->
+<div class="page-header">
+  <p class="logo-ocsigen"><a href="/"><img src="/img/ocsigen-white.svg" alt="Ocsigen"/></a></p>
+  <p class="logo-subproject">html_of_wiki</p>
+
+  <div class="mainmenu">
+    <p class="mainmenu-home" data-wodoc-page="githubio"><a href="/">Home</a></p>
+    <p class="mainmenu-doc" data-wodoc-page="tuto"><a href="/tuto/">Doc</a></p>
+    <p data-wodoc-page="eliom"><a href="/eliom/">Eliom</a></p>
+    <p data-wodoc-page="js_of_ocaml"><a href="/js_of_ocaml/">Js_of_ocaml</a></p>
+    <p data-wodoc-page="ocsigenserver"><a href="/ocsigenserver/">Server</a></p>
+    <p data-wodoc-page="lwt"><a href="/lwt/">Lwt</a></p>
+    <p data-wodoc-page="tyxml"><a href="/tyxml/">Tyxml</a></p>
+    <p data-wodoc-page="ocsigen-start"><a href="/ocsigen-start/">Start</a></p>
+  </div>
+
+  <form id="googlesearch" action="https://google.com/search">
+    <input name="q" id="gsearch-box" placeholder="Search using Google"/>
+    <label for="gsearch-box"><img src="/img/search.svg" alt="" id="gsearch-icon"/></label>
+    <input type="submit" id="gsearch-submit" onclick="document.getElementById('gsearch-box').value += ' site:ocsigen.org';"/>
+  </form>
+
+  <aside class="how-drawer">
+    <input id="how-drawer-toggle" type="checkbox"/>
+    <label for="how-drawer-toggle" id="how-drawer-label"><span class="how-drawer-icon"></span></label>
+    <nav class="how-drawer-content">
+      <ul class="drawermainmenu">
+        <li class="drawermainmenu-home" data-wodoc-page="githubio"><a href="/">Home</a></li>
+        <li class="drawermainmenu-doc" data-wodoc-page="tuto"><a href="/tuto/">Doc</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="eliom"><a href="/eliom/">Eliom</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="js_of_ocaml"><a href="/js_of_ocaml/">Js_of_ocaml</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="ocsigenserver"><a href="/ocsigenserver/">Server</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="lwt"><a href="/lwt/">Lwt</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="tyxml"><a href="/tyxml/">Tyxml</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="ocsigen-toolkit"><a href="/ocsigen-toolkit/">Toolkit</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="ocsigen-start"><a href="/ocsigen-start/">Start</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="ocsipersist"><a href="/ocsipersist/">Ocsipersist</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="reactiveData"><a href="/reactiveData/">ReactiveData</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="ocsigen-i18n"><a href="/ocsigen-i18n/">i18n</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="wodoc"><a href="/wodoc/">Wodoc</a></li>
+        <li class="drawermainmenu-page" data-wodoc-page="projects"><a href="/projects">Other projects</a></li>
+        <li class="drawermainmenu-page" data-wodoc-page="papers"><a href="/papers">Research papers</a></li>
+        <li class="drawermainmenu-page" data-wodoc-page="credits"><a href="/credits">Who does Ocsigen?</a></li>
+        <li class="drawermainmenu-page" data-wodoc-page="contributing"><a href="/contributing">Contributing</a></li>
+        <li class="drawermainmenu-page" data-wodoc-page="blog"><a href="/blog">Blog</a></li>
+        <li class="drawermainmenu-page" data-wodoc-page="install"><a href="/install">Installation</a></li>
+        <li class="drawermainmenu-page"><a href="https://github.com/ocsigen">Source code</a></li>
+      </ul>
+      <!-- On mobile the left column is hidden; its menu lives here in the burger
+           (.how-doctree, shown only on narrow screens), as the old site did.
+           Empty on the vitrine; the leftnav hole is filled (with the same
+           fragment as the left column) only on project pages. -->
+      <nav class="how-doctree"><div class="docversion">
+  <label>Version:
+    <select class="wodoc-version" onchange="wodocVersion(this.value)">
+      <option value="2.0">2.0</option>
+    </select>
+  </label>
+</div>
+<div class="page-toc">
+  <h3>On this page</h3>
+  <nav class="odoc-toc odoc-local-toc"><ul><li><a href="#install">Installation</a></li><li><a href="#what-you-will-learn-here">What you will learn here</a></li><li><a href="#the-wikicréole">The wikicréole</a></li><li><a href="#wikistd">The standard</a></li><li><a href="#wikiadd">Syntax additions</a><ul><li><a href="#supported-links-syntaxes">Supported links syntaxes</a></li><li><a href="#decorations">Decorations</a></li><li><a href="#definition-lists">Definition lists</a></li><li><a href="#inline-html-classes">Inline HTML classes</a></li><li><a href="#extensions">Extensions</a></li></ul></li><li><a href="#ohow">How to use ohow (one_html_of_wiki)</a></li><li><a href="#basic-usage">Basic usage</a></li><li><a href="#advanced-usage">Advanced usage</a><ul><li><a href="#templates">Templates</a><ul><li><a href="#wiki_in_template">wiki_in_template</a></li></ul></li><li><a href="#linkexts">Link extensions</a></li><li><a href="#doctree">The &lt;&lt;doctree&gt;&gt; extension</a></li><li><a href="#docversion">The &lt;&lt;docversion&gt;&gt; extension</a></li><li><a href="#the-&lt;&lt;client-server-switch&gt;&gt;-extension">The &lt;&lt;client-server-switch&gt;&gt; extension</a></li></ul></li><li><a href="#legacy">Legacy support</a></li><li><a href="#higher-level-documentation-generators">Higher level documentation generators</a></li><li><a href="#dop">dop</a><ul><li><a href="#conf">Configuration file</a></li><li><a href="#cli">Command-line interface</a></li><li><a href="#examples">Examples</a><ul><li><a href="#minimal-example">Minimal example</a></li><li><a href="#more-examples">More examples</a></li></ul></li></ul></li><li><a href="#quickdop">quickdop</a><ul><li><a href="#usage">Usage</a></li></ul></li><li><a href="#ext">Built-in wikicréole extensions</a></li><li><a href="#nameless-extension">Nameless extension</a></li><li><a href="#code-and-code-inline">code and code-inline</a></li><li><a href="#div,-span,-nav,-pre">div, span, nav, pre</a></li><li><a href="#googlesearch">googlesearch</a></li><li><a href="#wip-and-wip-inline">wip and wip-inline</a></li><li><a href="#when-local-and-unless-local">when-local and unless-local</a></li><li><a href="#when-project">when-project</a></li><li><a href="#script">script</a></li><li><a href="#head-script">head-script</a></li><li><a href="#head-css">head-css</a></li></ul></nav>
+</div>
+</nav>
+    </nav>
+  </aside>
+</div>
+
+
+  <div class="project-page">
+    <div class="twocols">
+      <nav class="leftcol">
+        <div class="docversion">
+  <label>Version:
+    <select class="wodoc-version" onchange="wodocVersion(this.value)">
+      <option value="2.0">2.0</option>
+    </select>
+  </label>
+</div>
+<div class="page-toc">
+  <h3>On this page</h3>
+  <nav class="odoc-toc odoc-local-toc"><ul><li><a href="#install">Installation</a></li><li><a href="#what-you-will-learn-here">What you will learn here</a></li><li><a href="#the-wikicréole">The wikicréole</a></li><li><a href="#wikistd">The standard</a></li><li><a href="#wikiadd">Syntax additions</a><ul><li><a href="#supported-links-syntaxes">Supported links syntaxes</a></li><li><a href="#decorations">Decorations</a></li><li><a href="#definition-lists">Definition lists</a></li><li><a href="#inline-html-classes">Inline HTML classes</a></li><li><a href="#extensions">Extensions</a></li></ul></li><li><a href="#ohow">How to use ohow (one_html_of_wiki)</a></li><li><a href="#basic-usage">Basic usage</a></li><li><a href="#advanced-usage">Advanced usage</a><ul><li><a href="#templates">Templates</a><ul><li><a href="#wiki_in_template">wiki_in_template</a></li></ul></li><li><a href="#linkexts">Link extensions</a></li><li><a href="#doctree">The &lt;&lt;doctree&gt;&gt; extension</a></li><li><a href="#docversion">The &lt;&lt;docversion&gt;&gt; extension</a></li><li><a href="#the-&lt;&lt;client-server-switch&gt;&gt;-extension">The &lt;&lt;client-server-switch&gt;&gt; extension</a></li></ul></li><li><a href="#legacy">Legacy support</a></li><li><a href="#higher-level-documentation-generators">Higher level documentation generators</a></li><li><a href="#dop">dop</a><ul><li><a href="#conf">Configuration file</a></li><li><a href="#cli">Command-line interface</a></li><li><a href="#examples">Examples</a><ul><li><a href="#minimal-example">Minimal example</a></li><li><a href="#more-examples">More examples</a></li></ul></li></ul></li><li><a href="#quickdop">quickdop</a><ul><li><a href="#usage">Usage</a></li></ul></li><li><a href="#ext">Built-in wikicréole extensions</a></li><li><a href="#nameless-extension">Nameless extension</a></li><li><a href="#code-and-code-inline">code and code-inline</a></li><li><a href="#div,-span,-nav,-pre">div, span, nav, pre</a></li><li><a href="#googlesearch">googlesearch</a></li><li><a href="#wip-and-wip-inline">wip and wip-inline</a></li><li><a href="#when-local-and-unless-local">when-local and unless-local</a></li><li><a href="#when-project">when-project</a></li><li><a href="#script">script</a></li><li><a href="#head-script">head-script</a></li><li><a href="#head-css">head-css</a></li></ul></nav>
+</div>
+
+      </nav>
+      <article class="rightcol">
+        
+        <h1 id="html_of_wiki">html_of_wiki</h1><div class="chapterintro"><p><span class="monospace">html_of_wiki</span> is a versatile, minimalist yet powerful <b>static website generator</b>. It is designed with simplicity in mind: no special directories, almost no configuration and everything working out of the box. No web server required, just the compilation of your content to HTML and you're free to choose which static files server service fits you: GitHub Pages, GitLab Pages, etc.</p><p>It allows writing website content in a feature-rich and extensible language: the <b>wikicréole</b>. This language, thanks to its clever design, allows to write rich content as much expressively as with plain HTML.</p><p><span class="monospace">html_of_wiki</span> is part of the Ocsigen project and is used to generate its documentation---including this page! It has no problem dealing with large websites, it can handle several versions of several projects.</p><p><span class="monospace">html_of_wiki</span> is also composable, it can be integrated into a CI/CD process so you can automate the deployment of your website. Rebuild and deploy on each commit!</p></div>
+<h2 id="install">Installation</h2><p>Clone this repository:</p><pre>$ git clone https://github.com/ocsigen/html_of_wiki.git</pre><p>then, use <code>opam pin</code> to install it:</p><pre>$ opam pin add -y html_of_wiki html_of_wiki</pre><h2 id="what-you-will-learn-here">What you will learn here</h2><p>The following sections describe:</p><ol><li>The wikicréole format</li><li>How to use <code>ohow</code>, a wikicréole compiler to HTML</li><li>How to use</li><li><code>dop</code> for generating the documentation of a whole project's version, and</li><li><code>quickdop</code> for generating the documentation of a whole project's.</li><li>The available extensions</li></ol><h2 id="the-wikicréole">The wikicréole</h2><h2 id="wikistd">The standard</h2><p>The following picture summarises the wikicréole 1.0 format.</p><p><!--wodoc:unknown:a_img--><!--wodoc:unbalanced-end--></p><p><b>Notes</b>:</p><ul><li>The wikicréole supported by <code>html_of_wiki</code> uses only one <code>=</code> sign for toplevel headings.</li><li>There is also the tilde character <code>~</code> for not interpreting the character it prefixes.</li></ul><h2 id="wikiadd">Syntax additions</h2><h3 id="supported-links-syntaxes">Supported links syntaxes</h3><p>The following table lists additional link syntaxes supported by the tool. |=Syntax |=Description | |<code>[[wiki(&quot;name&quot;):page]]</code>|Link to the <code>page</code> of the project <code>name</code>| |<code>[[wiki:page]]</code> |Link to the <code>page</code> of the current project | |<code>[[site:page]]</code> |Website root-relative link | |<code>[[href:path]]</code> |Raw <code>href</code> value |</p><p>The following table lists available links abbreviations. |=Abbreviation |=Equivalent syntax |=Description | |<code>[[]]</code> |<code>[[href:.]]</code> |Current page | |<code>[[#anchor]]</code>|<code>[[href:#anchor]]</code>|Current page with anchor | |<code>[[/path]]</code> |<code>[[site:path]]</code> |Website root-relative link| |<code>[[path]]</code> |<code>[[href:path]]</code> |Relative link |</p><h3 id="decorations">Decorations</h3><p>The following table lists the additional available decorations. |=Syntax|=Description|=Example| |<code>--</code> |<em>en-dash</em> |--| |<code>---</code> |<em>em-dash</em> |---| |<code>##text##</code> |Mono-spaced font|<code>text</code>| |<code>^^super^^</code>|Superscript |text^^super^^| |<code>,,sub,,</code> |Subscript |text,,sub,,| |<code>__text__</code> |Underline |__text__| |<code>/-text-/</code> |Strike-through |/-text-/|</p><h3 id="definition-lists">Definition lists</h3><p>The following code produces a definition list.</p><pre>;title1
+:definition1
+;title2
+:definition2</pre><p>;title1 :definition1 ;title2 :definition2</p><h3 id="inline-html-classes">Inline HTML classes</h3><p>It is possible to inline some HTML classes to the following element using the syntax <code>~@~@class=&quot;title&quot;~@~@</code>.</p><h3 id="extensions">Extensions</h3><p>The wikicréole supported by <code>html_of_wiki</code> support <b>extensions</b>, a powerful mechanism that allows executing arbitrary OCaml code registered to the parser. More detail about this mechanism can be found in the last section of this document.</p><p>Extensions syntax: <code>&lt;&lt;extension attr1=&quot;val1&quot; attr2=&quot;val2&quot; ... argN=&quot;valN&quot;|content&gt;&gt;</code></p><p>Here are some common, widely used by Ocsigen's documentation extensions: ; <code>&lt;&lt;a_manual&gt;&gt;</code> : Link to a page of the manual of a project. ; <code>&lt;&lt;span&gt;&gt;</code> : Inserts an HTML <code>&lt;span/&gt;</code> element allowing a fine control over the DOM of the page. ; <code>&lt;&lt;doctree&gt;&gt;</code> : Displays a menu like the one on the left of this text.</p><h2 id="ohow">How to use <code>ohow</code> (one_html_of_wiki)</h2><p><b>one_html_of_wiki</b> is a CLI tool for generating a <em>single</em> HTML document from a <em>single</em> wikicréole file.</p><h2 id="basic-usage">Basic usage</h2><pre>$ ohow file.wiki # generates file.html
+$ ohow -o somename.html file.wiki # generates somename.html
+$ ohow --help # shows help
+$ ohow --version # shows version
+$ ohow --print file.wiki # prints the HTML to stdout instead of writing a file
+$ ohow --headless file.wiki # do not include HTML head nor wrapping body tag
+$ ohow --local file.wiki # generate local-navigation compatible links (REMOVE THAT FOR DEPLOYMENT)</pre><h2 id="advanced-usage">Advanced usage</h2><h3 id="templates">Templates</h3><p>one_html_of_wiki supports the use of <em>templates</em>. A template is a classic wikicréole file which contains a (unique occurrence of) <code>&lt;&lt;content&gt;&gt;</code> somewhere. It is where the content will be inserted. Use the <code>--template</code> option to provide a path to the template.</p><p>Consider the following example for a deeper understanding on how to use templates:</p><pre>$ cat template.wiki
+&lt;&lt;head-css|
+    .red {color: red}
+    .blue {color: blue}
+&gt;&gt;
+@@class=&quot;red&quot;@@Before.
+&lt;&lt;div class=&quot;around&quot;|
+    &lt;&lt;content&gt;&gt;
+&gt;&gt;
+@@class=&quot;red&quot;@@After.
+$
+$ cat page.wiki
+I'm a wiki page, providing some &lt;&lt;span class=&quot;blue&quot;|**useful**&gt;&gt; content!
+$
+$ ohow --template template.wiki --print page.wiki
+&lt;html&gt;&lt;head&gt;&lt;title&gt;&lt;/title&gt;&lt;meta charset=&quot;utf8&quot;/&gt;&lt;style&gt;
+    .red {color: red}
+    .blue {color: blue}
+&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;p class=&quot;red&quot;&gt;Before.
+&lt;/p&gt;&lt;div class=&quot;around&quot;&gt;&lt;p&gt;I'm a wiki page, providing some
+&lt;span class=&quot;blue&quot;&gt;&lt;strong&gt;useful&lt;/strong&gt;&lt;/span&gt; content!&lt;/p&gt;&lt;/div&gt;
+&lt;p class=&quot;red&quot;&gt;After.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+$</pre><p>There is also an extension, <code>&lt;&lt;include&gt;&gt;</code>, that allows a programmatic content insertion. This extension accepts two, <em>mutually exclusive</em>, attributes: ;<code>template=&quot;PATH&quot;</code> :inserts the content of the file <code>$(dirname T)/PATH</code>, where <code>T</code> is the value of the <em>required</em> option <code>--template</code>. ;<code>wiki=&quot;PATH&quot;</code> :inserts the content of the file <code>$(dirname CF)/PATH</code>, where <code>CF</code> is the path to the currently compiled wiki file.</p><p>__Notes:__</p><ul><li>The option <code>--template</code> is only required if the <code>template</code> is used somewhere.</li><li>This extension ignores its content.</li></ul><h4 id="wiki_in_template">wiki_in_template</h4><p>If the template has to contain more than one <code>&lt;&lt;content&gt;&gt;</code> tag or if several templates have to be used, the integration of <code>wit</code> to your workflow has to be considered. <em>wiki_in_template</em> (<code>wit</code>) is a simple CLI tool for inserting content inside templates without converting them into HTML: it only deals with wikicréole.</p><p>Here's an example of how to use it to insert one page inside several templates:</p><pre>$ ls
+bottom.wiki hello.wiki top.wiki
+$ cat hello.wiki
+=Hello world!
+This is the content wiki.
+$ cat top.wiki
+Template above.
+&lt;&lt;content&gt;&gt;
+$ cat bottom.wiki
+&lt;&lt;content&gt;&gt;
+Template below.
+$
+$ cat hello.wiki | wit top.wiki | wit bottom.wiki
+Template above.
+=Hello world!
+This is the content wiki.
+Template below.
+$</pre><p>And an example of how to insert several pages inside one template:</p><pre>$ ls
+title.wiki text.wiki template.wiki
+$ cat title.wiki
+=Hello world!
+$ cat text.wiki
+Some text.
+$ cat template.wiki
+Before first.
+&lt;&lt;content&gt;&gt;
+In between.
+&lt;&lt;content&gt;&gt;
+After.
+$
+$ wit &lt;(wit template.wiki &lt; title.wiki) &lt; text.wiki
+Before first.
+=Hello world!
+In between.
+Some text.
+After.
+$</pre><p>Finally, as far as <code>wit</code> is concerned, a page is a wiki file without <code>&lt;&lt;content&gt;&gt;</code> and a template is a wiki file with at least one occurrence of <code>&lt;&lt;content&gt;&gt;</code>---so there's nothing wrong in saying that <code>wit</code> can output a template.</p><p>A few notes:</p><ul><li>You cannot escape the string <code>&lt;&lt;content&gt;&gt;</code> or <code>&lt;&lt;content|&gt;&gt;</code> using the three curly braces syntax.</li><li>You cannot write a comment with the string <code>&lt;&lt;content&gt;&gt;</code> or <code>&lt;&lt;content|&gt;&gt;</code> inside.</li><li>The <code>&lt;&lt;include&gt;&gt;</code> extension is currently not supported by <code>wit</code>. (PR welcomed!)</li></ul><h3 id="linkexts">Link extensions</h3><p>There are several link extensions that ship with <code>ohow</code>. They differ from the classic link syntax because they do not explicitly state where is located the resource to link. For example, <code>&lt;&lt;a_manual project=&quot;eliom&quot; chapter=&quot;intro&quot; | introduction of Eliom's docs&gt;&gt;</code> leads to the chapter <code>intro</code> of the <code>eliom</code> project <em>without explicitly giving the location of that page</em>.</p><p>Here are the available extensions:</p><ul><li><code>&lt;&lt;a_manual&gt;&gt;</code></li><li><code>&lt;&lt;a_api&gt;&gt;</code>, <code>&lt;&lt;a_api_type&gt;&gt;</code> and <code>&lt;&lt;a_api_code&gt;&gt;</code></li><li><code>&lt;&lt;a_img&gt;&gt;</code></li><li><code>&lt;&lt;a_file&gt;&gt;</code></li></ul><p>and the attributes they accept: |=Attribute |=Extensions |=Description |=Default value | |<code>project</code> |All except <code>a_img</code> and <code>a_file</code> |The project of the page |Current project | |<code>chapter</code> |<code>a_manual</code> |The manual chapter to link |None | |<code>subproject</code>|<code>a_api</code>, <code>a_api_type</code>, <code>a_api_code</code>|The targeted sub-project |None | |<code>text</code> |<code>a_api</code>, <code>a_api_type</code>, <code>a_api_code</code>|Text of the produced link |What's documented| |<code>version</code> |All except <code>a_img</code> and <code>a_file</code> |The version of the project containing the page|<code>latest</code> | |<code>fragment</code> |All except <code>a_img</code> and <code>a_file</code> |HTML fragment |None | |<code>src</code> |<code>a_img</code>, <code>a_file</code> |The path to the resource to link |<em>Required</em> |</p><p>However, even if the extensions doesn't require the <em>writer</em> to explicitly give the linked resource's location, the compiler still needs to know where to find it. It is why, whenever any of these extensions is used inside a wiki document, the writer must call <code>ohow</code> with the correct values for these options: <code>--manual</code>, <code>--api</code>, <code>--images</code>, <code>--assets</code> and <code>--root</code> (the latter defaults to the current working directory).</p><p>The <em>root</em> directory is the directory containing all wiki content for a specific project's version. For example, a project <code>proj/</code>, with two versions, <code>1.0/</code> and <code>2.0/</code>, each one containing the <code>man/</code>, <code>api/</code> and <code>assets/</code> directories. <code>ohow</code> must then be called with the following options (<code>pwd = ~/user/proj/</code>):</p><ul><li><code>--root 2.0/</code></li><li><code>--manual man/</code> --- The path is relative to the <em>root</em> directory (not the current directory!). You could still have used <code>--manual 2.0/man/</code> (the root prefix is automatically stripped away).</li><li><code>--api 2.0/api/</code> --- or equivalently, <code>--api api</code></li><li><code>--assets assets</code></li><li>(<code>--images assets</code> --- Only if you used <code>a_img</code> and that the images are in the <code>assets/</code> directory.)</li></ul><p>For inter-project links, <code>ohow</code> <b>supposes that every projects are inside the same directory</b>. For example, <code>&lt;&lt;a_manual project=&quot;eliom&quot; chapter=&quot;intro&quot;&gt;&gt;</code> will produce the following link: <code>{%html:&lt;!--wodoc:span class=&quot;rewind&quot;--&gt;%}rewinding to the root directory{%html:&lt;!--wodoc:end--&gt;%}/../../{%html:&lt;!--wodoc:span class=&quot;manproject&quot;--&gt;%}eliom{%html:&lt;!--wodoc:end--&gt;%}/{%html:&lt;!--wodoc:span class=&quot;mandir&quot;--&gt;%}path to the manual directory given with [--manual]{%html:&lt;!--wodoc:end--&gt;%}/{%html:&lt;!--wodoc:span class=&quot;manchap&quot;--&gt;%}intro{%html:&lt;!--wodoc:end--&gt;%}</code>. The first <code>../</code> rewinds from the root directory into the project directory (containing all versions). The second <code>../</code> rewinds inside the directory containing all the projects. It could, in practice, look like <code>../../../../eliom/latest/man/intro</code>.</p><p>html_of_wiki imposes these constraints for links because these are the constraints GitHub Pages imposes. To conclude, setting up these extensions is not as complicated as it sounds (it's roughly passing some paths to <code>ohow</code> through command line arguments) and the benefits are huge: this way you abstract away any hierarchy between wiki pages and projects and let the compiler work out the links by itself. Thus, any structural change of your projects <b>will not</b> force you to rewrite your documentation!</p><h3 id="doctree">The <code>&lt;&lt;doctree&gt;&gt;</code> extension</h3><p><code>&lt;&lt;doctree&gt;&gt;</code> is an extension without parameters that inserts a menu. That menu is built by concatenating the content of all the files named <code>menu.wiki</code> inside the <em>root</em> directory. The order is:</p><ol><li>the <code>menu.wiki</code> of the manual first, if any</li><li>the <code>menu.wiki</code> files of the API, if any, alphabetically sorted by sub-project's name, if any</li></ol><p>For example, for a project with a manual and two API sub-projects, the extension will look for the following files, in that order:</p><ol><li><code>manual/menu.wiki</code></li><li><code>api/menu.wiki</code></li><li><code>api/sub-project1/menu.wiki</code></li><li><code>api/sub-project2/menu.wiki</code></li></ol><p>The menu on the left of this text is generated using that extension. Here is an example of what one can put inside a <code>menu.wiki</code> file:</p><pre>=##html_of_wiki##
+==[[#title|Introduction]]
+=The wikicréole
+==[[#wikistd|Standard]]
+==[[#wikiadd|Additions]]
+=[[#ohow|##ohow##]]</pre><p>Again, that extension requires some extra parameters---<code>--root</code>, <code>--manual</code> and <code>--api</code>---which are described above. The generated element is a <code>&lt;nav/&gt;</code> with <code>class=&quot;how-doctree&quot;</code>.</p><h3 id="docversion">The <code>&lt;&lt;docversion&gt;&gt;</code> extension</h3><p><code>&lt;&lt;docversion&gt;&gt;</code> is an extension which inserts a dropdown list that lets the visitor select the version of the documentation to see. An example of such a widget on the left of this text.</p><p>To use it, place the versions to display in a file, say <code>versions.txt</code>, one per line, in the expected order. Then, pass that file as an argument of <code>ohow</code> using the option <code>--docversion</code>. If <code>--root</code>'s directory name is inside <code>versions.txt</code>, that entry will be automatically selected.</p><p>The extension places a text---<code>&quot;Version&quot;</code>---and a <code>&lt;select/&gt;</code> element with <code>class=&quot;how-versions&quot;</code>. Required options are <code>--root</code> and <code>--docversion</code>.</p><h3 id="the-&lt;&lt;client-server-switch&gt;&gt;-extension">The <code>&lt;&lt;client-server-switch&gt;&gt;</code> extension</h3><p><b>__WARNING__: This extension is specific to the Ocsigen project.</b></p><p>To include a client/server switch, include <code>&lt;&lt;client-server-switch&gt;&gt;</code> without attributes somewhere in the template. The data of this extension is automatically collected by either <a href="#dop" title="dop">dop</a> or <a href="#quickdop" title="quickdop">quickdop</a>. At a lower level, this extension requires a parameter---<code>--csw</code>---which expects a file. Inside must figure the name a all wiki files (with extension <code>.wiki</code>), one per line, that should have a client/server switch. <a href="#dop" title="dop">dop</a> uses the Unix builtin <code>comm -12</code> to extract the files the sub-projects <code>client</code> and <code>server</code> have in __comm__on.</p><h2 id="legacy">Legacy support</h2><ul><li>In previous versions of <code>html_of_wiki</code>, projects used to have a file---<code>config.js</code>---which declaratively described these projects. Amongst that information, a field <code>default_subproject</code> declared the <code>&lt;&lt;a_api*</code> <code>subproject</code> attribute's default value. Since that file no longer exist, an option <code>--default-subproject</code> exists but is <b>highly deprecated</b>.</li><li>That previous version also supported a special link syntax---<code>[[wiki(id):page]]</code>---in which projects were given an ID (in <code>config.js</code>). Considered unclear, that syntax is now <b>deprecated</b>, any wiki using it will <em>not</em> compile.</li></ul><h2 id="higher-level-documentation-generators">Higher level documentation generators</h2><p><em>one_html_of_wiki</em> works great for compiling one wiki page, but a project's documentation is often composed of many wiki pages for each version. However, <code>ohow</code> is designed with the Unix philosophy in mind: <b>simplicity</b> and <b>composability</b>. This, it is very easy to integrate it in an existing workflow.</p><p>To make things even easier, we provide out of the box two higher level documentation generators:</p><ul><li><em>doc_of_project</em> (<code>dop</code>) --- for generating a single version of a project</li><li><em>quick-doc_of_project</em> (<code>quickdop</code>) --- for generating the documentation of a project with many versions</li></ul><p>These tools are described in detail in the following sections.</p><h2 id="dop"><code>dop</code></h2><p>It is a wrapper on <code>ohow</code> designed to generate the document of a single version of a project with a one-line command.</p><h3 id="conf">Configuration file</h3><p>Even if all configuration data could be passed using CLI options---as <code>ohow</code> does---it is often more convenient to have a configuration file. Two formats are accepted: <em>JSON</em> and <em>plain text</em>. Here is an example of the same configuration file, written in these two formats:</p><p>config.json:</p><pre>{
+  &quot;project&quot;: &quot;html_of_wiki&quot;,
+  &quot;manual&quot;: &quot;man&quot;,
+  &quot;api&quot;: &quot;api&quot;,
+  &quot;assets&quot;: &quot;files&quot;,
+  &quot;images&quot;: &quot;files/images&quot;,
+  &quot;csw&quot;: false,
+  &quot;menu&quot;: true,
+  &quot;templates&quot;: [&quot;template1.wiki&quot;, &quot;template2.wiki&quot;]
+}</pre><p>config.txt:</p><pre>project   html_of_wiki
+manual    man
+api       api
+assets    files
+images    files/images
+csw       false
+menu      true
+templates template1.wiki:template2.wiki</pre><p>Note that the JSON format needs <b>jq</b> (<a href="https://stedolan.github.io/jq/">https://stedolan.github.io/jq/</a>) installed and in the <code>PATH</code>. Use the plain format if <code>jq</code> cannot be installed. It also can be useful (thanks to its minimalism) if it needs to be algorithmically generated. It is read by <code>awk</code> with default settings: <code>$0</code> should contain the key, and the other records its value. Arrays have their value separated by a colon <code>:</code> (in a <code>PATH</code>-like fashion).</p><p>Before reading the configuration file you provide (if any), <code>dop</code> will try to <b>infer it</b> by analyzing the <em>root</em> directory. If the option <code>-i</code> is given, it will print that inferred configuration (either in JSON or in plain text). Then, if a configuration file is explicitly provided, its keys replaces the inferred ones and the ones <em>not</em> present keep their inferred values. First check what <code>dop</code> can infer for your organization's architecture from the doc's version its given (use the <code>-n</code> option for not generating the docs and just do the inferring work).</p><p>The following table describes the entries recognized by <code>dop</code>:</p><p>|=Key name|=Type|=<code>ohow</code> option|=Short description| |<code>project</code>|string|<code>--project</code>|Project's name| |<code>manual</code>|string|<code>--manual</code>|Manual directory (root-relative path)| |<code>api</code>|string|<code>--api</code>|API directory (root-relative path)| |<code>client</code>|string|---|API's client directory (real path)| |<code>server</code>|string|---|API's server directory (real path)| |<code>assets</code>|string|<code>--assets</code>|Assets directory (root-relative path)| |<code>images</code>|string|<code>--images</code>|Images directory (root-relative path)| |<code>csw</code>|boolean|<code>--csw</code>|Contains a client-server-switch?| |<code>menu</code>|boolean|<code>--doctree</code>|Contains a doctree?| |<code>templates</code>|string array|<code>--template</code>|List of templates| |<code>default_subproject</code>|string|<code>--default-subproject</code>|<em>Deprecated</em>|</p><p>The <code>templates</code> key is an array because it would be possible (thanks to <code>wit</code>) to have several templates but this feature is not currently implemented in <code>dop</code>. PR welcomed! ;-)</p><h3 id="cli">Command-line interface</h3><p>The command <code>dop</code> accepts the following short options:</p><p>|=Name |=Option |=Value |=Default value|=Description| |Config |<code>-c</code>|File |---|Configuration file| |Config type|<code>-t</code>|<code>json</code> or <code>plain</code>|<code>plain</code>|Configuration file type (format)| |Clean |<code>-k</code>|Flag |---|Do not clean wikis after compilation| |Inferred |<code>-i</code>|Flag |---|Print inferred configuration| |Used |<code>-u</code>|Flag |---|Print used (final) configuration| |No run |<code>-n</code>|Flag |---|Dry run (no compilation)| |Root dir |<code>-r</code>|Name |<code>_dop</code>|Root directory (output directory)| |Force |<code>-f</code>|Flag |---|Removes root dir if exists| |Local |<code>-l</code>|Flag |---|Generate local links (<code>--local</code>)| |Docversion |<code>-d</code>|File |---|<code>docversion</code> files (see <code>--docversion</code> option)| |Verbose |<code>-v</code>|Flag |---|Verbose| |Help |<code>-h</code>|Flag |---|Show help and exit|</p><h3 id="examples">Examples</h3><h4 id="minimal-example">Minimal example</h4><pre>$ tree
+.
+├── 1.0
+│   └── manual
+│       └── intro.wiki
+└── 2.0
+    ├── api
+    └── manual
+        ├── intro.wiki
+        └── other.wiki
+$ dop 2.0
+$ tree
+.
+├── 1.0
+│   └── manual
+│       └── intro.wiki
+├── 2.0
+│   ├── api
+│   └── manual
+│       ├── intro.wiki
+│       └── other.wiki
+└── _dop
+    ├── api
+    └── manual
+        ├── intro.html
+        └── other.html</pre><h4 id="more-examples">More examples</h4><p>You can look at the files called <code>.howdocgen</code> inside the <code>wikidoc</code> branch of each documented Ocsigen project for a real demonstration.</p><h2 id="quickdop"><code>quickdop</code></h2><p>To make things easier for projects with multiple versions of the documentation, html_of_wiki provides <code>quickdop</code>. It takes care of generating the docs for version found (directory name matching <code>[0-9]+|dev</code>) and provides automatically a value for the <code>--docversion</code> option.</p><h3 id="usage">Usage</h3><pre>quickdop [-f] PROJECT OUTDIR [DOP_OPTIONS]</pre><p>;<code>PROJECT</code> :The directory containing the versions. ;<code>OUTDIR</code> :The build directory. Automatically created and replaced when the <code>-f</code> option is provided. ;<code>DOP_OPTIONS</code> :The options usually passed to <code>dop</code>. Obviously, the options <code>-r</code>, <code>-d</code> and the target are provided by <code>quickdop</code> and must not be explicitly given.</p><h2 id="ext">Built-in wikicréole extensions</h2><p><span class="monospace">html_of_wiki</span> is shipped with a number of built-in, general purpose, wikicréole extensions. The documentation of the extensions <code>doctree</code>, <code>docversion</code>, <code>client-server-switch</code>, <code>a_manual</code>, <code>a_api</code>, <code>a_api_type</code>, <code>a_api_code</code>, <code>a_img</code> and <code>a_file</code> can be found in earlier sections of this document.</p><p>Each extension documented below accept the attributes <code>class</code> and <code>id</code> for explicitly giving an HTML class and an HTML id to the generated code.</p><h2 id="nameless-extension">Nameless extension</h2><p>Acts as a comment, i.e., inserts no HTML. For example: <code>&lt;&lt;|I'm a comment: I will not appear inside the generated HTML&gt;&gt;</code>.</p><h2 id="code-and-code-inline"><code>code</code> and <code>code-inline</code></h2><p>;<b>Attributes</b> :<code>language=&quot;X&quot;</code>, <code>translated=&quot;translated&quot;</code> (optional, for <code>X</code> = <code>&quot;ocaml&quot;</code> only) ;<b>Description</b> :Inserts a code block. ;<b>HTML element</b> :<code>&lt;pre class=&quot;manually-translated&quot;&gt;&lt;code class=&quot;language-X&quot;&gt;&lt;/code&gt;&lt;/pre&gt;</code> or <code>&lt;pre&gt;&lt;code class=&quot;language-ocaml translatable&quot;&gt;&lt;/code&gt;&lt;/pre&gt;</code> ;<b>Example</b> :<!--wodoc:unknown:pre--></p><pre class="language-ocaml"><code>int_of_string &quot;12&quot; + 3</code></pre><p><!--wodoc:unbalanced-end--> produces</p><pre class="language-ocaml"><code>int_of_string &quot;12&quot; + 3</code></pre><p>The <code>code-inline</code> extension is similar but inserts a code snippet inside the current paragraph and not in a block of its own.</p><h2 id="div,-span,-nav,-pre"><code>div</code>, <code>span</code>, <code>nav</code>, <code>pre</code></h2><p>Inserts the corresponding HTML elements.</p><h2 id="googlesearch"><code>googlesearch</code></h2><p>;<b>Attributes</b> :<code>domain=&quot;DOMAIN&quot;</code>, <code>icon=&quot;ICON&quot;</code> ;<b>Description</b> :Inserts a search bar with icon <code>ICON</code> performing a Google search restricted to the specified domain <code>DOMAIN</code>. ;<b>Tyxml element</b> :</p><pre class="language-ocaml"><code> Html.[form ~a:[a_id &quot;googlesearch&quot;;
+                a_action &quot;https://google.com/search&quot;]
+         [input ~a:[a_name &quot;q&quot;;
+                    a_id &quot;gsearch-box&quot;;
+                    a_placeholder &quot;Search using Google&quot;]
+            ();
+          label ~a:[a_label_for &quot;gsearch-box&quot;]
+            [img ~src:ICON ~alt:&quot;&quot; ~a:[a_id &quot;gsearch-icon&quot;] ()];
+          input ~a:[a_input_type `Submit;
+                    a_id &quot;gsearch-submit&quot;;
+                    a_onclick @@ &quot;document.getElementById('gsearch-box').value += ' site:&quot; ^ DOMAIN ^ &quot;';&quot;]
+            ()]]</code></pre><p>;<b>Example</b> :<!--wodoc:unknown:pre--><!--wodoc:unbalanced-end--></p><h2 id="wip-and-wip-inline"><code>wip</code> and <code>wip-inline</code></h2><p>Inserts the content of extension in a <code>&lt;div/&gt;</code> element with the class <code>wip</code>. You may want to add in your CSS the following rule: <!--wodoc:unknown:pre-->.wip <code>display: none;</code><!--wodoc:unbalanced-end--> <code>wip-inline</code> is the inline counterpart of <code>wip</code>.</p><h2 id="when-local-and-unless-local"><code>when-local</code> and <code>unless-local</code></h2><p><code>when-local</code> inserts its content when <code>ohow</code> (or any higher level documentation generator) is called with the <code>--local</code> (or <code>-l</code>) option. <code>unless-local</code> inserts its content when not. This extension is useful for addressing complex resource linking issues.</p><h2 id="when-project"><code>when-project</code></h2><p>;<b>Attributes</b> :<code>when=&quot;P&quot;</code> or (<b>exclusive</b>) <code>unless=&quot;P&quot;</code> ;<b>Description</b> :Inserts the content when (or unless) the project the wiki file belongs to is <code>P</code> (see the configuration key <code>project</code>).</p><h2 id="script"><code>script</code></h2><p>;<b>Attributes</b> :<code>src=&quot;JS_SRC&quot;</code> ;<b>Description</b> :Inserts a <code>&lt;script&gt;</code> tag importing the given <code>JS_SRC</code> JavaScript source file <em>inside the <code>&lt;body&gt;</code> of the document</em>.</p><h2 id="head-script"><code>head-script</code></h2><p>;<b>Attributes</b> :<code>src=&quot;JS_SRC&quot;</code> ;<b>Description</b> :Inserts a <code>&lt;script&gt;</code> tag importing the given <code>JS_SRC</code> JavaScript source file <em>inside the <code>&lt;head&gt;</code> of the document</em>.</p><h2 id="head-css"><code>head-css</code></h2><p>;<b>Attributes</b> :<code>href=&quot;CSS_SRC&quot;</code> ;<b>Description</b> :Inserts a <code>&lt;link rel=&quot;stylesheet&quot;&gt;</code> tag importing the given <code>CSS_SRC</code> CSS stylesheet <em>inside the <code>&lt;head&gt;</code> of the document</em>.</p>
+      </article>
+    </div>
+  </div>
+
+  <script>
+    var wodocPub = "/html_of_wiki";
+    // Switch version: keep the current page, swapping only the version segment.
+    function wodocVersion(v) {
+      if (!v) return;
+      var re = new RegExp('^(' + wodocPub + '/)[^/]+');
+      var p = location.pathname;
+      location.href =
+        re.test(p) ? p.replace(re, '$1' + v) : wodocPub + '/' + v + '/index.html';
+    }
+    // Build the version <select> from the project's versions.json (the single
+    // source of truth, refreshed on every build/release), so even older frozen
+    // pages list the current set. Falls back to the baked <option>s on failure.
+    (function () {
+      var seg = (location.pathname.match(
+        new RegExp('^' + wodocPub + '/([^/]+)')) || [])[1];
+      function select(sel) {
+        var i;
+        for (i = 0; i < sel.options.length; i++)
+          if (sel.options[i].value === seg) { sel.selectedIndex = i; return; }
+        if (seg) {
+          var o = document.createElement('option');
+          o.value = seg; o.textContent = seg; o.selected = true;
+          sel.insertBefore(o, sel.firstChild);
+        }
+      }
+      fetch(wodocPub + '/versions.json')
+        .then(function (r) { if (!r.ok) throw 0; return r.json(); })
+        .then(function (m) {
+          var list = m.list || [], latest = m.latest;
+          document.querySelectorAll('.wodoc-version').forEach(function (sel) {
+            sel.innerHTML = '';
+            list.forEach(function (v) {
+              var o = document.createElement('option');
+              if (v === latest) { o.value = 'latest'; o.textContent = v + ' (latest)'; }
+              else { o.value = v; o.textContent = v; }
+              sel.appendChild(o);
+            });
+            select(sel);
+          });
+        })
+        .catch(function () {
+          document.querySelectorAll('.wodoc-version').forEach(select);
+        });
+    })();
+  </script>
+</body>
+</html>

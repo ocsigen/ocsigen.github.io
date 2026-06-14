@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Ocsimore's wiki extension — Ocsimore</title>
+  <link rel="stylesheet" href="/css/style.css"/>
+  <link rel="stylesheet" href="/css/ocsigen-odoc.css"/>
+  <script src="./highlight.pack.js"></script>
+  <script src="./wodoc-highlight.js"></script>
+</head>
+<body class="wodoc-page wodoc-doc">
+  <!-- Shared site menu — THE single source of truth for the header, top menu and
+     drawer of EVERY Ocsigen doc page (vitrine + all projects). Canonical copy
+     lives here in ocsigen.github.io; each project's build fetches it. Injected
+     by `wodoc assemble --menu`. Holes filled by the tool (braces omitted here so
+     this comment is not itself rewritten by the hole-filler):
+       subproject  the sub-project name shown next to the Ocsigen logo
+                   (empty on the vitrine), via --subproject
+       leftnav     the project's left navigation, expanded into BOTH the mobile
+                   drawer (below) and the left column (in the page template),
+                   via --leftnav
+     The current entry is highlighted by adding the `current` class to the
+     element carrying data-wodoc-page=<id>: --current on the vitrine (page id),
+     --menu-current in a project (the project id). Nothing is hardcoded here, so
+     this file is the ONLY place the menu is defined.
+
+     Links are the FINAL site paths (/<project>/, /<page>): the target layout
+     where each project is served at ocsigen.org/<project>/ — no transitional
+     /wodoc/ prefix. -->
+<div class="page-header">
+  <p class="logo-ocsigen"><a href="/"><img src="/img/ocsigen-white.svg" alt="Ocsigen"/></a></p>
+  <p class="logo-subproject">Ocsimore</p>
+
+  <div class="mainmenu">
+    <p class="mainmenu-home" data-wodoc-page="githubio"><a href="/">Home</a></p>
+    <p class="mainmenu-doc" data-wodoc-page="tuto"><a href="/tuto/">Doc</a></p>
+    <p data-wodoc-page="eliom"><a href="/eliom/">Eliom</a></p>
+    <p data-wodoc-page="js_of_ocaml"><a href="/js_of_ocaml/">Js_of_ocaml</a></p>
+    <p data-wodoc-page="ocsigenserver"><a href="/ocsigenserver/">Server</a></p>
+    <p data-wodoc-page="lwt"><a href="/lwt/">Lwt</a></p>
+    <p data-wodoc-page="tyxml"><a href="/tyxml/">Tyxml</a></p>
+    <p data-wodoc-page="ocsigen-start"><a href="/ocsigen-start/">Start</a></p>
+  </div>
+
+  <form id="googlesearch" action="https://google.com/search">
+    <input name="q" id="gsearch-box" placeholder="Search using Google"/>
+    <label for="gsearch-box"><img src="/img/search.svg" alt="" id="gsearch-icon"/></label>
+    <input type="submit" id="gsearch-submit" onclick="document.getElementById('gsearch-box').value += ' site:ocsigen.org';"/>
+  </form>
+
+  <aside class="how-drawer">
+    <input id="how-drawer-toggle" type="checkbox"/>
+    <label for="how-drawer-toggle" id="how-drawer-label"><span class="how-drawer-icon"></span></label>
+    <nav class="how-drawer-content">
+      <ul class="drawermainmenu">
+        <li class="drawermainmenu-home" data-wodoc-page="githubio"><a href="/">Home</a></li>
+        <li class="drawermainmenu-doc" data-wodoc-page="tuto"><a href="/tuto/">Doc</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="eliom"><a href="/eliom/">Eliom</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="js_of_ocaml"><a href="/js_of_ocaml/">Js_of_ocaml</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="ocsigenserver"><a href="/ocsigenserver/">Server</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="lwt"><a href="/lwt/">Lwt</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="tyxml"><a href="/tyxml/">Tyxml</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="ocsigen-toolkit"><a href="/ocsigen-toolkit/">Toolkit</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="ocsigen-start"><a href="/ocsigen-start/">Start</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="ocsipersist"><a href="/ocsipersist/">Ocsipersist</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="reactiveData"><a href="/reactiveData/">ReactiveData</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="ocsigen-i18n"><a href="/ocsigen-i18n/">i18n</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="wodoc"><a href="/wodoc/">Wodoc</a></li>
+        <li class="drawermainmenu-page" data-wodoc-page="projects"><a href="/projects">Other projects</a></li>
+        <li class="drawermainmenu-page" data-wodoc-page="papers"><a href="/papers">Research papers</a></li>
+        <li class="drawermainmenu-page" data-wodoc-page="credits"><a href="/credits">Who does Ocsigen?</a></li>
+        <li class="drawermainmenu-page" data-wodoc-page="contributing"><a href="/contributing">Contributing</a></li>
+        <li class="drawermainmenu-page" data-wodoc-page="blog"><a href="/blog">Blog</a></li>
+        <li class="drawermainmenu-page" data-wodoc-page="install"><a href="/install">Installation</a></li>
+        <li class="drawermainmenu-page"><a href="https://github.com/ocsigen">Source code</a></li>
+      </ul>
+      <!-- On mobile the left column is hidden; its menu lives here in the burger
+           (.how-doctree, shown only on narrow screens), as the old site did.
+           Empty on the vitrine; the leftnav hole is filled (with the same
+           fragment as the left column) only on project pages. -->
+      <nav class="how-doctree"><div class="docversion">
+  <label>Version:
+    <select class="wodoc-version" onchange="wodocVersion(this.value)">
+      <option value="0.5">0.5</option>
+    </select>
+  </label>
+</div>
+<div class="page-toc">
+  <h3>On this page</h3>
+  <nav class="odoc-toc odoc-local-toc"><ul><li><a href="#wiki-syntax">Wiki syntax</a><ul><li><a href="#links">Links</a></li><li><a href="#additions">Additions</a></li><li><a href="#predefined-extensions">Predefined extensions</a></li></ul></li><li><a href="#groups-hierarchy">Groups hierarchy</a></li></ul></nav>
+</div>
+</nav>
+    </nav>
+  </aside>
+</div>
+
+
+  <div class="project-page">
+    <div class="twocols">
+      <nav class="leftcol">
+        <div class="docversion">
+  <label>Version:
+    <select class="wodoc-version" onchange="wodocVersion(this.value)">
+      <option value="0.5">0.5</option>
+    </select>
+  </label>
+</div>
+<div class="page-toc">
+  <h3>On this page</h3>
+  <nav class="odoc-toc odoc-local-toc"><ul><li><a href="#wiki-syntax">Wiki syntax</a><ul><li><a href="#links">Links</a></li><li><a href="#additions">Additions</a></li><li><a href="#predefined-extensions">Predefined extensions</a></li></ul></li><li><a href="#groups-hierarchy">Groups hierarchy</a></li></ul></nav>
+</div>
+
+      </nav>
+      <article class="rightcol">
+        <header class="odoc-preamble"><h1 id="ocsimore's-wiki-extension">Ocsimore's wiki extension</h1><p>Creating several wikis (associated to several paths) allows to give different rights for subdirectories of the site.</p></header>
+        <div class="odoc-content"><h3 id="wiki-syntax">Wiki syntax</h3><p>The wiki is using <a href="http://www.wikicreole.org">Wikicreole</a>'s syntax (but it is possible to plug another syntax).</p><div><a href="creole_cheat_sheet.png" class="img-link"><img src="creole_cheat_sheet.png" alt="creole_cheat_sheet.png"/></a></div><p>It supports extensions with the following syntax:</p><p><code>&lt;&lt;extensionname arg1='value1' arg2='value2' &gt;&gt;</code> or <code>&lt;&lt;extensionname arg1='value1' arg2='value2' |data&gt;&gt;</code></p><p>See below for predefined extensions.</p><p>It also supports attributes with the following syntax: <code>@@name=&quot;value&quot;; name= &quot;value&quot;@@</code> Put attribute just after the openning tag. For example: <code>//@@class=&quot;important&quot;@@some text//</code></p><p>For now, attributes <code>class</code> and <code>id</code> are defined for each tag, and the semantics is the one of xhtml class and id attributes.</p><p>Sometimes it is possible to put several sets of attributes (tables, rows, list items). Examples:</p><p><code>|@@...attributes for full table...@...attributes for row...@...attributes for cell...@@ first cell| ... |</code></p><p><code>*@@...attributes for full list...@...attributes for item...@@ text</code></p><h4 id="links">Links</h4><p>Links are created with the syntax <code>[[target]]</code> or <code>[[target|content]]</code> where <code>target</code> is the target of the link and <code>content</code> is the optional content of the link.</p><p>There are five kinds for the target of a link which might occur in the database.</p><ul><li><code>[[wiki(id):page]]</code>: A link to a certain <code>page</code> in a given wiki with <code>id</code> (see below for abbreviations).</li><li><code>[[wiki:page]]</code>: A link to a certain <code>page</code> of the currently displayed wiki</li><li><code>[[site:href]]</code>: A link relative to the root of the full site, for example towards a page that is not in a wiki (where <code>href</code> may contain characters like <code>?</code> or <code>&amp;</code>)</li><li><code>[[href:path]]</code>: You can also create links by a simple href, i.e. <code>[[href:path]]</code> is displayed as <code>&lt;a href=&quot;path&quot;&gt;...&lt;/a&gt;</code>. The <code>href</code> may also contain GET-parameters.</li></ul><p>The targets of all those links may be prefixed with <code>http+</code> or <code>htpps+</code> to enforce a specific HTTP-protocol.</p><p>Additionally, you can create an absolute link towards web site by putting the whole URL in double brackets, for example: <code>[[http://server/page|...]]</code> <em>Warning: it is recommended to use absolute URLs only for external links!</em></p><h5 id="abbreviations-for-links">Abbreviations for links</h5><p>Additionally, there are abbreviation for easily creating (relative) links. Those are replaced by the above forms <em>when creating the preview of wikibox</em> or before saving. Possible problems with relative links are shown in the preview.</p><p>This replacement usually depends on the wiki page (i.e. a page wiki and a page path) where the wikibox is edited. NB that the page wiki may be different to the wiki of the edited wikibox.</p><p>The examples for the following rules for resolving relative links are given for wiki page <code>/wiki25/a/b/c</code>, i.e. the page wiki <code>wiki(25)</code> and the page path <code>a/b/c</code>.</p><ol><li><p>An empty path refers to the current url:</p><ul><li><code>[[]]</code> =&gt; <code>[[wiki(25):a/b/c]]</code></li><li><code>[[#anchor]]</code> =&gt; <code>[[wiki(25):a/b/c#anchor]]</code></li></ul></li><li><p>Relative paths are interpreted like in hrefs in <code>a</code>-elements in HTML:</p><ul><li><code>[[.]]</code> =&gt; <code>[[wiki(25):/a/b]]</code></li><li><code>[[xyz]]</code>, <code>[[./xyz]]</code> =&gt; <code>[[wiki(25):a/b/xyz]]</code></li><li><code>[[..]]</code> =&gt; <code>[[wiki(25):a]]</code></li><li><code>[[../xyz]]</code> =&gt; <code>[[wiki(25):a/xyz]]</code></li><li><code>[[c/xyz]]</code> =&gt; <code>[[wiki(25):a/b/c/xyz]]</code></li></ul><p>NB that, for example, <code>[[xyz]]</code> was resolved to <code>[[wiki(25):a/b/c/xyz]]</code> if the page path was <code>a/b/c/</code> (note the trailing slash).</p></li><li><p>Moreover, for absolute paths and relative paths applied to the current page path <code>addr</code>, it is always attempted to refer to the wiki page <code>e/f</code> of the wiki with the longest path <code>wikipath</code> such that <code>addr == wikipath/e/f</code>. E.g. if there was <code>wiki(42)</code> registered on <code>a/b/sub</code>:</p><ul><li><code>[[sub/xyz]]</code> =&gt; <code>[[wiki(42):a/b/c/xyz]]</code></li></ul></li><li><p>We will provide basic support for resolving complete paths to a wiki and a path, like:</p><ul><li><code>[[/a/b/c]]</code> =&gt; <code>[[wiki(ix):e/f]]</code></li></ul><p>such that prefix/e/f = /a/b/c where prefix is the URL of wiki(ix). Currently only for prefix = a || prefix = /a (this not consistent in the DB).</p></li><li><p>Other wikis can be referred to by their title:</p><ul><li><code>[[wiki(&quot;title&quot;):path]]</code> =&gt; <code>[[wiki(ix):path]]</code></li></ul><p>where <code>&quot;title&quot;</code> is the title of the wiki with index <code>ix</code>.</p></li></ol><h4 id="additions">Additions</h4><table class="odoc-table"><tr><th><p>Syntax</p></th><th><p>Result</p></th></tr><tr><td><p><code>--</code></p></td><td><p>en dash (–)</p></td></tr><tr><td><p><code>---</code></p></td><td><p>em dash (—)</p></td></tr><tr><td><p><code>##Monospace##</code></p></td><td><p>monospace</p></td></tr><tr><td><p><code>^^Superscript^^</code></p></td><td><p>superscript</p></td></tr><tr><td><p><code>,,Subscripted,,</code></p></td><td><p>subscript</p></td></tr><tr><td><p><code>__Underline__</code></p></td><td><p>underline</p></td></tr><tr><td><p><code>/-Line-through-/</code></p></td><td><p>line-through</p></td></tr><tr><td><p><code>;title : definition</code></p></td><td><p>definition list</p></td></tr></table><h4 id="predefined-extensions">Predefined extensions</h4><p><code>&lt;&lt;div class='...' id='...' |data&gt;&gt;</code> creates a &lt;div&gt; box.</p><p><code>&lt;&lt;span class='...' id='...' |data&gt;&gt;</code> creates a &lt;span&gt; box.</p><p><code>&lt;&lt;wikibox box='j' &gt;&gt;</code> displays the wikibox number j from current wiki. Other optional arguments are possible:</p><ul><li><code>wiki='i'</code> to display a box from another wiki</li><li><code>cols='i'</code> (number of columns of the edition window)</li><li><code>rows='i'</code> (number of rows of the edition window)</li><li><code>class='...'</code> (class xml attribute to use for the box)</li><li><code>delayed=''</code> to delay the loading of the wikibox content</li></ul><p>If you want to create a new wikibox, do not put the box argument. A wikibox may be a container. Just put <code>&lt;&lt;content&gt;&gt;</code> inside it. To use a container, use the syntax: <code>&lt;&lt;wikibox box='j' | put here the content &gt;&gt;</code></p><p><code>&lt;&lt;|...&gt;&gt;</code> comment (will not be displayed)</p><p><code>&lt;&lt;menu item='link|text of the item' item='...' ... &gt;&gt;</code> displays a menu</p><p><code>&lt;&lt;loginbox&gt;&gt;</code> displays a login box Optional parameters:</p><ul><li><code>user_prompt='login:'</code></li><li><code>pwd_prompt='pwd:'</code></li><li><code>auth_error='Wrong login or password'</code></li></ul><p><code>&lt;&lt;logoutlink&gt;&gt;</code> <code>&lt;&lt;logoutbutton&gt;&gt;</code> display a logout link or button</p><p><code>&lt;&lt;raw arg1='value1' arg2='value2' | data &gt;&gt;</code> displays the string <code>&quot;&lt;&lt;arg1='value1' arg2='value2' | data &gt;&gt;&quot;</code> (for debugging purpose).</p><p>Conditional display w.r.t. groups: (EXPERIMENTAL)</p><ul><li><code>&lt;&lt;cond ingroup='users'|data&gt;&gt;</code></li><li><code>&lt;&lt;cond notingroup='users'|data&gt;&gt;</code></li><li><code>&lt;&lt;cond error='autherror'|data&gt;&gt;</code> (wrong user or password)</li></ul><p><code>&lt;&lt;username&gt;&gt;</code> displays the name of the user.</p><p><code>&lt;&lt;nonattachedlink wiki='...' page='...'|...&gt;&gt;</code> is like <code>[[...|...]]</code> for links, but instead of using a link towards another page, it uses a non-attached service (i.e. the path in the URL won't change, only parameters). Use this if you do not want to go to another URL. The wiki argument is optional. other optional arguments: protocol='https' or protocol='http' (will create absolute links) fragment=&quot;...&quot; to create a link containing a # (link to a portion of page with an id attribute) class, id</p><p><code>&lt;&lt;object wiki='...' data='...' type='...'&gt;&gt;</code> allows to include an objet in the page (see <code>&lt;object&gt;</code> xhtml tag). The wiki argument is optional. other optional arguments: protocol=&quot;https&quot; or protocol=&quot;http&quot; (will create absolute links) fragment=&quot;...&quot; to create a link containing a # (link to a portion of page with an id attribute) class, id</p><p><code>&lt;&lt;cancellink|...&gt;&gt;</code> is a link towards the same page without special parameters. Use it if you want to cancel the edition of a page for example. The text after the vertical bar is the text of the link.</p><p><code>&lt;&lt;link wiki='...' page='...'|...&gt;&gt;</code> is like <code>[[...|...]]</code> for links, but for block level links. The wiki argument is optional. other optional arguments: protocol=&quot;https&quot; or protocol=&quot;http&quot; (will create absolute links) fragment=&quot;...&quot; to create a link containing a # (link to a portion of page with an id attribute) class, id</p><p><em>deprecated! now use the extended syntax for links</em> <code>&lt;&lt;img wiki='...' name='...' |...&gt;&gt;</code> is like <code>{{...|...}}</code> for images, but allows links towards images from other wikis (will compute the URL from the URL of the wiki). The wiki argument is optional. other optional arguments: protocol=&quot;https&quot; or protocol=&quot;http&quot; (will create absolute links) class, id</p><h3 id="groups-hierarchy">Groups hierarchy</h3><p>For each wiki:</p><pre>       -------- WikiAdmin(w)------------------------------------------------------------------------
+      /                 |                 \             \                \         \                \
+WikiboxesAdmins(w)   FilesAdmins(w)  SubWikiboxes    Wikipages    CssCreators(w)  Wikiboxes    FilesUploaders(w)
+     |                  |             Creators(w)    Creators(w)                 Deletors(w)
+WikiboxesWriters(w)  FilesWriters(w)          \       /
+     |                  |                   GenWikiboxes
+WikiboxesReaders(w)  FilesReaders(w)         Creators(w)
+
+
+WikiboxAdmin(wb)
+   |
+WikiboxWriter(wb)
+   |
+WikiboxReader(wb)</pre><p>The generic permissions of the wiki can be overridden on a per-wikibox basis, using the groups Wikibox*</p></div>
+      </article>
+    </div>
+  </div>
+
+  <script>
+    var wodocPub = "/ocsimore";
+    // Switch version: keep the current page, swapping only the version segment.
+    function wodocVersion(v) {
+      if (!v) return;
+      var re = new RegExp('^(' + wodocPub + '/)[^/]+');
+      var p = location.pathname;
+      location.href =
+        re.test(p) ? p.replace(re, '$1' + v) : wodocPub + '/' + v + '/index.html';
+    }
+    // Build the version <select> from the project's versions.json (the single
+    // source of truth, refreshed on every build/release), so even older frozen
+    // pages list the current set. Falls back to the baked <option>s on failure.
+    (function () {
+      var seg = (location.pathname.match(
+        new RegExp('^' + wodocPub + '/([^/]+)')) || [])[1];
+      function select(sel) {
+        var i;
+        for (i = 0; i < sel.options.length; i++)
+          if (sel.options[i].value === seg) { sel.selectedIndex = i; return; }
+        if (seg) {
+          var o = document.createElement('option');
+          o.value = seg; o.textContent = seg; o.selected = true;
+          sel.insertBefore(o, sel.firstChild);
+        }
+      }
+      fetch(wodocPub + '/versions.json')
+        .then(function (r) { if (!r.ok) throw 0; return r.json(); })
+        .then(function (m) {
+          var list = m.list || [], latest = m.latest;
+          document.querySelectorAll('.wodoc-version').forEach(function (sel) {
+            sel.innerHTML = '';
+            list.forEach(function (v) {
+              var o = document.createElement('option');
+              if (v === latest) { o.value = 'latest'; o.textContent = v + ' (latest)'; }
+              else { o.value = v; o.textContent = v; }
+              sel.appendChild(o);
+            });
+            select(sel);
+          });
+        })
+        .catch(function () {
+          document.querySelectorAll('.wodoc-version').forEach(select);
+        });
+    })();
+  </script>
+</body>
+</html>
