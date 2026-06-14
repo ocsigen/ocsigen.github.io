@@ -1,21 +1,27 @@
-# Build the parts of the site that ocsigen.github.io hosts itself with wodoc, on
-# every push to master:
-#  - the vitrine (home + projects/install/credits/papers/contributing), from
-#    doc/vitrine/*.mld, into the site root;
-#  - the two ARCHIVED projects served from this repo (their own repos no longer
-#    build): ocsimore -> /ocsimore/, html_of_wiki -> /html_of_wiki/.
-# Every other (active) project builds and publishes its own documentation to its
-# own gh-pages branch; this workflow only covers what lives in THIS repo.
-# GitHub Pages serves the repo, so the generated pages are committed back to
-# master (with [skip ci] to avoid retriggering this workflow). Modelled on the
-# per-project Documentation workflows (setup-ocaml + wodoc), with the deploy step
-# adapted to a user/org site (commit to master) instead of a gh-pages branch.
+# Build the vitrine (home + projects/install/credits/papers/contributing) from
+# doc/vitrine/*.mld into the site root, on every push to master.
+# Every project — including the archived ocsimore and html_of_wiki — publishes its
+# own documentation to its OWN repo's gh-pages branch (a project page at
+# ocsigen.org/<repo>/ takes precedence over a same-named dir here, so hosting them
+# in this repo did not work). Their wodoc sources still live in doc/ocsimore and
+# doc/html_of_wiki; rebuild + push to the respective gh-pages when they change.
+# This workflow only covers the vitrine, which lives in THIS repo.
+# GitHub Pages serves the repo (no Jekyll: a .nojekyll at the root makes it serve
+# the files as-is), so the generated pages are committed back to master (with
+# [skip ci] to avoid retriggering this workflow).
 name: Documentation
 
 on:
   push:
     branches: [master]
   workflow_dispatch: {}
+
+# Serialise: this workflow commits the rebuilt vitrine back to master, so two runs
+# must never run at once (a stale run could otherwise clobber a newer commit, as
+# happened once when it re-added the archived docs).
+concurrency:
+  group: doc-deploy-${{ github.workflow }}
+  cancel-in-progress: false
 
 jobs:
   build:
@@ -37,35 +43,15 @@ jobs:
           opam pin add -n wodoc https://github.com/ocsigen/wodoc.git
           opam install wodoc odoc
 
-      - name: Build the vitrine + archived sites
+      - name: Build the vitrine
         run: |
-          MENU="$PWD/doc/menu.html"
           ( cd doc/vitrine && OUT="$PWD/../.." opam exec -- bash build.sh )
-          ( cd doc/ocsimore && rm -rf "$PWD/../../ocsimore" \
-            && opam exec -- wodoc build --config wodoc \
-                 --out "$PWD/../../ocsimore/0.5" --label 0.5 --menu "$MENU" --latest )
-          ( cd doc/html_of_wiki && rm -rf "$PWD/../../html_of_wiki" \
-            && opam exec -- wodoc build --config wodoc \
-                 --out "$PWD/../../html_of_wiki/2.0" --label 2.0 --menu "$MENU" --latest )
-          # This is a Jekyll site (the blog), so there is no .nojekyll at the root.
-          # GitHub Pages' Jekyll build does not publish symlinks and drops the whole
-          # directory that contains one, so wodoc's `latest` symlink made
-          # /ocsimore/ and /html_of_wiki/ 404. Replace each `latest` symlink with a
-          # real copy of its target (versions.json, written by wodoc while the
-          # symlink still existed, already records the correct latest version).
-          for proj in ocsimore html_of_wiki; do
-            if [ -L "$proj/latest" ]; then
-              tgt=$(readlink "$proj/latest")
-              rm "$proj/latest"
-              cp -a "$proj/$tgt" "$proj/latest"
-            fi
-          done
 
       - name: Commit the regenerated pages to master
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add -A intro.html index.html projects.html install.html credits.html \
-                     papers.html contributing.html ocsimore html_of_wiki
-          git diff --cached --quiet || git commit -m "Rebuild vitrine + archived docs [skip ci]"
+                     papers.html contributing.html
+          git diff --cached --quiet || git commit -m "Rebuild vitrine [skip ci]"
           git push

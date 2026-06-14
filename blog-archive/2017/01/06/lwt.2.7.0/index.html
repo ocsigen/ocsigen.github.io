@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="Ocsigen Blog">
+    <meta name="author" content="The Ocsigen Project">
+    <link rel="shortcut icon" type="image/x-icon" href="//ocsigen.org/favicon.ico">
+
+    <title> Lwt 2.7.0 -  Ocsigen
+      Blog</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <!-- Custom styles for this template -->
+    <link href="/css/bootstrap_custom.css" rel="stylesheet">
+
+    <!-- Code syntax style: https://raw.githubusercontent.com/aahan/pygments-github-style/master/jekyll-github.css -->
+    <link href="/css/syntax.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements
+         and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+    <link rel="alternate" type="application/atom+xml"
+          title="Ocsigen Blog"
+          href="/blog-archive/feed.xml">
+
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button"
+                  class="navbar-toggle collapsed"
+                  data-toggle="collapse"
+                  data-target="#navbar"
+                  aria-expanded="false"
+                  aria-controls="navbar">
+            <span class="sr-only">Toggle Navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="/blog-archive/">
+            <img src="/img/ocsigen.png" alt="Ocsigen Blog">
+          </a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="https://www.ocsigen.org">Ocsigen Home</a></li>
+            <li><a href="https://www.github.com/ocsigen">GitHub</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container-fluid main-matter">
+
+
+<div class="row">
+
+  <div class="col-sm-8">
+
+    <h1 class="page-header">
+      Lwt 2.7.0
+      
+      <br>
+      <small>
+        
+        Written by
+        
+        <a href="https://github.com/aantron">Anton Bachin</a>
+        
+        on
+        
+        January 06, 2017
+      </small>
+      
+    </h1>
+
+    <p><a href="https://github.com/ocsigen/lwt/releases/tag/2.7.0">Lwt 2.7.0</a> was released today. This release aims to (1) improve communication between maintainers and users, and (2) prepare for (minor) <a href="https://github.com/ocsigen/lwt/issues/308">breaking changes</a> to some APIs in Lwt 3.0.0 (planned for April).</p>
+
+<p>To this end:</p>
+
+<ul>
+  <li>Lwt now uses deprecation warnings (<code class="language-plaintext highlighter-rouge">[@deprecated]</code>), especially for upcoming breaking changes. This required dropping support for OCaml 4.01.</li>
+  <li>There is a gradual, communicative, conservative <a href="https://github.com/ocsigen/lwt/issues/293">process</a> for deprecation and breaking. Maintainers of packages in OPAM get <a href="https://github.com/ocsigen/lwt/issues/308">notified proactively</a>. If you have code not published in OPAM, watch the Lwt repo, recompile the code at least once in three months, or subscribe to the Lwt <a href="https://github.com/ocsigen/lwt/issues/309">announcements issue</a>.</li>
+  <li>If a planned breaking change is a bad idea, please let the maintainers know when you see the warning.</li>
+  <li>Lwt now uses <a href="http://semver.org/">semantic versioning</a>. The major version will grow slowly but steadily, but this does not mean that the whole API is being redesigned or broken.</li>
+</ul>
+
+<p>If you are releasing a package to OPAM that depends on Lwt, it is not
+recommended to constrain Lwt to its current major version. A major
+release of Lwt will break only a few APIs, and your package is likely
+not to be affected – if it is, you will be notified. You may, however,
+wish to constrain Lwt to a major version in your private or production
+code.</p>
+
+<h3 id="additional-changes">Additional changes</h3>
+
+<ul>
+  <li>The main OPAM package <code class="language-plaintext highlighter-rouge">lwt</code> is getting rid of some optional dependencies in 3.0.0, which are now installable through separate OPAM packages <code class="language-plaintext highlighter-rouge">lwt_ssl</code>, <code class="language-plaintext highlighter-rouge">lwt_glib</code>, <code class="language-plaintext highlighter-rouge">lwt_react</code>. This is to reduce recompilation of Lwt when installing OPAM packages <code class="language-plaintext highlighter-rouge">ssl</code>, <code class="language-plaintext highlighter-rouge">lablgtk</code>, and <code class="language-plaintext highlighter-rouge">react</code>.</li>
+  <li>Values of types <code class="language-plaintext highlighter-rouge">'a Lwt.t</code> are now called <em>promises</em> rather than <em>threads</em>. This should eliminate a lot of confusion for beginners.</li>
+</ul>
+
+<p>Lwt 2.7.0 also has a number of more ordinary changes, such as bug fixes
+and the addition of bindings to <code class="language-plaintext highlighter-rouge">writev</code> and <code class="language-plaintext highlighter-rouge">readv</code>. See the <a href="https://github.com/ocsigen/lwt/releases/tag/2.7.0">full
+changelog</a>.</p>
+
+<h3 id="future-work">Future work</h3>
+
+<p>I am working on an all-new manual, including fully rewritten API documentation with examples. It should be ready towards the end of winter.</p>
+
+<p>My hope is that all the above allows Lwt to be taken progressively into the future, at the same time making development more open and more humane.</p>
+
+<p>Discuss <a href="https://www.reddit.com/r/ocaml/comments/5mdl0g/lwt_270_is_out_ocamls_promise_library_featuring/">on reddit</a>!</p>
+
+
+
+  </div>
+
+  <div class="col-sm-4">
+
+    <h1 class="page-header">Other Posts</h1>
+
+    
+
+    
+
+    
+    <ul class="media-list">
+      
+
+      
+      <li class="media">
+        <h4 class="media-heading">
+          <a href="/blog-archive/2020/05/05/os/">Ocsigen Start 2.18 released</a><br>
+          <small>May 05, 2020</small>
+        </h4>
+      </li>
+      
+
+      
+
+    
+
+    
+
+    
+
+    
+
+      
+      <li class="media">
+        <h4 class="media-heading">
+          <a href="/blog-archive/2020/05/04/ot/">Ocsigen Toolkit 2.7 with new widget Ot_tongue</a><br>
+          <small>May 04, 2020</small>
+        </h4>
+      </li>
+      
+
+      
+
+    
+
+    
+
+    
+
+    
+
+      
+      <li class="media">
+        <h4 class="media-heading">
+          <a href="/blog-archive/2020/01/20/release/">Ocsigen Start updated</a><br>
+          <small>January 20, 2020</small>
+        </h4>
+      </li>
+      
+
+      
+
+    
+
+    
+
+    
+
+    
+
+      
+      <li class="media">
+        <h4 class="media-heading">
+          <a href="/blog-archive/2019/07/18/releases/">Ocsigen Start and Ocsigen Server updated</a><br>
+          <small>July 18, 2019</small>
+        </h4>
+      </li>
+      
+
+      
+
+    
+
+    
+
+    
+
+    
+
+      
+      <li class="media">
+        <h4 class="media-heading">
+          <a href="/blog-archive/2019/06/25/graffiti/">Learn Eliom - Graffiti tutorial updated</a><br>
+          <small>June 25, 2019</small>
+        </h4>
+      </li>
+      
+
+      
+
+    
+
+    
+
+    
+
+    
+
+      
+      <li class="media">
+        <h4 class="media-heading">
+          <a href="/blog-archive/2017/02/09/start/">Ocsigen Start and Ocsigen Toolkit reach 1.0!</a><br>
+          <small>February 09, 2017</small>
+        </h4>
+      </li>
+      
+
+      
+
+    
+
+    
+
+    
+
+    
+
+      
+      <li class="media">
+        <h4 class="media-heading">
+          <a href="/blog-archive/2017/02/06/eliomlang/">News on the Eliom language</a><br>
+          <small>February 06, 2017</small>
+        </h4>
+      </li>
+      
+
+      
+
+    
+
+    
+
+    
+
+    
+
+      
+
+      
+
+    
+
+    
+
+    
+
+    
+
+      
+      <li class="media">
+        <h4 class="media-heading">
+          <a href="/blog-archive/2016/12/12/eliom6/">Eliom 6.0&#58; mobile and Web apps in OCaml</a><br>
+          <small>December 12, 2016</small>
+        </h4>
+      </li>
+      
+
+      
+
+    
+
+    
+
+    
+
+    
+
+      
+      <li class="media">
+        <h4 class="media-heading">
+          <a href="/blog-archive/2016/05/20/tyxml4/">TyXML 4.0.0</a><br>
+          <small>May 20, 2016</small>
+        </h4>
+      </li>
+      
+
+      
+
+    
+
+    
+
+    
+
+    
+
+      
+      <li class="media">
+        <h4 class="media-heading">
+          <a href="/blog-archive/2016/03/30/tuto-graffiti2/">Ocsigen&#58; step by step tutorial for client-server Web application (2/2)</a><br>
+          <small>March 30, 2016</small>
+        </h4>
+      </li>
+      
+
+      
+
+    
+
+    
+
+    
+
+    
+
+      
+      <li class="media">
+        <h4 class="media-heading">
+          <a href="/blog-archive/2016/03/15/tuto-graffiti1/">Ocsigen&#58; step by step tutorial for client-server Web application (1/2)</a><br>
+          <small>March 15, 2016</small>
+        </h4>
+      </li>
+      
+
+      
+
+    
+
+    
+
+    
+
+    
+
+      
+      <li class="media">
+        <h4 class="media-heading">
+          <a href="/blog-archive/2016/02/22/tutorial-widgets/">Ocsigen&#58; client-server widgets</a><br>
+          <small>February 22, 2016</small>
+        </h4>
+      </li>
+      
+
+      
+
+    
+
+    
+
+    
+
+    
+
+      
+      <li class="media">
+        <h4 class="media-heading">
+          <a href="/blog-archive/2016/02/08/tutorial-basics/">Ocsigen, the basics</a><br>
+          <small>February 08, 2016</small>
+        </h4>
+      </li>
+      
+
+      
+
+    
+
+    
+
+    
+
+    
+
+      
+      <li class="media">
+        <h4 class="media-heading">
+          <a href="/blog-archive/2016/02/01/january-2016-releases/">January 2016 Ocsigen releases</a><br>
+          <small>February 01, 2016</small>
+        </h4>
+      </li>
+      
+
+      
+
+    
+
+    
+
+    
+
+    
+
+      
+      <li class="media">
+        <h4 class="media-heading">
+          <a href="/blog-archive/2015/10/07/react-example-todomvc/">TodoMVC: a reactive version</a><br>
+          <small>October 07, 2015</small>
+        </h4>
+      </li>
+      
+
+      
+
+    
+
+    
+
+    
+
+    
+
+      
+      <li class="media">
+        <h4 class="media-heading">
+          <a href="/blog-archive/2015/08/17/releases/">Summer Ocsigen releases</a><br>
+          <small>August 17, 2015</small>
+        </h4>
+      </li>
+      
+
+      
+
+    
+
+    
+
+    
+
+    
+
+      
+      <li class="media">
+        <h4 class="media-heading">
+          <a href="/blog-archive/2015/07/29/welcome/">Welcome to the Ocsigen Blog!</a><br>
+          <small>July 29, 2015</small>
+        </h4>
+      </li>
+      
+
+      
+    </ul>
+    
+
+    
+
+    
+
+  </div>
+
+</div>
+
+</div>
+
+<!-- Bootstrap core JavaScript; at the end of the document so the
+     pages load faster -->
+<script
+   src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
+</script>
+<!-- Latest compiled and minified JavaScript -->
+<script
+   src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js">
+</script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script
+   src="/js/viewport_ie10_hack.js">
+</script>
+
+</body>
+
+</html>
+
