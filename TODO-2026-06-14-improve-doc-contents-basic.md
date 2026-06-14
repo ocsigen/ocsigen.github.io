@@ -1,1 +1,0 @@
-/home/balat/prog/ai-reports/2026-06-14-improve-doc-contents-basic.md

@@ -4,3 +4,17 @@ _site/
 2026-06-13-ocsigen-doc-finalization.md
 _wodoc-html/
 doc/vitrine/_work/
+
+# Local working files / private symlinks — must never be committed/deployed
+/.claude/
+/.vscode/
+/build
+/instructions
+/latest/
+/ocsidb
+/ocsipersist-errors
+/ocsipersist-store/
+/AGENTS*.md
+/2026-*.md
+/TODO-*.md
+/_site/

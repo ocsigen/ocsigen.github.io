@@ -1,1 +1,0 @@
-/home/balat/prog/agents-config/AGENTS.md
