@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="Ocsigen Blog">
+    <meta name="author" content="The Ocsigen Project">
+    <link rel="shortcut icon" type="image/x-icon" href="//ocsigen.org/favicon.ico">
+
+    <title> Eliom 6.0&#58; mobile and Web apps in OCaml -  Ocsigen
+      Blog</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <!-- Custom styles for this template -->
+    <link href="/css/bootstrap_custom.css" rel="stylesheet">
+
+    <!-- Code syntax style: https://raw.githubusercontent.com/aahan/pygments-github-style/master/jekyll-github.css -->
+    <link href="/css/syntax.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements
+         and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+    <link rel="alternate" type="application/atom+xml"
+          title="Ocsigen Blog"
+          href="/blog-archive/feed.xml">
+
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button"
+                  class="navbar-toggle collapsed"
+                  data-toggle="collapse"
+                  data-target="#navbar"
+                  aria-expanded="false"
+                  aria-controls="navbar">
+            <span class="sr-only">Toggle Navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="/blog-archive/">
+            <img src="/img/ocsigen.png" alt="Ocsigen Blog">
+          </a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="https://www.ocsigen.org">Ocsigen Home</a></li>
+            <li><a href="https://www.github.com/ocsigen">GitHub</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container-fluid main-matter">
+
+
+<div class="row">
+
+  <div class="col-sm-8">
+
+    <h1 class="page-header">
+      Eliom 6.0&#58; mobile and Web apps in OCaml
+      
+      <br>
+      <small>
+        
+        Written by
+        
+        <a href="https://ocsigen.org">The Ocsigen Team</a>
+        
+        on
+        
+        December 12, 2016
+      </small>
+      
+    </h1>
+
+    <p>We are very happy to announce the release of <a href="https://github.com/ocsigen/eliom/releases/tag/6.0.0">Ocsigen Eliom 6.0</a>,
+which follows the recent releases of
+<a href="https://github.com/ocsigen/ocsigenserver/releases/tag/2.8">Ocsigen Server 2.8</a>
+and <a href="https://github.com/ocsigen/js_of_ocaml/releases/tag/2.8.3">Ocsigen Js_of_ocaml 2.8.x</a>.</p>
+
+<p>New features include a friendlier service API that retains the
+expressive power of our service system. Additionally, Eliom can now be
+used to build cross-platform Web/mobile applications (Android, iOS, …).</p>
+
+<h2 id="what-is-eliom">What is Eliom?</h2>
+
+<p>Eliom is a framework for developing client/server web
+applications. Both the server and the client parts of the application
+are written in OCaml, as a single program. Communication between
+server and client is straightforward, e.g., one can just call a
+server-side function from client-side code.</p>
+
+<p>Eliom makes extensive use of the OCaml language features. It provides
+advanced functionality like a powerful session mechanism and support
+for functional reactive Web pages.</p>
+
+<h2 id="friendly-service-apis">Friendly service APIs</h2>
+
+<p>Services are a key concept in Eliom, used for building the pages that
+are sent to the user, for accessing server-side data, for performing
+various actions, and so on. Eliom 6.0 provides a friendlier API for
+defining and registering services, thus making Eliom more
+approachable.</p>
+
+<p>The new API makes extensive use of OCaml’s <a href="https://en.wikipedia.org/wiki/Generalized_algebraic_data_type">GADTs</a>, and provides
+a single entry-point that supports most kinds of services
+(<a href="https://ocsigen.org/eliom/api/server/Eliom_service#VALcreate">Eliom_service.create</a>). For more information, refer
+to the <a href="https://ocsigen.org/eliom/dev/manual/server-services">Eliom manual</a>.</p>
+
+<h2 id="mobile-applications">Mobile applications</h2>
+
+<p>Eliom 6.0 allows one to build applications for multiple mobile
+platforms (including iOS, Android, and Windows) with the same codebase
+as for a Web application, and following standard Eliom idioms.</p>
+
+<p>To achieve this, we have made available the Eliom service APIs
+<a href="https://ocsigen.org/eliom/manual/clientserver-services">on the client</a>. Thus, the user interface can be
+produced directly on the mobile device, with remote calls only when
+absolutely necessary.</p>
+
+<p>To build an Eliom 6.0 mobile application easily, we recommend that you
+use our soon-to-be-released <a href="https://github.com/ocsigen/ocsigen-start">Ocsigen Start</a> project, which
+provides a mobile-ready template application
+(<a href="https://ocsigen.org/tuto/manual/mobile">walkthrough</a>).</p>
+
+<h2 id="compatibility">Compatibility</h2>
+
+<p>Eliom 6.0 supports the last 3 major versions of OCaml (4.02 up to
+4.04). Additionally, Eliom is compatible with and builds on the
+latest Ocsigen releases, including
+<a href="https://github.com/ocsigen/ocsigenserver/releases/tag/2.8">Ocsigen Server 2.8</a>,
+<a href="https://github.com/ocsigen/js_of_ocaml/releases/tag/2.8.3">Js_of_ocaml 2.8.x</a>, and <a href="https://github.com/ocsigen/tyxml/releases/tag/4.0.1">TyXML 4.0.x</a>.</p>
+
+<h2 id="future">Future</h2>
+
+<p>The Ocsigen team is busy working on new features. Notably, we are
+developing an <a href="https://github.com/ocsigen/ocaml-eliom">OCaml compiler</a> specifically tuned for
+Eliom. Additionally, we are planning a transition to the
+<a href="https://github.com/mirage/ocaml-cohttp">Cohttp</a> HTTP backend.</p>
+
+<h2 id="support">Support</h2>
+
+<ul>
+  <li><a href="https://ocsigen.org/eliom/Eliom60">Migration guide</a></li>
+  <li><a href="https://github.com/ocsigen/eliom/issues">Issue tracker</a></li>
+  <li><a href="https://sympa.inria.fr/sympa/info/ocsigen">Mailing list</a></li>
+  <li>IRC: <code class="language-plaintext highlighter-rouge">#ocsigen</code> on <code class="language-plaintext highlighter-rouge">irc.freenode.net</code></li>
+</ul>
+
+
+
+  </div>
+
+  <div class="col-sm-4">
+
+    <h1 class="page-header">Other Posts</h1>
+
+    
+
+    
+
+    
+    <ul class="media-list">
+      
+
+      
+      <li class="media">
+        <h4 class="media-heading">
+          <a href="/blog-archive/2020/05/05/os/">Ocsigen Start 2.18 released</a><br>
+          <small>May 05, 2020</small>
+        </h4>
+      </li>
+      
+
+      
+
+    
+
+    
+
+    
+
+    
+
+      
+      <li class="media">
+        <h4 class="media-heading">
+          <a href="/blog-archive/2020/05/04/ot/">Ocsigen Toolkit 2.7 with new widget Ot_tongue</a><br>
+          <small>May 04, 2020</small>
+        </h4>
+      </li>
+      
+
+      
+
+    
+
+    
+
+    
+
+    
+
+      
+      <li class="media">
+        <h4 class="media-heading">
+          <a href="/blog-archive/2020/01/20/release/">Ocsigen Start updated</a><br>
+          <small>January 20, 2020</small>
+        </h4>
+      </li>
+      
+
+      
+
+    
+
+    
+
+    
+
+    
+
+      
+      <li class="media">
+        <h4 class="media-heading">
+          <a href="/blog-archive/2019/07/18/releases/">Ocsigen Start and Ocsigen Server updated</a><br>
+          <small>July 18, 2019</small>
+        </h4>
+      </li>
+      
+
+      
+
+    
+
+    
+
+    
+
+    
+
+      
+      <li class="media">
+        <h4 class="media-heading">
+          <a href="/blog-archive/2019/06/25/graffiti/">Learn Eliom - Graffiti tutorial updated</a><br>
+          <small>June 25, 2019</small>
+        </h4>
+      </li>
+      
+
+      
+
+    
+
+    
+
+    
+
+    
+
+      
+      <li class="media">
+        <h4 class="media-heading">
+          <a href="/blog-archive/2017/02/09/start/">Ocsigen Start and Ocsigen Toolkit reach 1.0!</a><br>
+          <small>February 09, 2017</small>
+        </h4>
+      </li>
+      
+
+      
+
+    
+
+    
+
+    
+
+    
+
+      
+      <li class="media">
+        <h4 class="media-heading">
+          <a href="/blog-archive/2017/02/06/eliomlang/">News on the Eliom language</a><br>
+          <small>February 06, 2017</small>
+        </h4>
+      </li>
+      
+
+      
+
+    
+
+    
+
+    
+
+    
+
+      
+      <li class="media">
+        <h4 class="media-heading">
+          <a href="/blog-archive/2017/01/06/lwt.2.7.0/">Lwt 2.7.0</a><br>
+          <small>January 06, 2017</small>
+        </h4>
+      </li>
+      
+
+      
+
+    
+
+    
+
+    
+
+    
+
+      
+
+      
+
+    
+
+    
+
+    
+
+    
+
+      
+      <li class="media">
+        <h4 class="media-heading">
+          <a href="/blog-archive/2016/05/20/tyxml4/">TyXML 4.0.0</a><br>
+          <small>May 20, 2016</small>
+        </h4>
+      </li>
+      
+
+      
+
+    
+
+    
+
+    
+
+    
+
+      
+      <li class="media">
+        <h4 class="media-heading">
+          <a href="/blog-archive/2016/03/30/tuto-graffiti2/">Ocsigen&#58; step by step tutorial for client-server Web application (2/2)</a><br>
+          <small>March 30, 2016</small>
+        </h4>
+      </li>
+      
+
+      
+
+    
+
+    
+
+    
+
+    
+
+      
+      <li class="media">
+        <h4 class="media-heading">
+          <a href="/blog-archive/2016/03/15/tuto-graffiti1/">Ocsigen&#58; step by step tutorial for client-server Web application (1/2)</a><br>
+          <small>March 15, 2016</small>
+        </h4>
+      </li>
+      
+
+      
+
+    
+
+    
+
+    
+
+    
+
+      
+      <li class="media">
+        <h4 class="media-heading">
+          <a href="/blog-archive/2016/02/22/tutorial-widgets/">Ocsigen&#58; client-server widgets</a><br>
+          <small>February 22, 2016</small>
+        </h4>
+      </li>
+      
+
+      
+
+    
+
+    
+
+    
+
+    
+
+      
+      <li class="media">
+        <h4 class="media-heading">
+          <a href="/blog-archive/2016/02/08/tutorial-basics/">Ocsigen, the basics</a><br>
+          <small>February 08, 2016</small>
+        </h4>
+      </li>
+      
+
+      
+
+    
+
+    
+
+    
+
+    
+
+      
+      <li class="media">
+        <h4 class="media-heading">
+          <a href="/blog-archive/2016/02/01/january-2016-releases/">January 2016 Ocsigen releases</a><br>
+          <small>February 01, 2016</small>
+        </h4>
+      </li>
+      
+
+      
+
+    
+
+    
+
+    
+
+    
+
+      
+      <li class="media">
+        <h4 class="media-heading">
+          <a href="/blog-archive/2015/10/07/react-example-todomvc/">TodoMVC: a reactive version</a><br>
+          <small>October 07, 2015</small>
+        </h4>
+      </li>
+      
+
+      
+
+    
+
+    
+
+    
+
+    
+
+      
+      <li class="media">
+        <h4 class="media-heading">
+          <a href="/blog-archive/2015/08/17/releases/">Summer Ocsigen releases</a><br>
+          <small>August 17, 2015</small>
+        </h4>
+      </li>
+      
+
+      
+
+    
+
+    
+
+    
+
+    
+
+      
+      <li class="media">
+        <h4 class="media-heading">
+          <a href="/blog-archive/2015/07/29/welcome/">Welcome to the Ocsigen Blog!</a><br>
+          <small>July 29, 2015</small>
+        </h4>
+      </li>
+      
+
+      
+    </ul>
+    
+
+    
+
+    
+
+  </div>
+
+</div>
+
+</div>
+
+<!-- Bootstrap core JavaScript; at the end of the document so the
+     pages load faster -->
+<script
+   src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
+</script>
+<!-- Latest compiled and minified JavaScript -->
+<script
+   src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js">
+</script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script
+   src="/js/viewport_ie10_hack.js">
+</script>
+
+</body>
+
+</html>
+

@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="Ocsigen Blog">
+    <meta name="author" content="The Ocsigen Project">
+    <link rel="shortcut icon" type="image/x-icon" href="//ocsigen.org/favicon.ico">
+
+    <title> Ocsigen, the basics -  Ocsigen
+      Blog</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <!-- Custom styles for this template -->
+    <link href="/css/bootstrap_custom.css" rel="stylesheet">
+
+    <!-- Code syntax style: https://raw.githubusercontent.com/aahan/pygments-github-style/master/jekyll-github.css -->
+    <link href="/css/syntax.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements
+         and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+    <link rel="alternate" type="application/atom+xml"
+          title="Ocsigen Blog"
+          href="/blog-archive/feed.xml">
+
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button"
+                  class="navbar-toggle collapsed"
+                  data-toggle="collapse"
+                  data-target="#navbar"
+                  aria-expanded="false"
+                  aria-controls="navbar">
+            <span class="sr-only">Toggle Navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="/blog-archive/">
+            <img src="/img/ocsigen.png" alt="Ocsigen Blog">
+          </a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="https://www.ocsigen.org">Ocsigen Home</a></li>
+            <li><a href="https://www.github.com/ocsigen">GitHub</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container-fluid main-matter">
+
+
+<div class="row">
+
+  <div class="col-sm-8">
+
+    <h1 class="page-header">
+      Ocsigen, the basics
+      
+      <br>
+      <small>
+        
+        Written by
+        
+        <a href="http://ocsigen.org">Vincent Balat</a>
+        
+        on
+        
+        February 08, 2016
+      </small>
+      
+    </h1>
+
+    <p>Following last week release,
+I’m starting today a series of tutorials about the Ocsigen framework. For the impatient, most of these tutorials are already available on <a href="http://ocsigen.org/tuto">Ocsigen</a>’s Web site.</p>
+
+<p>In this first tutorial, we show how to use the Ocsigen framework (mainly Eliom) to write a lightweight Web site by generating pages using OCaml functions.
+Even though Eliom makes it possible to write complete client-server Web and mobile apps,
+you can still use Eliom even if you don’t need all these features (for example if you don’t want HTML type checking or client side features). Besides, this will allow you to extend your Web site in a full Web application if you need, later on. This tutorial is also a good overview of the basics of Eliom.</p>
+
+<h2 id="a-service-generating-a-page">A service generating a page</h2>
+
+<p>The following code shows how to create a service that answers requests at URL <code class="language-plaintext highlighter-rouge">http://.../aaa/bbb</code>, by invoking an Ocaml function <code class="language-plaintext highlighter-rouge">f</code> of type:</p>
+
+<figure class="highlight"><pre><code class="language-ocaml" data-lang="ocaml"><span class="n">f</span> <span class="o">:</span> <span class="p">(</span><span class="kt">string</span> <span class="o">*</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">list</span> <span class="o">-&gt;</span> <span class="kt">unit</span> <span class="o">-&gt;</span> <span class="kt">string</span> <span class="nn">Lwt</span><span class="p">.</span><span class="n">t</span></code></pre></figure>
+
+<p>Function <code class="language-plaintext highlighter-rouge">f</code> generates HTML as a string, taking as argument the list of URL parameters (GET parameters).</p>
+
+<figure class="highlight"><pre><code class="language-ocaml" data-lang="ocaml"><span class="k">let</span> <span class="n">f</span> <span class="n">_</span> <span class="bp">()</span> <span class="o">=</span>
+  <span class="nn">Lwt</span><span class="p">.</span><span class="n">return</span> <span class="s2">"&lt;html&gt;&lt;head&gt;&lt;title&gt;A&lt;/title&gt;&lt;/head&gt;&lt;body&gt;B&lt;/body&gt;&lt;/html&gt;"</span>
+
+<span class="k">let</span> <span class="n">main_service</span> <span class="o">=</span>
+  <span class="nn">Eliom_registration</span><span class="p">.</span><span class="nn">Html_text</span><span class="p">.</span><span class="n">register_service</span>
+    <span class="o">~</span><span class="n">path</span><span class="o">:</span><span class="p">[</span><span class="s2">"aaa"</span><span class="p">;</span> <span class="s2">"bbb"</span><span class="p">]</span>
+    <span class="o">~</span><span class="n">get_params</span><span class="o">:</span><span class="nn">Eliom_parameter</span><span class="p">.</span><span class="n">any</span>
+    <span class="n">f</span></code></pre></figure>
+
+<p><code class="language-plaintext highlighter-rouge">Eliom_paramer.any</code> means that the service takes any GET parameter.</p>
+
+<p>We recommend to use the program eliom-distillery to generate a template for your application (a Makefile and a default configuration file for Ocsigen Server).</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ eliom-distillery -name mysite -template basic.ppx -target-directory mysite
+</code></pre></div></div>
+<p>Put the piece of code above in file mysite.eliom, compile and run the server by doing:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ make test.byte
+</code></pre></div></div>
+<p>Your page is now available at URL http://localhost:8080/aaa/bbb.</p>
+
+<p>If you dont want to use the Makefile provided by eliom-distillery, just replace mysite.eliom by a file mysite.ml, compile and run with</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ocamlfind ocamlc -package eliom.server -thread -c mysite.ml
+$ ocsigenserver -c mysite.conf
+</code></pre></div></div>
+<p>where <code class="language-plaintext highlighter-rouge">mysite.conf</code> is adapted from <code class="language-plaintext highlighter-rouge">local/etc/mysite/mysite-test.conf</code> by replacing <code class="language-plaintext highlighter-rouge">mysite.cma</code> by your cmo.</p>
+
+<h2 id="post-service">POST service</h2>
+
+<p>Services using the POST HTTP method are created using the function <code class="language-plaintext highlighter-rouge">Eliom_service.​Http.​post_service</code>. To create a service with POST parameters, first you must create a service without POST parameters, and then the service with POST parameters, with the first service as fallback. The fallback is used if the user comes back later without POST parameters, for example because he put a bookmark on this URL.</p>
+
+<figure class="highlight"><pre><code class="language-ocaml" data-lang="ocaml"><span class="k">let</span> <span class="n">g</span> <span class="n">getp</span> <span class="n">postp</span> <span class="o">=</span> <span class="nn">Lwt</span><span class="p">.</span><span class="n">return</span> <span class="s2">"..."</span>
+
+<span class="k">let</span> <span class="n">post_service</span> <span class="o">=</span>
+  <span class="nn">Eliom_registration</span><span class="p">.</span><span class="nn">Html_text</span><span class="p">.</span><span class="n">register_post_service</span>
+    <span class="o">~</span><span class="n">fallback</span><span class="o">:</span><span class="n">main_service</span>
+    <span class="o">~</span><span class="n">post_params</span><span class="o">:</span><span class="nn">Eliom_parameter</span><span class="p">.</span><span class="n">any</span>
+    <span class="n">g</span></code></pre></figure>
+
+<h2 id="going-further">Going further</h2>
+
+<p>That is probably all you need for a very basic Web site in OCaml.
+But Ocsigen provides many tools to write more advanced Web sites
+and applications:</p>
+
+<p>Instead of generating HTML in OCaml strings, we highly recommend to use
+<em>typed HTML</em>. It is very easy to use, once you have learned the basics,
+and helps a lot to efficiently write modular and valid HTML.
+To do this, use module
+<a href="http://ocsigen.org/eliom/api/server/Eliom_registration.Html5"><code class="language-plaintext highlighter-rouge">Eliom_registration.Html5</code></a>
+instead of
+<a href="http://ocsigen.org/eliom/api/server/Eliom_registration.Html_text"><code class="language-plaintext highlighter-rouge">Eliom_registration.Html_text</code></a>.
+See this
+<a href="http://ocsigen.org/tuto/manual/application#tyxml">tutorial</a>
+for more information, a comprehensive documentation
+<a href="http://ocsigen.org/tyxml/manual/">here</a>,
+and a more advanced manual
+<a href="http://ocsigen.org/eliom/manual/clientserver-html">here</a>.</p>
+
+<p>Have a look at Eliom’s API documentation to see other kinds of services,
+for example <a href="http://ocsigen.org/eliom/api/server/Eliom_registration.Redirection"><code class="language-plaintext highlighter-rouge">Eliom_registration.Redirection</code></a>
+to create HTTP redirections.</p>
+
+<p>Eliom also has a way to typecheck forms and GET or POST parameters.
+By giving a description of the parameters your service expects,
+Eliom will check their presence automatically, and convert them
+for you to OCaml types.
+See
+<a href="http://ocsigen.org/tuto/manual/interaction">this tutorial</a>
+and <a href="http://ocsigen.org/eliom/manual/server-params">this manual page</a>.</p>
+
+<p>Eliom also has other ways to identify services (besides just the PATH
+in the URL). For example Eliom can identify a service just by a parameter
+(whatever the path is). This is called <em>non-attached coservices</em> and
+this makes it possible for instance to have the same feature on every page
+(for example a connection service).
+See
+<a href="http://ocsigen.org/tuto/manual/interaction">this tutorial</a>
+and <a href="http://ocsigen.org/eliom/manual/server-services">this manual page</a>.</p>
+
+<p>One of the main features of Eliom is the ability to write complete
+Web and mobile applications in OCaml. Annotations are used to
+separate the code to be executed server-side from the client code.
+Client functions are translated into Javascript using
+<a href="http://ocsigen.org/js_of_ocaml/">Ocsigen Js_of_ocaml</a>.
+See
+<a href="http://ocsigen.org/tuto/manual/tutowidgets">this tutorial</a> for
+a quick introduction,
+or <a href="http://ocsigen.org/tuto/manual/application">this one</a> for a
+more comprehensive one.
+You can also have a look at
+<a href="http://ocsigen.org/eliom/manual/clientserver-applications">this manual page</a>.</p>
+
+<p>Another interesting feature of Eliom is its session model, that uses a
+very simple interface to record session data server-side.
+It is even possible to choose
+the <em>scope</em> of this data: either a browser, or a tab, or even a group
+of browsers (belonging for instance to a same user).
+See
+<a href="http://ocsigen.org/tuto/manual/interaction#eref">this section</a>
+and the beginning of
+<a href="http://ocsigen.org/eliom/manual/server-state">this manual page</a>.</p>
+
+<p>We suggest to continue your reading by one of these tutorials:</p>
+
+<ul>
+  <li><a href="http://ocsigen.org/tuto/manual/tutowidgets">A quick start tutorial for client-server Eliom applications</a> (for the people already familiar with OCaml, Lwt, etc.)</li>
+  <li><a href="http://ocsigen.org/tuto/manual/application">A step by step tutorial for client-server Eliom applications</a></li>
+  <li><a href="http://ocsigen.org/tuto/manual/interaction">A tutorial on server side dynamic Web site</a></li>
+</ul>
+
+
+
+  </div>
+
+  <div class="col-sm-4">
+
+    <h1 class="page-header">Other Posts</h1>
+
+    
+
+    
+
+    
+    <ul class="media-list">
+      
+
+      
+      <li class="media">
+        <h4 class="media-heading">
+          <a href="/blog-archive/2020/05/05/os/">Ocsigen Start 2.18 released</a><br>
+          <small>May 05, 2020</small>
+        </h4>
+      </li>
+      
+
+      
+
+    
+
+    
+
+    
+
+    
+
+      
+      <li class="media">
+        <h4 class="media-heading">
+          <a href="/blog-archive/2020/05/04/ot/">Ocsigen Toolkit 2.7 with new widget Ot_tongue</a><br>
+          <small>May 04, 2020</small>
+        </h4>
+      </li>
+      
+
+      
+
+    
+
+    
+
+    
+
+    
+
+      
+      <li class="media">
+        <h4 class="media-heading">
+          <a href="/blog-archive/2020/01/20/release/">Ocsigen Start updated</a><br>
+          <small>January 20, 2020</small>
+        </h4>
+      </li>
+      
+
+      
+
+    
+
+    
+
+    
+
+    
+
+      
+      <li class="media">
+        <h4 class="media-heading">
+          <a href="/blog-archive/2019/07/18/releases/">Ocsigen Start and Ocsigen Server updated</a><br>
+          <small>July 18, 2019</small>
+        </h4>
+      </li>
+      
+
+      
+
+    
+
+    
+
+    
+
+    
+
+      
+      <li class="media">
+        <h4 class="media-heading">
+          <a href="/blog-archive/2019/06/25/graffiti/">Learn Eliom - Graffiti tutorial updated</a><br>
+          <small>June 25, 2019</small>
+        </h4>
+      </li>
+      
+
+      
+
+    
+
+    
+
+    
+
+    
+
+      
+      <li class="media">
+        <h4 class="media-heading">
+          <a href="/blog-archive/2017/02/09/start/">Ocsigen Start and Ocsigen Toolkit reach 1.0!</a><br>
+          <small>February 09, 2017</small>
+        </h4>
+      </li>
+      
+
+      
+
+    
+
+    
+
+    
+
+    
+
+      
+      <li class="media">
+        <h4 class="media-heading">
+          <a href="/blog-archive/2017/02/06/eliomlang/">News on the Eliom language</a><br>
+          <small>February 06, 2017</small>
+        </h4>
+      </li>
+      
+
+      
+
+    
+
+    
+
+    
+
+    
+
+      
+      <li class="media">
+        <h4 class="media-heading">
+          <a href="/blog-archive/2017/01/06/lwt.2.7.0/">Lwt 2.7.0</a><br>
+          <small>January 06, 2017</small>
+        </h4>
+      </li>
+      
+
+      
+
+    
+
+    
+
+    
+
+    
+
+      
+      <li class="media">
+        <h4 class="media-heading">
+          <a href="/blog-archive/2016/12/12/eliom6/">Eliom 6.0&#58; mobile and Web apps in OCaml</a><br>
+          <small>December 12, 2016</small>
+        </h4>
+      </li>
+      
+
+      
+
+    
+
+    
+
+    
+
+    
+
+      
+      <li class="media">
+        <h4 class="media-heading">
+          <a href="/blog-archive/2016/05/20/tyxml4/">TyXML 4.0.0</a><br>
+          <small>May 20, 2016</small>
+        </h4>
+      </li>
+      
+
+      
+
+    
+
+    
+
+    
+
+    
+
+      
+      <li class="media">
+        <h4 class="media-heading">
+          <a href="/blog-archive/2016/03/30/tuto-graffiti2/">Ocsigen&#58; step by step tutorial for client-server Web application (2/2)</a><br>
+          <small>March 30, 2016</small>
+        </h4>
+      </li>
+      
+
+      
+
+    
+
+    
+
+    
+
+    
+
+      
+      <li class="media">
+        <h4 class="media-heading">
+          <a href="/blog-archive/2016/03/15/tuto-graffiti1/">Ocsigen&#58; step by step tutorial for client-server Web application (1/2)</a><br>
+          <small>March 15, 2016</small>
+        </h4>
+      </li>
+      
+
+      
+
+    
+
+    
+
+    
+
+    
+
+      
+      <li class="media">
+        <h4 class="media-heading">
+          <a href="/blog-archive/2016/02/22/tutorial-widgets/">Ocsigen&#58; client-server widgets</a><br>
+          <small>February 22, 2016</small>
+        </h4>
+      </li>
+      
+
+      
+
+    
+
+    
+
+    
+
+    
+
+      
+
+      
+
+    
+
+    
+
+    
+
+    
+
+      
+      <li class="media">
+        <h4 class="media-heading">
+          <a href="/blog-archive/2016/02/01/january-2016-releases/">January 2016 Ocsigen releases</a><br>
+          <small>February 01, 2016</small>
+        </h4>
+      </li>
+      
+
+      
+
+    
+
+    
+
+    
+
+    
+
+      
+      <li class="media">
+        <h4 class="media-heading">
+          <a href="/blog-archive/2015/10/07/react-example-todomvc/">TodoMVC: a reactive version</a><br>
+          <small>October 07, 2015</small>
+        </h4>
+      </li>
+      
+
+      
+
+    
+
+    
+
+    
+
+    
+
+      
+      <li class="media">
+        <h4 class="media-heading">
+          <a href="/blog-archive/2015/08/17/releases/">Summer Ocsigen releases</a><br>
+          <small>August 17, 2015</small>
+        </h4>
+      </li>
+      
+
+      
+
+    
+
+    
+
+    
+
+    
+
+      
+      <li class="media">
+        <h4 class="media-heading">
+          <a href="/blog-archive/2015/07/29/welcome/">Welcome to the Ocsigen Blog!</a><br>
+          <small>July 29, 2015</small>
+        </h4>
+      </li>
+      
+
+      
+    </ul>
+    
+
+    
+
+    
+
+  </div>
+
+</div>
+
+</div>
+
+<!-- Bootstrap core JavaScript; at the end of the document so the
+     pages load faster -->
+<script
+   src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
+</script>
+<!-- Latest compiled and minified JavaScript -->
+<script
+   src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js">
+</script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script
+   src="/js/viewport_ie10_hack.js">
+</script>
+
+</body>
+
+</html>
+

@@ -1,0 +1,1 @@
+/home/balat/prog/agents-config/AGENTS-ocsigen-dev.md

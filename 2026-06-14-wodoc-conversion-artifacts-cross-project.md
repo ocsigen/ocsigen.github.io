@@ -1,0 +1,1 @@
+/home/balat/prog/ai-reports/2026-06-14-wodoc-conversion-artifacts-cross-project.md

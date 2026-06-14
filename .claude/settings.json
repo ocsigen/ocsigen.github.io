@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -sL https://ocsigen.org/home/intro.html)",
+      "Bash(curl -s -o /dev/null -w '%{http_code}' -L https://ocsigen.org/__TRACKED_VAR__/)",
+      "Bash(curl -s -o /dev/null -w '%{http_code}' -L https://ocsigen.org/__TRACKED_VAR__/sitemap.xml)",
+      "Bash(ls -la 2026-05-29-ocsigen-doc-rationalization.md; echo \"===\"; find . -name \"2026-05-29-ocsigen-doc-rationalization.md\" 2>/dev/null)",
+      "Read(//home/balat/prog/ai-reports/**)",
+      "Read(//home/balat/prog/kroko/ocsigen/wodoc/**)",
+      "Read(//home/balat/prog/kroko/ocsigen/ocsigen.github.io/**)",
+      "WebFetch(domain:jon.recoil.org)",
+      "Bash(cd /home/balat/prog/kroko/ocsigen/js_of_ocaml && cat .github/workflows/doc.yml | head -100)",
+      "Read(//home/balat/prog/kroko/ocsigen/js_of_ocaml/**)",
+      "Bash(cd /home/balat/prog/kroko/ocsigen/eliom && cat .github/workflows/doc.yml | head -80)",
+      "Read(//home/balat/prog/kroko/ocsigen/eliom/**)",
+      "Bash(cd /home/balat/prog/kroko/ocsigen && grep -r \"ocsigen.org/wodoc\" ocsigen-start/ ocsigen-i18n/ tuto/ 2>/dev/null | head -20)",
+      "Read(//home/balat/prog/kroko/ocsigen/**)",
+      "Read(//home/balat/prog/kroko/ocsigen/tyxml/**)",
+      "Bash(ls -la .github/workflows/)"
+    ],
+    "additionalDirectories": [
+      "/home/balat/prog/kroko/ocsigen/wodoc/lib",
+      "/home/balat/prog/kroko/ocsigen/wodoc/bin",
+      "/home/balat/prog/ai-reports",
+      "/home/balat/prog/kroko/ocsigen/js_of_ocaml/.github/workflows"
+    ]
+  }
+}
