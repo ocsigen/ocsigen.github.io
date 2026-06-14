@@ -980,14 +980,17 @@ aside.concept {
 }
 
 /****** Page specific ******/
+/* The themed odoc pages carry the body class "wodoc-page wodoc-doc" (not the
+   former "tuto"/"start"), so these page-specific styles key off their own
+   element classes rather than a body class. */
 /* intro tuto */
-body.tuto .tutocase {
+.tutocase {
   background-color: #f7cbb5;
   padding: 15px 25px;
   border-radius: 5px;
 }
-/* tuto os */
-body.tuto.start div.screenshots img {
+/* screenshots galleries (ocsigen-start intro, tuto start/os pages) */
+.screenshots img {
   max-height: 200px;
   max-width: calc(100vw - 30px);
 }
