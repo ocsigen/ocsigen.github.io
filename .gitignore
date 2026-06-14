@@ -4,7 +4,7 @@ _site/
 2026-06-13-ocsigen-doc-finalization.md
 _wodoc-html/
 doc/vitrine/_work/
-
+doc/blog/_work/
 # Local working files / private symlinks — must never be committed/deployed
 /.claude/
 /.vscode/

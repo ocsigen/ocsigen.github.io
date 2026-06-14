@@ -43,6 +43,10 @@ jobs:
           opam pin add -n wodoc https://github.com/ocsigen/wodoc.git
           opam install wodoc odoc
 
+      - name: Build the blog
+        run: |
+          ( cd doc/blog && OUT="$PWD/../.." opam exec -- bash build.sh )
+
       - name: Build the vitrine
         run: |
           ( cd doc/vitrine && OUT="$PWD/../.." opam exec -- bash build.sh )
@@ -52,6 +56,6 @@ jobs:
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add -A intro.html index.html projects.html install.html credits.html \
-                     papers.html contributing.html
-          git diff --cached --quiet || git commit -m "Rebuild vitrine [skip ci]"
+                     papers.html contributing.html blog feed.xml
+          git diff --cached --quiet || git commit -m "Rebuild vitrine + blog [skip ci]"
           git push

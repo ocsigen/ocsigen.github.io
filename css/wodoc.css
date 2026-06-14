@@ -35,6 +35,71 @@
 .main-page-section-header {
   background-image: url("../img/cover-ocsigen.jpg");
 }
+
+/* Blog: the "latest posts" list emitted by wodoc (the {%wodoc:blog-latest%}
+   marker on the landing, and the home page). wodoc only emits the semantic
+   markup (.wodoc-blog-list/-card/-title/-meta/-excerpt); the look lives here. */
+.wodoc-blog-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.wodoc-blog-card {
+  margin: 0 0 1.5em;
+  padding: 1em 1.25em;
+  border: 1px solid #e2e2e2;
+  border-left: 4px solid #64caff;
+  border-radius: 6px;
+  background: #fff;
+}
+.wodoc-blog-card:hover {
+  border-left-color: #ff8d52;
+}
+a.wodoc-blog-title {
+  display: block;
+  font-size: 1.3em;
+  font-weight: bold;
+  text-decoration: none;
+}
+.wodoc-blog-meta {
+  margin: 0.2em 0 0.6em;
+  font-size: 0.85em;
+  color: #888;
+}
+.wodoc-blog-excerpt {
+  margin: 0;
+}
+
+/* "From the blog" section on the home page: white background, dark text (the
+   shared .main-page-section-about it used to borrow is dark blue with light grey
+   text, which made the cards' meta line unreadable). */
+.wodoc-home-blog {
+  background-color: #fff;
+  color: #333;
+}
+.wodoc-home-blog-more {
+  display: inline-block;
+  margin-top: 0.5em;
+  font-weight: bold;
+}
+
+/* "Blog" in the top menu, sitting right after "Doc": emphasised. */
+.page-header .mainmenu p.mainmenu-blog a {
+  font-weight: bold;
+}
+
+/* A blog post page: show the byline (date — author) inserted after the title via
+   `assemble --byline`, and hide odoc's own @author tag block (it would otherwise
+   duplicate the author and looks out of place); the manual heading rule above
+   gives section headings a big all-round padding meant for the vitrine, which is
+   wrong inside an article, so drop the left/right padding here. */
+.wodoc-blog-page .at-tags {
+  display: none;
+}
+.wodoc-blog-page .rightcol > .odoc-content > h2 {
+  padding-left: 0;
+  padding-right: 0;
+}
 @media (min-width: 1200px) {
   body {
     background-image: url("../img/ocsigen-bubbles-large.png");
