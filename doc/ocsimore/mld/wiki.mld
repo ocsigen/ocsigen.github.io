@@ -73,31 +73,37 @@ The examples for the following rules for resolving relative links are given for
 wiki page [/wiki25/a/b/c], i.e. the page wiki [wiki(25)] and the page
 path [a/b/c].
 
-+ An empty path refers to the current url:
-  - [[[]]] => [[[wiki(25):a/b/c]]]
-  - [[[#anchor]]] => [[[wiki(25):a/b/c#anchor]]]
-+ Relative paths are interpreted like in hrefs in [a]-elements in HTML:
-  - [[[.]]] => [[[wiki(25):/a/b]]]
-  - [[[xyz]]], [[[./xyz]]] => [[[wiki(25):a/b/xyz]]]
-  - [[[..]]] => [[[wiki(25):a]]]
-  - [[[../xyz]]] => [[[wiki(25):a/xyz]]]
-  - [[[c/xyz]]] => [[[wiki(25):a/b/c/xyz]]]
+{ol
+{li An empty path refers to the current url:
+{ul
+{li [[[]]] => [[[wiki(25):a/b/c]]]}
+{li [[[#anchor]]] => [[[wiki(25):a/b/c#anchor]]]}}}
+{li Relative paths are interpreted like in hrefs in [a]-elements in HTML:
+{ul
+{li [[[.]]] => [[[wiki(25):/a/b]]]}
+{li [[[xyz]]], [[[./xyz]]] => [[[wiki(25):a/b/xyz]]]}
+{li [[[..]]] => [[[wiki(25):a]]]}
+{li [[[../xyz]]] => [[[wiki(25):a/xyz]]]}
+{li [[[c/xyz]]] => [[[wiki(25):a/b/c/xyz]]]}}
 
   NB that, for example, [[[xyz]]] was resolved to [[[wiki(25):a/b/c/xyz]]]
-  if the page path was [a/b/c/] (note the trailing slash).
-+ Moreover, for absolute paths and relative paths applied to the current page
+  if the page path was [a/b/c/] (note the trailing slash).}
+{li Moreover, for absolute paths and relative paths applied to the current page
   path [addr], it is always attempted to refer to the wiki page [e/f] of
   the wiki with the longest path [wikipath] such that [addr == wikipath/e/f].
   E.g. if there was [wiki(42)] registered on [a/b/sub]:
-  - [[[sub/xyz]]] => [[[wiki(42):a/b/c/xyz]]]
-+ We will provide basic support for resolving complete paths to a wiki and a
+{ul
+{li [[[sub/xyz]]] => [[[wiki(42):a/b/c/xyz]]]}}}
+{li We will provide basic support for resolving complete paths to a wiki and a
   path, like:
-  - [[[/a/b/c]]] => [[[wiki(ix):e/f]]]
+{ul
+{li [[[/a/b/c]]] => [[[wiki(ix):e/f]]]}}
   such that prefix/e/f = /a/b/c where prefix is the URL of wiki(ix).
-  Currently only for prefix = a || prefix = /a (this not consistent in the DB).
-+ Other wikis can be referred to by their title:
-  - [[[wiki("title"):path]]] => [[[wiki(ix):path]]]
-  where ["title"] is the title of the wiki with index [ix].
+  Currently only for prefix = a || prefix = /a (this not consistent in the DB).}
+{li Other wikis can be referred to by their title:
+{ul
+{li [[[wiki("title"):path]]] => [[[wiki(ix):path]]]}}
+  where ["title"] is the title of the wiki with index [ix].}}
 
 {3 Additions}
 

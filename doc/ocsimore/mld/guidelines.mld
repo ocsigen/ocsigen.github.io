@@ -7,32 +7,30 @@ the forum code for an example.
 
 {3 Generic advices:}
 
-- Try to make things as generic and configurable as possible.
-
-- The use of classes allows to extend widgets or modify their behaviour.
+{ul
+{li Try to make things as generic and configurable as possible.}
+{li The use of classes allows to extend widgets or modify their behaviour.
 Decompose each of them into several methods, one for each subtask to perform
 (retrieve data, display ...) and for each widget kind.
 
 The instantiation of classes must be done in a separate module, that
-can be rewritten by programmers who want to redefine some methods.
-
-- The creation and registration of services is also done in this
+can be rewritten by programmers who want to redefine some methods.}
+{li The creation and registration of services is also done in this
   separate module that can be loaded several times inside the
-  [<host>] section of the configuration file. 
+  [<host>] section of the configuration file.
 {b ??}
 
   Usually, widgets depend on services, and service handlers depend on
   widgets. This means that there is an instance of classes for each
   site. For example, create services, then give them as parameters to
-  the class constructor to create the object, then register services.
-
-- Use as much as possible the same naming scheme for methods.
+  the class constructor to create the object, then register services.}
+{li Use as much as possible the same naming scheme for methods.
 For example:
-- [private retrieve_data] or [retrieve_]...
-- [private display] or [display_...]
- for displaying the widget from retrieved data
-
-- Use as much as possible the same names for labels.
+{ul
+{li [private retrieve_data] or [retrieve_]...}
+{li [private display] or [display_...]}}
+ for displaying the widget from retrieved data}
+{li Use as much as possible the same names for labels.}}
 
 {3 More specific instructions}
 
