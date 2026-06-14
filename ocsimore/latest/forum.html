@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Guidelines and implementation notes — Ocsimore</title>
+  <title>Ocsimore's forum extension — Ocsimore</title>
   <link rel="stylesheet" href="/css/style.css"/>
   <link rel="stylesheet" href="/css/ocsigen-odoc.css"/>
   <script src="./highlight.pack.js"></script>
@@ -88,7 +88,7 @@
 </div>
 <div class="page-toc">
   <h3>On this page</h3>
-  <nav class="odoc-toc odoc-local-toc"><ul><li><a href="#generic-advices:">Generic advices:</a></li><li><a href="#more-specific-instructions">More specific instructions</a></li></ul></nav>
+  <nav class="odoc-toc odoc-local-toc"><ul><li><a href="#wiki-syntax">Wiki syntax</a></li><li><a href="#group-hierarchy">Group hierarchy</a><ul><li><a href="#for-all-forums">For all forums</a></li><li><a href="#for-each-forum">For each forum</a></li><li><a href="#for-each-forum-wiki-(messages-or-comments)">For each forum wiki (messages or comments)</a></li><li><a href="#for-threads-with-special-rights">For threads with special rights</a></li></ul></li></ul></nav>
 </div>
 </nav>
     </nav>
@@ -108,13 +108,43 @@
 </div>
 <div class="page-toc">
   <h3>On this page</h3>
-  <nav class="odoc-toc odoc-local-toc"><ul><li><a href="#generic-advices:">Generic advices:</a></li><li><a href="#more-specific-instructions">More specific instructions</a></li></ul></nav>
+  <nav class="odoc-toc odoc-local-toc"><ul><li><a href="#wiki-syntax">Wiki syntax</a></li><li><a href="#group-hierarchy">Group hierarchy</a><ul><li><a href="#for-all-forums">For all forums</a></li><li><a href="#for-each-forum">For each forum</a></li><li><a href="#for-each-forum-wiki-(messages-or-comments)">For each forum wiki (messages or comments)</a></li><li><a href="#for-threads-with-special-rights">For threads with special rights</a></li></ul></li></ul></nav>
 </div>
 
       </nav>
       <article class="rightcol">
-        <header class="odoc-preamble"><h1 id="guidelines-and-implementation-notes">Guidelines and implementation notes</h1><p>(work in progress)</p><p>If you want to contribute to Ocsimore and/or write your own extensions, we recommend to follow these guidelines. Have a look at the forum code for an example.</p></header>
-        <div class="odoc-content"><h4 id="generic-advices:">Generic advices:</h4><ul><li>Try to make things as generic and configurable as possible.</li><li><p>The use of classes allows to extend widgets or modify their behaviour. Decompose each of them into several methods, one for each subtask to perform (retrieve data, display ...) and for each widget kind.</p><p>The instantiation of classes must be done in a separate module, that can be rewritten by programmers who want to redefine some methods.</p></li><li><p>The creation and registration of services is also done in this separate module that can be loaded several times inside the <code>&lt;host&gt;</code> section of the configuration file. <b>??</b></p><p>Usually, widgets depend on services, and service handlers depend on widgets. This means that there is an instance of classes for each site. For example, create services, then give them as parameters to the class constructor to create the object, then register services.</p></li><li><p>Use as much as possible the same naming scheme for methods. For example:</p><ul><li><code>private retrieve_data</code> or <code>retrieve_</code>...</li><li><code>private display</code> or <code>display_...</code></li></ul><p>for displaying the widget from retrieved data</p></li><li>Use as much as possible the same names for labels.</li></ul><h4 id="more-specific-instructions">More specific instructions</h4><h5 id="decomposing-your-extension">Decomposing your extension</h5><p>Decompose your extension <code>X</code> in 8 parts ; <code>X_createdb.sql</code> : SQL creation of the tables related to your extension. ; <code>X_sql.ml</code> : database requests, using lwt-pgocaml. ; <code>X_cache.ml</code> : Cache on database requests, using the Cache module. For all cached SQL-related functions,, we use a name ending with <code>_</code> in <code>X_sql.ml</code> and without the <code>_</code> in <code>X_cache.ml</code>, to remember that we must not call the functions from <code>X_sql.ml</code> directly. (The SQL and Cache modules are merged for <code>Wiki</code> and <code>User</code>. However, the convention on the name of functions above is followed.) ; <code>X.ml</code> : Higher level functions needed by the module. Also, creation of the groups specific to the extension, using the module <code>Users</code>, and of the inclusions between those groups. ; <code>X_data.ml</code> : database access with cache and verification of permissions. It has almost the same interface as <code>X_sql.ml</code> and <code>X_cache.ml</code>, calls the cached function if authorized, then filters the result to remove forbidden content (if needed). They may fail with exception <code>Ocsimore_common.Permission_denied</code>. ; <code>X_services.ml</code> : definition of the services needed by the extension. They may not be registered, as the content they send may depend on what is returned by <code>X_widgets</code> (see below). ; <code>X_widgets.ml</code> : Widgets for generating the parts of the HTML-page defined by the extension. Those may call the services of the previous module for buttons and links. We typically use classes for this module. Each widget takes an optional <code>?classe</code> label of type string list for the <code>class</code> HTML5 attribute. Each widget has its own attribute names. ; <code>X_wikiext.ml</code> : The wiki syntax extensions you define for your module ; <code>X_site.ml</code> : A separate module (not linked in ocsimore.cma) to be loaded dynamically from configuration file inside the <code>&lt;host&gt;</code> section. It will instantiate the widget classes, register the services and register the wiki extensions.</p><h5 id="data">Data</h5><p>Data is stored in Eliom references of a matching scope:</p><ul><li>(Persistent) session data is stored in (persistent) references of scope <code>Eliom_common.session</code></li><li>If you need a per-request cache for a certain function, you may use the module <code>Ocsimore_lib.Request_cache</code> &gt;</li></ul><h5 id="catching-exceptions">Catching exceptions</h5><p>To be sure that all exceptions occurring during a DB request are catched and result in an error message in the box, I use the method <code>Widget.widget_with_error_box#bind_or_display_error</code></p><h5 id="creating-new-extensions-for-wikicreole">Creating new extensions for wikicreole</h5><p>If you create a new box, you probably want to have a syntax to place it inside a wikibox. To so that, use the function <code>Wiki_syntax.add_extension</code>. If you want a preparsing (i.e. do some action before saving the wikibox in the database, like creating a new wikibox for <code>~&lt;&lt;wikibox box='new'&gt;&gt;</code>), use the function <code>Wiki_syntax.add_preparser_extension</code>. See examples in <code>Wiki_syntaxl</code> and <code>Wiki_widgets</code></p><h5 id="groups">Groups</h5><p>Groups and users are the same notion. The only difference is that users have a password. A user can belong to a group that belongs to another group, etc. It is recommended to create groups for each task you want. For example readers and writers of wiki. Users are added to groups accordingly.</p><p>Predefined users/groups:</p><ul><li>admin: a special user who belongs to all groups</li><li>anonymous: non authenticated user</li><li>users: group of authenticated users</li><li>nobody: a special user with no right at all (for example when the user does not exist)</li></ul><p>You can also create generic groups, that are parameterized by an abstracted integer, using <code>User_sql.new_parametrized_group</code>. For example, there exists the group of the administrators of the wiki 3. Then you can add generic inclusions between generic groups, using <code>User_sql.add_generic_inclusion</code>. As an example the administrators of a given wiki are also readers of this wiki.</p><p>You may want to compute the permission for one user at the beginning of the request. To do that, you may create a record with boolean fields for each possible action (for one forum, one box in a wiki, one wiki, etc.). The function that will compute this can be memorised in a session cache to avoid to compute several times the same thing. See module <code>Forum</code> for an example. Notice however that group inclusion calls are automatically cached. Thus you may not need your own caching mechanism if you only do simple requests.</p><p>Warning: Even if two groups are equal, it is often more convenient to create both in order to avoid errors. For example if you have three possible actions : read, write, set permissions, and you want an &quot;admin&quot; group, meaning all three. And if you want the following generic inclusions: admin &gt; set-perm &gt; write &gt; read Here, admin = set-perm, as admin is in no other group. But it is convenient to have both of them. Thus, you will not need to remember the group hierarchy when you want to test rights. If you want to test if a user has right to set permissions, just test whether he is in the group set-perm. If you want to give all rights to an user, put it in group admin. It is also more tolerant to changes in group hierarchy.</p></div>
+        <header class="odoc-preamble"><h1 id="ocsimore's-forum-extension">Ocsimore's forum extension</h1></header>
+        <div class="odoc-content"><h3 id="wiki-syntax">Wiki syntax</h3><p><code>&lt;&lt;forum_threads_list forum=&quot;1&quot;&gt;&gt;</code></p><p><code>&lt;&lt;forum_message_list forum=&quot;1&quot;&gt;&gt;</code></p><p><code>&lt;&lt;forum_thread message=&quot;1&quot;&gt;&gt;</code></p><p><code>&lt;&lt;forum_message message=&quot;1&quot;&gt;&gt;</code></p><h3 id="group-hierarchy">Group hierarchy</h3><h4 id="for-all-forums">For all forums</h4><pre>   forum_creators</pre><h4 id="for-each-forum">For each forum</h4><pre>                                                   \     /
+                                               moderated_readers                
+                                   __________/        |
+                            \  /  /                \  |  /
+        \     /            readers                _creators            \   /
+  deletors_if_creators        |                       |         modifiers_if_creator
+         \ | /              \ | /                  \  |  /             \ | /
+       _deletors         _moderators      _creators_not_moderated     _modifiers
+               \________________\_______________      |      ____________/
+                                                 forum_admin
+
+                                                    admin
+
+</pre><h4 id="for-each-forum-wiki-(messages-or-comments)">For each forum wiki (messages or comments)</h4><pre>                                                        forum_visible
+                                                              |
+                                                 _readersifmessagemoderated
+                         _______________________/         /   |            \
+                        /                                /    |             \
+ deletors_if_creator   /                                /     |              \      modifiers_if_creator
+          |           /                                /      |               \          |
+_deletors = wikiboxdel  _readersnotmod = wikiboxreaders   _creators      modifiers = wikiboxwriters
+                                       |               \      |
+                                 _moderators  _creators_notmod = wikiboxcreators
+
+                                                  admin</pre><h4 id="for-threads-with-special-rights">For threads with special rights</h4><pre>
+                     moderated_readers
+                    /         |
+                   /          |
+  comments_creators    readers_notmod
+          |
+comments_creators_notmod</pre></div>
       </article>
     </div>
   </div>

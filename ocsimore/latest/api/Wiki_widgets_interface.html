@@ -1,0 +1,651 @@
+<html><head><title>Module Wiki_widgets_interface </title><meta charset="utf8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><link rel="stylesheet" href="https://ocsigen.org/css/style.css"/><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.9.0/themes/prism.min.css"/><script type="text/javascript" src="https://ocsigen.org/js/client.js">
+//<![CDATA[
+
+//]]>
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.9.0/components/prism-core.min.js">
+//<![CDATA[
+
+//]]>
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.9.0/components/prism-ocaml.min.js">
+//<![CDATA[
+
+//]]>
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.9.0/components/prism-clike.min.js">
+//<![CDATA[
+
+//]]>
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.9.0/components/prism-reason.min.js">
+//<![CDATA[
+
+//]]>
+</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.9.0/components/prism-javascript.min.js">
+//<![CDATA[
+
+//]]>
+</script></head><body class="Wiki_widgets_interface ocsimore"><div class="project-page"><div class="page-header"><p class="logo-ocsigen"><a href="/" class="ocsimore_phrasing_link"><img src="/img/ocsigen-white.svg" alt="Ocsigen"/></a>
+</p><p class="logo-subproject">Ocsimore</p><div class="mainmenu"><p class="mainmenu-home"><a href="/" class="ocsimore_phrasing_link">Home</a></p><p class="mainmenu-doc"><a href="/tuto/" class="ocsimore_phrasing_link">Doc</a></p><p><a href="/eliom/" class="ocsimore_phrasing_link">Eliom</a></p><p><a href="/js_of_ocaml/" class="ocsimore_phrasing_link">Js_of_ocaml</a></p><p><a href="/lwt/" class="ocsimore_phrasing_link">Lwt</a></p><p><a href="/tyxml/" class="ocsimore_phrasing_link">Tyxml</a></p><p><a href="/ocsigen-start/" class="ocsimore_phrasing_link">Start</a></p></div><form id="googlesearch" action="https://google.com/search"><input name="q" id="gsearch-box" placeholder="Search using Google"/><label for="gsearch-box"><img src="/img/search.svg" alt="" id="gsearch-icon"/></label><input type="submit" id="gsearch-submit" onclick="document.getElementById('gsearch-box').value += ' site:ocsigen.org';"/></form><aside class="how-drawer"><input id="how-drawer-toggle" type="checkbox"/><label for="how-drawer-toggle" id="how-drawer-label"><span class="how-drawer-icon"></span></label><nav class="how-drawer-content"><ul class="drawermainmenu"><li class="drawermainmenu-home"><a href="/" class="ocsimore_phrasing_link">Home</a>
+</li><li class="drawermainmenu-doc"><a href="/tuto/" class="ocsimore_phrasing_link">Doc</a>
+</li><li class="drawermainmenu-project"><a href="/eliom/" class="ocsimore_phrasing_link">Eliom</a>
+</li><li class="drawermainmenu-project"><a href="/js_of_ocaml/" class="ocsimore_phrasing_link">Js_of_ocaml</a>
+</li><li class="drawermainmenu-project"><a href="/ocsigenserver/" class="ocsimore_phrasing_link">Server</a>
+</li><li class="drawermainmenu-project"><a href="/lwt/" class="ocsimore_phrasing_link">Lwt</a>
+</li><li class="drawermainmenu-project"><a href="/tyxml/" class="ocsimore_phrasing_link">Tyxml</a>
+</li><li class="drawermainmenu-project"><a href="/ocsigen-toolkit/" class="ocsimore_phrasing_link">Toolkit</a>
+</li><li class="drawermainmenu-project"><a href="/ocsigen-start/" class="ocsimore_phrasing_link">Start</a>
+</li><li class="drawermainmenu-project"><a href="/html_of_wiki/" class="ocsimore_phrasing_link">html_of_wiki</a>
+</li><li class="drawermainmenu-project"><a href="/ocsimore/" class="ocsimore_phrasing_link">Ocsimore (<em>deprecated</em>)</a>
+</li><li class="drawermainmenu-page"><a href="/projects" class="ocsimore_phrasing_link">Other projects</a>
+</li><li class="drawermainmenu-page"><a href="/papers" class="ocsimore_phrasing_link">Research papers</a>
+</li><li class="drawermainmenu-page"><a href="/credits" class="ocsimore_phrasing_link">Who does Ocsigen?</a>
+</li><li class="drawermainmenu-page"><a href="/contributing" class="ocsimore_phrasing_link">Contributing</a>
+</li><li class="drawermainmenu-page"><a href="/blog" class="ocsimore_phrasing_link">Blog</a>
+</li><li class="drawermainmenu-page"><a href="/install" class="ocsimore_phrasing_link">Installation</a>
+</li><li class="drawermainmenu-page"><a href="https://github.com/ocsigen" class="ocsimore_phrasing_link">Source code</a>
+</li></ul><nav class="how-doctree"><h1>Ocsimore Manual</h1><h2><a href="../intro.html" class="ocsimore_phrasing_link">Introduction</a></h2><h2><a href="../wiki.html" class="ocsimore_phrasing_link">Wiki</a></h2><h2><a href="../forum.html" class="ocsimore_phrasing_link">Forum</a></h2><h2><a href="../user.html" class="ocsimore_phrasing_link">Users and groups</a></h2><h2><a href="../misc.html" class="ocsimore_phrasing_link">Misc</a></h2><h2><a href="../guidelines.html" class="ocsimore_phrasing_link">Writing extensions for Ocsimore</a></h2><h2><a href="../config.html" class="ocsimore_phrasing_link">Configuration options</a></h2><h2><a href="../admin-interface.html" class="ocsimore_phrasing_link">Administration interface</a></h2><h1>API</h1><h2>Core </h2><h3><a href=".././api/Crypt.html" class="ocsimore_phrasing_link">Crypt</a></h3><h3><a href=".././api/Language.html" class="ocsimore_phrasing_link">Language</a></h3><h3><a href=".././api/Dyngroups.html" class="ocsimore_phrasing_link">Dyngroups</a></h3><h3><a href=".././api/Ocsimore_common.html" class="ocsimore_phrasing_link">Ocsimore_common</a></h3><h3><a href=".././api/Ocsimore_config.html" class="ocsimore_phrasing_link">Ocsimore_config</a></h3><h3><a href=".././api/Ocsimore_lib.html" class="ocsimore_phrasing_link">Ocsimore_lib</a></h3><h3><a href=".././api/Opaque.html" class="ocsimore_phrasing_link">Opaque</a></h3><h3><a href=".././api/Ocsi_sql.html" class="ocsimore_phrasing_link">Ocsi_sql</a></h3><h3><a href=".././api/User.html" class="ocsimore_phrasing_link">User</a></h3><h3><a href=".././api/User_sql.html" class="ocsimore_phrasing_link">User_sql</a></h3><h3><a href=".././api/Widget.html" class="ocsimore_phrasing_link">Widget</a></h3><h3><a href=".././api/Xform.html" class="ocsimore_phrasing_link">Xform</a></h3><h2>User </h2><h3><a href=".././api/User_data.html" class="ocsimore_phrasing_link">User_data</a></h3><h3><a href=".././api/User_external_auth.html" class="ocsimore_phrasing_link">User_external_auth</a></h3><h2>Wiki </h2><h3><a href=".././api/Wikicreole.html" class="ocsimore_phrasing_link">Wikicreole</a></h3><h3><a href=".././api/Wiki_data.html" class="ocsimore_phrasing_link">Wiki_data</a></h3><h3><a href=".././api/Wiki_models.html" class="ocsimore_phrasing_link">Wiki_models</a></h3><h3><a href=".././api/Wiki_self_services.html" class="ocsimore_phrasing_link">Wiki_self_services</a></h3><h3><a href=".././api/Wiki_sql.html" class="ocsimore_phrasing_link">Wiki_sql</a></h3><h3><a href=".././api/Wiki_syntax.html" class="ocsimore_phrasing_link">Wiki_syntax</a></h3><h3><a href=".././api/Wiki_types.html" class="ocsimore_phrasing_link">Wiki_types</a></h3><h3><a href=".././api/Wiki_widgets_interface.html" class="ocsimore_phrasing_link">Wiki_widgets_interface</a></h3><h3><a href=".././api/Wiki.html" class="ocsimore_phrasing_link">Wiki</a></h3><h2>Forum </h2><h3><a href=".././api/Forum_sql0.html" class="ocsimore_phrasing_link">Forum_sql0</a></h3><h3><a href=".././api/Forum_data.html" class="ocsimore_phrasing_link">Forum_data</a></h3><h3><a href=".././api/Forum.html" class="ocsimore_phrasing_link">Forum</a></h3><h3><a href=".././api/Forum_sql.html" class="ocsimore_phrasing_link">Forum_sql</a></h3><h3><a href=".././api/Forum_types.html" class="ocsimore_phrasing_link">Forum_types</a></h3><h2>Core site </h2><h3><a href=".././api/Ocsimore_appl.html" class="ocsimore_phrasing_link">Ocsimore_appl</a></h3><h3><a href=".././api/Page_site.html" class="ocsimore_phrasing_link">Page_site</a></h3><h2>User site </h2><h3><a href=".././api/User_site.html" class="ocsimore_phrasing_link">User_site</a></h3><h3><a href=".././api/User_ext.html" class="ocsimore_phrasing_link">User_ext</a></h3><h3><a href=".././api/User_services.html" class="ocsimore_phrasing_link">User_services</a></h3><h3><a href=".././api/User_widgets.html" class="ocsimore_phrasing_link">User_widgets</a></h3><h2>Wiki site </h2><h3><a href=".././api/Wiki_site.html" class="ocsimore_phrasing_link">Wiki_site</a></h3><h3><a href=".././api/HTML5outliner.html" class="ocsimore_phrasing_link">HTML5outliner</a></h3><h3><a href=".././api/Wiki_ext.html" class="ocsimore_phrasing_link">Wiki_ext</a></h3><h3><a href=".././api/Wiki_services.html" class="ocsimore_phrasing_link">Wiki_services</a></h3><h3><a href=".././api/Wiki_widgets.html" class="ocsimore_phrasing_link">Wiki_widgets</a></h3><h3><a href=".././api/Wiki_menu.html" class="ocsimore_phrasing_link">Wiki_menu</a></h3><h3><a href=".././api/Wiki_dir.html" class="ocsimore_phrasing_link">Wiki_dir</a></h3><h2>Forum site </h2><h3><a href=".././api/Forum_site.html" class="ocsimore_phrasing_link">Forum_site</a></h3><h3><a href=".././api/Forum_wikiext.html" class="ocsimore_phrasing_link">Forum_wikiext</a></h3><h3><a href=".././api/Forum_services.html" class="ocsimore_phrasing_link">Forum_services</a></h3><h3><a href=".././api/Forum_widgets.html" class="ocsimore_phrasing_link">Forum_widgets</a></h3><h2>Wikiperso </h2><h3><a href=".././api/Wikiperso.html" class="ocsimore_phrasing_link">Wikiperso</a></h3><h2>Index</h2><h3> <span><a href=".././api/index_types.html">Index of types</a></span></h3><h3> <span><a href=".././api/index_exceptions.html">Index of exceptions</a></span></h3><h3> <span><a href=".././api/index_values.html">Index of values</a></span></h3><h3> <span><a href=".././api/index_attributes.html">Index of class attributes</a></span></h3><h3> <span><a href=".././api/index_methods.html">Index of class methods</a></span></h3><h3> <span><a href=".././api/index_classes.html">Index of classes</a></span></h3><h3> <span><a href=".././api/index_class_types.html">Index of class types</a></span></h3><h3> <span><a href=".././api/index_modules.html">Index of modules</a></span></h3><h3> <span><a href=".././api/index_module_types.html">Index of module types</a></span></h3></nav></nav></aside></div><p class="reasonwarning">Warning: Reason support is experimental.
+We are looking for beta-tester and contributors.
+</p><button id="reason">Switch to </button><div class="twocols"><nav class="leftcol">Version <select class="how-versions" onchange="location = this.value;"><option value=".././../dev/api/Wiki_widgets_interface" selected="selected">dev</option></select><nav class="how-doctree"><h1>Ocsimore Manual</h1><h2><a href="../intro.html" class="ocsimore_phrasing_link">Introduction</a></h2><h2><a href="../wiki.html" class="ocsimore_phrasing_link">Wiki</a></h2><h2><a href="../forum.html" class="ocsimore_phrasing_link">Forum</a></h2><h2><a href="../user.html" class="ocsimore_phrasing_link">Users and groups</a></h2><h2><a href="../misc.html" class="ocsimore_phrasing_link">Misc</a></h2><h2><a href="../guidelines.html" class="ocsimore_phrasing_link">Writing extensions for Ocsimore</a></h2><h2><a href="../config.html" class="ocsimore_phrasing_link">Configuration options</a></h2><h2><a href="../admin-interface.html" class="ocsimore_phrasing_link">Administration interface</a></h2><h1>API</h1><h2>Core </h2><h3><a href=".././api/Crypt.html" class="ocsimore_phrasing_link">Crypt</a></h3><h3><a href=".././api/Language.html" class="ocsimore_phrasing_link">Language</a></h3><h3><a href=".././api/Dyngroups.html" class="ocsimore_phrasing_link">Dyngroups</a></h3><h3><a href=".././api/Ocsimore_common.html" class="ocsimore_phrasing_link">Ocsimore_common</a></h3><h3><a href=".././api/Ocsimore_config.html" class="ocsimore_phrasing_link">Ocsimore_config</a></h3><h3><a href=".././api/Ocsimore_lib.html" class="ocsimore_phrasing_link">Ocsimore_lib</a></h3><h3><a href=".././api/Opaque.html" class="ocsimore_phrasing_link">Opaque</a></h3><h3><a href=".././api/Ocsi_sql.html" class="ocsimore_phrasing_link">Ocsi_sql</a></h3><h3><a href=".././api/User.html" class="ocsimore_phrasing_link">User</a></h3><h3><a href=".././api/User_sql.html" class="ocsimore_phrasing_link">User_sql</a></h3><h3><a href=".././api/Widget.html" class="ocsimore_phrasing_link">Widget</a></h3><h3><a href=".././api/Xform.html" class="ocsimore_phrasing_link">Xform</a></h3><h2>User </h2><h3><a href=".././api/User_data.html" class="ocsimore_phrasing_link">User_data</a></h3><h3><a href=".././api/User_external_auth.html" class="ocsimore_phrasing_link">User_external_auth</a></h3><h2>Wiki </h2><h3><a href=".././api/Wikicreole.html" class="ocsimore_phrasing_link">Wikicreole</a></h3><h3><a href=".././api/Wiki_data.html" class="ocsimore_phrasing_link">Wiki_data</a></h3><h3><a href=".././api/Wiki_models.html" class="ocsimore_phrasing_link">Wiki_models</a></h3><h3><a href=".././api/Wiki_self_services.html" class="ocsimore_phrasing_link">Wiki_self_services</a></h3><h3><a href=".././api/Wiki_sql.html" class="ocsimore_phrasing_link">Wiki_sql</a></h3><h3><a href=".././api/Wiki_syntax.html" class="ocsimore_phrasing_link">Wiki_syntax</a></h3><h3><a href=".././api/Wiki_types.html" class="ocsimore_phrasing_link">Wiki_types</a></h3><h3><a href=".././api/Wiki_widgets_interface.html" class="ocsimore_phrasing_link">Wiki_widgets_interface</a></h3><h3><a href=".././api/Wiki.html" class="ocsimore_phrasing_link">Wiki</a></h3><h2>Forum </h2><h3><a href=".././api/Forum_sql0.html" class="ocsimore_phrasing_link">Forum_sql0</a></h3><h3><a href=".././api/Forum_data.html" class="ocsimore_phrasing_link">Forum_data</a></h3><h3><a href=".././api/Forum.html" class="ocsimore_phrasing_link">Forum</a></h3><h3><a href=".././api/Forum_sql.html" class="ocsimore_phrasing_link">Forum_sql</a></h3><h3><a href=".././api/Forum_types.html" class="ocsimore_phrasing_link">Forum_types</a></h3><h2>Core site </h2><h3><a href=".././api/Ocsimore_appl.html" class="ocsimore_phrasing_link">Ocsimore_appl</a></h3><h3><a href=".././api/Page_site.html" class="ocsimore_phrasing_link">Page_site</a></h3><h2>User site </h2><h3><a href=".././api/User_site.html" class="ocsimore_phrasing_link">User_site</a></h3><h3><a href=".././api/User_ext.html" class="ocsimore_phrasing_link">User_ext</a></h3><h3><a href=".././api/User_services.html" class="ocsimore_phrasing_link">User_services</a></h3><h3><a href=".././api/User_widgets.html" class="ocsimore_phrasing_link">User_widgets</a></h3><h2>Wiki site </h2><h3><a href=".././api/Wiki_site.html" class="ocsimore_phrasing_link">Wiki_site</a></h3><h3><a href=".././api/HTML5outliner.html" class="ocsimore_phrasing_link">HTML5outliner</a></h3><h3><a href=".././api/Wiki_ext.html" class="ocsimore_phrasing_link">Wiki_ext</a></h3><h3><a href=".././api/Wiki_services.html" class="ocsimore_phrasing_link">Wiki_services</a></h3><h3><a href=".././api/Wiki_widgets.html" class="ocsimore_phrasing_link">Wiki_widgets</a></h3><h3><a href=".././api/Wiki_menu.html" class="ocsimore_phrasing_link">Wiki_menu</a></h3><h3><a href=".././api/Wiki_dir.html" class="ocsimore_phrasing_link">Wiki_dir</a></h3><h2>Forum site </h2><h3><a href=".././api/Forum_site.html" class="ocsimore_phrasing_link">Forum_site</a></h3><h3><a href=".././api/Forum_wikiext.html" class="ocsimore_phrasing_link">Forum_wikiext</a></h3><h3><a href=".././api/Forum_services.html" class="ocsimore_phrasing_link">Forum_services</a></h3><h3><a href=".././api/Forum_widgets.html" class="ocsimore_phrasing_link">Forum_widgets</a></h3><h2>Wikiperso </h2><h3><a href=".././api/Wikiperso.html" class="ocsimore_phrasing_link">Wikiperso</a></h3><h2>Index</h2><h3> <span><a href=".././api/index_types.html">Index of types</a></span></h3><h3> <span><a href=".././api/index_exceptions.html">Index of exceptions</a></span></h3><h3> <span><a href=".././api/index_values.html">Index of values</a></span></h3><h3> <span><a href=".././api/index_attributes.html">Index of class attributes</a></span></h3><h3> <span><a href=".././api/index_methods.html">Index of class methods</a></span></h3><h3> <span><a href=".././api/index_classes.html">Index of classes</a></span></h3><h3> <span><a href=".././api/index_class_types.html">Index of class types</a></span></h3><h3> <span><a href=".././api/index_modules.html">Index of modules</a></span></h3><h3> <span><a href=".././api/index_module_types.html">Index of module types</a></span></h3></nav></nav><article class="rightcol"><h1>Module <span><a href=".././api/Wiki_widgets_interface.html">Wiki_widgets_interface</a></span> </h1><pre class="ocsforge_color odocwiki_code"><span class="ocsforge_color_keyword">module</span> <span class="ocsforge_color_uid"><span class="ocsforge_color_uid">Wiki_widgets_interface</span></span> <span class="ocsforge_color_delimiter">:</span> <span class="ocsforge_color_keyword">sig</span><span><a href=".././api/Wiki_widgets_interface.html">..</a></span><span class="ocsforge_color_keyword">end</span></pre><p>This module declares the interface for the widget that is used
+to display wikiboxes, as well a few related types and functions.
+The widget itself is defined in wiki_widgets.ml
+</p><hr/><p>This module declares the interface for the widget that is used
+to display wikiboxes, as well a few related types and functions.
+The widget itself is defined in wiki_widgets.ml
+</p><pre class="ocsforge_color odocwiki_code" id="TYPEwikibox_override"><span class="ocsforge_color_keyword">type</span> <span class="odocwiki_name">wikibox_override</span> <span class="ocsforge_color_delimiter">=</span> <span class="odocwiki_variants"><span class="odocwiki_variant"><span class="odocwiki_variant_constr"><span class="ocsforge_color_keyword"> |</span> <span class="ocsforge_color_uid">EditWikitext</span> <span class="ocsforge_color_keyword">of</span> <span class="odocwiki_type"><span><a href=".././api/Wiki_types.html#TYPEwikibox">Wiki_types.wikibox</a></span></span></span></span><span class="odocwiki_variant"><span class="odocwiki_variant_constr"><span class="ocsforge_color_keyword"> |</span> <span class="ocsforge_color_uid">History</span> <span class="ocsforge_color_keyword">of</span> <span class="odocwiki_type"><span><a href=".././api/Wiki_types.html#TYPEwikibox">Wiki_types.wikibox</a></span></span></span></span><span class="odocwiki_variant"><span class="odocwiki_variant_constr"><span class="ocsforge_color_keyword"> |</span> <span class="ocsforge_color_uid">Oldversion</span> <span class="ocsforge_color_keyword">of</span> <span class="odocwiki_type"><span class="ocsforge_color_delimiter">(</span><span><a href=".././api/Wiki_types.html#TYPEwikibox">Wiki_types.wikibox</a></span> * int32<span class="ocsforge_color_delimiter">)</span></span></span></span><span class="odocwiki_variant"><span class="odocwiki_variant_constr"><span class="ocsforge_color_keyword"> |</span> <span class="ocsforge_color_uid">Src</span> <span class="ocsforge_color_keyword">of</span> <span class="odocwiki_type"><span class="ocsforge_color_delimiter">(</span><span><a href=".././api/Wiki_types.html#TYPEwikibox">Wiki_types.wikibox</a></span> * int32<span class="ocsforge_color_delimiter">)</span></span></span></span><span class="odocwiki_variant"><span class="odocwiki_variant_constr"><span class="ocsforge_color_keyword"> |</span> <span class="ocsforge_color_uid">PreviewWikitext</span> <span class="ocsforge_color_keyword">of</span> <span class="odocwiki_type"><span class="ocsforge_color_delimiter">(</span><span><a href=".././api/Wiki_types.html#TYPEwikibox">Wiki_types.wikibox</a></span> * <span class="ocsforge_color_delimiter">(</span>string * int32<span class="ocsforge_color_delimiter">)</span><span class="ocsforge_color_delimiter">)</span></span></span></span><span class="odocwiki_variant"><span class="odocwiki_variant_constr"><span class="ocsforge_color_keyword"> |</span> <span class="ocsforge_color_uid">EditWikipageProperties</span> <span class="ocsforge_color_keyword">of</span> <span class="odocwiki_type"><span><a href=".././api/Wiki_types.html#TYPEwikipage">Wiki_types.wikipage</a></span></span></span></span><span class="odocwiki_variant"><span class="odocwiki_variant_constr"><span class="ocsforge_color_keyword"> |</span> <span class="ocsforge_color_uid">EditCssList</span> <span class="ocsforge_color_keyword">of</span> <span class="odocwiki_type"><span class="ocsforge_color_delimiter">(</span><span><a href=".././api/Wiki_types.html#TYPEwiki">Wiki_types.wiki</a></span> * string option<span class="ocsforge_color_delimiter">)</span></span></span></span><span class="odocwiki_variant"><span class="odocwiki_variant_constr"><span class="ocsforge_color_keyword"> |</span> <span class="ocsforge_color_uid">EditCss</span> <span class="ocsforge_color_keyword">of</span> <span class="odocwiki_type"><span class="ocsforge_color_delimiter">(</span><span><a href=".././api/Wiki_widgets_interface.html#TYPEcss_wikibox">css_wikibox</a></span> * <span class="ocsforge_color_delimiter">(</span>string * int32<span class="ocsforge_color_delimiter">)</span> option<span class="ocsforge_color_delimiter">)</span></span></span></span><span class="odocwiki_variant"><span class="odocwiki_variant_constr"><span class="ocsforge_color_keyword"> |</span> <span class="ocsforge_color_uid">CssHistory</span> <span class="ocsforge_color_keyword">of</span> <span class="odocwiki_type"><span><a href=".././api/Wiki_widgets_interface.html#TYPEcss_wikibox">css_wikibox</a></span></span></span></span><span class="odocwiki_variant"><span class="odocwiki_variant_constr"><span class="ocsforge_color_keyword"> |</span> <span class="ocsforge_color_uid">CssPermissions</span> <span class="ocsforge_color_keyword">of</span> <span class="odocwiki_type"><span><a href=".././api/Wiki_widgets_interface.html#TYPEcss_wikibox">css_wikibox</a></span></span></span></span><span class="odocwiki_variant"><span class="odocwiki_variant_constr"><span class="ocsforge_color_keyword"> |</span> <span class="ocsforge_color_uid">CssOldversion</span> <span class="ocsforge_color_keyword">of</span> <span class="odocwiki_type"><span><a href=".././api/Wiki_widgets_interface.html#TYPEcss_wikibox">css_wikibox</a></span> * int32</span></span></span><span class="odocwiki_variant"><span class="odocwiki_variant_constr"><span class="ocsforge_color_keyword"> |</span> <span class="ocsforge_color_uid">EditWikiboxPerms</span> <span class="ocsforge_color_keyword">of</span> <span class="odocwiki_type"><span><a href=".././api/Wiki_types.html#TYPEwikibox">Wiki_types.wikibox</a></span></span></span></span><span class="odocwiki_variant"><span class="odocwiki_variant_constr"><span class="ocsforge_color_keyword"> |</span> <span class="ocsforge_color_uid">EditWikiOptions</span> <span class="ocsforge_color_keyword">of</span> <span class="odocwiki_type"><span><a href=".././api/Wiki_types.html#TYPEwiki">Wiki_types.wiki</a></span></span></span></span></span></pre><div class="odocwiki_info"><p>Inductive type used by services to specify a special way to display a
+wikibox. See Wiki_widgets, method interactive_wikibox for details.
+</p><p>For CSS related constructors, the first argument is of type
+<span class="odocwiki_inlinecode">css_wikibox</span>, described below.</p></div><pre class="ocsforge_color odocwiki_code" id="TYPEcss_wikibox"><span class="ocsforge_color_keyword">type</span> <span class="odocwiki_name">css_wikibox</span> <span class="ocsforge_color_delimiter">=</span> <span class="odocwiki_type"><span class="ocsforge_color_delimiter">(</span><span><a href=".././api/Wiki_types.html#TYPEwiki">Wiki_types.wiki</a></span> * string option<span class="ocsforge_color_delimiter">)</span> * <span><a href=".././api/Wiki_types.html#TYPEwikibox">Wiki_types.wikibox</a></span></span></pre><pre class="ocsforge_color odocwiki_code"><span class="ocsforge_color_keyword">module</span> <span><a href=".././api/Wiki_widgets_interface.Json_aDwzxSOSrIrfn2FCbUuL55_pRGWd0cb8.html">Json_aDwzxSOSrIrfn2FCbUuL55_pRGWd0cb8</a></span> <span class="ocsforge_color_delimiter">:</span> <span class="ocsforge_color_keyword">sig</span><span><a href=".././api/Wiki_widgets_interface.Json_aDwzxSOSrIrfn2FCbUuL55_pRGWd0cb8.html">..</a></span><span class="ocsforge_color_keyword">end</span></pre><pre class="ocsforge_color odocwiki_code"><span class="ocsforge_color_keyword">module</span> <span><a href=".././api/Wiki_widgets_interface.Json_css_wikibox.html">Json_css_wikibox</a></span> <span class="ocsforge_color_delimiter">:</span> <span class="ocsforge_color_keyword">sig</span><span><a href=".././api/Wiki_widgets_interface.Json_css_wikibox.html">..</a></span><span class="ocsforge_color_keyword">end</span></pre><pre class="ocsforge_color odocwiki_code"><span class="ocsforge_color_keyword">module</span> <span><a href=".././api/Wiki_widgets_interface.Json_wikibox_override.html">Json_wikibox_override</a></span> <span class="ocsforge_color_delimiter">:</span> <span class="odocwiki_type"><span class="ocsforge_color_uid">Deriving_Json.Defaults</span></span><span class="ocsforge_color_delimiter">(</span><span class="ocsforge_color_keyword">sig</span><span class="odocwiki_sig_block"><span class="ocsforge_color odocwiki_code" id="TYPEa">  <span class="ocsforge_color_keyword">type</span> <span class="odocwiki_name">a</span> <span class="ocsforge_color_delimiter">=</span> <span class="odocwiki_type"><span><a href=".././api/Wiki_widgets_interface.html#TYPEwikibox_override">Wiki_widgets_interface.wikibox_override</a></span></span></span><span class="ocsforge_color odocwiki_code" id="VALwrite">  <span class="ocsforge_color_keyword">val</span> <span class="odocwiki_name">write</span> <span class="ocsforge_color_delimiter">:</span> <span class="odocwiki_type"><span class="ocsforge_color_uid">Buffer</span><span class="ocsforge_color_delimiter">.</span><span class="ocsforge_color_lid">t</span> <span class="ocsforge_color_delimiter">-&gt;</span> <span><a href=".././api/Wiki_widgets_interface.html#TYPEwikibox_override">Wiki_widgets_interface.wikibox_override</a></span> <span class="ocsforge_color_delimiter">-&gt;</span> unit</span></span><span class="ocsforge_color odocwiki_code" id="VALmatch_variant">  <span class="ocsforge_color_keyword">val</span> <span class="odocwiki_name">match_variant</span> <span class="ocsforge_color_delimiter">:</span> <span class="odocwiki_type">'a <span class="ocsforge_color_delimiter">-&gt;</span> 'b</span></span><span class="ocsforge_color odocwiki_code" id="VALread_variant">  <span class="ocsforge_color_keyword">val</span> <span class="odocwiki_name">read_variant</span> <span class="ocsforge_color_delimiter">:</span> <span class="odocwiki_type">'a <span class="ocsforge_color_delimiter">-&gt;</span> 'b <span class="ocsforge_color_delimiter">-&gt;</span> 'c</span></span><span class="ocsforge_color odocwiki_code" id="VALread">  <span class="ocsforge_color_keyword">val</span> <span class="odocwiki_name">read</span> <span class="ocsforge_color_delimiter">:</span> <span class="odocwiki_type"><br/>    <span class="ocsforge_color_uid">Deriving_Json_lexer</span><span class="ocsforge_color_delimiter">.</span><span class="ocsforge_color_lid">lexbuf</span> <span class="ocsforge_color_delimiter">-&gt;</span><br/>    <span><a href=".././api/Wiki_widgets_interface.html#TYPEwikibox_override">Wiki_widgets_interface.wikibox_override</a></span></span></span></span><span class="ocsforge_color_keyword">end</span><span class="ocsforge_color_delimiter">)</span></pre><pre class="ocsforge_color odocwiki_code"><span class="ocsforge_color_keyword">module</span> <span><a href=".././api/Wiki_widgets_interface.Ancestors.html">Ancestors</a></span> <span class="ocsforge_color_delimiter">:</span> <span class="ocsforge_color_keyword">sig</span><span><a href=".././api/Wiki_widgets_interface.Ancestors.html">..</a></span><span class="ocsforge_color_keyword">end</span></pre><p>This module declares the interface for the widget that is used
+to display wikiboxes, as well a few related types and functions.
+The widget itself is defined in wiki_widgets.ml
+</p><p>Inductive type used by services to specify a special way to display a
+wikibox. See Wiki_widgets, method interactive_wikibox for details.
+</p><p>For CSS related constructors, the first argument is of type
+<span class="odocwiki_inlinecode">css_wikibox</span>, described below.
+</p><p>Edition of a wikibox containing wikitext
+</p><p>History of some wikitext
+</p><p>Old version of a wikitext. The second argument is the version number
+</p><p>Src of a wikitext (same arguments as Oldversion)
+</p><p>Preview of a wikibox containing wikitext. The second uple is the
+wikitext, and the version number of the wikibox *when the
+edition started*.  This is used to display a warning in case
+of concurrent edits
+</p><p>Edition of the properties of the given wikipage : title, deletion,
+moving,...
+</p><p>Edition of the CSSs for a page of a wiki. Presents the list
+of the CSS, with the possibilities to add or to remove some
+</p><p>Edition of a CSS. The first argument is the standard CSS arguments.
+The (string * int32) is the CSS and the time at which the edition
+started (as for PreviewWikitext), or None if we are about to
+start the edition
+</p><p>History of a css
+</p><p>Edition of the permissions of a css
+</p><p>Old version of a wikibox
+</p><p>Edition of the permissions of a wikibox
+</p><p>Edition of the permissions or metadata of a wiki
+</p><p>Arguments for the edition of a css. The <span class="odocwiki_inlinecode">wiki</span> argument is the
+wiki which is concerned. The <span class="odocwiki_inlinecode">string option</span> argument is <span class="odocwiki_inlinecode">None</span> if
+the CSS is for the wiki, <span class="odocwiki_inlinecode">Some page</span> if it is for the page <span class="odocwiki_inlinecode">page</span>
+of the wiki. The <span class="odocwiki_inlinecode">wikibox</span> argument contains the wikibox which holds
+the css
+</p><p>Type used to avoid wikibox loops
+</p><p>Information available to display a box
+</p><pre class="ocsforge_color odocwiki_code" id="TYPEmenu_style"><span class="ocsforge_color_keyword">type</span> <span class="odocwiki_name">menu_style</span> <span class="ocsforge_color_delimiter">=</span> <span class="odocwiki_type">[ `Linear | `None | `Pencil ]</span></pre><p>This module declares the interface for the widget that is used
+to display wikiboxes, as well a few related types and functions.
+The widget itself is defined in wiki_widgets.ml
+</p><p>Inductive type used by services to specify a special way to display a
+wikibox. See Wiki_widgets, method interactive_wikibox for details.
+</p><p>For CSS related constructors, the first argument is of type
+<span class="odocwiki_inlinecode">css_wikibox</span>, described below.
+</p><p>Edition of a wikibox containing wikitext
+</p><p>History of some wikitext
+</p><p>Old version of a wikitext. The second argument is the version number
+</p><p>Src of a wikitext (same arguments as Oldversion)
+</p><p>Preview of a wikibox containing wikitext. The second uple is the
+wikitext, and the version number of the wikibox *when the
+edition started*.  This is used to display a warning in case
+of concurrent edits
+</p><p>Edition of the properties of the given wikipage : title, deletion,
+moving,...
+</p><p>Edition of the CSSs for a page of a wiki. Presents the list
+of the CSS, with the possibilities to add or to remove some
+</p><p>Edition of a CSS. The first argument is the standard CSS arguments.
+The (string * int32) is the CSS and the time at which the edition
+started (as for PreviewWikitext), or None if we are about to
+start the edition
+</p><p>History of a css
+</p><p>Edition of the permissions of a css
+</p><p>Old version of a wikibox
+</p><p>Edition of the permissions of a wikibox
+</p><p>Edition of the permissions or metadata of a wiki
+</p><p>Arguments for the edition of a css. The <span class="odocwiki_inlinecode">wiki</span> argument is the
+wiki which is concerned. The <span class="odocwiki_inlinecode">string option</span> argument is <span class="odocwiki_inlinecode">None</span> if
+the CSS is for the wiki, <span class="odocwiki_inlinecode">Some page</span> if it is for the page <span class="odocwiki_inlinecode">page</span>
+of the wiki. The <span class="odocwiki_inlinecode">wikibox</span> argument contains the wikibox which holds
+the css
+</p><p>Type used to avoid wikibox loops
+</p><p>Information available to display a box
+</p><pre class="ocsforge_color odocwiki_code" id="TYPEbox_info"><span class="ocsforge_color_keyword">type</span> <span class="odocwiki_name">box_info</span> <span class="ocsforge_color_delimiter">=</span> <span class="ocsforge_color_delimiter">{</span>
+<span class="odocwiki_record"><span class="odocwiki_field"><span class="odocwiki_field_descr">  <span class="ocsforge_color_label">bi_subbox:</span> <span class="odocwiki_type"><br/>    <span class="ocsforge_color_label">sectioning:</span>bool <span class="ocsforge_color_delimiter">-&gt;</span><br/>    <span><a href=".././api/Wiki_widgets_interface.html#TYPEmenu_style">menu_style</a></span> <span class="ocsforge_color_delimiter">-&gt;</span><br/>    <span class="ocsforge_color_uid">Html5_types</span><span class="ocsforge_color_delimiter">.</span><span class="ocsforge_color_lid">flow5</span> <span class="ocsforge_color_uid">Eliom_content</span><span class="ocsforge_color_delimiter">.</span><span class="ocsforge_color_uid">Html5</span><span class="ocsforge_color_delimiter">.</span><span class="ocsforge_color_uid">F</span><span class="ocsforge_color_delimiter">.</span><span class="ocsforge_color_lid">elt</span> list option <span class="ocsforge_color_uid">Lwt</span><span class="ocsforge_color_delimiter">.</span><span class="ocsforge_color_lid">t</span></span><span class="ocsforge_color_delimiter">;</span></span></span><span class="odocwiki_field"><span class="odocwiki_field_descr">  <span class="ocsforge_color_label">bi_ancestors:</span> <span class="odocwiki_type"><span><a href=".././api/Wiki_widgets_interface.Ancestors.html#TYPEancestors">Ancestors.ancestors</a></span></span><span class="ocsforge_color_delimiter">;</span></span></span><span class="odocwiki_field"><span class="odocwiki_field_descr">  <span class="ocsforge_color_label">bi_box:</span> <span class="odocwiki_type"><span><a href=".././api/Wiki_types.html#TYPEwikibox">Wiki_types.wikibox</a></span></span><span class="ocsforge_color_delimiter">;</span></span></span><span class="odocwiki_field"><span class="odocwiki_field_descr">  <span class="ocsforge_color_label">bi_wiki:</span> <span class="odocwiki_type"><span><a href=".././api/Wiki_types.html#TYPEwiki">Wiki_types.wiki</a></span></span><span class="ocsforge_color_delimiter">;</span></span></span><span class="odocwiki_field"><span class="odocwiki_field_descr">  <span class="ocsforge_color_label">bi_page:</span> <span class="odocwiki_type"><span><a href=".././api/Wiki_types.html#TYPEwiki">Wiki_types.wiki</a></span> * string list option</span><span class="ocsforge_color_delimiter">;</span></span></span><span class="odocwiki_field"><span class="odocwiki_field_descr">  <span class="ocsforge_color_label">bi_rights:</span> <span class="odocwiki_type"><span><a href=".././api/Wiki_types.wiki_rights-c.html">Wiki_types.wiki_rights</a></span></span><span class="ocsforge_color_delimiter">;</span></span></span><span class="odocwiki_field"><span class="odocwiki_field_descr">  <span class="ocsforge_color_label">bi_menu_style:</span> <span class="odocwiki_type"><span><a href=".././api/Wiki_widgets_interface.html#TYPEmenu_style">menu_style</a></span></span><span class="ocsforge_color_delimiter">;</span></span></span><span class="odocwiki_field"><span class="odocwiki_field_descr">  <span class="ocsforge_color_label">bi_sectioning:</span> <span class="odocwiki_type">bool</span><span class="ocsforge_color_delimiter">;</span></span></span></span><span class="ocsforge_color_delimiter">}</span></pre><p>This module declares the interface for the widget that is used
+to display wikiboxes, as well a few related types and functions.
+The widget itself is defined in wiki_widgets.ml
+</p><p>Inductive type used by services to specify a special way to display a
+wikibox. See Wiki_widgets, method interactive_wikibox for details.
+</p><p>For CSS related constructors, the first argument is of type
+<span class="odocwiki_inlinecode">css_wikibox</span>, described below.
+</p><p>Edition of a wikibox containing wikitext
+</p><p>History of some wikitext
+</p><p>Old version of a wikitext. The second argument is the version number
+</p><p>Src of a wikitext (same arguments as Oldversion)
+</p><p>Preview of a wikibox containing wikitext. The second uple is the
+wikitext, and the version number of the wikibox *when the
+edition started*.  This is used to display a warning in case
+of concurrent edits
+</p><p>Edition of the properties of the given wikipage : title, deletion,
+moving,...
+</p><p>Edition of the CSSs for a page of a wiki. Presents the list
+of the CSS, with the possibilities to add or to remove some
+</p><p>Edition of a CSS. The first argument is the standard CSS arguments.
+The (string * int32) is the CSS and the time at which the edition
+started (as for PreviewWikitext), or None if we are about to
+start the edition
+</p><p>History of a css
+</p><p>Edition of the permissions of a css
+</p><p>Old version of a wikibox
+</p><p>Edition of the permissions of a wikibox
+</p><p>Edition of the permissions or metadata of a wiki
+</p><p>Arguments for the edition of a css. The <span class="odocwiki_inlinecode">wiki</span> argument is the
+wiki which is concerned. The <span class="odocwiki_inlinecode">string option</span> argument is <span class="odocwiki_inlinecode">None</span> if
+the CSS is for the wiki, <span class="odocwiki_inlinecode">Some page</span> if it is for the page <span class="odocwiki_inlinecode">page</span>
+of the wiki. The <span class="odocwiki_inlinecode">wikibox</span> argument contains the wikibox which holds
+the css
+</p><p>Type used to avoid wikibox loops
+</p><p>Information available to display a box
+</p><pre class="ocsforge_color odocwiki_code" id="VALadd_ancestor_bi"><span class="ocsforge_color_keyword">val</span> <span class="odocwiki_name">add_ancestor_bi</span> <span class="ocsforge_color_delimiter">:</span> <span class="odocwiki_type"><br/>  <span><a href=".././api/Wiki_types.html#TYPEwikibox">Wiki_types.wikibox</a></span> <span class="ocsforge_color_delimiter">-&gt;</span><br/>  <span><a href=".././api/Wiki_widgets_interface.html#TYPEbox_info">box_info</a></span> <span class="ocsforge_color_delimiter">-&gt;</span> <span><a href=".././api/Wiki_widgets_interface.html#TYPEbox_info">box_info</a></span></span></pre><p>This module declares the interface for the widget that is used
+to display wikiboxes, as well a few related types and functions.
+The widget itself is defined in wiki_widgets.ml
+</p><p>Inductive type used by services to specify a special way to display a
+wikibox. See Wiki_widgets, method interactive_wikibox for details.
+</p><p>For CSS related constructors, the first argument is of type
+<span class="odocwiki_inlinecode">css_wikibox</span>, described below.
+</p><p>Edition of a wikibox containing wikitext
+</p><p>History of some wikitext
+</p><p>Old version of a wikitext. The second argument is the version number
+</p><p>Src of a wikitext (same arguments as Oldversion)
+</p><p>Preview of a wikibox containing wikitext. The second uple is the
+wikitext, and the version number of the wikibox *when the
+edition started*.  This is used to display a warning in case
+of concurrent edits
+</p><p>Edition of the properties of the given wikipage : title, deletion,
+moving,...
+</p><p>Edition of the CSSs for a page of a wiki. Presents the list
+of the CSS, with the possibilities to add or to remove some
+</p><p>Edition of a CSS. The first argument is the standard CSS arguments.
+The (string * int32) is the CSS and the time at which the edition
+started (as for PreviewWikitext), or None if we are about to
+start the edition
+</p><p>History of a css
+</p><p>Edition of the permissions of a css
+</p><p>Old version of a wikibox
+</p><p>Edition of the permissions of a wikibox
+</p><p>Edition of the permissions or metadata of a wiki
+</p><p>Arguments for the edition of a css. The <span class="odocwiki_inlinecode">wiki</span> argument is the
+wiki which is concerned. The <span class="odocwiki_inlinecode">string option</span> argument is <span class="odocwiki_inlinecode">None</span> if
+the CSS is for the wiki, <span class="odocwiki_inlinecode">Some page</span> if it is for the page <span class="odocwiki_inlinecode">page</span>
+of the wiki. The <span class="odocwiki_inlinecode">wikibox</span> argument contains the wikibox which holds
+the css
+</p><p>Type used to avoid wikibox loops
+</p><p>Information available to display a box
+</p><pre class="ocsforge_color odocwiki_code" id="TYPEpage_displayable"><span class="ocsforge_color_keyword">type</span> <span class="odocwiki_name">page_displayable</span> <span class="ocsforge_color_delimiter">=</span> <span class="odocwiki_variants"><span class="odocwiki_variant"><span class="odocwiki_variant_constr"><span class="ocsforge_color_keyword"> |</span> <span class="ocsforge_color_uid">Page_displayable</span></span></span><span class="odocwiki_variant"><span class="odocwiki_variant_constr"><span class="ocsforge_color_keyword"> |</span> <span class="ocsforge_color_uid">Page_404</span></span></span><span class="odocwiki_variant"><span class="odocwiki_variant_constr"><span class="ocsforge_color_keyword"> |</span> <span class="ocsforge_color_uid">Page_403</span></span></span></span></pre><div class="odocwiki_info"><p>Return code, used for conditions of the form &lt;&lt;cond http_code= &gt;&gt;</p></div><p>This module declares the interface for the widget that is used
+to display wikiboxes, as well a few related types and functions.
+The widget itself is defined in wiki_widgets.ml
+</p><p>Inductive type used by services to specify a special way to display a
+wikibox. See Wiki_widgets, method interactive_wikibox for details.
+</p><p>For CSS related constructors, the first argument is of type
+<span class="odocwiki_inlinecode">css_wikibox</span>, described below.
+</p><p>Edition of a wikibox containing wikitext
+</p><p>History of some wikitext
+</p><p>Old version of a wikitext. The second argument is the version number
+</p><p>Src of a wikitext (same arguments as Oldversion)
+</p><p>Preview of a wikibox containing wikitext. The second uple is the
+wikitext, and the version number of the wikibox *when the
+edition started*.  This is used to display a warning in case
+of concurrent edits
+</p><p>Edition of the properties of the given wikipage : title, deletion,
+moving,...
+</p><p>Edition of the CSSs for a page of a wiki. Presents the list
+of the CSS, with the possibilities to add or to remove some
+</p><p>Edition of a CSS. The first argument is the standard CSS arguments.
+The (string * int32) is the CSS and the time at which the edition
+started (as for PreviewWikitext), or None if we are about to
+start the edition
+</p><p>History of a css
+</p><p>Edition of the permissions of a css
+</p><p>Old version of a wikibox
+</p><p>Edition of the permissions of a wikibox
+</p><p>Edition of the permissions or metadata of a wiki
+</p><p>Arguments for the edition of a css. The <span class="odocwiki_inlinecode">wiki</span> argument is the
+wiki which is concerned. The <span class="odocwiki_inlinecode">string option</span> argument is <span class="odocwiki_inlinecode">None</span> if
+the CSS is for the wiki, <span class="odocwiki_inlinecode">Some page</span> if it is for the page <span class="odocwiki_inlinecode">page</span>
+of the wiki. The <span class="odocwiki_inlinecode">wikibox</span> argument contains the wikibox which holds
+the css
+</p><p>Type used to avoid wikibox loops
+</p><p>Information available to display a box
+</p><p>Return code, used for conditions of the form &lt;&lt;cond http_code= &gt;&gt;
+</p><pre class="ocsforge_color odocwiki_code" id="VALpage_displayable_eref"><span class="ocsforge_color_keyword">val</span> <span class="odocwiki_name">page_displayable_eref</span> <span class="ocsforge_color_delimiter">:</span> <span class="odocwiki_type"><span><a href=".././api/Wiki_widgets_interface.html#TYPEpage_displayable">page_displayable</a></span> <span class="ocsforge_color_uid">Eliom_reference</span><span class="ocsforge_color_delimiter">.</span><span class="ocsforge_color_lid">eref</span></span></pre><p>This module declares the interface for the widget that is used
+to display wikiboxes, as well a few related types and functions.
+The widget itself is defined in wiki_widgets.ml
+</p><p>Inductive type used by services to specify a special way to display a
+wikibox. See Wiki_widgets, method interactive_wikibox for details.
+</p><p>For CSS related constructors, the first argument is of type
+<span class="odocwiki_inlinecode">css_wikibox</span>, described below.
+</p><p>Edition of a wikibox containing wikitext
+</p><p>History of some wikitext
+</p><p>Old version of a wikitext. The second argument is the version number
+</p><p>Src of a wikitext (same arguments as Oldversion)
+</p><p>Preview of a wikibox containing wikitext. The second uple is the
+wikitext, and the version number of the wikibox *when the
+edition started*.  This is used to display a warning in case
+of concurrent edits
+</p><p>Edition of the properties of the given wikipage : title, deletion,
+moving,...
+</p><p>Edition of the CSSs for a page of a wiki. Presents the list
+of the CSS, with the possibilities to add or to remove some
+</p><p>Edition of a CSS. The first argument is the standard CSS arguments.
+The (string * int32) is the CSS and the time at which the edition
+started (as for PreviewWikitext), or None if we are about to
+start the edition
+</p><p>History of a css
+</p><p>Edition of the permissions of a css
+</p><p>Old version of a wikibox
+</p><p>Edition of the permissions of a wikibox
+</p><p>Edition of the permissions or metadata of a wiki
+</p><p>Arguments for the edition of a css. The <span class="odocwiki_inlinecode">wiki</span> argument is the
+wiki which is concerned. The <span class="odocwiki_inlinecode">string option</span> argument is <span class="odocwiki_inlinecode">None</span> if
+the CSS is for the wiki, <span class="odocwiki_inlinecode">Some page</span> if it is for the page <span class="odocwiki_inlinecode">page</span>
+of the wiki. The <span class="odocwiki_inlinecode">wikibox</span> argument contains the wikibox which holds
+the css
+</p><p>Type used to avoid wikibox loops
+</p><p>Information available to display a box
+</p><p>Return code, used for conditions of the form &lt;&lt;cond http_code= &gt;&gt;
+</p><pre class="ocsforge_color odocwiki_code" id="VALwikisyntax_help_name"><span class="ocsforge_color_keyword">val</span> <span class="odocwiki_name">wikisyntax_help_name</span> <span class="ocsforge_color_delimiter">:</span> <span class="odocwiki_type">string</span></pre><p>This module declares the interface for the widget that is used
+to display wikiboxes, as well a few related types and functions.
+The widget itself is defined in wiki_widgets.ml
+</p><p>Inductive type used by services to specify a special way to display a
+wikibox. See Wiki_widgets, method interactive_wikibox for details.
+</p><p>For CSS related constructors, the first argument is of type
+<span class="odocwiki_inlinecode">css_wikibox</span>, described below.
+</p><p>Edition of a wikibox containing wikitext
+</p><p>History of some wikitext
+</p><p>Old version of a wikitext. The second argument is the version number
+</p><p>Src of a wikitext (same arguments as Oldversion)
+</p><p>Preview of a wikibox containing wikitext. The second uple is the
+wikitext, and the version number of the wikibox *when the
+edition started*.  This is used to display a warning in case
+of concurrent edits
+</p><p>Edition of the properties of the given wikipage : title, deletion,
+moving,...
+</p><p>Edition of the CSSs for a page of a wiki. Presents the list
+of the CSS, with the possibilities to add or to remove some
+</p><p>Edition of a CSS. The first argument is the standard CSS arguments.
+The (string * int32) is the CSS and the time at which the edition
+started (as for PreviewWikitext), or None if we are about to
+start the edition
+</p><p>History of a css
+</p><p>Edition of the permissions of a css
+</p><p>Old version of a wikibox
+</p><p>Edition of the permissions of a wikibox
+</p><p>Edition of the permissions or metadata of a wiki
+</p><p>Arguments for the edition of a css. The <span class="odocwiki_inlinecode">wiki</span> argument is the
+wiki which is concerned. The <span class="odocwiki_inlinecode">string option</span> argument is <span class="odocwiki_inlinecode">None</span> if
+the CSS is for the wiki, <span class="odocwiki_inlinecode">Some page</span> if it is for the page <span class="odocwiki_inlinecode">page</span>
+of the wiki. The <span class="odocwiki_inlinecode">wikibox</span> argument contains the wikibox which holds
+the css
+</p><p>Type used to avoid wikibox loops
+</p><p>Information available to display a box
+</p><p>Return code, used for conditions of the form &lt;&lt;cond http_code= &gt;&gt;
+</p><pre class="ocsforge_color odocwiki_code" id="TYPEclasses"><span class="ocsforge_color_keyword">type</span> <span class="odocwiki_name">classes</span> <span class="ocsforge_color_delimiter">=</span> <span class="odocwiki_type">string list</span></pre><p>This module declares the interface for the widget that is used
+to display wikiboxes, as well a few related types and functions.
+The widget itself is defined in wiki_widgets.ml
+</p><p>Inductive type used by services to specify a special way to display a
+wikibox. See Wiki_widgets, method interactive_wikibox for details.
+</p><p>For CSS related constructors, the first argument is of type
+<span class="odocwiki_inlinecode">css_wikibox</span>, described below.
+</p><p>Edition of a wikibox containing wikitext
+</p><p>History of some wikitext
+</p><p>Old version of a wikitext. The second argument is the version number
+</p><p>Src of a wikitext (same arguments as Oldversion)
+</p><p>Preview of a wikibox containing wikitext. The second uple is the
+wikitext, and the version number of the wikibox *when the
+edition started*.  This is used to display a warning in case
+of concurrent edits
+</p><p>Edition of the properties of the given wikipage : title, deletion,
+moving,...
+</p><p>Edition of the CSSs for a page of a wiki. Presents the list
+of the CSS, with the possibilities to add or to remove some
+</p><p>Edition of a CSS. The first argument is the standard CSS arguments.
+The (string * int32) is the CSS and the time at which the edition
+started (as for PreviewWikitext), or None if we are about to
+start the edition
+</p><p>History of a css
+</p><p>Edition of the permissions of a css
+</p><p>Old version of a wikibox
+</p><p>Edition of the permissions of a wikibox
+</p><p>Edition of the permissions or metadata of a wiki
+</p><p>Arguments for the edition of a css. The <span class="odocwiki_inlinecode">wiki</span> argument is the
+wiki which is concerned. The <span class="odocwiki_inlinecode">string option</span> argument is <span class="odocwiki_inlinecode">None</span> if
+the CSS is for the wiki, <span class="odocwiki_inlinecode">Some page</span> if it is for the page <span class="odocwiki_inlinecode">page</span>
+of the wiki. The <span class="odocwiki_inlinecode">wikibox</span> argument contains the wikibox which holds
+the css
+</p><p>Type used to avoid wikibox loops
+</p><p>Information available to display a box
+</p><p>Return code, used for conditions of the form &lt;&lt;cond http_code= &gt;&gt;
+</p><pre class="ocsforge_color odocwiki_code"><span id="TYPEwikibox_aux"><span class="ocsforge_color_keyword">class type</span> <span><a href=".././api/Wiki_widgets_interface.wikibox_aux-c.html">wikibox_aux</a></span></span> <span class="ocsforge_color_delimiter">=</span> <span class="ocsforge_color_keyword">object</span><span><a href=".././api/Wiki_widgets_interface.wikibox_aux-c.html">..</a></span><span class="ocsforge_color_keyword">end</span></pre><div class="odocwiki_info"><p>A class containing a few auxiliary methods related to wikis</p></div><p>This module declares the interface for the widget that is used
+to display wikiboxes, as well a few related types and functions.
+The widget itself is defined in wiki_widgets.ml
+</p><p>Inductive type used by services to specify a special way to display a
+wikibox. See Wiki_widgets, method interactive_wikibox for details.
+</p><p>For CSS related constructors, the first argument is of type
+<span class="odocwiki_inlinecode">css_wikibox</span>, described below.
+</p><p>Edition of a wikibox containing wikitext
+</p><p>History of some wikitext
+</p><p>Old version of a wikitext. The second argument is the version number
+</p><p>Src of a wikitext (same arguments as Oldversion)
+</p><p>Preview of a wikibox containing wikitext. The second uple is the
+wikitext, and the version number of the wikibox *when the
+edition started*.  This is used to display a warning in case
+of concurrent edits
+</p><p>Edition of the properties of the given wikipage : title, deletion,
+moving,...
+</p><p>Edition of the CSSs for a page of a wiki. Presents the list
+of the CSS, with the possibilities to add or to remove some
+</p><p>Edition of a CSS. The first argument is the standard CSS arguments.
+The (string * int32) is the CSS and the time at which the edition
+started (as for PreviewWikitext), or None if we are about to
+start the edition
+</p><p>History of a css
+</p><p>Edition of the permissions of a css
+</p><p>Old version of a wikibox
+</p><p>Edition of the permissions of a wikibox
+</p><p>Edition of the permissions or metadata of a wiki
+</p><p>Arguments for the edition of a css. The <span class="odocwiki_inlinecode">wiki</span> argument is the
+wiki which is concerned. The <span class="odocwiki_inlinecode">string option</span> argument is <span class="odocwiki_inlinecode">None</span> if
+the CSS is for the wiki, <span class="odocwiki_inlinecode">Some page</span> if it is for the page <span class="odocwiki_inlinecode">page</span>
+of the wiki. The <span class="odocwiki_inlinecode">wikibox</span> argument contains the wikibox which holds
+the css
+</p><p>Type used to avoid wikibox loops
+</p><p>Information available to display a box
+</p><p>Return code, used for conditions of the form &lt;&lt;cond http_code= &gt;&gt;
+</p><p>A class containing a few auxiliary methods related to wikis
+</p><p>Displays some xhtml elements inside a &lt;div&gt;
+</p><p>Pretty-print the content of a wikibox
+</p><p>Display a wikibox without pretty-printing
+</p><p>If error has is supposed to be displayed for the wikibox <span class="odocwiki_inlinecode">wb</span>,
+displays this error and wraps it together with the xml argument in a
+div tag. Otherwise, displays only the xml argument
+</p><pre class="ocsforge_color odocwiki_code"><span id="TYPEfrozen_wikibox"><span class="ocsforge_color_keyword">class type</span> <span><a href=".././api/Wiki_widgets_interface.frozen_wikibox-c.html">frozen_wikibox</a></span></span> <span class="ocsforge_color_delimiter">=</span> <span class="ocsforge_color_keyword">object</span><span><a href=".././api/Wiki_widgets_interface.frozen_wikibox-c.html">..</a></span><span class="ocsforge_color_keyword">end</span></pre><div class="odocwiki_info"><p>A widget displaying wikiboxes with which the user cannot interact</p></div><p>This module declares the interface for the widget that is used
+to display wikiboxes, as well a few related types and functions.
+The widget itself is defined in wiki_widgets.ml
+</p><p>Inductive type used by services to specify a special way to display a
+wikibox. See Wiki_widgets, method interactive_wikibox for details.
+</p><p>For CSS related constructors, the first argument is of type
+<span class="odocwiki_inlinecode">css_wikibox</span>, described below.
+</p><p>Edition of a wikibox containing wikitext
+</p><p>History of some wikitext
+</p><p>Old version of a wikitext. The second argument is the version number
+</p><p>Src of a wikitext (same arguments as Oldversion)
+</p><p>Preview of a wikibox containing wikitext. The second uple is the
+wikitext, and the version number of the wikibox *when the
+edition started*.  This is used to display a warning in case
+of concurrent edits
+</p><p>Edition of the properties of the given wikipage : title, deletion,
+moving,...
+</p><p>Edition of the CSSs for a page of a wiki. Presents the list
+of the CSS, with the possibilities to add or to remove some
+</p><p>Edition of a CSS. The first argument is the standard CSS arguments.
+The (string * int32) is the CSS and the time at which the edition
+started (as for PreviewWikitext), or None if we are about to
+start the edition
+</p><p>History of a css
+</p><p>Edition of the permissions of a css
+</p><p>Old version of a wikibox
+</p><p>Edition of the permissions of a wikibox
+</p><p>Edition of the permissions or metadata of a wiki
+</p><p>Arguments for the edition of a css. The <span class="odocwiki_inlinecode">wiki</span> argument is the
+wiki which is concerned. The <span class="odocwiki_inlinecode">string option</span> argument is <span class="odocwiki_inlinecode">None</span> if
+the CSS is for the wiki, <span class="odocwiki_inlinecode">Some page</span> if it is for the page <span class="odocwiki_inlinecode">page</span>
+of the wiki. The <span class="odocwiki_inlinecode">wikibox</span> argument contains the wikibox which holds
+the css
+</p><p>Type used to avoid wikibox loops
+</p><p>Information available to display a box
+</p><p>Return code, used for conditions of the form &lt;&lt;cond http_code= &gt;&gt;
+</p><p>A class containing a few auxiliary methods related to wikis
+</p><p>Displays some xhtml elements inside a &lt;div&gt;
+</p><p>Pretty-print the content of a wikibox
+</p><p>Display a wikibox without pretty-printing
+</p><p>If error has is supposed to be displayed for the wikibox <span class="odocwiki_inlinecode">wb</span>,
+displays this error and wraps it together with the xml argument in a
+div tag. Otherwise, displays only the xml argument
+</p><p>A widget displaying wikiboxes with which the user cannot interact
+</p><p>Css class for noneditable wikiboxes
+</p><pre class="ocsforge_color odocwiki_code" id="TYPEmenu_item"><span class="ocsforge_color_keyword">type</span> <span class="odocwiki_name">menu_item</span> <span class="ocsforge_color_delimiter">=</span> <span class="odocwiki_variants"><span class="odocwiki_variant"><span class="odocwiki_variant_constr"><span class="ocsforge_color_keyword"> |</span> <span class="ocsforge_color_uid">Menu_Edit</span></span></span><span class="odocwiki_variant"><span class="odocwiki_variant_constr"><span class="ocsforge_color_keyword"> |</span> <span class="ocsforge_color_uid">Menu_EditWikiboxPerms</span></span></span><span class="odocwiki_variant"><span class="odocwiki_variant_constr"><span class="ocsforge_color_keyword"> |</span> <span class="ocsforge_color_uid">Menu_EditWikiOptions</span></span></span><span class="odocwiki_variant"><span class="odocwiki_variant_constr"><span class="ocsforge_color_keyword"> |</span> <span class="ocsforge_color_uid">Menu_History</span></span></span><span class="odocwiki_variant"><span class="odocwiki_variant_constr"><span class="ocsforge_color_keyword"> |</span> <span class="ocsforge_color_uid">Menu_View</span></span></span><span class="odocwiki_variant"><span class="odocwiki_variant_constr"><span class="ocsforge_color_keyword"> |</span> <span class="ocsforge_color_uid">Menu_Css</span></span></span><span class="odocwiki_variant"><span class="odocwiki_variant_constr"><span class="ocsforge_color_keyword"> |</span> <span class="ocsforge_color_uid">Menu_WikipageProperties</span></span></span></span></pre><div class="odocwiki_info"><p>The various tabs on top of an interactive wikibox</p></div><p>This module declares the interface for the widget that is used
+to display wikiboxes, as well a few related types and functions.
+The widget itself is defined in wiki_widgets.ml
+</p><p>Inductive type used by services to specify a special way to display a
+wikibox. See Wiki_widgets, method interactive_wikibox for details.
+</p><p>For CSS related constructors, the first argument is of type
+<span class="odocwiki_inlinecode">css_wikibox</span>, described below.
+</p><p>Edition of a wikibox containing wikitext
+</p><p>History of some wikitext
+</p><p>Old version of a wikitext. The second argument is the version number
+</p><p>Src of a wikitext (same arguments as Oldversion)
+</p><p>Preview of a wikibox containing wikitext. The second uple is the
+wikitext, and the version number of the wikibox *when the
+edition started*.  This is used to display a warning in case
+of concurrent edits
+</p><p>Edition of the properties of the given wikipage : title, deletion,
+moving,...
+</p><p>Edition of the CSSs for a page of a wiki. Presents the list
+of the CSS, with the possibilities to add or to remove some
+</p><p>Edition of a CSS. The first argument is the standard CSS arguments.
+The (string * int32) is the CSS and the time at which the edition
+started (as for PreviewWikitext), or None if we are about to
+start the edition
+</p><p>History of a css
+</p><p>Edition of the permissions of a css
+</p><p>Old version of a wikibox
+</p><p>Edition of the permissions of a wikibox
+</p><p>Edition of the permissions or metadata of a wiki
+</p><p>Arguments for the edition of a css. The <span class="odocwiki_inlinecode">wiki</span> argument is the
+wiki which is concerned. The <span class="odocwiki_inlinecode">string option</span> argument is <span class="odocwiki_inlinecode">None</span> if
+the CSS is for the wiki, <span class="odocwiki_inlinecode">Some page</span> if it is for the page <span class="odocwiki_inlinecode">page</span>
+of the wiki. The <span class="odocwiki_inlinecode">wikibox</span> argument contains the wikibox which holds
+the css
+</p><p>Type used to avoid wikibox loops
+</p><p>Information available to display a box
+</p><p>Return code, used for conditions of the form &lt;&lt;cond http_code= &gt;&gt;
+</p><p>A class containing a few auxiliary methods related to wikis
+</p><p>Displays some xhtml elements inside a &lt;div&gt;
+</p><p>Pretty-print the content of a wikibox
+</p><p>Display a wikibox without pretty-printing
+</p><p>If error has is supposed to be displayed for the wikibox <span class="odocwiki_inlinecode">wb</span>,
+displays this error and wraps it together with the xml argument in a
+div tag. Otherwise, displays only the xml argument
+</p><p>A widget displaying wikiboxes with which the user cannot interact
+</p><p>Css class for noneditable wikiboxes
+</p><p>The various tabs on top of an interactive wikibox
+</p><pre class="ocsforge_color odocwiki_code" id="TYPEspecial_box"><span class="ocsforge_color_keyword">type</span> <span class="odocwiki_name">special_box</span> <span class="ocsforge_color_delimiter">=</span> <span class="odocwiki_variants"><span class="odocwiki_variant"><span class="odocwiki_variant_constr"><span class="ocsforge_color_keyword"> |</span> <span class="ocsforge_color_uid">RegularBox</span></span></span><span class="odocwiki_variant"><span class="odocwiki_variant_constr"><span class="ocsforge_color_keyword"> |</span> <span class="ocsforge_color_uid">WikiContainerBox</span> <span class="ocsforge_color_keyword">of</span> <span class="odocwiki_type"><span><a href=".././api/Wiki_types.html#TYPEwiki">Wiki_types.wiki</a></span></span></span></span><span class="odocwiki_variant"><span class="odocwiki_variant_constr"><span class="ocsforge_color_keyword"> |</span> <span class="ocsforge_color_uid">WikiPageBox</span> <span class="ocsforge_color_keyword">of</span> <span class="odocwiki_type"><span><a href=".././api/Wiki_types.html#TYPEwikipage">Wiki_types.wikipage</a></span></span></span></span></span></pre><div class="odocwiki_info"><p>Argument passed to the function building the interactive menu on top
+of a wikibox. Regular boxes receive no additional treatment. WikiContainer
+boxes are for boxes that are the container of a wiki, and receive buttons
+to edit the permissions or the css of the wiki. WikiPage boxes are
+for boxes that are wikipages main content, and receive button to edit
+the css or the permissions of the wikipages</p></div><pre class="ocsforge_color odocwiki_code"><span class="ocsforge_color_keyword">module</span> <span><a href=".././api/Wiki_widgets_interface.Json_special_box.html">Json_special_box</a></span> <span class="ocsforge_color_delimiter">:</span> <span class="odocwiki_type"><span class="ocsforge_color_uid">Deriving_Json.Defaults</span></span><span class="ocsforge_color_delimiter">(</span><span class="ocsforge_color_keyword">sig</span><span class="odocwiki_sig_block"><span class="ocsforge_color odocwiki_code" id="TYPEa">  <span class="ocsforge_color_keyword">type</span> <span class="odocwiki_name">a</span> <span class="ocsforge_color_delimiter">=</span> <span class="odocwiki_type"><span><a href=".././api/Wiki_widgets_interface.html#TYPEspecial_box">Wiki_widgets_interface.special_box</a></span></span></span><span class="ocsforge_color odocwiki_code" id="VALwrite">  <span class="ocsforge_color_keyword">val</span> <span class="odocwiki_name">write</span> <span class="ocsforge_color_delimiter">:</span> <span class="odocwiki_type"><span class="ocsforge_color_uid">Buffer</span><span class="ocsforge_color_delimiter">.</span><span class="ocsforge_color_lid">t</span> <span class="ocsforge_color_delimiter">-&gt;</span> <span><a href=".././api/Wiki_widgets_interface.html#TYPEspecial_box">Wiki_widgets_interface.special_box</a></span> <span class="ocsforge_color_delimiter">-&gt;</span> unit</span></span><span class="ocsforge_color odocwiki_code" id="VALmatch_variant">  <span class="ocsforge_color_keyword">val</span> <span class="odocwiki_name">match_variant</span> <span class="ocsforge_color_delimiter">:</span> <span class="odocwiki_type">'a <span class="ocsforge_color_delimiter">-&gt;</span> 'b</span></span><span class="ocsforge_color odocwiki_code" id="VALread_variant">  <span class="ocsforge_color_keyword">val</span> <span class="odocwiki_name">read_variant</span> <span class="ocsforge_color_delimiter">:</span> <span class="odocwiki_type">'a <span class="ocsforge_color_delimiter">-&gt;</span> 'b <span class="ocsforge_color_delimiter">-&gt;</span> 'c</span></span><span class="ocsforge_color odocwiki_code" id="VALread">  <span class="ocsforge_color_keyword">val</span> <span class="odocwiki_name">read</span> <span class="ocsforge_color_delimiter">:</span> <span class="odocwiki_type"><span class="ocsforge_color_uid">Deriving_Json_lexer</span><span class="ocsforge_color_delimiter">.</span><span class="ocsforge_color_lid">lexbuf</span> <span class="ocsforge_color_delimiter">-&gt;</span> <span><a href=".././api/Wiki_widgets_interface.html#TYPEspecial_box">Wiki_widgets_interface.special_box</a></span></span></span></span><span class="ocsforge_color_keyword">end</span><span class="ocsforge_color_delimiter">)</span></pre><p>This module declares the interface for the widget that is used
+to display wikiboxes, as well a few related types and functions.
+The widget itself is defined in wiki_widgets.ml
+</p><p>Inductive type used by services to specify a special way to display a
+wikibox. See Wiki_widgets, method interactive_wikibox for details.
+</p><p>For CSS related constructors, the first argument is of type
+<span class="odocwiki_inlinecode">css_wikibox</span>, described below.
+</p><p>Edition of a wikibox containing wikitext
+</p><p>History of some wikitext
+</p><p>Old version of a wikitext. The second argument is the version number
+</p><p>Src of a wikitext (same arguments as Oldversion)
+</p><p>Preview of a wikibox containing wikitext. The second uple is the
+wikitext, and the version number of the wikibox *when the
+edition started*.  This is used to display a warning in case
+of concurrent edits
+</p><p>Edition of the properties of the given wikipage : title, deletion,
+moving,...
+</p><p>Edition of the CSSs for a page of a wiki. Presents the list
+of the CSS, with the possibilities to add or to remove some
+</p><p>Edition of a CSS. The first argument is the standard CSS arguments.
+The (string * int32) is the CSS and the time at which the edition
+started (as for PreviewWikitext), or None if we are about to
+start the edition
+</p><p>History of a css
+</p><p>Edition of the permissions of a css
+</p><p>Old version of a wikibox
+</p><p>Edition of the permissions of a wikibox
+</p><p>Edition of the permissions or metadata of a wiki
+</p><p>Arguments for the edition of a css. The <span class="odocwiki_inlinecode">wiki</span> argument is the
+wiki which is concerned. The <span class="odocwiki_inlinecode">string option</span> argument is <span class="odocwiki_inlinecode">None</span> if
+the CSS is for the wiki, <span class="odocwiki_inlinecode">Some page</span> if it is for the page <span class="odocwiki_inlinecode">page</span>
+of the wiki. The <span class="odocwiki_inlinecode">wikibox</span> argument contains the wikibox which holds
+the css
+</p><p>Type used to avoid wikibox loops
+</p><p>Information available to display a box
+</p><p>Return code, used for conditions of the form &lt;&lt;cond http_code= &gt;&gt;
+</p><p>A class containing a few auxiliary methods related to wikis
+</p><p>Displays some xhtml elements inside a &lt;div&gt;
+</p><p>Pretty-print the content of a wikibox
+</p><p>Display a wikibox without pretty-printing
+</p><p>If error has is supposed to be displayed for the wikibox <span class="odocwiki_inlinecode">wb</span>,
+displays this error and wraps it together with the xml argument in a
+div tag. Otherwise, displays only the xml argument
+</p><p>A widget displaying wikiboxes with which the user cannot interact
+</p><p>Css class for noneditable wikiboxes
+</p><p>The various tabs on top of an interactive wikibox
+</p><p>Argument passed to the function building the interactive menu on top
+of a wikibox. Regular boxes receive no additional treatment. WikiContainer
+boxes are for boxes that are the container of a wiki, and receive buttons
+to edit the permissions or the css of the wiki. WikiPage boxes are
+for boxes that are wikipages main content, and receive button to edit
+the css or the permissions of the wikipages
+</p><pre class="ocsforge_color odocwiki_code"><span id="TYPEinteractive_wikibox"><span class="ocsforge_color_keyword">class type</span> <span class="ocsforge_color_keyword">virtual</span> <span><a href=".././api/Wiki_widgets_interface.interactive_wikibox-c.html">interactive_wikibox</a></span></span> <span class="ocsforge_color_delimiter">=</span> <span class="ocsforge_color_keyword">object</span><span><a href=".././api/Wiki_widgets_interface.interactive_wikibox-c.html">..</a></span><span class="ocsforge_color_keyword">end</span></pre><div class="odocwiki_info"><p>A wikibox with which the user can interact</p></div><p>This module declares the interface for the widget that is used
+to display wikiboxes, as well a few related types and functions.
+The widget itself is defined in wiki_widgets.ml
+</p><p>Inductive type used by services to specify a special way to display a
+wikibox. See Wiki_widgets, method interactive_wikibox for details.
+</p><p>For CSS related constructors, the first argument is of type
+<span class="odocwiki_inlinecode">css_wikibox</span>, described below.
+</p><p>Edition of a wikibox containing wikitext
+</p><p>History of some wikitext
+</p><p>Old version of a wikitext. The second argument is the version number
+</p><p>Src of a wikitext (same arguments as Oldversion)
+</p><p>Preview of a wikibox containing wikitext. The second uple is the
+wikitext, and the version number of the wikibox *when the
+edition started*.  This is used to display a warning in case
+of concurrent edits
+</p><p>Edition of the properties of the given wikipage : title, deletion,
+moving,...
+</p><p>Edition of the CSSs for a page of a wiki. Presents the list
+of the CSS, with the possibilities to add or to remove some
+</p><p>Edition of a CSS. The first argument is the standard CSS arguments.
+The (string * int32) is the CSS and the time at which the edition
+started (as for PreviewWikitext), or None if we are about to
+start the edition
+</p><p>History of a css
+</p><p>Edition of the permissions of a css
+</p><p>Old version of a wikibox
+</p><p>Edition of the permissions of a wikibox
+</p><p>Edition of the permissions or metadata of a wiki
+</p><p>Arguments for the edition of a css. The <span class="odocwiki_inlinecode">wiki</span> argument is the
+wiki which is concerned. The <span class="odocwiki_inlinecode">string option</span> argument is <span class="odocwiki_inlinecode">None</span> if
+the CSS is for the wiki, <span class="odocwiki_inlinecode">Some page</span> if it is for the page <span class="odocwiki_inlinecode">page</span>
+of the wiki. The <span class="odocwiki_inlinecode">wikibox</span> argument contains the wikibox which holds
+the css
+</p><p>Type used to avoid wikibox loops
+</p><p>Information available to display a box
+</p><p>Return code, used for conditions of the form &lt;&lt;cond http_code= &gt;&gt;
+</p><p>A class containing a few auxiliary methods related to wikis
+</p><p>Displays some xhtml elements inside a &lt;div&gt;
+</p><p>Pretty-print the content of a wikibox
+</p><p>Display a wikibox without pretty-printing
+</p><p>If error has is supposed to be displayed for the wikibox <span class="odocwiki_inlinecode">wb</span>,
+displays this error and wraps it together with the xml argument in a
+div tag. Otherwise, displays only the xml argument
+</p><p>A widget displaying wikiboxes with which the user cannot interact
+</p><p>Css class for noneditable wikiboxes
+</p><p>The various tabs on top of an interactive wikibox
+</p><p>Argument passed to the function building the interactive menu on top
+of a wikibox. Regular boxes receive no additional treatment. WikiContainer
+boxes are for boxes that are the container of a wiki, and receive buttons
+to edit the permissions or the css of the wiki. WikiPage boxes are
+for boxes that are wikipages main content, and receive button to edit
+the css or the permissions of the wikipages
+</p><p>A wikibox with which the user can interact
+</p><p>Displays the edition form for a wikibox <span class="odocwiki_inlinecode">wb</span> containing wikitext.
+The flag <span class="odocwiki_inlinecode">previewonly</span> governs the display of a button &quot;save&quot;. If
+<span class="odocwiki_inlinecode">previewonly</span> is true, <span class="odocwiki_inlinecode">wb</span> is only previewed, and cannot saved
+immediately.
+</p><p>The argument <span class="odocwiki_inlinecode">content</span> is the text that is displayed in the edit form,
+or <span class="odocwiki_inlinecode">None</span> if for example the box has been deleted and the user has not
+entered  new text yet.
+</p><p>The argument <span class="odocwiki_inlinecode">version</span> is the version of the wikibox when the user
+started edited the box, and is used to check for concurrent
+modifications.
+</p><p>content
+</p><p>version
+</p><p>Same as <span class="odocwiki_inlinecode">display_wikitext_edit_form</span>, but with an help for the
+syntax of the wiki
+</p><p>Displays the edition form for the wikibox <span class="odocwiki_inlinecode">wbcss</span>, which is supposed
+to contain a CSS. The form is supposed to be displayed instead of the
+wikibox <span class="odocwiki_inlinecode">wb</span>. (This information is used to create menu buttons.)
+The argument <span class="odocwiki_inlinecode">wikipage</span> is supposed to be such that
+the css associated to the wikipage is in <span class="odocwiki_inlinecode">wbcss</span>. The arguments
+<span class="odocwiki_inlinecode">version</span> and <span class="odocwiki_inlinecode">content</span> are as in <span class="odocwiki_inlinecode">display_wikitext_edit_form</span>.
+</p><p>content
+</p><p>version
+</p><p>Display a form permitting to edit the permissions of the given wiki.
+The wikibox argument is the wikibox which is overridden if an error
+occurs
+</p><p>Display a form to edit the permissions of the given wikibox
+</p><p>Display the history of the wikibox <span class="odocwiki_inlinecode">wb</span>, which is supposed to contain
+wikitext
+</p><p>Display the history of the wikibox <span class="odocwiki_inlinecode">wb</span>, which is supposed to contain
+a CSS. See <span class="odocwiki_inlinecode">display_css_edit_form</span> for the arguments <span class="odocwiki_inlinecode">wbcss</span> and
+<span class="odocwiki_inlinecode">wikipage</span>.
+</p><p>Adds an interactive menu and a title on top of <span class="odocwiki_inlinecode">content</span>. The result
+of displaying <span class="odocwiki_inlinecode">wb</span> is supposed to be the argument <span class="odocwiki_inlinecode">content</span>. The argument
+<span class="odocwiki_inlinecode">active_item</span> is used to know which tab to highlight in the menu.
+The argument <span class="odocwiki_inlinecode">special_box</span> is used to specify whether we should add
+special button (see the documentation for <span class="odocwiki_inlinecode">special_box</span>.
+The <span class="odocwiki_inlinecode">classes</span> argument must contain a list of css classes that will be
+added to the outermost xhtml element.
+</p><p>content:
+</p><p>Display the wikibox <span class="odocwiki_inlinecode">wb</span> as an interactive wikibox. We return the
+xhtml code, and the http return code. The options <span class="odocwiki_inlinecode">classe</span> and
+<span class="odocwiki_inlinecode">cssmenu</span> are the same as in <span class="odocwiki_inlinecode">display_menu_box</span>.
+</p><p>wb:
+</p><p>Same as <span class="odocwiki_inlinecode">interactive_wikibox_aux</span>, except that the http error
+code is not returned.
+</p><p>wb:
+</p><p>Display the wikibox <span class="odocwiki_inlinecode">wb_loc</span>, but entirely overrides the content
+according to the argument <span class="odocwiki_inlinecode">override</span>. The argument <span class="odocwiki_inlinecode">wb_loc</span> is
+only used to build the interactive menu.
+</p><p>Returns the css headers for one wiki and optionally one page.
+</p><p>Adds the container of the wiki around some content. The content
+is given by the function <span class="odocwiki_inlinecode">gen_box</span>, which takes as argument
+the default style of the menus for the wikiboxes, and returns
+the html code for the content, an option indicating whether
+the content originates from a wikibox (and which one), an html
+error code, and the title for the whole page. The page argument
+is the url of the page wrt. the root of the wiki. For technical
+reasons it must be specified as a string, and as the original
+path (ie. string list). The function returns the entire
+html page, and the http error code returned by <span class="odocwiki_inlinecode">gen_box</span>.
+</p><p>Displaying of the content of an entire wikipage, ie. both
+the container (as per <span class="odocwiki_inlinecode">display_container</span>) and the content
+of the wikibox that corresponds to the wikipage.
+</p><p>Displaying of the content of an template wikipage, with <span class="odocwiki_inlinecode">file</span>
+as subbox.
+</p><p>Display of the list of all the wikis, as well as of some links to edit
+their properties
+</p><p>Display edit form</p></article></div></div></body></html>
