@@ -1,0 +1,5 @@
+{0 Ocsigen blog}
+
+News and articles about Ocsigen, OCaml and Web development. The latest posts:
+
+{%wodoc:blog-latest%}
