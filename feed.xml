@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Ocsigen Blog</title>
+  <link href="https://ocsigen.org/feed.xml" rel="self" />
+  <link href="https://ocsigen.org" />
+  <updated>2026-06-14T00:00:00+00:00</updated>
+  <id>https://ocsigen.org/</id>
+  <author><name>Ocsigen Project</name></author>
+  <entry>
+    <title>A new home for the Ocsigen blog</title>
+    <link href="https://ocsigen.org/blog/posts/welcome-to-the-ocsigen-blog.html" />
+    <updated>2026-06-14T00:00:00+00:00</updated>
+    <id>https://ocsigen.org/blog/posts/welcome-to-the-ocsigen-blog.html</id>
+    <author><name>The Ocsigen team</name></author>
+    <summary type="html">The Ocsigen blog is back, and it is now built like the rest of the Ocsigen website: with wodoc, our odoc-based static site generator. Each post is a plain .mld file — the same lightweight markup we use for the manuals and the API document…</summary>
+  </entry>
+  <entry>
+    <title>Documenting OCaml projects with wodoc</title>
+    <link href="https://ocsigen.org/blog/posts/documenting-ocaml-projects-with-wodoc.html" />
+    <updated>2026-06-07T00:00:00+00:00</updated>
+    <id>https://ocsigen.org/blog/posts/documenting-ocaml-projects-with-wodoc.html</id>
+    <author><name>The Ocsigen team</name></author>
+    <summary type="html">wodoc turns .mld and .mli sources into a complete, styled website — not just API documentation. The very site you are reading is built with it.</summary>
+  </entry>
+</feed>
