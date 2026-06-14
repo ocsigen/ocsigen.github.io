@@ -192,3 +192,16 @@ Complete starter app with users, notifications, and mobile support.
 
 {%wodoc:end%}
 {%wodoc:end%}
+
+{%wodoc:div class="main-page-section wodoc-home-blog"%}
+{%wodoc:div class=main-page-section-content%}
+
+{1 From the blog}
+
+{%wodoc:blog-latest%}
+
+{%wodoc:@ class=wodoc-home-blog-more%}
+{{:/blog/}More posts →}
+
+{%wodoc:end%}
+{%wodoc:end%}
