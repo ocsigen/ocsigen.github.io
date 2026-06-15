@@ -51,8 +51,9 @@ rm -rf "$WORK"
 
 # The root llms.txt (llmstxt.org): the AI/LLM entry point for the whole site.
 # It features the two main tutorial pages first, then the vitrine pages, then one
-# link per project to that project's own llms.txt (each project ships it via
-# wodoc, served at /<project>/latest/llms.txt). Regenerated on every build.
+# link per project to that project's own llms.txt. Each active project ships it via
+# wodoc in its CI-rebuilt /dev/ docs (always current); the two archived projects,
+# which are built once, are served from /latest/. Regenerated on every build.
 cat >"$OUT/llms.txt" <<'EOF'
 # Ocsigen
 
@@ -61,11 +62,11 @@ cat >"$OUT/llms.txt" <<'EOF'
 > client/server boundary. This file indexes the Markdown documentation of the
 > whole project for AI/LLM consumption; every linked page is available as
 > Markdown, and each project also ships a full dump at
-> /<project>/latest/llms-full.txt.
+> /<project>/dev/llms-full.txt.
 
 ## Start here
-- [Tutorial — basics](https://ocsigen.org/tuto/latest/basics.md): write a complete client/server application, the recommended starting point
-- [Tutorial — server-side basics](https://ocsigen.org/tuto/latest/basics-server.md): server-side web programming with Eliom
+- [Tutorial — basics](https://ocsigen.org/tuto/dev/basics.md): write a complete client/server application, the recommended starting point
+- [Tutorial — server-side basics](https://ocsigen.org/tuto/dev/basics-server.md): server-side web programming with Eliom
 
 ## About Ocsigen
 - [Home](https://ocsigen.org/index.md): overview of the framework
@@ -74,18 +75,18 @@ cat >"$OUT/llms.txt" <<'EOF'
 - [Contributing](https://ocsigen.org/contributing.md): how to contribute
 
 ## Projects
-- [Eliom](https://ocsigen.org/eliom/latest/llms.txt): the core client/server web framework (shared client/server code, services, reactive UI)
-- [Ocsigen Start](https://ocsigen.org/ocsigen-start/latest/llms.txt): a ready-to-use base for client/server applications (users, sessions, notifications)
-- [Ocsigen Toolkit](https://ocsigen.org/ocsigen-toolkit/latest/llms.txt): client/server UI widgets
-- [Ocsigen Server](https://ocsigen.org/ocsigenserver/latest/llms.txt): the web server
-- [js_of_ocaml](https://ocsigen.org/js_of_ocaml/latest/llms.txt): the OCaml-to-JavaScript and WebAssembly compiler
-- [Lwt](https://ocsigen.org/lwt/latest/llms.txt): cooperative threading (promises) for OCaml
-- [TyXML](https://ocsigen.org/tyxml/latest/llms.txt): build statically correct HTML and SVG
-- [Ocsipersist](https://ocsigen.org/ocsipersist/latest/llms.txt): persistent key/value storage
-- [Ocsigen i18n](https://ocsigen.org/ocsigen-i18n/latest/llms.txt): internationalisation
-- [ReactiveData](https://ocsigen.org/reactiveData/latest/llms.txt): incremental reactive data structures
-- [Tutorial](https://ocsigen.org/tuto/latest/llms.txt): the Ocsigen tutorials
-- [Wodoc](https://ocsigen.org/wodoc/latest/llms.txt): the documentation tool that builds this site
+- [Eliom](https://ocsigen.org/eliom/dev/llms.txt): the core client/server web framework (shared client/server code, services, reactive UI)
+- [Ocsigen Start](https://ocsigen.org/ocsigen-start/dev/llms.txt): a ready-to-use base for client/server applications (users, sessions, notifications)
+- [Ocsigen Toolkit](https://ocsigen.org/ocsigen-toolkit/dev/llms.txt): client/server UI widgets
+- [Ocsigen Server](https://ocsigen.org/ocsigenserver/dev/llms.txt): the web server
+- [js_of_ocaml](https://ocsigen.org/js_of_ocaml/dev/llms.txt): the OCaml-to-JavaScript and WebAssembly compiler
+- [Lwt](https://ocsigen.org/lwt/dev/llms.txt): cooperative threading (promises) for OCaml
+- [TyXML](https://ocsigen.org/tyxml/dev/llms.txt): build statically correct HTML and SVG
+- [Ocsipersist](https://ocsigen.org/ocsipersist/dev/llms.txt): persistent key/value storage
+- [Ocsigen i18n](https://ocsigen.org/ocsigen-i18n/dev/llms.txt): internationalisation
+- [ReactiveData](https://ocsigen.org/reactiveData/dev/llms.txt): incremental reactive data structures
+- [Tutorial](https://ocsigen.org/tuto/dev/llms.txt): the Ocsigen tutorials
+- [Wodoc](https://ocsigen.org/wodoc/dev/llms.txt): the documentation tool that builds this site
 
 ## Optional
 - [Credits](https://ocsigen.org/credits.md): authors and history
