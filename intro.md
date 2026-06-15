@@ -1,0 +1,186 @@
+<!--wodoc:div class="main-page-section main-page-section-header"-->
+
+# Next-level full-stack development
+
+
+## Write your app once — deploy on Web, Android, iOS
+
+
+## Unique multi-tier architecture: client and server in a single program
+
+
+## Type-safe from database to UI — catch errors before they happen
+
+
+## Runs natively in WebAssembly (with JavaScript fallback)
+
+<!--wodoc:@ | class=main-button-->
+[Get started now\!](/tuto/latest/basics.html)
+
+<!--wodoc:end-->
+<!--wodoc:div class="main-page-section main-page-section-partners"-->
+- <!--wodoc:a class=sponsormain href=http://besport.com--><!--wodoc:img class=logo-besport src=/img/besport.svg alt="Be Sport"--><!--wodoc:end-->
+- <!--wodoc:a href=https://tarides.com--><!--wodoc:img class=logo-tarides src=/img/tarides.svg alt=Tarides--><!--wodoc:end-->
+- <!--wodoc:a href=https://www.janestreet.com--><!--wodoc:img class=logo-janestreet src=/img/janestreet.svg alt="Jane Street"--><!--wodoc:end-->
+- <!--wodoc:a href=http://www.univ-paris-diderot.fr--><!--wodoc:img class=logo-diderot src=/img/diderot.png alt="Université Paris Diderot"--><!--wodoc:end-->
+- <!--wodoc:a href=http://www.cnrs.fr--><!--wodoc:img class=logo-cnrs src=/img/cnrs.png alt=CNRS--><!--wodoc:end-->
+- <!--wodoc:a href=http://www.irif.fr--><!--wodoc:img class=logo-irif src=/img/irif.svg alt=IRIF--><!--wodoc:end-->
+- <!--wodoc:a href=http://www.irill.org--><!--wodoc:img class=logo-irill src=/img/irill.png alt=IRILL--><!--wodoc:end-->
+- <!--wodoc:a href=http://www.inria.fr--><!--wodoc:img class=logo-inria src=/img/inria.png alt=Inria--><!--wodoc:end-->
+- <!--wodoc:a href=http://www.systematic-paris-region.org--><!--wodoc:img class=logo-systematic src=/img/systematic.png alt=Systematic--><!--wodoc:end-->
+<!--wodoc:end-->
+<!--wodoc:div class="main-page-section main-page-section-multitier"--> <!--wodoc:div class=main-page-section-content-->
+
+
+## Eliom
+
+<!--wodoc:@ class=subtitle-->
+
+### Client and server code that compile together
+
+<!--wodoc:div class=horiz-blocks-->
+Eliom lets you write **client and server code in the same file, and as a single program**. The compiler checks that they stay consistent — **no more broken APIs**\!
+
+A single codebase compiles to a **Web app** and to **mobile apps** for iOS and Android.
+
+<!--wodoc:end-->
+<!--wodoc:div class=main-page-section-multitier-schema-->
+<!--wodoc:img class=main-page-schema-multitier src=/img/multitier-multiplatform.svg alt=Multi-tier-->
+<!--wodoc:end--> <!--wodoc:end--> <!--wodoc:end-->
+
+<!--wodoc:div class="main-page-section main-page-section-js_of_ocaml"--> <!--wodoc:div class=main-page-section-content-->
+
+
+## Js\_of\_ocaml / Wasm\_of\_ocaml
+
+<!--wodoc:@ class=subtitle-->
+
+### Your OCaml code, running in the browser at near-native speed
+
+<!--wodoc:div class=horiz-blocks-->
+Compile any OCaml program to **JavaScript** or **WebAssembly**. WASM delivers near-native performance; JS ensures compatibility with all browsers.
+
+Works directly from OCaml bytecode — **use any OCaml library without recompiling**. Seamless interop with JavaScript libraries.
+
+<!--wodoc:end-->
+<!--wodoc:div class=main-page-section-js_of_ocaml-schema-->
+<!--wodoc:@ class="main-page-section-js_of_ocaml-ocaml darkcode"-->
+```ocaml
+let fib num =
+  let rec aux num prec2 prec =
+    if num = 0
+    then prec
+    else
+      aux (num - 1) prec (prec + prec2)
+  in aux num 1 1
+```
+<!--wodoc:div-->
+<!--wodoc:@ class="main-page-section-js_of_ocaml-js darkcode"-->
+```javascript
+function fib(num)
+ {var num$0=num,prec2=1,prec=1;
+  for(;;)
+   {if(0 === num$0)return prec;
+    var
+     prec$0=prec + prec2 | 0,
+     num$1=num$0 - 1 | 0,
+     num$0=num$1,
+     prec2=prec,
+     prec=prec$0;
+     continue}}
+```
+<!--wodoc:@ class="main-page-section-js_of_ocaml-js darkcode"-->
+```javascript
+function(d){var b=d,c=1,a=1;for(;;){if(0===b)return a;var b=b-1|0,e=a+c|0,c=a,a=e;continue}};
+```
+<!--wodoc:end-->
+<!--wodoc:div class=main-page-section-js_of_ocaml-arrow1-->
+➔
+
+<!--wodoc:end--> <!--wodoc:div class=main-page-section-js_of_ocaml-arrow2-->
+
+➔
+
+<!--wodoc:end--> <!--wodoc:end--> <!--wodoc:end--> <!--wodoc:end-->
+
+<!--wodoc:div class="main-page-section main-page-section-projects"--> <!--wodoc:div class=main-page-section-content-->
+
+
+## Main projects
+
+<!--wodoc:end--> <!--wodoc:div class=main-page-projects-->
+
+<!--wodoc:a class=main-page-project-link href=/js_of_ocaml/--><!--wodoc:div class=main-page-project-->
+
+
+### Js\_of\_ocaml
+
+Compile OCaml to JS and WebAssembly. Run in any browser.
+
+<!--wodoc:end--><!--wodoc:end-->
+
+<!--wodoc:a class=main-page-project-link href=/eliom/--><!--wodoc:div class=main-page-project-->
+
+
+### Eliom
+
+Write client and server as one program. Deploy to Web and mobile.
+
+<!--wodoc:end--><!--wodoc:end-->
+
+<!--wodoc:a class=main-page-project-link href=/ocsigenserver/--><!--wodoc:div class=main-page-project-->
+
+
+### Server
+
+Production-ready Web server with native OCaml integration.
+
+<!--wodoc:end--><!--wodoc:end-->
+
+<!--wodoc:a class=main-page-project-link href=/lwt/--><!--wodoc:div class=main-page-project-->
+
+
+### Lwt
+
+Concurrent programming made simple — no callback hell.
+
+<!--wodoc:end--><!--wodoc:end-->
+
+<!--wodoc:a class=main-page-project-link href=/tyxml/--><!--wodoc:div class=main-page-project-->
+
+
+### Tyxml
+
+Type-safe HTML/SVG generation. Invalid markup won't compile.
+
+<!--wodoc:end--><!--wodoc:end-->
+
+<!--wodoc:a class=main-page-project-link href=/ocsigen-toolkit/--><!--wodoc:div class=main-page-project-->
+
+
+### Ocsigen Toolkit
+
+Ready-to-use UI widgets for Web and mobile apps.
+
+<!--wodoc:end--><!--wodoc:end-->
+
+<!--wodoc:a class=main-page-project-link href=/ocsigen-start/--><!--wodoc:div class=main-page-project-->
+
+
+### Start
+
+Complete starter app with users, notifications, and mobile support.
+
+<!--wodoc:end--><!--wodoc:end-->
+
+<!--wodoc:end--> <!--wodoc:end-->
+
+<!--wodoc:div class="main-page-section wodoc-home-blog"--> <!--wodoc:div class=main-page-section-content-->
+
+
+## From the blog
+
+<!--wodoc:blog-latest-->
+<!--wodoc:@ class=wodoc-home-blog-more--> [More posts →](/blog/)
+
+<!--wodoc:end--> <!--wodoc:end-->
