@@ -56,6 +56,8 @@ jobs:
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add -A intro.html index.html projects.html install.html credits.html \
-                     papers.html contributing.html blog feed.xml
+                     papers.html contributing.html blog feed.xml \
+                     intro.md index.md projects.md install.md credits.md \
+                     papers.md contributing.md llms.txt
           git diff --cached --quiet || git commit -m "Rebuild vitrine + blog [skip ci]"
           git push
