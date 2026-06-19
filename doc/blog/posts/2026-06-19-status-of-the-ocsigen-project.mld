@@ -1,0 +1,78 @@
+{0 Ocsigen in 2026: what we're working on}
+
+@author The Ocsigen team
+
+What are we actually working on these days? Faster Wasm compilation, a new
+documentation toolchain, hierarchical module names, mobile through Capacitor, AI
+coding skills... Here is an honest look at the state of Ocsigen in 2026: what is
+in progress, what is on the roadmap and waiting for funding, and where you can
+lend a hand.
+
+Ocsigen has always had a single, ambitious goal: to give the OCaml community a
+complete, top-quality suite of tools that makes Web and mobile programming
+extremely simple, while fitting naturally into the existing ecosystem of OCaml
+libraries. From the compiler to the browser, from the server to the database,
+everything should work together, be type-safe end to end, and stay at the best
+level of what the state of the art has to offer.
+
+Here is a snapshot of what we are currently working on, and where we would love
+some help.
+
+{1 Work in progress}
+
+A lot is happening around {b compilation to the Web}. We are pushing
+{{:/js_of_ocaml/}wasm_of_ocaml} further: performance improvements, a new syntax
+for hand-written Wasm, and a systematic comparison between the [js_of_ocaml] and
+[wasm_of_ocaml] runtimes to detect and fix bugs.
+
+On the {b documentation} side, we are building {{:/wodoc/}wodoc}, an odoc driver
+that can produce a complete website: manual, API reference, blog, and a
+Markdown version meant for AI agents. This goes hand in hand with a
+modernisation of our documentation infrastructure (moving ocsigen.org over to
+wodoc) and a broad content refresh across all projects.
+
+The {b core framework} is getting a more polished surface. Across the server,
+Eliom, the Toolkit and Ocsigen Start, we are moving to hierarchical module names
+(for instance [Eliom.Service] instead of [Eliom_service]), and factorising the
+build system into the shared [ocsigen-dune-rules]. On mobile, Ocsigen Start is
+switching from Cordova to Capacitor. Ocsipersist is gaining type-safe persistent
+references built on Deriving. The Toolkit is getting new reactive widgets,
+contributed by Be Sport. And we are writing AI skills for agent-assisted coding
+with Eliom and Start.
+
+{1 Backlog — looking for funding}
+
+We have a lot of ideas for the next steps, and several of them are ready to start
+as soon as funding allows:
+
+{ul
+{- {b Lwt}: reaching the performance of effect-based libraries, and multi-domain
+   compatibility.}
+{- {b Ocsipersist}: adding a fast, 100% OCaml backend.}
+{- {b Eliom}: off-line apps out of the box, client-side-only use, and distributed
+   apps backed by an Irmin-like database.}
+{- {b Toolkit}: documenting how to use it for client-only
+   [js_of_ocaml]/[wasm_of_ocaml] apps.}
+{- {b Server}: running as a plain executable, with no configuration file.}
+{- {b Apps}: a collaborative editor, and a distributed content management
+   system, ...}}
+
+{1 Features we need in neighbouring projects}
+
+Some of our goals depend on improvements elsewhere in the ecosystem (all
+currently unfunded): the missing odoc features that would let us drop wodoc's
+hacks, complete multi-tier programming support in Merlin/LSP, and the same in
+Dune so we can avoid dirty build-system workarounds.
+
+{1 How you can help}
+
+{ul
+{- Contribute.}
+{- Fund the projects you care about.}
+{- Tell us about your needs and feature requests.}
+{- Help us spread the word.}}
+
+{1 Thanks}
+
+A huge thank you to all our funders, and especially to Jane Street, Tarides, 
+OCaml Software Foundation, NLnet and Ahrefs.
