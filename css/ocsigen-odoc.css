@@ -248,17 +248,17 @@
 .rightcol .hljs-quote,
 .rightcol .hljs-meta { color: #6a737d; font-style: italic; }
 .rightcol .hljs-keyword,
-.rightcol .hljs-selector-tag { color: #cf222e; }
+.rightcol .hljs-selector-tag { color: #e95000; }  /* keywords (let/fun/…): brand orange */
 .rightcol .hljs-string,
-.rightcol .hljs-regexp { color: #0a3069; }
+.rightcol .hljs-regexp { color: #0e7490; }        /* strings: teal */
 .rightcol .hljs-type,
 .rightcol .hljs-built_in,
 .rightcol .hljs-class,
 .rightcol .hljs-constructor,
-.rightcol .hljs-module { color: #0e7490; }      /* modules / types: teal */
+.rightcol .hljs-module { color: #2e8eff; }       /* modules / types: bright blue (site .spec .label) */
 .rightcol .hljs-title,
 .rightcol .hljs-function,
-.rightcol .hljs-section { color: #953800; }      /* function names: amber */
+.rightcol .hljs-section { color: #c1272d; }      /* function names: red, stand out */
 .rightcol .hljs-literal,
 .rightcol .hljs-number,
 .rightcol .hljs-symbol,
@@ -271,7 +271,8 @@
 /* Eliom ppx side markers (let%client / %server / %shared), coloured by tier */
 .rightcol .hljs-eliom-client { color: #9a6700; font-weight: 600; }  /* dark yellow */
 .rightcol .hljs-eliom-server { color: #08489c; font-weight: 600; }  /* blue */
-.rightcol .hljs-eliom-shared { color: #1a7f37; font-weight: 600; }  /* green */
+.rightcol .hljs-eliom-shared,
+.rightcol .hljs-eliom-rpc { color: #1a7f37; font-weight: 600; }  /* green (%shared, %rpc) */
 
 /* ---- Manual navigation: indent each menu level (==/===/====) ---- */
 /* gen-manual-nav.py tags every heading/entry with .mlN (N = number of '=' in
