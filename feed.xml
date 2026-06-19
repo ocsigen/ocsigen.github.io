@@ -3,9 +3,17 @@
   <title>Ocsigen Blog</title>
   <link href="https://ocsigen.org/feed.xml" rel="self" />
   <link href="https://ocsigen.org" />
-  <updated>2026-06-14T00:00:00+00:00</updated>
+  <updated>2026-06-19T00:00:00+00:00</updated>
   <id>https://ocsigen.org/</id>
   <author><name>Ocsigen Project</name></author>
+  <entry>
+    <title>Ocsigen in 2026: what we&#x27;re working on</title>
+    <link href="https://ocsigen.org/blog/posts/status-of-the-ocsigen-project.html" />
+    <updated>2026-06-19T00:00:00+00:00</updated>
+    <id>https://ocsigen.org/blog/posts/status-of-the-ocsigen-project.html</id>
+    <author><name>The Ocsigen team</name></author>
+    <summary type="html">What are we actually working on these days? Faster Wasm compilation, a new documentation toolchain, hierarchical module names, mobile through Capacitor, AI coding skills... Here is an honest look at the state of Ocsigen in 2026: what is in …</summary>
+  </entry>
   <entry>
     <title>A new home for the Ocsigen blog</title>
     <link href="https://ocsigen.org/blog/posts/welcome-to-the-ocsigen-blog.html" />
