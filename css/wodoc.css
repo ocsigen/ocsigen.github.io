@@ -91,14 +91,16 @@ a.wodoc-blog-title {
 /* A blog post page: show the byline (date — author) inserted after the title via
    `assemble --byline`, and hide odoc's own @author tag block (it would otherwise
    duplicate the author and looks out of place); the manual heading rule above
-   gives section headings a big all-round padding meant for the vitrine, which is
-   wrong inside an article, so drop the left/right padding here. */
+   gives section headings a big all-round 50px padding (and a centred 1200px box)
+   meant for the vitrine, which is wrong inside an article: drop it for normal
+   heading spacing (full width, modest top, little space after). */
 .wodoc-blog-page .at-tags {
   display: none;
 }
 .wodoc-blog-page .rightcol > .odoc-content > h2 {
-  padding-left: 0;
-  padding-right: 0;
+  max-width: none;
+  padding: 0;
+  margin: 1.5em 0 0.4em;
 }
 @media (min-width: 1200px) {
   body {
