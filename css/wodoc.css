@@ -70,6 +70,12 @@ a.wodoc-blog-title {
   margin: 0;
 }
 
+/* Blog footer (contact line): the shared dark "about" section uses the default
+   link blue, which is too dark on the dark-blue background — lighten the link. */
+.wodoc-blog-footer a {
+  color: #64caff;
+}
+
 /* "From the blog" section on the home page: white background, dark text (the
    shared .main-page-section-about it used to borrow is dark blue with light grey
    text, which made the cards' meta line unreadable). */
