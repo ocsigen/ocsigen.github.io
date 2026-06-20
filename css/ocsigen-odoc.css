@@ -78,7 +78,7 @@
 /* but not block code or API signatures, which keep their own colours */
 .rightcol pre code,
 .rightcol .spec code {
-  color: #001a39;
+  color: #094489;
   font-family: inherit;
 }
 
@@ -388,7 +388,7 @@
 
 .rightcol .hljs-keyword,
 .rightcol .hljs-selector-tag {
-  color: #4502bd;
+  color: #5661b1;
 }
 
 /* keywords (let/fun/…): brand orange */
