@@ -271,7 +271,7 @@
 }
 
 .spec .keyword {
-  color: #4502bd;
+  color: #094489;
   font-weight: bold;
 }
 
@@ -388,7 +388,7 @@
 
 .rightcol .hljs-keyword,
 .rightcol .hljs-selector-tag {
-  color: #8003d6;
+  color: #4502bd;
 }
 
 /* keywords (let/fun/…): brand orange */
