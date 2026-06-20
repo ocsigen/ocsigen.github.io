@@ -7,7 +7,8 @@
 ;; boundary, hence (flat).
 (project html_of_wiki)
 (title html_of_wiki)
-(pub /html_of_wiki)
+(url-prefix /html_of_wiki)
+(css /css/style.css /css/ocsigen-odoc.css)  ; shared Ocsigen theme (wodoc css default changed)
 (mld-dir mld)
 (mld-package html_of_wiki)
 (flat)
