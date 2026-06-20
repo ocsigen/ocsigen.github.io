@@ -7,7 +7,8 @@
 ;; (static-copy). The manual nav comes from the wikicreole menu.
 (project ocsimore)
 (title Ocsimore)
-(pub /ocsimore)
+(url-prefix /ocsimore)
+(css /css/style.css /css/ocsigen-odoc.css)  ; shared Ocsigen theme (wodoc css default changed)
 (mld-dir mld)
 (manual-menu menu.wiki)
 (highlight ocsimore-highlight.js)
