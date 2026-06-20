@@ -66,11 +66,27 @@ Dune so we can avoid dirty build-system workarounds.
 
 {1 How you can help}
 
+Ocsigen is an open project, and there are many ways to contribute, whatever your
+time and resources:
+
 {ul
-{- Contribute.}
-{- Fund the projects you care about.}
-{- Tell us about your needs and feature requests.}
-{- Help us spread the word.}}
+{- {b Contribute code.} Pick an issue, send a pull request, or improve the
+   documentation. The roadmap above is full of well-defined tasks, from small
+   fixes to larger features, and we are happy to help you get started.}
+{- {b Fund the projects you care about.} Most of the backlog above is simply
+   waiting for funding. Sponsoring a specific feature, or supporting the project
+   in general, directly turns into development time. Get in touch if your company
+   relies on Ocsigen and would like to see something move forward.}
+{- {b Tell us about your needs.} Bug reports, feature requests and use cases all
+   help us prioritise. Knowing how people actually use the tools, and where they
+   hit friction, is invaluable.}
+{- {b Help us spread the word.} Write about your experience, give a talk, answer
+   questions, or simply star the repositories. A more visible project attracts
+   more contributors and more funding, which benefits everyone.}}
+
+If you are not sure where to start, just reach out, on the
+{{:https://github.com/ocsigen}GitHub organisation} or the community channels, and
+we will point you in the right direction.
 
 {1 Thanks}
 
