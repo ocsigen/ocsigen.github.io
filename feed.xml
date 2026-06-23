@@ -3,9 +3,17 @@
   <title>Ocsigen Blog</title>
   <link href="https://ocsigen.org/feed.xml" rel="self" />
   <link href="https://ocsigen.org" />
-  <updated>2026-06-19T00:00:00+00:00</updated>
+  <updated>2026-06-23T00:00:00+00:00</updated>
   <id>https://ocsigen.org/</id>
   <author><name>Ocsigen Project</name></author>
+  <entry>
+    <title>Ocsipersist 2.1.0: type-safe persistence with Deriving</title>
+    <link href="https://ocsigen.org/blog/posts/ocsipersist-2.1.0.html" />
+    <updated>2026-06-23T00:00:00+00:00</updated>
+    <id>https://ocsigen.org/blog/posts/ocsipersist-2.1.0.html</id>
+    <author><name>The Ocsigen team</name></author>
+    <summary type="html">Ocsipersist 2.1.0 is out. The headline is a new, type-safe way to store your data: persistent references, stores and tables can now be serialised with Deriving_Json instead of Marshal. The data is human-readable in the database and stable a…</summary>
+  </entry>
   <entry>
     <title>Ocsigen in 2026: what we&#x27;re working on</title>
     <link href="https://ocsigen.org/blog/posts/status-of-the-ocsigen-project.html" />
