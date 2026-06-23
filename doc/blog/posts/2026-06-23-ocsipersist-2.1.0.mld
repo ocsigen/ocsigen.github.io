@@ -1,0 +1,94 @@
+{0 Ocsipersist 2.1.0: type-safe persistence with Deriving}
+
+@author The Ocsigen team
+
+{{:/ocsipersist/}Ocsipersist} 2.1.0 is out. The headline is a new, type-safe way
+to store your data: persistent references, stores and tables can now be
+serialised with {b Deriving_Json} instead of [Marshal]. The data is
+human-readable in the database and stable across OCaml versions. The whole
+new API is purely additive, so existing code keeps working unchanged.
+
+Ocsipersist is a generic library of persistent references and key-value tables
+for {b any OCaml program}. It does not depend on Eliom or Ocsigen Server: any
+application that needs to keep data across restarts can use it as a plain
+library. It is also fully compatible with Ocsigen Server, and it is what Eliom
+and Ocsigen use internally for sessions and persistent references. A single,
+uniform front-end covers three interchangeable backends ({b SQLite},
+{b PostgreSQL} and {b DBM}), so you can switch backend without changing a line
+of application code.
+
+{1 The problem with Marshal}
+
+Until now, the simple interfaces ([Ref], [Store], [Polymorphic]) serialised
+values with [Marshal]. That is convenient, but it has two well-known
+drawbacks: the binary format gives no guarantee of stability across OCaml
+versions for some types, and the stored blobs are completely opaque, so you
+cannot read or inspect your own data in the database.
+
+{1 The new type-safe interfaces}
+
+2.1.0 introduces type-safe alternatives based on
+{{:/js_of_ocaml/}Deriving_Json} (the same mechanism Eliom uses for
+client-server communication, with no JavaScript compilation involved):
+
+{ul
+{- [Ocsipersist.Ref_json]: persistent references;}
+{- [Ocsipersist.Store_json]: named persistent values in a store;}
+{- [Ocsipersist.Column.Json]: a column functor for the typed [Functorial]
+   tables.}}
+
+You annotate the stored type with [\[@@deriving json\]] and pass its codec
+explicitly:
+
+{[
+type user = { name : string; age : int } [@@deriving json]
+
+(* A persistent reference, stored as readable JSON: *)
+let visits = Ocsipersist.Ref_json.ref ~persistent:"visits" [%json: int] 0
+
+let count_visit () =
+  let%lwt n = Ocsipersist.Ref_json.get visits in
+  Ocsipersist.Ref_json.set visits (n + 1)
+]}
+
+The value is written to the database as plain JSON text, which means it stays
+readable and survives an OCaml upgrade.
+
+{1 Fully backward compatible}
+
+The change is {b additive}. The [Marshal]-based [Ref], [Store] and
+[Column.Marshal] are untouched, so your existing data and code keep working
+exactly as before. You can adopt the JSON interfaces incrementally, only where
+you want them. ([iter]/[fold] were also added to [Polymorphic], with the old
+[iter_step]/[fold_step] kept as deprecated aliases.)
+
+{1 Also in this release}
+
+Beyond serialisation, 2.1.0 brings a round of fixes and hardening across the
+three backends:
+
+{ul
+{- {b SQLite}: a persistent database connection instead of opening and closing
+   it on every operation, and a real [iter_batch] implementation.}
+{- {b PostgreSQL}: fixes to [replace_if_exists], a transactional [modify_opt],
+   and corrected [Functorial.length] and [fold].}
+{- {b DBM}: replaced the old double-fork with [Unix.create_process], compatible
+   with OCaml 5 multicore domains.}
+{- {b Security}: table and store names are now validated to prevent SQL
+   injection through interpolated names.}
+{- {b Quality}: a new test suite covering all three backends, run in CI.}}
+
+{1 Getting it}
+
+Ocsipersist 2.1.0 is available on opam:
+
+{[
+opam install ocsipersist ocsipersist-sqlite
+]}
+
+(replace [ocsipersist-sqlite] with [ocsipersist-pgsql] or [ocsipersist-dbm] for
+the other backends). The full list of changes is in the
+{{:https://github.com/ocsigen/ocsipersist/releases/tag/2.1.0}release notes}.
+
+This is also a step on the {{:/blog/posts/2026-06-19-status-of-the-ocsigen-project.html}roadmap}
+we shared recently: next up for Ocsipersist is a fast, 100% OCaml backend.
