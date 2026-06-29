@@ -83,6 +83,15 @@ follows. New posts automatically get the Ocsigen badge as their social-card /
 OCaml Planet thumbnail, via the `og:image` in
 [`doc/blog/template.html`](doc/blog/template.html).
 
+**Unlisted drafts.** To share a work-in-progress article by direct link without
+publishing it, drop its `YYYY-MM-DD-slug.mld` in
+[`doc/blog/hidden/`](doc/blog/hidden) instead of `doc/blog/posts/`. `build.sh`
+renders it to the same `/blog/posts/<slug>.html` URL, but because it lives
+outside the `(blog (dir posts))` config it is **absent from the left-nav, the
+landing's latest-posts widget and `/feed.xml`** — so it never reaches OCaml
+Planet and nothing links to it. To publish such a draft for real, move its
+`.mld` into `doc/blog/posts/` (and let CI regenerate the page).
+
 [githubpages]: https://pages.github.com/
 [githubpr]: https://help.github.com/articles/using-pull-requests/
 [repo]: https://www.github.com/ocsigen/ocsigen.github.io
