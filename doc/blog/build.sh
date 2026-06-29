@@ -58,6 +58,27 @@ for mld in posts/*.mld; do
   echo "built blog/posts/$slug.html"
 done
 
+# Unlisted pages: doc/blog/hidden/YYYY-MM-DD-slug.mld build to /blog/posts/<slug>.html
+# exactly like a post, but they live OUTSIDE the (blog (dir posts)) config, so
+# `blog-nav`, `assemble --blog-config` and `blog-feed` never see them: they are
+# absent from the left-nav, the landing's latest widget and the Atom feed (hence
+# off OCaml Planet). They are reachable only by their direct URL — for drafts
+# shared privately before publication. To publish one for real, move its .mld to
+# posts/ (and delete the generated hidden html).
+if [ -d hidden ]; then
+  for mld in hidden/*.mld; do
+    [ -e "$mld" ] || continue          # no-match glob guard
+    name="$(basename "$mld" .mld)"     # YYYY-MM-DD-slug
+    slug="${name#????-??-??-}"
+    date="${name:0:10}"
+    author="$(sed -n 's/^@author[[:space:]]*//p' "$mld" | head -1)"
+    byline="$date"; [ -n "$author" ] && byline="$date — $author"
+    build_page "$mld" "$slug" "$WORK/nav-post.html" "$OUT/blog/posts/$slug.html" \
+      --base .. --current "posts/$slug.html" --byline "$byline"
+    echo "built blog/posts/$slug.html (unlisted)"
+  done
+fi
+
 # the Atom feed at the site root /feed.xml (same URL OCaml Planet already follows)
 "$WODOC" blog-feed --config "$CONFIG" --base-url https://ocsigen.org \
   --blog-path /blog --feed-path /feed.xml \
