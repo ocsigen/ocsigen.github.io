@@ -17,7 +17,8 @@ good overview of the issues encountered by the Ocsigen team with Eio. — Vincen
 {1 Context}
 
 In March 2025 we announced that the Ocsigen project (ocsigenserver, Eliom,
-ocsigen-toolkit, ocsigen-start, os_template) was moving from Lwt to Eio. Through
+ocsigen-toolkit, ocsigen-start, os_template) was experimenting the migration
+from Lwt to Eio. Through
 summer 2025 and the second half of 2025 we ran that migration: branch
 {{:https://github.com/ocsigen/eliom/tree/to-eio2}[to-eio2]} of Eliom (≈5,000
 lines changed across 178 files), branch
@@ -34,12 +35,11 @@ whether some of the obstacles we hit could be addressed upstream.
 This is {i not} an anti-Eio piece. Effects are a major contribution of OCaml 5
 and we are grateful for the work of the ocaml-multicore team and Tarides. The
 points below are about specific design choices and runtime constraints whose
-resolution would, in our view, benefit any multi-tier OCaml framework — not only
-Ocsigen.
+resolution would, in our view, benefit many OCaml software projects.
 
 {1 The two reasons in short}
 
-{2 1. Loss of function coloring is particularly painful in multi-tier code}
+{2 1. Loss of function coloring is particularly painful in reactive or multi-tier code}
 
 In Lwt, [val f : a -> b Lwt.t] is a typed signal that [f] may suspend. Under Eio
 every function has the form [val f : a -> b], regardless of whether it's pure,
@@ -55,7 +55,13 @@ that dual reality visible in the types. Eio does not.
 
 The practical consequence: a developer can no longer locally identify where
 waits will occur, and in particular where they need to display a spinner,
-disable a button, or otherwise absorb a network delay. We see this break down
+disable a button, or otherwise absorb a network delay. 
+
+This is even worse in reactive code: a signal map that used to be typed
+[map_s : ('a -> 'b Lwt.t) -> 'a event -> 'b event] is now [map_s : ('a -> 'b) -> 'a event -> 'b event].
+The type no longer signals that the function may suspend and perform I/O, and the FRP semantics of React is broken.
+
+We see this break down
 repeatedly across the Eliom APIs — [Ot_spinner] (A.1), [React]/[Eio_react]
 (A.2), [Eliom_reference] (A.3) below.
 
@@ -140,7 +146,7 @@ obvious; under Eio there is no cue.
 The Lwt signature (from
 [ocsigen-toolkit/master/src/widgets/ot_spinner.eliomi]):
 
-{[
+{@ocaml[
 val with_spinner :
    ?a:[< Html_types.div_attrib] Eliom_content.Html.attrib list
   -> ?spinner:[< Html_types.div_content] Eliom_content.Html.elt list
@@ -152,7 +158,7 @@ val with_spinner :
 
 The Eio signature ([to-eio] branch):
 
-{[
+{@ocaml[
 val with_spinner :
    ?a:[< Html_types.div_attrib] Eliom_content.Html.attrib list
   -> ?spinner:[< Html_types.div_content] Eliom_content.Html.elt list
@@ -170,7 +176,7 @@ The application code that uses it — from
 {{:https://github.com/ocsigen/ocsigen-start/blob/to-eio/template.distillery/demo_pgocaml.eliom}[ocsigen-start/template.distillery/demo_pgocaml.eliom]}
 — is now syntactically indistinguishable from purely local code:
 
-{[
+{@ocaml[
 (* Lwt — master *)
 let%rpc get_users () : string list Lwt.t = ...
 
@@ -213,7 +219,7 @@ transformation must wait on something (a database fetch, a confirmation event,
 Under Lwt, the type of the threaded variant explicitly differed from the pure
 one:
 
-{[
+{@ocaml[
 (* React.E.map — pure FRP, always synchronous *)
 val map   : ('a -> 'b)        -> 'a event -> 'b event
 
@@ -228,7 +234,7 @@ separated} by the type system.
 
 Under Eio (Eliom's [Eio_react] is a port of [Lwt_react]):
 
-{[
+{@ocaml[
 val map_s : ('a -> 'b) -> 'a event -> 'b event
 val map_p : ('a -> 'b) -> 'a event -> 'b event
 ]}
@@ -252,7 +258,7 @@ ocsipersist on disk — sqlite / dbm / postgres). Both flavors share the same
 
 Under Lwt:
 
-{[
+{@ocaml[
 val get    : 'a eref -> 'a Lwt.t
 val set    : 'a eref -> 'a -> unit Lwt.t
 val modify : 'a eref -> ('a -> 'a) -> unit Lwt.t
@@ -266,7 +272,7 @@ that the call {i may} be I/O.
 The module also exposed, for developers who knew their reference was volatile,
 an {i explicit escape hatch}:
 
-{[
+{@ocaml[
 (** Same functions as in [Eliom_reference] but a non-Lwt interface
     for non-persistent Eliom references. *)
 module Volatile : sig
@@ -279,7 +285,7 @@ end
 
 Under Eio, all four operations on the main module become flat:
 
-{[
+{@ocaml[
 val get    : 'a eref -> 'a
 val set    : 'a eref -> 'a -> unit
 val modify : 'a eref -> ('a -> 'a) -> unit
@@ -305,13 +311,13 @@ Take a typical bullet handler from
 
 {b Lwt} (4 similar sites in this one file):
 
-{[
+{@ocaml[
 a_onclick [%client fun _ -> ~%change (`Goto ~%i)]
 ]}
 
 {b Eio}:
 
-{[
+{@ocaml[
 a_onclick [%client fun _ -> Eio_js.start (fun () -> ~%change (`Goto ~%i))]
 ]}
 
@@ -350,7 +356,7 @@ signature takes several user callbacks and a content generator.
 
 {b Lwt}:
 
-{[
+{@ocaml[
 val popup :
    ?a:...
   -> ?close_button:...
@@ -364,7 +370,7 @@ val popup :
 
 {b Eio}:
 
-{[
+{@ocaml[
 val popup :
    ?a:...
   -> ?close_button:...
@@ -402,7 +408,7 @@ is to wait for the DOM node to be attached ([Ot_nodeready.nodeready]).
 
 {b Lwt}:
 
-{[
+{@ocaml[
 val make_sticky :
    dir:[`Left | `Top]
   -> ?ios_html_scroll_hack:bool
@@ -413,7 +419,7 @@ val make_sticky :
 
 {b Eio}:
 
-{[
+{@ocaml[
 val make_sticky :
    dir:[`Left | `Top]
   -> ?ios_html_scroll_hack:bool

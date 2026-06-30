@@ -40,7 +40,7 @@ client-server communication, with no JavaScript compilation involved):
 You annotate the stored type with [\[@@deriving json\]] and pass its codec
 explicitly:
 
-{[
+{@ocaml[
 type user = { name : string; age : int } [@@deriving json]
 
 (* A persistent reference, stored as readable JSON: *)
