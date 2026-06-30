@@ -386,18 +386,18 @@ pre code,
   font-style: italic;
 }
 
+/* keywords (let/fun/match/…): teal-green */
 .hljs-keyword,
 .hljs-selector-tag {
   color: #008a71;
 }
 
-/* keywords (let/fun/…): brand orange */
+/* strings / regexps: teal */
 .hljs-string,
 .hljs-regexp {
   color: #0e7490;
 }
 
-/* strings: teal */
 /* types (poly-variant tags `Foo, type-definition names, built-ins): violet */
 .hljs-type,
 .hljs-built_in,
@@ -414,13 +414,15 @@ pre code,
 .hljs-constructor {
   color: #0b5cad;
 }
+
+/* function names (the name bound by let / and): brand orange */
 .hljs-title,
 .hljs-function,
 .hljs-section {
   color: #e95000;
 }
 
-/* function names: red, stand out */
+/* literals, numbers, plain identifiers: near-black */
 .hljs-literal,
 .hljs-number,
 .hljs-symbol,
@@ -429,6 +431,7 @@ pre code,
   color: #222;
 }
 
+/* eliom ~%x client-value injection: blue, bold */
 .hljs-subst {
   color: #08489c;
   font-weight: 600;
@@ -440,7 +443,6 @@ pre code,
   color: #555;
 }
 
-/* ~%x client-value injection */
 .hljs-emphasis {
   font-style: italic;
 }
@@ -449,26 +451,26 @@ pre code,
   font-weight: 600;
 }
 
-/* Eliom ppx side markers (let%client / %server / %shared), coloured by tier */
+/* Eliom ppx side markers (let%client / %server / %shared / %rpc), coloured by
+   side to match the block backgrounds. */
+/* %client: dark yellow */
 .hljs-eliom-client {
   color: #9a8900;
   font-weight: 600;
 }
 
-/* dark yellow */
+/* %server: blue */
 .hljs-eliom-server {
   color: #08489c;
   font-weight: 600;
 }
 
-/* blue */
+/* %shared / %rpc: green */
 .hljs-eliom-shared,
 .hljs-eliom-rpc {
   color: #1a7f37;
   font-weight: 600;
 }
-
-/* green (%shared, %rpc) */
 
 /* ---- Manual navigation: indent each menu level (==/===/====) ---- */
 /* gen-manual-nav.py tags every heading/entry with .mlN (N = number of '=' in
