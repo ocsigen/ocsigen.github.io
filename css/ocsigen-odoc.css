@@ -76,7 +76,7 @@
 }
 
 /* but not block code or API signatures, which keep their own colours */
-.rightcol pre code,
+pre code,
 .rightcol .spec code {
   color: #094489;
   font-family: inherit;
@@ -379,84 +379,84 @@
    we load odoc's bundled highlight.js and give its tokens a light palette,
    readable over the server (blue) and client (yellow) block backgrounds.
    No background here, so the server/client block colours show through. */
-.rightcol .hljs-comment,
-.rightcol .hljs-quote,
-.rightcol .hljs-meta {
+.hljs-comment,
+.hljs-quote,
+.hljs-meta {
   color: #6a737d;
   font-style: italic;
 }
 
-.rightcol .hljs-keyword,
-.rightcol .hljs-selector-tag {
+.hljs-keyword,
+.hljs-selector-tag {
   color: #5661b1;
 }
 
 /* keywords (let/fun/…): brand orange */
-.rightcol .hljs-string,
-.rightcol .hljs-regexp {
+.hljs-string,
+.hljs-regexp {
   color: #0e7490;
 }
 
 /* strings: teal */
-.rightcol .hljs-type,
-.rightcol .hljs-built_in,
-.rightcol .hljs-class,
-.rightcol .hljs-constructor,
-.rightcol .hljs-module {
+.hljs-type,
+.hljs-built_in,
+.hljs-class,
+.hljs-constructor,
+.hljs-module {
   color: #2e8eff;
 }
 
 /* modules / types: bright blue (site .spec .label) */
-.rightcol .hljs-title,
-.rightcol .hljs-function,
-.rightcol .hljs-section {
+.hljs-title,
+.hljs-function,
+.hljs-section {
   color: #e95000;
 }
 
 /* function names: red, stand out */
-.rightcol .hljs-literal,
-.rightcol .hljs-number,
-.rightcol .hljs-symbol,
-.rightcol .hljs-variable,
-.rightcol .hljs-attribute {
+.hljs-literal,
+.hljs-number,
+.hljs-symbol,
+.hljs-variable,
+.hljs-attribute {
   color: #6f4e00;
 }
 
-.rightcol .hljs-subst {
+.hljs-subst {
   color: #08489c;
   font-weight: 600;
 }
 
 /* labelled / optional arguments (~name:, ?name:) in code blocks — grey, like
    the old manual. Signatures keep their own .spec .label colour (untouched). */
-.rightcol .hljs-label {
+.hljs-label {
   color: #555;
 }
 
 /* ~%x client-value injection */
-.rightcol .hljs-emphasis {
+.hljs-emphasis {
   font-style: italic;
 }
 
-.rightcol .hljs-strong {
+.hljs-strong {
   font-weight: 600;
 }
 
 /* Eliom ppx side markers (let%client / %server / %shared), coloured by tier */
-.rightcol .hljs-eliom-client {
+.hljs-eliom-client {
   color: #9a6700;
   font-weight: 600;
 }
 
 /* dark yellow */
-.rightcol .hljs-eliom-server {
+.hljs-eliom-server {
   color: #08489c;
   font-weight: 600;
 }
 
 /* blue */
-.rightcol .hljs-eliom-shared,
-.rightcol .hljs-eliom-rpc {
+.hljs-eliom-shared,
+.hljs-eliom-rpc {
   color: #1a7f37;
   font-weight: 600;
 }

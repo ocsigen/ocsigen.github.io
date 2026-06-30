@@ -13,5 +13,4 @@
 (mld-package html_of_wiki)
 (flat)
 (anchor-menu menu.wiki)
-(highlight how-highlight.js)
 (landing index.html)

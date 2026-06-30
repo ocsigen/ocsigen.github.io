@@ -11,7 +11,6 @@
 (css /css/style.css /css/ocsigen-odoc.css)  ; shared Ocsigen theme (wodoc css default changed)
 (mld-dir mld)
 (manual-menu menu.wiki)
-(highlight ocsimore-highlight.js)
 (landing index.html)
 (static-copy api-snapshot api)
 (static-copy mld/creole_cheat_sheet.png creole_cheat_sheet.png)
