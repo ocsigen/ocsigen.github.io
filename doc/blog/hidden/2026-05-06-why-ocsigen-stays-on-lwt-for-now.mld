@@ -6,13 +6,7 @@
 from the blog index and is excluded from the Atom feed and OCaml Planet. It is
 shared only with people who have the direct link.
 
-{i Draft v1 — 2026-05-06. To be reviewed before public posting.}
-
-{b Disclaimer}: This article was generated with some help from Claude based on
-my notes. It is a work in progress and still contains local hallucinations. It
-is still in its early stages. But as I'm taking a lot of time to finalise the
-definitive version, I am sharing this version with you, as it provides a very
-good overview of the issues encountered by the Ocsigen team with Eio. — Vincent
+{i Draft v2 — 2026-05-06. To be reviewed before public posting.}
 
 {1 Context}
 
