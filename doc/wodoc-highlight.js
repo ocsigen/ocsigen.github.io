@@ -29,10 +29,31 @@
     rules.push({ className: "label", begin: /[~?][a-z_][\w']*:?/ });
     // any other ppx extension (%lwt, %js, %rpc, …) -- LAST so the specific rules win
     rules.push({ className: "keyword", begin: /%[a-z]+/ });
+    // Capitalised identifiers: stock hljs lumps modules, constructors and
+    // poly-variant tags all under "type". OCaml types are actually lower-case, so
+    // split the capitalised cases by lexical shape into three distinct classes:
+    //   `Foo             -> type        (polymorphic-variant tag)
+    //   List(.map)       -> module      (capitalised name immediately before a dot)
+    //   Some / None / …  -> constructor (any other capitalised name)
+    // Order matters: the dot-lookahead module rule is tried before the catch-all
+    // constructor rule, and both before stock hljs's own `[A-Z]`->type rule.
+    rules.push({ className: "type", begin: /`[A-Z][\w']*/ });
+    rules.push({ className: "module", begin: /\b[A-Z][\w']*(?=\s*\.)/ });
+    rules.push({ className: "constructor", begin: /\b[A-Z][\w']*/ });
     oc.contains.unshift.apply(oc.contains, rules);
     // the name bound by let / let%x / let* / and -> a function/title (lookbehind
     // may be unsupported on old browsers; guard so the rest still applies)
     try {
+      // a genuine (lower-case) type name at its DEFINITION site: `type user = …`,
+      // `type 'a t = …` (skips the `'a` params), locally-abstract `type a.`. Only
+      // the definition can be spotted lexically — a type merely *used* in an
+      // annotation (`: user`) is indistinguishable from a value, so uses stay
+      // uncoloured. Lower-case, so it never clashes with the module/constructor
+      // rules above.
+      oc.contains.unshift({
+        className: "type",
+        begin: new RegExp("(?<=\\btype\\s+(?:'[a-z][\\w']*\\s+)*)[a-z_][\\w']*"),
+      });
       // The bound name(s) after let/and -> title (orange). Covers:
       //   let f x y = ...        -> f only (x y are parameters)
       //   let p, r, s = ...      -> p, r, s (top-level tuple binding)

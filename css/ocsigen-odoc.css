@@ -398,18 +398,22 @@ pre code,
 }
 
 /* strings: teal */
+/* types (poly-variant tags `Foo, type-definition names, built-ins): violet */
 .hljs-type,
 .hljs-built_in,
 .hljs-class {
-  color: #0bb192;
+  color: #7048c4;
 }
 
-.hljs-constructor,
+/* modules / namespaces (List.map): bright blue */
 .hljs-module {
   color: #2e8eff;
 }
 
-/* modules / types: bright blue (site .spec .label) */
+/* data constructors (Some, None, Ok): a deeper blue of the same family */
+.hljs-constructor {
+  color: #0b5cad;
+}
 .hljs-title,
 .hljs-function,
 .hljs-section {
