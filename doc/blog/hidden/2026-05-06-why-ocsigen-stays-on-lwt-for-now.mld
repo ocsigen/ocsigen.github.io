@@ -2,11 +2,11 @@
 
 @author Vincent Balat
 
-{b Work in progress — unlisted draft.} This page is intentionally not linked
+{b Work in progress: unlisted draft.} This page is intentionally not linked
 from the blog index and is excluded from the Atom feed and OCaml Planet. It is
 shared only with people who have the direct link.
 
-{i Draft v2 — 2026-05-06. To be reviewed before public posting.}
+{i Draft v2, 2026-05-06. To be reviewed before public posting.}
 
 {1 Context}
 
@@ -18,8 +18,8 @@ summer 2025 and the second half of 2025 we ran that migration: branch
 lines changed across 178 files), branch
 {{:https://github.com/ocsigen/ocsigenserver/tree/to-eio}[to-eio]} of
 ocsigenserver, and matching branches in the other repositories. The result
-compiles and the basic test suite passes — {i this is not a report about
-migration mechanics failing}.
+compiles and the basic test suite passes ({i this is not a report about
+migration mechanics failing}).
 
 Despite this, we have decided {b not to release the migration for now}, and to
 stay on Lwt for the foreseeable future. This note explains why, with code
@@ -37,7 +37,7 @@ resolution would, in our view, benefit many OCaml software projects.
 
 In Lwt, [val f : a -> b Lwt.t] is a typed signal that [f] may suspend. Under Eio
 every function has the form [val f : a -> b], regardless of whether it's pure,
-suspends, performs I/O, or — crucially in our case — triggers a network
+suspends, performs I/O, or, crucially in our case, triggers a network
 round-trip from the client to the server.
 
 Eliom is a multi-tier framework: the same source code is compiled for both sides
@@ -53,10 +53,10 @@ disable a button, or otherwise absorb a network delay.
 
 This is even worse in reactive code: a signal map that used to be typed
 [map_s : ('a -> 'b Lwt.t) -> 'a event -> 'b event] is now [map_s : ('a -> 'b) -> 'a event -> 'b event].
-The type no longer signals that the function may suspend and perform I/O, and the FRP semantics of React is broken.
+The type no longer signals that the function may suspend and perform I/O, breaking the FRP semantics of React.
 
 We see this break down
-repeatedly across the Eliom APIs — [Ot_spinner] (A.1), [React]/[Eio_react]
+repeatedly across the Eliom APIs: [Ot_spinner] (A.1), [React]/[Eio_react]
 (A.2), [Eliom_reference] (A.3) below.
 
 {2 2. Eio's handler-based model cannot coexist cleanly with browser event handling}
@@ -80,7 +80,7 @@ is no local fallback.
 to hundreds of entry points (event handlers, RPC callbacks, fork points, timers,
 animation frames, mutation observers). Each one is a potential site for
 [Eio_js.start]. Whether a given site {i actually} needs the wrapper depends on
-what the user-provided callbacks might [perform], several call levels deep — a
+what the user-provided callbacks might [perform], several call levels deep, a
 non-local question. A missed wrap crashes at runtime; an accidentally nested
 wrap creates redundant sub-fibers and disrupts cancellation. Neither case is
 statically detectable.
@@ -88,11 +88,11 @@ statically detectable.
 {b c. Shared (multi-tier) code.} In [\[%shared\]] sections, [Eio_js.start] only
 makes sense on the client (the server already has a handler open from
 [Eio_main.run]). Writing the same idiomatic code for both sides requires an
-abstraction layer ([Eliom_lib.fork]) with two different runtime implementations
-— same syntactic expression, two distinct behaviors. This goes directly against
+abstraction layer ([Eliom_lib.fork]) with two different runtime implementations:
+same syntactic expression, two distinct behaviors. This goes directly against
 what [\[%shared\]] is supposed to give us.
 
-Beyond DOM event handlers, the ambiguity surfaces {i throughout the public API}
+Beyond DOM event handlers (B.1), the ambiguity surfaces {i throughout the public API}
 of any framework: see [Ot_popup] (B.2) and [Ot_sticky] (B.3) below.
 
 {2 A note about the alternative}
@@ -110,16 +110,15 @@ ergonomics. We can argue about coloring on its own merits.
 All code snippets below come from the migration branches. Each example pairs a
 small Lwt fragment from [master] with its counterpart on [to-eio2] / [to-eio].
 
-{2 A.1 — [Ot_spinner]: the visual promise}
+{2 A.1. [Ot_spinner]: the visual promise}
 
 A spinner is the {i visual equivalent of a promise}: it marks the place in the
 UI where a value will appear later. {b Whenever an operation may take time, the
-developer needs to think about inserting a spinner} (or an equivalent: disabled
-button, placeholder, etc.). Function coloring is precisely what tells the
-developer where those sites are. Without it, {b there is a serious risk of
-unhandled UI delays}: a call that turns out to be an RPC will be syntactically
-indistinguishable from a local computation, the UI will freeze for the network
-round-trip, and no spinner will have been planned.
+developer needs to insert a spinner} (or an equivalent: disabled button,
+placeholder, etc.), and function coloring is precisely what tells the developer
+where those sites are. Without it, {b a call that turns out to be an RPC is
+syntactically indistinguishable from a local computation}: the UI freezes for
+the network round-trip and no spinner was ever planned.
 
 In a multi-tier framework like Eliom this matters in two ways at once. The
 widget itself must behave differently depending on where the page is generated:
@@ -131,10 +130,8 @@ widget itself must behave differently depending on where the page is generated:
    {i immediately} so the page change feels instantaneous; replace the spinner
    with the real content asynchronously when available.}}
 
-But the deeper issue is in the {i call sites}, not the widget implementation:
-the application developer needs to know, when writing
-[let users = get_users () in …], that this call may take time and that they
-should arrange for a spinner around it. Under Lwt the [_ Lwt.t] made this
+But the deeper issue is in the {i call sites}, not the widget implementation.
+Under Lwt the [_ Lwt.t] in [let%lwt users = get_users () in …] made the wait
 obvious; under Eio there is no cue.
 
 The Lwt signature (from
@@ -166,18 +163,18 @@ What used to be a promise ([... list Lwt.t]) is now a thunk
 ([unit -> ... list]). The return type used to be [... elt Lwt.t], it is now a
 plain [... elt]. No [Lwt.t] appears anywhere in the signature.
 
-The application code that uses it — from
-{{:https://github.com/ocsigen/ocsigen-start/blob/to-eio/template.distillery/demo_pgocaml.eliom}[ocsigen-start/template.distillery/demo_pgocaml.eliom]}
-— is now syntactically indistinguishable from purely local code:
+The application code that uses it, from
+{{:https://github.com/ocsigen/ocsigen-start/blob/to-eio/template.distillery/demo_pgocaml.eliom}[ocsigen-start/template.distillery/demo_pgocaml.eliom]},
+is now syntactically indistinguishable from purely local code:
 
 {%wodoc:@ class=shared%}
 {@ocaml[
-(* Lwt — master *)
+(* Lwt (master) *)
 let%rpc get_users () : string list Lwt.t = ...
 
 let%shared page () =
   let%lwt user_block =
-    Ot.Spinner.with_spinner
+    Ot_spinner.with_spinner
       (let%lwt users = get_users () in   (* the wait is manifest *)
        ...)
   in
@@ -186,7 +183,7 @@ let%shared page () =
 
 {%wodoc:@ class=shared%}
 {@ocaml[
-(* Eio — to-eio *)
+(* Eio (to-eio) *)
 let%rpc get_users () : string list = ...
 
 let%shared page () =
@@ -198,19 +195,17 @@ let%shared page () =
   ...
 ]}
 
-[get_users] is an Eliom RPC. The [let%shared page () = …] block is compiled for
-both sides and runs on the server for the first render, on the client for
-subsequent Eliom navigation. On the server [get_users ()] is a local call; on
-the client {i the same expression} is a network round-trip. Under Lwt, the
-[_ Lwt.t] made this dual reality visible. Under Eio, the developer reading
-[let users = get_users () in …] has no syntactic cue that the client-side
-execution will block several hundred milliseconds.
+[get_users] is an Eliom RPC. The [let%shared page () = …] block runs on the
+server for the first render and on the client for subsequent Eliom navigation.
+On the server [get_users ()] is a local call; on the client {i the same
+expression} is a network round-trip of several hundred milliseconds. Under Lwt
+the [_ Lwt.t] made this dual reality visible; under Eio nothing does.
 
-{2 A.2 — [React]: the type collapse of [map_s]}
+{2 A.2. [React]: the type collapse of [map_s]}
 
 React (Daniel Bünzli's FRP library) is deterministic: a signal's value is, at
 any moment, a pure function of its inputs. [Lwt_react] adds {i threaded}
-versions of the combinators — [map_s], [filter_s], etc. — for cases where the
+versions of the combinators ([map_s], [filter_s], etc.) for cases where the
 transformation must wait on something (a database fetch, a confirmation event,
 …).
 
@@ -218,10 +213,10 @@ Under Lwt, the type of the threaded variant explicitly differed from the pure
 one:
 
 {@ocaml[
-(* React.E.map — pure FRP, always synchronous *)
+(* React.E.map: pure FRP, always synchronous *)
 val map   : ('a -> 'b)        -> 'a event -> 'b event
 
-(* Lwt_react.E.map_s — threaded, takes a function that may yield *)
+(* Lwt_react.E.map_s: threaded, takes a function that may yield *)
 val map_s : ('a -> 'b Lwt.t)  -> 'a event -> 'b event
 val map_p : ('a -> 'b Lwt.t)  -> 'a event -> 'b event
 ]}
@@ -238,19 +233,19 @@ val map_p : ('a -> 'b) -> 'a event -> 'b event
 ]}
 
 The type is now identical to [React.E.map]. The [_s]/[_p] suffix has no semantic
-content at the type level — it survives only as a naming convention.
+content at the type level: it survives only as a naming convention.
 
-A developer can now write [React.S.map] with a function that yields internally,
-no warning, no error. The result is a signal that secretly performs I/O at every
-update, breaking the local determinism on which FRP semantics rely. We lose the
-language-level guarantee that signal combinators are pure.
+A developer can now write [React.E.map] with a function that yields internally,
+no warning, no error. The result is an event that secretly performs I/O at every
+occurrence, breaking the local determinism on which FRP semantics rely. We lose
+the language-level guarantee that combinators are pure.
 
-{2 A.3 — [Eliom_reference]: the [Volatile] submodule rendered moot}
+{2 A.3. [Eliom_reference]: the [Volatile] submodule rendered moot}
 
 [Eliom_reference] is the primitive every Eliom developer uses to store
 server-side state (session data, user preferences, request-scoped state). Its
 references can be either {i volatile} (in memory) or {i persistent} (backed by
-ocsipersist on disk — sqlite / dbm / postgres). Both flavors share the same
+ocsipersist on disk: sqlite / dbm / postgres). Both flavors share the same
 ['a eref] type; persistence is chosen at creation time via an optional
 [?persistent] argument.
 
@@ -264,7 +259,7 @@ val unset  : 'a eref -> unit Lwt.t
 ]}
 
 Because the API does not statically know whether an eref will be volatile or
-persistent, the type [_ Lwt.t] covers both cases — and conveys to the developer
+persistent, the type [_ Lwt.t] covers both cases, and conveys to the developer
 that the call {i may} be I/O.
 
 The module also exposed, for developers who knew their reference was volatile,
@@ -290,19 +285,19 @@ val modify : 'a eref -> ('a -> 'a) -> unit
 val unset  : 'a eref -> unit
 ]}
 
-— {b identical to the [Volatile] submodule}. The submodule, which under Lwt was
+{b This is now identical to the [Volatile] submodule}. The submodule, which under Lwt was
 the typed escape-hatch into the synchronous world, now duplicates the main
 module entirely. Its purpose disappears with the loss of coloring: there is no
 longer a way, in the type, to require a non-suspendable reference.
 
 For the application developer this means: a [let pref = Eliom_reference.get
 my_pref in …] may be a memory read or a disk read, depending on how [my_pref]
-was created — and the type no longer tells you which. Innocuous-looking code
+was created, and the type no longer tells you which. Innocuous-looking code
 like [if Eliom_reference.get pref > 0 then …] can hide a [perform] and a disk
 I/O. Placed inside a signal map (cf. A.2), or inside a tight loop, this is a real
 performance bug waiting to happen.
 
-{2 B.1 — DOM event handlers: a local impossibility}
+{2 B.1. DOM event handlers: a local impossibility}
 
 Take a typical bullet handler from
 {{:https://github.com/ocsigen/ocsigen-toolkit/blob/to-eio/src/widgets/ot_carousel.eliom}[ot_carousel.eliom]}:
@@ -331,23 +326,22 @@ Two scenarios:
    [Eliom_reference.set] on a persistent eref, …), the wrapper is mandatory.}}
 
 The "defensive" answer of wrapping everywhere is not viable, for the reason
-explained in the introduction: [Eio_js.start] defers to [setTimeout(0)], which
-runs after DOM propagation, breaking [preventDefault] / [stopPropagation]. Under
-Lwt none of this was necessary: a promise is just an OCaml value, the Lwt
-scheduler picks it up from any browser callback, no stack-installed handler
-required.
+given in point 2a above: [Eio_js.start] defers to [setTimeout(0)] and runs after
+DOM propagation. Under Lwt none of this was necessary: a promise is just an OCaml
+value, the Lwt scheduler picks it up from any browser callback, with no
+stack-installed handler required.
 
 The branch shows a further complication: in practice we ended up using
-{i several} primitives that do similar things — [Js_of_ocaml_eio.Eio_js.start],
+{i several} primitives that do similar things: [Js_of_ocaml_eio.Eio_js.start],
 [Eliom_lib.fork] (whose implementation differs by side: client =
-[Eio_js.start], server = [Eio.Fiber.fork]), and [Eio_js_events.async] — and
+[Eio_js.start], server = [Eio.Fiber.fork]), and [Eio_js_events.async], plus
 library functions like [Eio_js_events.clicks button (fun ev -> …)] that install
 their own handler. So the same conceptual call,
 [a_onclick (fun ev -> change ())] versus
 [Eio_js_events.clicks button (fun ev -> change ())], may require a wrapper in
 one form and not the other, with no syntactic cue to distinguish them.
 
-{2 B.2 — [Ot_popup.popup]: three ambiguities in one signature}
+{2 B.2. [Ot_popup.popup]: three ambiguities in one signature}
 
 [Ot_popup.popup] is a modal-popup widget used routinely in Eliom apps. Its
 signature takes several user callbacks and a content generator.
@@ -388,18 +382,18 @@ markers.
 Under Eio, none of these are answered by the type:
 
 {ol
-{- Can [confirmation_onclose] or [onclose] suspend? — If yes, who installs the
+{- Can [confirmation_onclose] or [onclose] suspend? If yes, who installs the
    handler? The popup, or the caller? Nothing says.}
 {- Does [popup] itself fork these callbacks, await them, or call them
-   synchronously? — Reading the type does not tell.}
+   synchronously? Reading the type does not tell.}
 {- Does [popup] block until [gen_content] returns, or does it return early with a
-   div that fills in later? — The type just says you get a [div].}}
+   div that fills in later? The type just says you get a [div].}}
 
 To use the widget correctly the developer must read the implementation. And the
 ambiguity composes: if [popup] is called from a generic widget, which is called
 from another, each layer adds uncertainty.
 
-{2 B.3 — [Ot_sticky.make_sticky]: hidden wait}
+{2 B.3. [Ot_sticky.make_sticky]: hidden wait}
 
 [Ot_sticky.make_sticky] is a stickiness polyfill. Its first action, internally,
 is to wait for the DOM node to be attached ([Ot_nodeready.nodeready]).
@@ -429,14 +423,14 @@ val make_sticky :
 ]}
 
 The doc-comment "{i The function will wait until the node is ready in the page
-before starting}" was {b added} in the Eio version. It did not exist under Lwt —
+before starting}" was {b added} in the Eio version. It did not exist under Lwt,
 and didn't need to, because the type said so. This is the same pattern as in
 [Lwt_react] (A.2) and [Eliom_reference] (A.3): the documentation has to carry
 what the types used to.
 
 For the application developer this means: nothing in the call site
 [let glue = make_sticky elt in …] warns that the next line may execute much
-later, or — worse — that the call will crash with [Effect.Unhandled] if it is
+later, or, worse, that the call will crash with [Effect.Unhandled] if it is
 invoked from an unwrapped DOM event handler.
 
 {1 What we hope could unblock us}
@@ -456,7 +450,7 @@ community's view on which are realistic.
 {- {b A "fiber-less" or "synchronous-first" mode of Eio}, in which primitives
    that don't yield run inline within the current call stack, and only an
    explicit yield surrenders control. This preserves DOM propagation semantics.
-   It is also, conceptually, close to what Lwt already provides — promises are
+   It is also, conceptually, close to what Lwt already provides: promises are
    values, the scheduler picks them up when ready, no stack-installed handler
    required.}}
 
@@ -468,7 +462,7 @@ points above, is why we are staying on Lwt.
 
 We tried, we documented, we paused. We'd like to thank the ocaml-multicore team,
 Tarides, and everyone who has contributed to Eio and the surrounding tooling
-([lwt_eio], [ciao-lwt], js_of_ocaml-eio, …) — the implementation work we relied
+([lwt_eio], [ciao-lwt], js_of_ocaml-eio, …): the implementation work we relied
 on was of high quality, and what is described above is about design tradeoffs at
 the language and runtime level, not about the quality of any implementation.
 
