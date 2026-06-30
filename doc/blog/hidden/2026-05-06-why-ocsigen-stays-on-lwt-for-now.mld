@@ -462,13 +462,18 @@ points above, is why we are staying on Lwt.
 
 We tried, we documented, we paused. We'd like to thank the ocaml-multicore team,
 Tarides, and everyone who has contributed to Eio and the surrounding tooling
-([lwt_eio], [ciao-lwt], js_of_ocaml-eio, …): the implementation work we relied
+([lwt_eio], js_of_ocaml-eio, …): the implementation work we relied
 on was of high quality, and what is described above is about design tradeoffs at
 the language and runtime level, not about the quality of any implementation.
 
 Our experience also taught us that migrating a very large codebase is genuinely
 hard: it is complex, slow, and can introduce many subtle problems, even when the
-migration itself compiles and passes the test suite.
+migration itself compiles and passes the test suite. Very large codebases built
+on Lwt exist, and the less well-funded projects among them will simply
+not be able to afford such a migration. Our attempt to reduce this cost is
+{{:https://github.com/tarides/ciao-lwt}[ciao-lwt]}, a set of tools that
+automate part of the Lwt-to-Eio migration; it handles many common patterns,
+although a fully mechanical migration remains out of reach.
 
 More broadly, the state of concurrency libraries in the OCaml world is, in our
 view, extremely concerning. The OCaml community is small and cannot afford a
@@ -479,3 +484,6 @@ We are fully committed to helping solve the problem of concurrency libraries.
 
 We are happy to share code, write more details, or pair on small experiments.
 Discussion welcome.
+
+This work was funded by {{:https://nlnet.nl/}[NLnet]} through the
+{{:https://nlnet.nl/core/}[NGI Zero Core]} fund.
