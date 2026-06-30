@@ -388,7 +388,7 @@ pre code,
 
 .hljs-keyword,
 .hljs-selector-tag {
-  color: #5661b1;
+  color: #008a71;
 }
 
 /* keywords (let/fun/…): brand orange */
@@ -400,7 +400,10 @@ pre code,
 /* strings: teal */
 .hljs-type,
 .hljs-built_in,
-.hljs-class,
+.hljs-class {
+  color: #0bb192;
+}
+
 .hljs-constructor,
 .hljs-module {
   color: #2e8eff;
@@ -419,7 +422,7 @@ pre code,
 .hljs-symbol,
 .hljs-variable,
 .hljs-attribute {
-  color: #6f4e00;
+  color: #222;
 }
 
 .hljs-subst {
@@ -444,7 +447,7 @@ pre code,
 
 /* Eliom ppx side markers (let%client / %server / %shared), coloured by tier */
 .hljs-eliom-client {
-  color: #9a6700;
+  color: #9a8900;
   font-weight: 600;
 }
 
