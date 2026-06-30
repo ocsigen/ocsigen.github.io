@@ -466,5 +466,16 @@ Tarides, and everyone who has contributed to Eio and the surrounding tooling
 on was of high quality, and what is described above is about design tradeoffs at
 the language and runtime level, not about the quality of any implementation.
 
+Our experience also taught us that migrating a very large codebase is genuinely
+hard: it is complex, slow, and can introduce many subtle problems, even when the
+migration itself compiles and passes the test suite.
+
+More broadly, the state of concurrency libraries in the OCaml world is, in our
+view, extremely concerning. The OCaml community is small and cannot afford a
+split. If OCaml is to grow, it must reach real-world applications, and those
+users need high-level, interoperable building blocks. The Ocsigen project has
+always aimed to provide such tools while fostering the unity of the ecosystem.
+We are fully committed to helping solve the problem of concurrency libraries.
+
 We are happy to share code, write more details, or pair on small experiments.
 Discussion welcome.
