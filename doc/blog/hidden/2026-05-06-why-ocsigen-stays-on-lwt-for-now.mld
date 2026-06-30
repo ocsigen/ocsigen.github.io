@@ -176,6 +176,7 @@ The application code that uses it — from
 {{:https://github.com/ocsigen/ocsigen-start/blob/to-eio/template.distillery/demo_pgocaml.eliom}[ocsigen-start/template.distillery/demo_pgocaml.eliom]}
 — is now syntactically indistinguishable from purely local code:
 
+{%wodoc:@ class=shared%}
 {@ocaml[
 (* Lwt — master *)
 let%rpc get_users () : string list Lwt.t = ...
@@ -187,7 +188,10 @@ let%shared page () =
        ...)
   in
   ...
+]}
 
+{%wodoc:@ class=shared%}
+{@ocaml[
 (* Eio — to-eio *)
 let%rpc get_users () : string list = ...
 
