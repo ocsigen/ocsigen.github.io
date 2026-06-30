@@ -132,7 +132,7 @@
   -&gt; ?fail:(exn -&gt;
               [&lt; Html_types.div_content] Eliom_content.Html.elt list)
   -&gt; (unit -&gt; [&lt; Html_types.div_content] Eliom_content.Html.elt list)
-  -&gt; [&gt; `Div] Eliom_content.Html.elt</code></pre><p>What used to be a promise (<code>... list Lwt.t</code>) is now a thunk (<code>unit -&gt; ... list</code>). The return type used to be <code>... elt Lwt.t</code>, it is now a plain <code>... elt</code>. No <code>Lwt.t</code> appears anywhere in the signature.</p><p>The application code that uses it — from <a href="https://github.com/ocsigen/ocsigen-start/blob/to-eio/template.distillery/demo_pgocaml.eliom"><code>ocsigen-start/template.distillery/demo_pgocaml.eliom</code></a> — is now syntactically indistinguishable from purely local code:</p><pre class="language-ocaml"><code>(* Lwt — master *)
+  -&gt; [&gt; `Div] Eliom_content.Html.elt</code></pre><p>What used to be a promise (<code>... list Lwt.t</code>) is now a thunk (<code>unit -&gt; ... list</code>). The return type used to be <code>... elt Lwt.t</code>, it is now a plain <code>... elt</code>. No <code>Lwt.t</code> appears anywhere in the signature.</p><p>The application code that uses it — from <a href="https://github.com/ocsigen/ocsigen-start/blob/to-eio/template.distillery/demo_pgocaml.eliom"><code>ocsigen-start/template.distillery/demo_pgocaml.eliom</code></a> — is now syntactically indistinguishable from purely local code:</p><pre class="language-ocaml shared"><code>(* Lwt — master *)
 let%rpc get_users () : string list Lwt.t = ...
 
 let%shared page () =
@@ -141,9 +141,7 @@ let%shared page () =
       (let%lwt users = get_users () in   (* the wait is manifest *)
        ...)
   in
-  ...
-
-(* Eio — to-eio *)
+  ...</code></pre><pre class="language-ocaml shared"><code>(* Eio — to-eio *)
 let%rpc get_users () : string list = ...
 
 let%shared page () =
