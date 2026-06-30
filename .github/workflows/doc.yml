@@ -38,7 +38,25 @@ jobs:
         with:
           ocaml-compiler: "5.4.0"
 
+      # The bulk of this job (~3.5 min of a ~4 min run) is compiling wodoc + odoc
+      # from source; the actual page build takes ~2 s. setup-ocaml only caches the
+      # base switch (compiler), so they recompiled on every push. Cache the whole
+      # switch keyed on wodoc's HEAD commit (resolved below) so a cache hit skips
+      # the install entirely; when wodoc moves, the key changes and it rebuilds
+      # once, then re-caches.
+      - name: Resolve wodoc HEAD commit
+        id: wodoc
+        run: echo "sha=$(git ls-remote https://github.com/ocsigen/wodoc.git HEAD | cut -f1)" >> "$GITHUB_OUTPUT"
+
+      - name: Cache the opam switch (wodoc + odoc)
+        id: switch-cache
+        uses: actions/cache@v4
+        with:
+          path: _opam
+          key: opam-switch-${{ runner.os }}-ocaml5.4.0-wodoc-${{ steps.wodoc.outputs.sha }}
+
       - name: Install wodoc and odoc
+        if: steps.switch-cache.outputs.cache-hit != 'true'
         run: |
           opam pin add -n wodoc https://github.com/ocsigen/wodoc.git
           opam install wodoc odoc
