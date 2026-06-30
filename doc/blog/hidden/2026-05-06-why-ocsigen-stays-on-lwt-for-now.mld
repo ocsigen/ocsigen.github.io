@@ -95,15 +95,19 @@ what [\[%shared\]] is supposed to give us.
 Beyond DOM event handlers (B.1), the ambiguity surfaces {i throughout the public API}
 of any framework: see [Ot_popup] (B.2) and [Ot_sticky] (B.3) below.
 
-{2 A note about the alternative}
+{2 A note on monadic versus direct style}
 
-[Lwt 6] (Cruanes, January 2026) introduces
+One argument often made for effects is the syntactic comfort of direct-style
+code. We do not find it decisive. The monadic style of Lwt is perfectly good:
+with binding operators such as [let*] it is not even uncomfortable to write, and
+the explicit [_ Lwt.t] is in fact very practical, because it keeps the developer
+aware of what the code is really doing. For those who genuinely dislike monads,
+[Lwt 6] (Cruanes, January 2026) offers
 {{:https://discuss.ocaml.org/t/ann-lwt-6-0-0-release-direct-style-tracing/17690}[Lwt_direct]},
-which gives Lwt the syntactic comfort of direct-style code
-([await : 'a Lwt.t -> 'a]) while keeping function coloring intact. For us this
-is decisive: we get readable direct-style code {i and} the type-level signal of
-asynchrony. There is no longer a "monads vs effects" debate about syntactic
-ergonomics. We can argue about coloring on its own merits.
+which provides direct-style syntax ([await : 'a Lwt.t -> 'a]) on top of Lwt
+while keeping function coloring intact. So the "monads versus effects" debate
+about syntactic ergonomics is, for us, beside the point: what matters is
+coloring.
 
 {1 Concrete examples}
 
@@ -452,11 +456,14 @@ community's view on which are realistic.
    explicit yield surrenders control. This preserves DOM propagation semantics.
    It is also, conceptually, close to what Lwt already provides: promises are
    values, the scheduler picks them up when ready, no stack-installed handler
-   required.}}
+   required.}
+{- {b Investing in Lwt itself}, for example an io_uring backend, an
+   effects-based scheduler, or multicore support. Lwt is not frozen: much of
+   what makes Eio attractive at the runtime level could be brought to a library
+   that keeps coloring intact.}}
 
-In the meantime, [Lwt_direct] gives us most of the syntactic ergonomics of
-direct style without forcing us into the dilemmas above. That, combined with the
-points above, is why we are staying on Lwt.
+For the time being, staying on Lwt preserves coloring and spares us the dilemmas
+above. That is why we are staying on Lwt.
 
 {1 Closing}
 
