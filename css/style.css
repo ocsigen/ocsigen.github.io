@@ -226,6 +226,11 @@ body.ocsigen\.github\.io.intro .page-header {
   font-size: 23px;
   color: #ff8d52;
 }
+/* The blog labels its logo "Blog" in teal (matching the doc code highlighting)
+   instead of the shared project orange, for a distinct identity. */
+.wodoc-blog-page .page-header p.logo-subproject {
+  color: #0bb192;
+}
 .page-header .mainmenu {
   flex-grow: 1;
   line-height: 30px;

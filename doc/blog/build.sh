@@ -33,7 +33,8 @@ build_page() { # <preprocessed.mld src> <odoc page name> <leftnav file> <out htm
   odoc compile "$WORK/$name.mld" -o "$WORK/page-$name.odoc"
   odoc link "$WORK/page-$name.odoc" -o "$WORK/page-$name.odocl"
   odoc html-generate "$WORK/page-$name.odocl" -o "$WORK/html"
-  "$WODOC" assemble --template "$TMPL" --menu "$MENU" --subproject Blog \
+  "$WODOC" assemble --template "$TMPL" --menu "$MENU" \
+    --subproject '<p class="logo-subproject">Blog</p>' \
     --menu-current blog --leftnav "$nav" "$@" "$WORK/html/$name.html" >"$out"
 }
 
