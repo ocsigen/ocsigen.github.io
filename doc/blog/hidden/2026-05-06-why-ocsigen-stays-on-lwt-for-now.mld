@@ -24,7 +24,9 @@ migration mechanics failing}).
 Despite this, we have decided {b not to release the migration for now}, and to
 stay on Lwt for the foreseeable future. This note explains why, with code
 excerpts from the migration branches, and asks the OCaml effects community
-whether some of the obstacles we hit could be addressed upstream.
+whether some of the obstacles we hit could be addressed upstream. It also comes
+in response to concerned questions from industrial users of Ocsigen, who needed
+to know whether their existing Lwt codebases were about to be left behind.
 
 This is {i not} an anti-Eio piece. Effects are a major contribution of OCaml 5
 and we are grateful for the work of the ocaml-multicore team and Tarides. The
