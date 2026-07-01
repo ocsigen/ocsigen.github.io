@@ -226,10 +226,14 @@ body.ocsigen\.github\.io.intro .page-header {
   font-size: 23px;
   color: #ff8d52;
 }
-/* The blog labels its logo "Blog" in teal (matching the doc code highlighting)
-   instead of the shared project orange, for a distinct identity. */
-.wodoc-blog-page .page-header p.logo-subproject {
-  color: #0bb192;
+/* Per-project accent for the top-left logo label, overriding the shared orange.
+   Keyed off the per-project body class wodoc-project-<name> that wodoc emits on
+   every page (the blog sets it in its own template). */
+.wodoc-project-tuto .page-header p.logo-subproject {
+  color: #0bb192; /* Doc / tutorial: teal, matching the code highlighting */
+}
+.wodoc-project-blog .page-header p.logo-subproject {
+  color: #ff5c8d; /* blog: pink */
 }
 .page-header .mainmenu {
   flex-grow: 1;
