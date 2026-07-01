@@ -21,47 +21,58 @@ html {
   font-size: 18px;
   line-height: 1.4;
 }
+
 *,
 *:before,
 *:after {
   box-sizing: inherit;
 }
+
 a,
 a:visited {
   color: #0e7eff;
   text-decoration: none;
 }
+
 a.backref {
   display: none;
 }
+
 h1:hover a.backref,
 h2:hover a.backref,
 h3:hover a.backref,
 h4:hover a.backref {
   display: inline;
 }
+
 h1,
 h2,
 h3,
 h4 {
   font-weight: normal;
-  color: #094489; /* dark blue */
+  color: #094489;
+  /* dark blue */
 }
+
 .project-page h1 {
   margin: 100px 0 70px 0;
   font-size: 50px;
 }
+
 p {
   text-align: justify;
 }
+
 p.centered {
   text-align: center;
 }
+
 body {
   margin: 0;
   font-family: "Work Sans", sans-serif;
   color: #555;
 }
+
 #gsearch-box {
   transition: width 0.6s, border-radius 0.6s, background 0.6s, box-shadow 0.6s;
   width: 40px;
@@ -71,21 +82,27 @@ body {
   cursor: pointer;
   background: white;
 }
-#gsearch-box + label {
+
+#gsearch-box+label {
   color: black;
   position: absolute;
   right: 10px;
   top: 24px;
   cursor: pointer;
 }
+
 #gsearch-box:hover {
   color: white;
-  background: #98fb98; /* pale green */
-  box-shadow: 0 0 0 5px #36648b; /* dark steel blue */
+  background: #98fb98;
+  /* pale green */
+  box-shadow: 0 0 0 5px #36648b;
+  /* dark steel blue */
 }
-#gsearch-box:hover + label#gsearch-icon {
+
+#gsearch-box:hover+label#gsearch-icon {
   color: white;
 }
+
 #gsearch-box:focus {
   transition: width 0.6s, border-radius 0.6s, background 0.6s;
   border: none;
@@ -98,9 +115,11 @@ body {
   background: white;
   color: black;
 }
-#gsearch-box:focus + label#gsearch-icon {
+
+#gsearch-box:focus+label#gsearch-icon {
   color: black;
 }
+
 #gsearch-box:not(:focus) {
   text-indent: -5000px;
 }
@@ -129,47 +148,58 @@ form#googlesearch {
   font-size: 22px;
   transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
 }
+
 .main-button:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(9, 155, 230, 0.4);
   background-color: #0ab3ff;
 }
+
 a.main-button,
 a.main-button:visited {
   color: white !important;
 }
+
 .horiz-blocks {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   flex-wrap: wrap;
 }
-.horiz-blocks > * {
+
+.horiz-blocks>* {
   max-width: 500px;
   min-width: 200px;
 }
-.horiz-blocks > *:first-child {
+
+.horiz-blocks>*:first-child {
   margin-right: 20px;
 }
+
 .main-page-section-news .horiz-blocks {
   justify-content: unset;
   margin: 0;
 }
-.main-page-section-news .horiz-blocks > * {
+
+.main-page-section-news .horiz-blocks>* {
   max-width: unset;
   margin: 0;
   width: 50%;
 }
+
 .main-page-section {
   background-color: white;
 }
+
 .main-page-section h2 {
   font-size: 36px;
   font-weight: normal;
 }
+
 .main-page-section h3.subtitle {
   margin-top: -1.2rem;
 }
+
 .main-page-section-header {
   position: sticky;
   top: -510px;
@@ -181,22 +211,27 @@ a.main-button:visited {
   color: white;
   padding: 150px 150px;
 }
+
 .main-page-section-header h1,
 .main-page-section-js_of_ocaml h2,
 .main-page-section-js_of_ocaml h3,
 .main-page-section-header h2 {
   color: white;
 }
+
 .main-page-section-header .main-button {
   margin-top: 50px;
 }
+
 .main-page-section-header h1 {
   font-size: 40px;
   margin-bottom: 10px;
 }
+
 .main-page-section-header h2 {
   font-size: 20px;
 }
+
 .page-header {
   display: flex;
   position: fixed;
@@ -210,15 +245,19 @@ a.main-button:visited {
   padding: 10px 20px;
   text-align: right;
 }
+
 body.ocsigen\.github\.io.intro .page-header {
   background-color: rgba(0, 0, 0, 0.2);
 }
+
 .page-header a {
   color: white;
 }
+
 .page-header p.logo-ocsigen img {
   width: 100px;
 }
+
 .page-header p.logo-subproject {
   position: absolute;
   top: 26px;
@@ -226,15 +265,20 @@ body.ocsigen\.github\.io.intro .page-header {
   font-size: 23px;
   color: #ff8d52;
 }
+
 /* Per-project accent for the top-left logo label, overriding the shared orange.
    Keyed off the per-project body class wodoc-project-<name> that wodoc emits on
    every page (the blog sets it in its own template). */
 .wodoc-project-tuto .page-header p.logo-subproject {
-  color: #0bb192; /* Doc / tutorial: teal, matching the code highlighting */
+  color: #0bb192;
+  /* Doc / tutorial: teal, matching the code highlighting */
 }
+
 .wodoc-project-blog .page-header p.logo-subproject {
-  color: #ff5c8d; /* blog: pink */
+  color: #ff5c8d;
+  /* blog: pink */
 }
+
 .page-header .mainmenu {
   flex-grow: 1;
   line-height: 30px;
@@ -246,15 +290,18 @@ body.ocsigen\.github\.io.intro .page-header {
   display: inline-block;
   margin: 0;
 }
+
 .page-header .mainmenu p a,
 .page-header .mainmenu p span a {
   font-size: 16px;
   padding: 5px 15px;
   color: white;
 }
+
 .page-header .mainmenu .mainmenu-current {
   border-bottom: 4px solid #64caff;
 }
+
 li.drawermainmenu-page,
 li.drawermainmenu-home,
 li.drawermainmenu-doc,
@@ -262,88 +309,109 @@ li.drawermainmenu-doc,
 .mainmenu-doc {
   font-weight: bold;
 }
+
 li.drawermainmenu-project a {
   color: #2e8eff;
 }
+
 li.drawermainmenu-current a {
   font-weight: bold;
   color: #ff8d52;
 }
+
 .page-header .logo-ocsigen {
   position: absolute;
   left: 60px;
   top: 20px;
 }
+
 .main-page-section-partners {
   text-align: center;
   width: 100%;
   overflow-x: auto;
   white-space: nowrap;
 }
+
 .main-page-section-partners ul {
   display: inline-block;
   line-height: 30px;
   vertical-align: middle;
   margin: 20px 0;
 }
+
 .main-page-section-partners li {
   display: inline-block;
   padding: 5px 20px;
 }
+
 .main-page-section-partners img {
   width: 100px;
 }
+
 .main-page-section-partners img.logo-cnrs {
   width: 50px;
 }
+
 .main-page-section-users ul {
   column-count: 3;
 }
+
 .main-page-section-content {
   position: relative;
   max-width: 1200px;
   padding: 50px;
   margin: 0 auto;
 }
+
 .main-page-section-news .main-page-section-content {
   padding: 50px 0;
   margin: 0;
   max-width: 100%;
 }
+
 .main-page-section-news .main-page-section-content h2 {
   max-width: 1200px;
   margin: 20px auto;
   padding: 0 50px;
 }
+
 [class^="main-page-news-"] {
   padding: 35px;
 }
+
 .main-page-news-1 {
   background-color: #f0f7ff;
 }
+
 .main-page-news-2 {
   background-color: #094489;
   color: white;
 }
+
 .main-page-section-multitier {
   color: #222;
 }
+
 .main-page-schema-multitier {
   width: 800px;
   max-width: calc(100vw - 40px);
 }
+
 .main-page-section-multitier-schema {
   position: relative;
   height: 500px;
   padding: 50px 0;
 }
-.main-page-section-multitier-schema > p {
+
+.main-page-section-multitier-schema>p {
   text-align: center;
 }
+
 .main-page-section-js_of_ocaml {
   background-color: #001a39;
   color: white;
 }
+
 .main-page-section-js_of_ocaml-schema {
   position: relative;
   display: flex;
@@ -352,15 +420,18 @@ li.drawermainmenu-current a {
   align-items: flex-start;
   flex-wrap: wrap;
 }
+
 .main-page-section-js_of_ocaml-ocaml code[class*="language-"]::before,
 .main-page-section-js_of_ocaml-js code[class*="language-"]::before {
   color: rgba(255, 255, 255, 0.2);
   text-shadow: none;
 }
+
 pre {
   max-width: 85vw;
   overflow-x: auto;
 }
+
 pre[class*="language-"].main-page-section-js_of_ocaml-ocaml,
 pre[class*="language-"].main-page-section-js_of_ocaml-js {
   max-width: 100vw;
@@ -370,16 +441,19 @@ pre[class*="language-"].main-page-section-js_of_ocaml-js {
   margin: 40px;
   background-color: transparent !important;
 }
+
 .darkcode code[class*="language-"] {
   text-shadow: none;
   color: white;
 }
+
 .main-page-section-js_of_ocaml-arrow1 {
   position: absolute;
   top: 100px;
   left: 525px;
   font-size: 51px;
 }
+
 .main-page-section-js_of_ocaml-arrow2 {
   position: absolute;
   top: 300px;
@@ -387,33 +461,43 @@ pre[class*="language-"].main-page-section-js_of_ocaml-js {
   font-size: 51px;
   transform: rotateZ(45deg);
 }
+
 .darkcode .token.number {
   color: #ffaa99;
 }
+
 .darkcode .token.keyword {
-  color: #63caff; /* light blue */
+  color: #63caff;
+  /* light blue */
 }
+
 .darkcode .token.operator {
   background-color: transparent;
   color: #ddccbb;
 }
+
 .main-page-section-about {
-  background-color: #001a39; /* dark dark blue */
+  background-color: #001a39;
+  /* dark dark blue */
   color: #ddd;
   padding: 30px 0;
 }
+
 .main-page-section-about ul {
   list-style-type: none;
 }
+
 .main-page-section-about li {
   line-height: 200%;
 }
+
 .main-page-section-projects {
   background-color: white;
   color: #888;
 }
-.main-page-schema-js_of_ocaml {
-}
+
+.main-page-schema-js_of_ocaml {}
+
 .main-page-projects {
   display: flex;
   flex-direction: row;
@@ -421,6 +505,7 @@ pre[class*="language-"].main-page-section-js_of_ocaml-js {
   flex-wrap: wrap;
   padding-bottom: 50px;
 }
+
 .main-page-project {
   position: relative;
   width: 400px;
@@ -436,10 +521,12 @@ pre[class*="language-"].main-page-section-js_of_ocaml-js {
   overflow: hidden;
   transition: transform 0.2s, box-shadow 0.2s;
 }
+
 .main-page-project:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
+
 .main-page-project h3::before {
   content: "";
   position: absolute;
@@ -452,26 +539,31 @@ pre[class*="language-"].main-page-section-js_of_ocaml-js {
   background-repeat: no-repeat;
   height: 28px;
 }
+
 .main-page-project h3 {
   background-color: #001a39;
   color: #ff8d52;
   padding: 44px 0 10px 92px;
   margin: 0;
 }
+
 .main-page-project p {
   margin: 0;
   padding: 30px;
   color: #555;
 }
+
 .project-page {
   margin: 120px auto;
   max-width: 1500px;
 }
+
 .twocols {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
 }
+
 .leftcol {
   flex-shrink: 0;
   position: sticky;
@@ -486,36 +578,44 @@ pre[class*="language-"].main-page-section-js_of_ocaml-js {
   border-radius: 5px;
   border: 1px solid #eee;
 }
+
 .leftcol::-webkit-scrollbar {
   display: none;
 }
+
 .leftcol h1 {
   margin: 30px 0 0 0;
   font-size: 16px;
 }
+
 .leftcol h2,
 .leftcol h3,
 .leftcol h4 {
   margin: 4px 0 4px 10px;
   font-size: 16px;
 }
+
 .leftcol h2 {
   margin: 20px 0 2px 0;
 }
+
 .leftcol h4 {
   margin-left: 20px;
 }
+
 .rightcol {
-  padding: 0 20px;
+  padding: 0 50px 0 20px;
   right: 0;
 }
+
 /****** Reason switch button (from html_of_wiki) *****/
 button#reason {
   display: none;
   position: fixed;
   right: 20px;
   top: 120px;
-  background-color: #ff8d52; /* orange */
+  background-color: #ff8d52;
+  /* orange */
   border-radius: 50%;
   border: none;
   height: 75px;
@@ -525,25 +625,31 @@ button#reason {
   font-size: 12px;
   z-index: 3;
 }
+
 /* Update the switch button's content */
 body:not(.reason) button#reason::after {
   content: "Reason syntax";
 }
+
 body.reason button#reason::after {
   content: "regular OCaml syntax";
 }
+
 .reasonwarning {
   display: none;
   font-style: italic;
 }
+
 body.reason .reasonwarning {
   display: block;
 }
+
 .focused {
   background: #fcf0eb;
   padding: 1px 15px;
   border-radius: 10px;
 }
+
 .quickstart-block {
   background: linear-gradient(135deg, #fff5f0 0%, #fce8de 100%);
   border-radius: 12px;
@@ -554,6 +660,7 @@ body.reason .reasonwarning {
   position: relative;
   overflow: hidden;
 }
+
 .quickstart-block::before {
   content: "";
   position: absolute;
@@ -564,13 +671,15 @@ body.reason .reasonwarning {
   background: linear-gradient(180deg, #ff8d52, #094489);
   border-radius: 12px 0 0 12px;
 }
-.quickstart-block > strong:first-child {
+
+.quickstart-block>strong:first-child {
   display: block;
   font-size: 1.4em;
   color: #094489;
   margin-bottom: 0.5em;
   letter-spacing: -0.01em;
 }
+
 .quickstart-block pre {
   background-color: #001a39 !important;
   color: #e8e8e8 !important;
@@ -580,10 +689,12 @@ body.reason .reasonwarning {
   padding: 15px 20px !important;
   font-size: 0.92em;
 }
+
 .quickstart-block pre code {
   color: #e8e8e8 !important;
   text-shadow: none !important;
 }
+
 /****** Client-server switch button *****/
 
 /* <pre> is shared among the original and automatically translated code, so we
@@ -611,12 +722,14 @@ body.reason code.language-ocaml:not(.error) {
   margin-top: 117px;
   float: right;
 }
+
 /* Hide default HTML checkbox */
 .csw-switch input {
   opacity: 0;
   width: 0;
   height: 0;
 }
+
 /* The slider */
 .csw-slider {
   position: absolute;
@@ -625,7 +738,8 @@ body.reason code.language-ocaml:not(.error) {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #5cacee; /* steel blue */
+  background-color: #5cacee;
+  /* steel blue */
   -webkit-transition: 0.4s;
   transition: 0.4s;
 }
@@ -641,13 +755,17 @@ body.reason code.language-ocaml:not(.error) {
   -webkit-transition: 0.4s;
   transition: 0.4s;
 }
-input:checked + .csw-slider {
-  background-color: #d4df67; /* dark yellow */
+
+input:checked+.csw-slider {
+  background-color: #d4df67;
+  /* dark yellow */
 }
-input:focus + .csw-slider {
+
+input:focus+.csw-slider {
   box-shadow: 0 0 1px #00cd66;
 }
-input:checked + .csw-slider:before {
+
+input:checked+.csw-slider:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(26px);
@@ -657,6 +775,7 @@ input:checked + .csw-slider:before {
 .csw-slider-style-round {
   border-radius: 34px;
 }
+
 .csw-slider-style-round:before {
   border-radius: 50%;
 }
@@ -667,20 +786,20 @@ input:checked + .csw-slider:before {
   left: 3px;
   top: 35px;
 }
-.csw-switch input:not(:checked) + .csw-slider + .csw-slider-no {
+
+.csw-switch input:not(:checked)+.csw-slider+.csw-slider-no {
   display: inline;
 }
-.csw-switch
-  input:not(:checked)
-  + .csw-slider
-  + .csw-slider-no
-  + .csw-slider-yes {
+
+.csw-switch input:not(:checked)+.csw-slider+.csw-slider-no+.csw-slider-yes {
   display: none;
 }
-.csw-switch input:checked + .csw-slider + .csw-slider-no + .csw-slider-yes {
+
+.csw-switch input:checked+.csw-slider+.csw-slider-no+.csw-slider-yes {
   display: inline;
 }
-.csw-switch input:checked + .csw-slider + .csw-slider-no {
+
+.csw-switch input:checked+.csw-slider+.csw-slider-no {
   display: none;
 }
 
@@ -690,10 +809,12 @@ pre.shared {
   background-color: #eeffee !important;
   border-color: #b4eeb4;
 }
+
 pre.server {
   background-color: #ddeeff !important;
   border-color: #cae1ff;
 }
+
 pre.client {
   background-color: #ffffdd !important;
   border-color: #ffec8b;
@@ -712,18 +833,23 @@ span.ocsforge_color_delimiter,
 span.ocsforge_color_keyword {
   color: #990099;
 }
+
 span.ocsforge_color_comment {
   color: #ff6600;
 }
+
 span.ocsforge_color_operator {
   color: black;
 }
+
 span.ocsforge_color_lid {
   color: black;
 }
+
 span.ocsforge_color_uid {
   color: #339900;
 }
+
 span.ocsforge_color_label {
   color: #878700;
 }
@@ -741,11 +867,12 @@ span.ocsforge_color_string {
 span.odocwiki_name {
   color: #0033ff;
 }
+
 span.odocwiki_inlinecode {
   color: #08ade5;
 }
 
-hr + pre.odocwiki_code {
+hr+pre.odocwiki_code {
   margin-top: 1em;
 }
 
@@ -792,12 +919,15 @@ span.odocwiki_comments {
   color: #ff6600;
   white-space: normal;
 }
-span.odocwiki_comments > span {
+
+span.odocwiki_comments>span {
   display: table-cell;
 }
-span.odocwiki_comments > span:nth-child(2) {
+
+span.odocwiki_comments>span:nth-child(2) {
   max-width: 500px;
 }
+
 span.odocwiki_comments_close {
   vertical-align: bottom;
 }
@@ -820,6 +950,7 @@ pre[class*="language-"] {
   position: relative;
   z-index: 0;
 }
+
 code[class*="language-"]::before {
   z-index: -1;
 }
@@ -862,9 +993,11 @@ pre[class*="language-"] {
 .how-drawer {
   z-index: 1000;
 }
+
 #how-drawer-toggle {
   display: none;
 }
+
 #how-drawer-label {
   display: block;
   position: fixed;
@@ -875,6 +1008,7 @@ pre[class*="language-"] {
   z-index: 1000;
   cursor: pointer;
 }
+
 .how-drawer-content {
   position: fixed;
   width: 350px;
@@ -887,10 +1021,12 @@ pre[class*="language-"] {
   transition: transform 0.5s;
   box-shadow: -5px 0 5px 0 rgba(0, 0, 0, 0.2);
 }
-#how-drawer-toggle:checked ~ .how-drawer-content {
+
+#how-drawer-toggle:checked~.how-drawer-content {
   transform: translateX(0);
   transition: transform 0.5s;
 }
+
 .how-drawer-icon::before,
 .how-drawer-icon::after,
 .how-drawer-icon {
@@ -903,27 +1039,34 @@ pre[class*="language-"] {
   border-radius: 1px;
   transition: transform 0.5s;
 }
+
 .how-drawer-icon::before,
 .how-drawer-icon::after {
   content: "";
 }
+
 .how-drawer-icon::before {
   top: -8px;
 }
+
 .how-drawer-icon {
   top: 18px;
   left: 7px;
 }
+
 .how-drawer-icon::after {
   top: 8px;
 }
-#how-drawer-toggle:checked ~ #how-drawer-label .how-drawer-icon {
+
+#how-drawer-toggle:checked~#how-drawer-label .how-drawer-icon {
   background-color: transparent;
 }
-#how-drawer-toggle:checked ~ #how-drawer-label .how-drawer-icon::before {
+
+#how-drawer-toggle:checked~#how-drawer-label .how-drawer-icon::before {
   transform: translateY(8px) rotate(45deg);
 }
-#how-drawer-toggle:checked ~ #how-drawer-label .how-drawer-icon::after {
+
+#how-drawer-toggle:checked~#how-drawer-label .how-drawer-icon::after {
   transform: translateY(-8px) rotate(-45deg);
 }
 
@@ -934,22 +1077,27 @@ pre[class*="language-"] {
   color: white;
   text-align: left;
 }
+
 .drawermainmenu {
   list-style-type: none;
 }
+
 .how-drawer-content h1 {
   color: #2f8eff;
   font-size: 22px;
   margin: 50px 0 0 0;
 }
+
 .how-drawer-content h2 {
   color: #2f8eff;
   font-size: 18px;
 }
+
 .how-drawer-content h3 {
   color: #2f8eff;
   font-size: 16px;
 }
+
 .drawermainmenu li a {
   display: block;
   padding: 15px 0;
@@ -998,11 +1146,13 @@ aside.concept {
   padding: 15px 25px;
   border-radius: 5px;
 }
+
 /* screenshots galleries (ocsigen-start intro, tuto start/os pages) */
 .screenshots img {
   max-height: 200px;
   max-width: calc(100vw - 30px);
 }
+
 /****** Doc block ******/
 section.docblock {
   border: 2px solid;
@@ -1011,7 +1161,8 @@ section.docblock {
   border-color: #eee;
   margin-top: 20px;
 }
-section.docblock > header {
+
+section.docblock>header {
   position: sticky;
   top: 70px;
   background-color: white;
@@ -1020,7 +1171,8 @@ section.docblock > header {
   margin: -12px;
   z-index: 1;
 }
-section.docblock > header > h2 {
+
+section.docblock>header>h2 {
   margin: -2px;
   padding: 10px;
   border: 2px solid;
@@ -1029,10 +1181,12 @@ section.docblock > header > h2 {
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;
 }
+
 .img-col-width-400 {
   width: 400px;
   max-width: 100%;
 }
+
 /* An image carrying the "centered" class (wodoc puts the class on the <img>
    itself, whereas html_of_wiki put it on the wrapping <p class="centered">):
    center the block image. p.centered (text-align) still handles the old case. */
@@ -1041,40 +1195,51 @@ img.centered {
   margin-left: auto;
   margin-right: auto;
 }
+
 /****** Mobile version ******/
 @media (max-width: 720px) {
   .smallscreen {
     display: block;
   }
+
   .largescreen {
     display: none;
   }
+
   .page-header .logo-ocsigen {
     left: 30px;
   }
+
   /* We use an id because of https://github.com/ocsigen/tyxml/issues/196 */
   #smallscreencsswitch {
     display: block;
     margin: 0 15px;
   }
+
   #largescreencsswitch {
     display: none;
   }
+
   .page-header .mainmenu {
     visibility: hidden;
   }
+
   .main-page-section-header {
     padding: 90px 40px;
   }
+
   .main-page-section-header h1 {
     font-size: 30px;
   }
+
   .main-page-section-content {
     padding: 50px 20px;
   }
+
   .main-page-section-users ul {
     column-count: 1;
   }
+
   pre[class*="language-"].main-page-section-js_of_ocaml-ocaml,
   pre[class*="language-"].main-page-section-js_of_ocaml-js {
     border: none;
@@ -1082,57 +1247,71 @@ img.centered {
     margin: 40px 0;
     background-color: transparent !important;
   }
+
   .main-page-project {
     border-radius: unset;
   }
+
   .leftcol {
     display: none;
   }
+
   .project-page h1 {
     font-size: 36px;
   }
-  .main-page-section-news .horiz-blocks > * {
+
+  .main-page-section-news .horiz-blocks>* {
     width: 100%;
   }
 }
+
 @media (min-width: 1180px) {
   .main-page-section-js_of_ocaml-schema pre[class*="language-"] {
     width: 450px;
   }
 }
+
 @media (max-width: 1179px) {
   .main-page-section-js_of_ocaml-arrow1 {
     top: 240px;
     left: 50%;
     transform: rotateZ(90deg);
   }
+
   .main-page-section-js_of_ocaml-arrow2 {
     display: none;
   }
 }
+
 /****** Large screen ******/
 @media (min-width: 721px) {
   .how-drawer .how-doctree {
     display: none;
   }
+
   .rightcol {
     margin-left: 40px;
     max-width: calc(100% - 380px);
   }
+
   .smallscreen {
     display: none;
   }
+
   .largescreen {
     display: block;
   }
+
   /* We use an id because of https://github.com/ocsigen/tyxml/issues/196 */
   #smallscreencsswitch {
     display: none;
   }
+
   #largescreencsswitch {
     display: block;
   }
 }
+
 @media (min-width: 1200px) {
   body {
     background-image: url("/img/ocsigen-bubbles-large.png");
@@ -1140,16 +1319,21 @@ img.centered {
     background-position: -800px 0;
     background-attachment: fixed;
   }
+
   .main-page-news-1 {
     padding-left: calc(50% - 550px);
   }
+
   .main-page-news-2 {
     padding-right: calc(50% - 550px);
   }
 }
+
 /****** Print ******/
 @media print {
-  .page-header, #reason {
-      display: none;
+
+  .page-header,
+  #reason {
+    display: none;
   }
 }
