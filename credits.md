@@ -3,7 +3,7 @@
 
 # Credits
 
-Ocsigen is a collaborative open source project mainly developed by [Be Sport](https://www.besport.com), [CNRS](https://www.cnrs.fr) and [Paris Cité university](http://www.univ-paris-diderot.fr).
+Ocsigen is a collaborative open source project mainly developed by [Be Sport](https://www.dailymotion.com/video/x82alm8), [CNRS](https://www.cnrs.fr) and [Paris Cité university](http://www.univ-paris-diderot.fr).
 
 It comes from a research project of the [Research Institute for Foundations of Computer Science (IRIF)](https://www.irif.fr/) ([Paris Diderot university](http://www.univ-paris-diderot.fr) and [CNRS](http://www.cnrs.fr)).
 
