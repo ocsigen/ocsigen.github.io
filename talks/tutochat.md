@@ -204,7 +204,7 @@ Cécile Herbelin]{style="font-size: smaller;"}
 ## Example app: Be Sport
 
 The sports social network
-[https://besport.com/news](https://besport.com/news)
+[https://www.dailymotion.com/video/x82alm8](https://www.dailymotion.com/video/x82alm8)
 
 {style="position: relative; height: 1000px;"}
 ><img alt="Ocsigen" src="besport1.png" width="67%" style="position: absolute;top: 0;right: 50px;border: 1px solid #444;"/>
