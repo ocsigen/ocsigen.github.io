@@ -12,7 +12,7 @@
     <updated>2026-07-01T00:00:00+00:00</updated>
     <id>https://ocsigen.org/blog/posts/why-ocsigen-stays-on-lwt-for-now.html</id>
     <author><name>Vincent Balat</name></author>
-    <summary type="html">Effects and direct-style concurrency are among the headline features of OCaml 5, and through 2025 we migrated the entire Ocsigen stack from Lwt to Eio. The migration compiles and the test suite passes, and yet we have decided to stay on Lwt…</summary>
+    <summary type="html">Through 2025 we migrated the entire Ocsigen stack from Lwt to Eio. The migration compiles and the test suite passes, and yet we have decided to stay on Lwt for now. This post explains the two obstacles that stopped us: the loss of function …</summary>
   </entry>
   <entry>
     <title>Ocsipersist 2.1.0: type-safe persistence with Deriving</title>
