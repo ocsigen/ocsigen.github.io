@@ -3,9 +3,17 @@
   <title>Ocsigen Blog</title>
   <link href="https://ocsigen.org/feed.xml" rel="self" />
   <link href="https://ocsigen.org" />
-  <updated>2026-06-23T00:00:00+00:00</updated>
+  <updated>2026-07-01T00:00:00+00:00</updated>
   <id>https://ocsigen.org/</id>
   <author><name>Ocsigen Project</name></author>
+  <entry>
+    <title>Why Ocsigen decided not to switch from Lwt to Eio (for now)</title>
+    <link href="https://ocsigen.org/blog/posts/why-ocsigen-stays-on-lwt-for-now.html" />
+    <updated>2026-07-01T00:00:00+00:00</updated>
+    <id>https://ocsigen.org/blog/posts/why-ocsigen-stays-on-lwt-for-now.html</id>
+    <author><name>Vincent Balat</name></author>
+    <summary type="html">Effects and direct-style concurrency are among the headline features of OCaml 5, and through 2025 we migrated the entire Ocsigen stack from Lwt to Eio. The migration compiles and the test suite passes, and yet we have decided to stay on Lwt…</summary>
+  </entry>
   <entry>
     <title>Ocsipersist 2.1.0: type-safe persistence with Deriving</title>
     <link href="https://ocsigen.org/blog/posts/ocsipersist-2.1.0.html" />

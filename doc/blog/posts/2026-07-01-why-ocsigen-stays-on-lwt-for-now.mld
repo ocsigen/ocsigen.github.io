@@ -2,11 +2,14 @@
 
 @author Vincent Balat
 
-{b Work in progress: unlisted draft.} This page is intentionally not linked
-from the blog index and is excluded from the Atom feed and OCaml Planet. It is
-shared only with people who have the direct link.
-
-{i Draft v2, 2026-05-06. To be reviewed before public posting.}
+Through 2025 we migrated the entire Ocsigen stack from Lwt to Eio. The
+migration compiles and the test suite passes, and yet we have decided to stay on
+Lwt for now. This post explains the two obstacles that stopped us: the loss of
+function coloring, and the clash between Eio's handler-based model and browser
+event handling. We show concrete code from the
+migration branches, ask the effects community whether these obstacles could be
+addressed upstream, and reaffirm our commitment to the unity of the OCaml
+ecosystem.
 
 {1 Context}
 
