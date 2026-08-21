@@ -100,6 +100,66 @@ what [\[%shared\]] is supposed to give us.
 Beyond DOM event handlers (B.1), the ambiguity surfaces {i throughout the public API}
 of any framework: see [Ot_popup] (B.2) and [Ot_sticky] (B.3) below.
 
+{2 A note on distributed computing (1994)}
+
+Neither of the two points above is new. In 1994, Jim Waldo, Geoff Wyant, Ann
+Wollrath and Sam Kendall published
+{{:https://scholar.harvard.edu/files/waldo/files/waldo-94.pdf}{i A Note on
+Distributed Computing}} (Sun Microsystems Laboratories, SMLI TR-94-29), a
+critique of what they called the {i vision of unified objects}: the idea that a
+call should look the same whether its target sits in the same address space or on
+another machine, because location is "merely an aspect of the implementation of
+the object". Their thesis was that "this unified view of objects is mistaken",
+and it was not an argument about speed. Latency, they note, "is the most obvious,
+but in many ways is the least fundamental" of the differences, and being so
+obvious "has tended to mask the more irreconcilable differences".
+
+Two of their observations apply to our situation almost word for word.
+
+{b The distinction has to live in the interface, not in the implementation.}
+They devote a section to what they call the myth of "quality of service": the
+belief that reliability can be repaired by choosing a better implementation
+behind an unchanged interface. "Robustness is not simply a function of the
+implementations of the interfaces that make up the system", they write, and
+"many aspects of robustness can be reflected only at the protocol/interface
+level". Their case study is NFS, a file-system API designed for local use and
+"re-implemented in a distributed way": no improvement in implementation quality
+can repair it, because "the lack of robustness is inherent in the interface".
+This is what we observe in A.2, A.3 and B.3 below. Once [_ Lwt.t] leaves a
+signature, the fact that a call may wait, or may reach the network, has to be
+restated in a doc-comment. The information has moved from the interface into
+prose, and prose is not type-checked.
+
+{b A transparency that is not enforced everywhere is worse than none.} On memory
+access they are categorical: either the underlying system controls every access,
+or the programmer must know which kind of access each one is, and "there is no
+inbetween". The danger, they write, lies in promoting the myth that remote access
+and local access are exactly the same {i without enforcing it}: a mechanism that
+promotes the myth while leaving some accesses outside its control is "both
+misleading and prone to error". Replace memory access with suspension and this is
+point 2 above. The model says that a call is just a call, but at the browser
+boundary the myth is not enforced and the program dies with [Effect.Unhandled].
+Wrapping every entry point in [Eio_js.start] is the "enforce it everywhere"
+branch, and it costs us DOM propagation semantics; not wrapping is the crash.
+There is no middle ground, exactly as they predicted.
+
+Their conclusion is a design rule rather than a prohibition: "rather than trying
+to merge local and remote objects, engineers need to be constantly reminded of
+the differences between the two", because "making the difference visible will aid
+in making the difference part of the design of the system". A [_ Lwt.t] in an
+Eliom signature is such a reminder, and it is one the compiler checks. An
+uncoloured [val f : a -> b] cannot be.
+
+One clarification, because the parallel could be pushed too far. Eio is not a
+distributed-computing library and claims no RPC transparency; and Eliom's whole
+purpose is to write client and server code in one language, in one file,
+sometimes in a single [\[%shared\]] expression. We are not retreating from that.
+What we want to unify is the {i language}, not the {i cost model}: multi-tier
+programming is only safe while the tier boundary stays manifest somewhere the
+compiler can see it. In Ocsigen that somewhere is the [_ Lwt.t] in the type. In a
+multi-tier framework the suspension marker is also the network marker, so erasing
+it reinstates the unified view of 1994, thirty years later and by accident.
+
 {2 A note on monadic versus direct style}
 
 One argument often made for effects is the syntactic comfort of direct-style
@@ -209,6 +269,10 @@ server for the first render and on the client for subsequent Eliom navigation.
 On the server [get_users ()] is a local call; on the client {i the same
 expression} is a network round-trip of several hundred milliseconds. Under Lwt
 the [_ Lwt.t] made this dual reality visible; under Eio nothing does.
+
+This is the unified view of objects that Waldo et al. warned against: at this
+call site nothing distinguishes a local computation from a network round-trip, so
+the spinner that should absorb the round-trip is never planned.
 
 {2 A.2. [React]: the type collapse of [map_s]}
 
