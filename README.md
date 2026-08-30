@@ -26,28 +26,47 @@ The documentation is split in two by *where it is hosted*:
     **root**;
   - the **blog**, from [`doc/blog/`](doc/blog) `*.mld`, into `/blog/` plus the
     Atom feed at `/feed.xml` — see [Blog](#blog) below;
-  - two **archived** projects whose own repos no longer build:
-    [`ocsimore`](doc/ocsimore) → `/ocsimore/` and
-    [`html_of_wiki`](doc/html_of_wiki) → `/html_of_wiki/` (static `.mld` sites);
+  - the **sources** of two **archived** projects whose own repos no longer build,
+    [`ocsimore`](doc/ocsimore) and [`html_of_wiki`](doc/html_of_wiki) (static
+    `.mld` sites). They are *published* from their own repository's `gh-pages`,
+    like every other project, and rebuilt by hand: see
+    [Archived projects](#archived-projects) below;
   - the **canonical shared menu** [`doc/menu.html`](doc/menu.html) — the single
     source of truth for the header/menu/drawer of *every* doc page; every
     project's build fetches it from `https://ocsigen.org/doc/menu.html`.
 
 ### Building the site (this repository)
 
-[`.github/workflows/doc.yml`](.github/workflows/doc.yml) rebuilds the vitrine, the
-blog and the two archived sites with wodoc on **every push to `master`** and
-commits the generated pages back (GitHub Pages serves the repo). Nothing to run by
-hand.
+[`.github/workflows/doc.yml`](.github/workflows/doc.yml) rebuilds the vitrine and
+the blog with wodoc on **every push to `master`** and commits the generated pages
+back (GitHub Pages serves the repo). Nothing to run by hand. It does *not* touch
+the two archived projects, which publish from their own repositories.
 
 To build locally, install [wodoc][wodoc] + odoc, then:
 
 ```
-( cd doc/vitrine && OUT="$PWD/../.." bash build.sh )                            # vitrine -> root
-( cd doc/blog    && OUT="$PWD/../.." bash build.sh )                            # blog -> /blog + /feed.xml
-( cd doc/ocsimore     && wodoc build --config wodoc --out ../../ocsimore/0.5     --label 0.5 --menu ../menu.html --latest )
-( cd doc/html_of_wiki && wodoc build --config wodoc --out ../../html_of_wiki/2.0 --label 2.0 --menu ../menu.html --latest )
+( cd doc/vitrine && OUT="$PWD/../.." bash build.sh )   # vitrine -> root
+( cd doc/blog    && OUT="$PWD/../.." bash build.sh )   # blog -> /blog + /feed.xml
 ```
+
+### Archived projects
+
+`ocsimore` and `html_of_wiki` are served from the `gh-pages` branch of their own
+repository (a project page at `ocsigen.org/<repo>/` takes precedence over a
+same-named directory here, so hosting them in this repository did not work). Only
+their sources live here, and no workflow rebuilds them: build the version
+directory, then commit it to the matching `gh-pages`.
+
+```
+( cd doc/ocsimore     && wodoc build --config wodoc --out <gh-pages>/0.5 --label 0.5 --menu ../menu.html --latest )
+( cd doc/html_of_wiki && wodoc build --config wodoc --out <gh-pages>/2.0 --label 2.0 --menu ../menu.html --latest )
+```
+
+`--latest` writes the `latest` symlink and `versions.json` next to the version
+directory; `<gh-pages>` is a checkout of that project's `gh-pages` branch.
+Rebuild them when their sources change here, and after a wodoc release that
+changes the chrome or the generated files: the Markdown twins and `llms.txt`, for
+one, only exist in builds made with wodoc 0.1 or later.
 
 ## Blog
 
