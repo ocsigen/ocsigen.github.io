@@ -39,9 +39,11 @@ for mld in "$HERE"/src/*.mld; do
   odoc html-generate "$WORK/page-$name.odocl" -o "$WORK/html"
   "$WODOC" assemble --template "$template" --menu "$MENU" --current "$current" \
     --mdlink "/$name.md" $extra "$WORK/html/$name.html" >"$OUT/$name.html"
-  # the Markdown twin, for AI/LLM consumption (the .md version of the page)
+  # the Markdown twin, for AI/LLM consumption (the .md version of the page).
+  # `render --markdown` drops the {%wodoc:%} markers, which odoc's Markdown
+  # backend passes through verbatim (`wodoc build` does this for the projects).
   odoc markdown-generate "$WORK/page-$name.odocl" -o "$WORK/md"
-  cp "$WORK/md/$name.md" "$OUT/$name.md"
+  "$WODOC" render --markdown "$WORK/md/$name.md" >"$OUT/$name.md"
   echo "built $name.html + $name.md"
 done
 # the homepage (/) is the intro page
