@@ -1,193 +1,85 @@
-
 # Projects
-
 
 ## Main projects
 
-<!--wodoc:div class=main-page-projects-->
-<!--wodoc:a class=main-page-project-link href=/js_of_ocaml/--><!--wodoc:div class=main-page-project-->
-
-
-### Js\_of\_ocaml
+### [Js\_of\_ocaml](/js_of_ocaml/)
 
 Compile OCaml to JS and WebAssembly. Run in any browser.
 
-<!--wodoc:end--><!--wodoc:end-->
-
-<!--wodoc:a class=main-page-project-link href=/eliom/--><!--wodoc:div class=main-page-project-->
-
-
-### Eliom
+### [Eliom](/eliom/)
 
 Write client and server as one program. Deploy to Web and mobile.
 
-<!--wodoc:end--><!--wodoc:end-->
-
-<!--wodoc:a class=main-page-project-link href=/ocsigenserver/--><!--wodoc:div class=main-page-project-->
-
-
-### Server
+### [Server](/ocsigenserver/)
 
 Production-ready Web server with native OCaml integration.
 
-<!--wodoc:end--><!--wodoc:end-->
-
-<!--wodoc:a class=main-page-project-link href=/lwt/--><!--wodoc:div class=main-page-project-->
-
-
-### Lwt
+### [Lwt](/lwt/)
 
 Concurrent programming made simple — no callback hell.
 
-<!--wodoc:end--><!--wodoc:end-->
-
-<!--wodoc:a class=main-page-project-link href=/tyxml/--><!--wodoc:div class=main-page-project-->
-
-
-### Tyxml
+### [Tyxml](/tyxml/)
 
 Type-safe HTML/SVG generation. Invalid markup won't compile.
 
-<!--wodoc:end--><!--wodoc:end-->
-
-<!--wodoc:a class=main-page-project-link href=/ocsigen-toolkit/--><!--wodoc:div class=main-page-project-->
-
-
-### Ocsigen Toolkit
+### [Ocsigen Toolkit](/ocsigen-toolkit/)
 
 Ready-to-use UI widgets for Web and mobile apps.
 
-<!--wodoc:end--><!--wodoc:end-->
-
-<!--wodoc:a class=main-page-project-link href=/ocsigen-start/--><!--wodoc:div class=main-page-project-->
-
-
-### Start
+### [Start](/ocsigen-start/)
 
 Complete starter app with users, notifications, and mobile support.
 
-<!--wodoc:end--><!--wodoc:end-->
-
-<!--wodoc:a class=main-page-project-link href=/ocsipersist/--><!--wodoc:div class=main-page-project-->
-
-
-### Ocsipersist
+### [Ocsipersist](/ocsipersist/)
 
 Key-value store for data that survives server restarts.
 
-<!--wodoc:end--><!--wodoc:end-->
-
-<!--wodoc:a class=main-page-project-link href=/reactiveData/--><!--wodoc:div class=main-page-project-->
-
-
-### ReactiveData
+### [ReactiveData](/reactiveData/)
 
 Declarative events and signals (FRP) for incremental, reactive data.
 
-<!--wodoc:end--><!--wodoc:end-->
-
-<!--wodoc:a class=main-page-project-link href=/ocsigen-i18n/--><!--wodoc:div class=main-page-project-->
-
-
-### Ocsigen i18n
+### [Ocsigen i18n](/ocsigen-i18n/)
 
 Type-safe internationalization: translation functions generated at compile time.
 
-<!--wodoc:end--><!--wodoc:end-->
-
-<!--wodoc:a class=main-page-project-link href=/wodoc/--><!--wodoc:div class=main-page-project-->
-
-
-### Wodoc
+### [Wodoc](/wodoc/)
 
 Build complete styled websites from your odoc documentation.
 
-<!--wodoc:end--><!--wodoc:end-->
-
-<!--wodoc:end-->
-
 ## Experimental projects
 
-<!--wodoc:div class=main-page-projects-->
-<!--wodoc:a class=main-page-project-link href=https://github.com/ocsigen/macaque--><!--wodoc:div class=main-page-project-->
-
-
-### Macaque
+### [Macaque](https://github.com/ocsigen/macaque)
 
 An experimental language for type-safe database queries.
 
-<!--wodoc:end--><!--wodoc:end-->
-
-<!--wodoc:a class=main-page-project-link href=/ocsimore/--><!--wodoc:div class=main-page-project-->
-
-
-### Ocsimore
+### [Ocsimore](/ocsimore/)
 
 A content management system written with Eliom (wiki, forum). (unmaintained)
 
-<!--wodoc:end--><!--wodoc:end-->
-
-<!--wodoc:a class=main-page-project-link href=/html_of_wiki/--><!--wodoc:div class=main-page-project-->
-
-
-### html\_of\_wiki
+### [html\_of\_wiki](/html_of_wiki/)
 
 The legacy wikicréole site and documentation generator, superseded by wodoc. (unmaintained)
 
-<!--wodoc:end--><!--wodoc:end-->
-
-<!--wodoc:a class=main-page-project-link href=https://github.com/ocsigen/oclosure--><!--wodoc:div class=main-page-project-->
-
-
-### OClosure
+### [OClosure](https://github.com/ocsigen/oclosure)
 
 An OCaml binding of the Google Closure widget library. (unmaintained)
 
-<!--wodoc:end--><!--wodoc:end-->
-
-<!--wodoc:a class=main-page-project-link href=https://github.com/klakplok/goji--><!--wodoc:div class=main-page-project-->
-
-
-### Goji
+### [Goji](https://github.com/klakplok/goji)
 
 OCaml binding generator for Javascript libraries. (unmaintained)
 
-<!--wodoc:end--><!--wodoc:end-->
-
-<!--wodoc:a class=main-page-project-link href=https://github.com/ocsigen/ojquery--><!--wodoc:div class=main-page-project-->
-
-
-### Ojquery
+### [Ojquery](https://github.com/ocsigen/ojquery)
 
 An OCaml binding for JQuery. (unmaintained)
 
-<!--wodoc:end--><!--wodoc:end-->
-
-<!--wodoc:a class=main-page-project-link href=https://github.com/ocsigen/obrowser--><!--wodoc:div class=main-page-project-->
-
-
-### O'Browser
+### [O'Browser](https://github.com/ocsigen/obrowser)
 
 An OCaml virtual machine in Javascript. (unmaintained)
 
-<!--wodoc:end--><!--wodoc:end-->
-
-<!--wodoc:a class=main-page-project-link href=https://github.com/ocsigen/ocsforge--><!--wodoc:div class=main-page-project-->
-
-
-### Ocsforge
+### [Ocsforge](https://github.com/ocsigen/ocsforge)
 
 Ocsimore module implementing collaborative development tools (forge).
 
-<!--wodoc:end--><!--wodoc:end-->
-
-<!--wodoc:a class=main-page-project-link href=/occduce--><!--wodoc:div class=main-page-project-->
-
-
-### Occduce
+### [Occduce](/occduce)
 
 An experimental Eliom-like module for the CDuce language. (unmaintained)
-
-<!--wodoc:end--><!--wodoc:end-->
-
-<!--wodoc:end-->

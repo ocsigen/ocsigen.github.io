@@ -1,6 +1,3 @@
-<!--wodoc:div class="project-page"--> <!--wodoc:div class="rightcol"-->
-
-
 # Research papers
 
 Gabriel Radanne<br/> *Tierless Web programming in ML*<br/> PhD Thesis \- 2017<br/> **[pdf](https://www.irif.fr/~gradanne/papers/phdthesis.pdf) [slides](https://www.irif.fr/~gradanne/papers/talk_phdthesis.pdf)**
@@ -36,5 +33,3 @@ Vincent Balat, Boris Yakobowski, Jérôme Vouillon<br/> *Experience Report: Ocsi
 Benjamin Canou, Vincent Balat, Emmanuel Chailloux <br/> *O'Browser: Objective Caml on browsers* <br/> ACM Sigplan Workshop on ML 2008\. <br/> **[pdf](https://www.irif.fr/~balat/publications/2008mlworkshop-obrowser.pdf)** **[bib](https://www.irif.fr/~balat/publications/balat.bib)**
 
 Vincent Balat <br/> *Ocsigen: Typing Web Interaction with Objective Caml* <br/> ACM Sigplan Workshop on ML 2006\. <br/> **[pdf](https://www.irif.fr/~balat/publications/2006mlworkshop-balat-ocsigen.pdf)** **[bib](https://www.irif.fr/~balat/publications/balat.bib)**
-
-<!--wodoc:end--> <!--wodoc:end-->
