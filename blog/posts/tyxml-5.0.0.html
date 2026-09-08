@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>TyXML 5.0.0: the HTML living standard and SVG 2 — Ocsigen</title>
+  <!-- og:image gives the post a thumbnail on social cards and on the OCaml
+       Planet (its scraper reads og:image into a post's preview_image). -->
+  <meta property="og:image" content="https://ocsigen.org/img/ocsigen-badge-400.png"/>
+  <link rel="stylesheet" href="/css/style.css"/>
+  <link rel="stylesheet" href="/css/ocsigen-odoc.css"/>
+  <link rel="stylesheet" href="/css/wodoc.css"/>
+  <!-- odoc emits code blocks as <pre class="language-..">; highlight them
+       client-side with odoc's bundled highlight.js (loaded in <head>, as odoc
+       does). wodoc-highlight.js teaches it the Ocsigen OCaml extensions
+       (let%client/%server/%shared/%rpc, ~%injection, let* …) and starts it. -->
+  <script src="/doc/highlight.pack.js"></script>
+  <script src="/doc/wodoc-highlight.js"></script>
+</head>
+<body class="wodoc-page wodoc-doc wodoc-blog-page wodoc-project-blog">
+  <!-- Shared site menu — THE single source of truth for the header, top menu and
+     drawer of EVERY Ocsigen doc page (vitrine + all projects). Canonical copy
+     lives here in ocsigen.github.io; each project's build fetches it. Injected
+     by `wodoc assemble --menu`. Holes filled by the tool (braces omitted here so
+     this comment is not itself rewritten by the hole-filler):
+       subproject  the sub-project name shown next to the Ocsigen logo
+                   (empty on the vitrine), via --subproject
+       leftnav     the project's left navigation, expanded into BOTH the mobile
+                   drawer (below) and the left column (in the page template),
+                   via --leftnav
+     The current entry is highlighted by adding the `current` class to the
+     element carrying data-wodoc-page=<id>: --current on the vitrine (page id),
+     --menu-current in a project (the project id). Nothing is hardcoded here, so
+     this file is the ONLY place the menu is defined.
+
+     Links are the FINAL site paths (/<project>/, /<page>): the target layout
+     where each project is served at ocsigen.org/<project>/ — no transitional
+     /wodoc/ prefix. -->
+<div class="page-header">
+  <p class="logo-ocsigen"><a href="/"><img src="/img/ocsigen-white.svg" alt="Ocsigen"/></a></p>
+  <p class="logo-subproject">Blog</p>
+
+  <div class="mainmenu">
+    <p class="mainmenu-home" data-wodoc-page="githubio"><a href="/">Home</a></p>
+    <p class="mainmenu-doc" data-wodoc-page="tuto"><a href="/tuto/">Doc</a></p>
+    <p class="mainmenu-blog current" data-wodoc-page="blog"><a href="/blog/">Blog</a></p>
+    <p data-wodoc-page="eliom"><a href="/eliom/">Eliom</a></p>
+    <p data-wodoc-page="js_of_ocaml"><a href="/js_of_ocaml/">Js_of_ocaml</a></p>
+    <p data-wodoc-page="ocsigenserver"><a href="/ocsigenserver/">Server</a></p>
+    <p data-wodoc-page="lwt"><a href="/lwt/">Lwt</a></p>
+    <p data-wodoc-page="tyxml"><a href="/tyxml/">Tyxml</a></p>
+    <p data-wodoc-page="ocsigen-start"><a href="/ocsigen-start/">Start</a></p>
+  </div>
+
+  <form id="googlesearch" action="https://google.com/search">
+    <input name="q" id="gsearch-box" placeholder="Search using Google"/>
+    <label for="gsearch-box"><img src="/img/search.svg" alt="" id="gsearch-icon"/></label>
+    <input type="submit" id="gsearch-submit" onclick="document.getElementById('gsearch-box').value += ' site:ocsigen.org';"/>
+  </form>
+
+  <aside class="how-drawer">
+    <input id="how-drawer-toggle" type="checkbox"/>
+    <label for="how-drawer-toggle" id="how-drawer-label"><span class="how-drawer-icon"></span></label>
+    <nav class="how-drawer-content">
+      <ul class="drawermainmenu">
+        <li class="drawermainmenu-home" data-wodoc-page="githubio"><a href="/">Home</a></li>
+        <li class="drawermainmenu-doc" data-wodoc-page="tuto"><a href="/tuto/">Doc</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="eliom"><a href="/eliom/">Eliom</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="js_of_ocaml"><a href="/js_of_ocaml/">Js_of_ocaml</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="ocsigenserver"><a href="/ocsigenserver/">Server</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="lwt"><a href="/lwt/">Lwt</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="tyxml"><a href="/tyxml/">Tyxml</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="ocsigen-toolkit"><a href="/ocsigen-toolkit/">Toolkit</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="ocsigen-start"><a href="/ocsigen-start/">Start</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="ocsipersist"><a href="/ocsipersist/">Ocsipersist</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="reactiveData"><a href="/reactiveData/">ReactiveData</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="ocsigen-i18n"><a href="/ocsigen-i18n/">i18n</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="wodoc"><a href="/wodoc/">Wodoc</a></li>
+        <li class="drawermainmenu-page" data-wodoc-page="projects"><a href="/projects">Other projects</a></li>
+        <li class="drawermainmenu-page" data-wodoc-page="papers"><a href="/papers">Research papers</a></li>
+        <li class="drawermainmenu-page" data-wodoc-page="credits"><a href="/credits">Who does Ocsigen?</a></li>
+        <li class="drawermainmenu-page" data-wodoc-page="contributing"><a href="/contributing">Contributing</a></li>
+        <li class="drawermainmenu-page current" data-wodoc-page="blog"><a href="/blog/">Blog</a></li>
+        <li class="drawermainmenu-page" data-wodoc-page="install"><a href="/install">Installation</a></li>
+        <li class="drawermainmenu-page"><a href="https://github.com/ocsigen">Source code</a></li>
+      </ul>
+      <!-- On mobile the left column is hidden; its menu lives here in the burger
+           (.how-doctree, shown only on narrow screens), as the old site did.
+           Empty on the vitrine; the leftnav hole is filled (with the same
+           fragment as the left column) only on project pages. -->
+      <nav class="how-doctree"><nav class="api-nav manual-nav">
+<h3>Blog</h3>
+<ul class="api-section">
+<li class="ml3 current" data-wodoc-page="posts/tyxml-5.0.0.html"><a href="../posts/tyxml-5.0.0.html">2026-09-08 — TyXML 5.0.0: the HTML living standard and SVG 2</a></li>
+<li class="ml3" data-wodoc-page="posts/why-ocsigen-stays-on-lwt-for-now.html"><a href="../posts/why-ocsigen-stays-on-lwt-for-now.html">2026-07-01 — Why Ocsigen decided not to switch from Lwt to Eio (for now)</a></li>
+<li class="ml3" data-wodoc-page="posts/ocsipersist-2.1.0.html"><a href="../posts/ocsipersist-2.1.0.html">2026-06-23 — Ocsipersist 2.1.0: type-safe persistence with Deriving</a></li>
+<li class="ml3" data-wodoc-page="posts/status-of-the-ocsigen-project.html"><a href="../posts/status-of-the-ocsigen-project.html">2026-06-19 — Ocsigen in 2026: what we&#x27;re working on</a></li>
+<li class="ml3" data-wodoc-page="posts/welcome-to-the-ocsigen-blog.html"><a href="../posts/welcome-to-the-ocsigen-blog.html">2026-06-14 — A new home for the Ocsigen blog</a></li>
+<li class="ml3" data-wodoc-page="posts/documenting-ocaml-projects-with-wodoc.html"><a href="../posts/documenting-ocaml-projects-with-wodoc.html">2026-06-07 — Documenting OCaml projects with wodoc</a></li>
+</ul>
+</nav>
+</nav>
+    </nav>
+  </aside>
+</div>
+
+
+  <div class="project-page">
+    <div class="twocols">
+      <nav class="leftcol">
+        <nav class="api-nav manual-nav">
+<h3>Blog</h3>
+<ul class="api-section">
+<li class="ml3 current" data-wodoc-page="posts/tyxml-5.0.0.html"><a href="../posts/tyxml-5.0.0.html">2026-09-08 — TyXML 5.0.0: the HTML living standard and SVG 2</a></li>
+<li class="ml3" data-wodoc-page="posts/why-ocsigen-stays-on-lwt-for-now.html"><a href="../posts/why-ocsigen-stays-on-lwt-for-now.html">2026-07-01 — Why Ocsigen decided not to switch from Lwt to Eio (for now)</a></li>
+<li class="ml3" data-wodoc-page="posts/ocsipersist-2.1.0.html"><a href="../posts/ocsipersist-2.1.0.html">2026-06-23 — Ocsipersist 2.1.0: type-safe persistence with Deriving</a></li>
+<li class="ml3" data-wodoc-page="posts/status-of-the-ocsigen-project.html"><a href="../posts/status-of-the-ocsigen-project.html">2026-06-19 — Ocsigen in 2026: what we&#x27;re working on</a></li>
+<li class="ml3" data-wodoc-page="posts/welcome-to-the-ocsigen-blog.html"><a href="../posts/welcome-to-the-ocsigen-blog.html">2026-06-14 — A new home for the Ocsigen blog</a></li>
+<li class="ml3" data-wodoc-page="posts/documenting-ocaml-projects-with-wodoc.html"><a href="../posts/documenting-ocaml-projects-with-wodoc.html">2026-06-07 — Documenting OCaml projects with wodoc</a></li>
+</ul>
+</nav>
+
+      </nav>
+      <article class="rightcol">
+        <header class="odoc-preamble"><h1 id="tyxml-5.0.0:-the-html-living-standard-and-svg-2">TyXML 5.0.0: the HTML living standard and SVG 2</h1>
+<p class="wodoc-blog-meta">2026-09-08 — The Ocsigen team</p><ul class="at-tags"><li class="author"><span class="at-tag">author</span> The Ocsigen team</li></ul><p><a href="/tyxml/">TyXML</a> 5.0.0 is out, and it is a major release. The library now follows the current specifications: the WHATWG living standard for HTML, and SVG 2 with the Filter Effects module for SVG, whose support had not moved since SVG 1.1. On the way it fixes a long list of elements and attributes that could not be used at all, and the PPX and JSX syntaxes now accept the camel case SVG attributes, so that an indented <code>&lt;svg viewBox=&quot;0 0 100 100&quot;&gt;</code> both parses and typechecks.</p><p>TyXML builds HTML and SVG documents whose validity is checked by the OCaml type system: an element that the specification does not allow in a given position does not typecheck, and neither does an attribute on an element that does not carry it. It works with the textual representation shipped in the package, with DOM trees (<a href="/js_of_ocaml/">js_of_ocaml-tyxml</a>), and with the reactive and replicated trees of <a href="/eliom/">Eliom</a>; you can plug your own representation through the functorial interface. Markup can be written with the combinators, with the HTML syntax through the PPX, or with JSX.</p></header>
+        <div class="odoc-content"><h2 id="html:-catching-up-with-the-living-standard">HTML: catching up with the living standard</h2><p>New elements: <code>s</code>, <code>bdi</code>, <code>search</code>, <code>data</code>, <code>slot</code>, and <code>track</code> with its <code>kind</code>, <code>srclang</code> and <code>default</code> attributes, which <code>audio</code> and <code>video</code> take through a new <code>?tracks</code> argument.</p><p>New attributes, by family:</p><ul><li><b>popover</b> (<code>popover</code>, <code>popovertarget</code>, <code>popovertargetaction</code>) and the invoker commands <code>command</code> and <code>commandfor</code> on buttons;</li><li><b>microdata</b>: <code>itemscope</code>, <code>itemtype</code>, <code>itemid</code>, <code>itemprop</code> and <code>itemref</code>, plus <code>meta_itemprop</code>, the form of <code>meta</code> that the specification allows wherever phrasing content is expected and not only in the head;</li><li><b>declarative shadow DOM</b> on templates (<code>shadowrootmode</code>, <code>shadowrootdelegatesfocus</code>, <code>shadowrootclonable</code>, <code>shadowrootserializable</code>) and the CSS shadow parts <code>part</code> and <code>exportparts</code>;</li><li><b>loading and fetching</b>: <code>loading</code>, <code>decoding</code> and <code>fetchpriority</code> on images, <code>as</code>, <code>imagesrcset</code> and <code>imagesizes</code> on preload links, <code>blocking</code> on links, scripts and styles, <code>nomodule</code> on scripts, <code>nonce</code> anywhere;</li><li><b>forms and dialogs</b>: <code>closedby</code> on dialogs, <code>dirname</code> on inputs and textareas, <code>capture</code> on file inputs, the <code>dialog</code> value of <code>method</code> and <code>formmethod</code>, <code>autocomplete</code> on selects and textareas;</li><li><b>global</b>: <code>inert</code>, <code>enterkeyhint</code>, <code>autocapitalize</code>, <code>autocorrect</code>, <code>writingsuggestions</code>, <code>slot</code>, <code>is</code>, and the <code>`Auto</code> value of <code>dir</code>.</li></ul><p>The event handler attributes that were missing are in as well: the whole pointer event family, <code>onwheel</code>, <code>onauxclick</code>, the clipboard handlers, and <code>onbeforeinput</code>, <code>onbeforematch</code>, <code>onbeforetoggle</code>, <code>oncancel</code>, <code>oncuechange</code>, <code>onscrollend</code>, <code>onsecuritypolicyviolation</code>, <code>onslotchange</code> and <code>ontoggle</code>, among others.</p><p>Content models were brought in line with the specification: <code>div</code> groups <code>dt</code> and <code>dd</code> inside <code>dl</code>, the script-supporting elements are accepted in <code>dl</code>, <code>ol</code>, <code>ul</code>, <code>menu</code>, <code>table</code> and its row groups, <code>tr</code>, <code>select</code> and <code>optgroup</code>, <code>hgroup</code> accepts <code>p</code>, and <code>select</code> accepts <code>hr</code>.</p><h2 id="svg:-from-1.1-to-2">SVG: from 1.1 to 2</h2><p>The SVG side is where the release is largest, since it had not moved since SVG 1.1. Three elements were added, and two of them were more than an omission:</p><ul><li><code>mask</code> was declared in <code>Svg_types</code> but the element itself was missing;</li><li><code>feMerge</code> could be given no child at all, because <code>feMergeNode</code> did not exist;</li><li><code>feDropShadow</code> is new in Filter Effects 1.</li></ul><p>About thirty presentation attributes had their type tag declared but no function to produce them, so they were simply unreachable: <code>baseline-shift</code>, <code>clip-rule</code>, <code>color</code>, <code>color-interpolation</code>, <code>cursor</code>, <code>display</code>, <code>fill-opacity</code>, <code>filter</code>, <code>flood-color</code>, <code>letter-spacing</code>, <code>marker-end</code>, <code>mask</code>, <code>opacity</code>, <code>overflow</code>, <code>pointer-events</code>, <code>visibility</code>, <code>word-spacing</code>, <code>writing-mode</code> and more. The ones new in SVG 2 are there too: <code>paint-order</code>, <code>text-overflow</code>, <code>transform-origin</code>, <code>vector-effect</code> and <code>white-space</code>.</p><p>Also new: ARIA support (<code>a_role</code> and <code>a_aria</code>) on both the HTML and the SVG side, the <code>tabindex</code> and <code>autofocus</code> global attributes, <code>lang</code> becoming global, the SVG 2 link attributes on the <code>a</code> element (<code>download</code>, <code>hreflang</code>, <code>ping</code>, <code>referrerpolicy</code>, <code>rel</code> and <code>type</code>), the geometry attributes on <code>symbol</code>, <code>fr</code> on radial gradients, <code>side</code> and <code>path</code> on <code>textPath</code>, and the HTML event handler attributes that SVG 2 reuses on every element.</p><p>Content models were widened to SVG 2: shapes accept paint servers, <code>clipPath</code>, <code>marker</code>, <code>mask</code>, <code>script</code> and <code>style</code>; text elements accept paint servers; filter primitives accept descriptive elements and animation. What SVG 2 removed is now deprecated rather than absent, and <code>a_onload</code> is undeprecated, since the load event is still fired.</p><p>Two changes affect the output. The animation attributes <code>values</code>, <code>keyTimes</code> and <code>keySplines</code> are separated with semicolons, as SMIL requires, where they used to be split on spaces. And a printed document no longer carries the SVG 1.1 doctype: <code>Svg.Info</code> declared SVG 1.1, so every document went out with a DTD that forbids the SVG 2 elements and attributes TyXML emits, and SVG 2 defines no DTD at all.</p><h2 id="things-that-did-not-work-at-all">Things that did not work at all</h2><p>Part of this release is a list of constructs that the types allowed on paper but that no program could actually use:</p><ul><li>the <code>area</code> element had no <code>href</code> attribute, and its type tag was in no content model, so a <code>map</code> containing areas fitted nowhere;</li><li><code>symbol</code> accepted neither the core attributes, so no <code>id</code> and therefore no way to reference it, nor the presentation and event attributes, nor shape children;</li><li>the <code>li</code> children of <code>menu</code> could not be built: the branch required an <code>li</code> whose attributes were a subset of the common ones, which excludes the <code>value</code> attribute that <code>li</code> always allows;</li><li>the <code>xml:base</code>, <code>xml:lang</code> and <code>xml:space</code> attributes and the touch event handlers of SVG had type tags listed in no attribute category, which made them unusable on every element;</li><li>nine attribute functions produced a tag that did not match them, among them <code>a_edgeMode</code>, which produced the tag of <code>targetY</code>, and <code>a_low</code>, which produced the tag of <code>a_high</code>;</li><li><code>feFuncR</code>, <code>feFuncG</code> and <code>feFuncB</code> were all defined as the tag of <code>feFuncA</code>.</li></ul><p>Several names were also emitted misspelled, which is worse than a compile error because the output looks fine: <code>reversed</code> went out as <code>reserved</code>, the <code>allow-scripts</code> sandbox token as <code>allow-script</code>, and in SVG <code>target</code> as <code>xlink:target</code>, <code>glyph-name</code> as <code>glyphname</code>, <code>requiredExtensions</code>, <code>zoomAndPan</code>, <code>filterRes</code> and <code>edgeMode</code> under wrong names. Some attribute values were affected as well. Finally <code>Xml_print.compose_decl</code> emitted a literal backslash-n instead of a newline, which made the XML declaration invalid.</p><h2 id="the-ppx-and-the-jsx-syntax">The PPX and the JSX syntax</h2><p>The headline fix: <b>no camel case SVG attribute was recognised</b>. <code>viewBox</code>, <code>maskUnits</code>, <code>stdDeviation</code>, <code>gradientTransform</code>, <code>preserveAspectRatio</code>, <code>refX</code>, <code>markerWidth</code> and many others were rejected, because the markup parser lowercases attribute names and the SVG case adjustments of the HTML standard were not applied. Which means most real SVG could not be written with the PPX or with JSX at all.</p><p>Whitespace between SVG tags is now ignored for the elements whose content model does not accept text, so indented SVG, as the specification itself writes it, typechecks:</p><pre class="language-ocaml"><code>let icon =
+  [%svg &quot;&lt;g transform='translate(1,2) rotate(45)'&gt;
+           &lt;circle cx='5' cy='5' r='4'/&gt;
+         &lt;/g&gt;&quot;]</code></pre><p>Both of those failed before: the indentation for the first reason, and the <code>transform</code> attribute because its arguments were comma separated. Any whitespace, and not only the space character, is now accepted around the separators of list-valued attributes. An empty <code>option</code> is accepted too, as for <code>script</code> and <code>textarea</code>, which is the usual form inside a <code>datalist</code>.</p><h2 id="breaking-changes">Breaking changes</h2><p>The interesting ones for existing code:</p><ul><li><code>hidden</code> takes an enumerated argument instead of no argument, and <code>contenteditable</code> an enumerated argument instead of a boolean, so that the until-found and plaintext-only states can be expressed;</li><li>the attributes whose value is a URL go through <code>Xml.uri</code>: <code>a_itemtype</code> and <code>a_ping</code> on the HTML side, and <code>a_href</code>, <code>a_xlink_href</code> and <code>a_ping</code> on the SVG side. <code>Tyxml.Html</code> and <code>Tyxml.Svg</code> are unaffected, their <code>Xml.uri</code> is <code>string</code>; the gain is for the implementations whose <code>uri</code> type is abstract;</li><li>SVG documents are printed without a doctype, as above;</li><li>the <code>Wrapped_functions</code> module type has four new functions, which the implementations of the functorial interface must provide;</li><li>the build now requires OCaml 4.08, dune 3.18 and ppxlib 0.36.</li></ul><p>The <a href="https://github.com/ocsigen/tyxml/blob/master/CHANGES.md">changelog</a> has the full list, including the misspelled names that were corrected.</p><h2 id="documentation">Documentation</h2><p>The manual moved from wikicreole to odoc, the API references in the interfaces are native odoc references, and the themed site is built by <a href="https://github.com/ocsigen/wodoc">wodoc</a>, like the rest of ocsigen.org. It is at <a href="/tyxml/latest/">ocsigen.org/tyxml</a>.</p><h2 id="getting-it">Getting it</h2><pre class="language-ocaml"><code>opam install tyxml</code></pre><p>with <code>tyxml-ppx</code> or <code>tyxml-jsx</code> for the syntaxes. The <a href="https://github.com/ocsigen/tyxml/releases/tag/5.0.0">release notes</a> carry the same changelog.</p><p>Eliom already has the matching changes in its development branches. The released version still requires TyXML 4.6, so it will pick 5.0.0 up in its next release; js_of_ocaml-tyxml and the odoc family needed no change at all.</p><h2 id="thanks">Thanks</h2><p>This release owes a lot to its contributors: Hugo Heuzard, who found and fixed most of the mismatched type tags and misspelled names, Martin Bodin for the SVG whitespace handling, the <code>transform</code> separators, <code>clip-path</code> and the XML declaration, toastal for the microdata attributes, the content models and a round of orthographic fixes, Sylvain Boilard for popover and the <code>name</code> attribute of <code>details</code>, rand00 for the semicolon-separated animation attributes, Sora Morimoto for the build modernisation, and Patrick Ferris for the OCaml 5.2 AST.</p><p>Bug reports and pull requests are welcome on <a href="https://github.com/ocsigen/tyxml">GitHub</a>.</p></div>
+      </article>
+    </div>
+  </div>
+
+  <footer class="main-page-section main-page-section-about wodoc-blog-footer">
+    <div class="main-page-section-content">
+      <p>Questions or feedback? Open a discussion on <a href="https://discuss.ocaml.org">Discuss.ocaml.org</a> or contact us at
+        <a href="mailto:dev@ocsigen.org">dev@ocsigen.org</a>.</p>
+    </div>
+  </footer>
+</body>
+</html>

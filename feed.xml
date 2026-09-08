@@ -3,9 +3,17 @@
   <title>Ocsigen Blog</title>
   <link href="https://ocsigen.org/feed.xml" rel="self" />
   <link href="https://ocsigen.org" />
-  <updated>2026-07-01T00:00:00+00:00</updated>
+  <updated>2026-09-08T00:00:00+00:00</updated>
   <id>https://ocsigen.org/</id>
   <author><name>Ocsigen Project</name></author>
+  <entry>
+    <title>TyXML 5.0.0: the HTML living standard and SVG 2</title>
+    <link href="https://ocsigen.org/blog/posts/tyxml-5.0.0.html" />
+    <updated>2026-09-08T00:00:00+00:00</updated>
+    <id>https://ocsigen.org/blog/posts/tyxml-5.0.0.html</id>
+    <author><name>The Ocsigen team</name></author>
+    <summary type="html">TyXML 5.0.0 is out, and it is a major release. The library now follows the current specifications: the WHATWG living standard for HTML, and SVG 2 with the Filter Effects module for SVG, whose support had not moved since SVG 1.1. On the way …</summary>
+  </entry>
   <entry>
     <title>Why Ocsigen decided not to switch from Lwt to Eio (for now)</title>
     <link href="https://ocsigen.org/blog/posts/why-ocsigen-stays-on-lwt-for-now.html" />
