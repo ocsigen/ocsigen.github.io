@@ -1,0 +1,210 @@
+{0 TyXML 5.0.0: the HTML living standard and SVG 2}
+
+@author The Ocsigen team
+
+{{:/tyxml/}TyXML} 5.0.0 is out, and it is a major release. The library now
+follows the current specifications: the WHATWG living standard for HTML, and
+SVG 2 with the Filter Effects module for SVG, whose support had not moved
+since SVG 1.1. On the way it fixes a long list of elements and attributes that
+could not be used at all, and the PPX and JSX syntaxes now accept the camel
+case SVG attributes, so that an indented [<svg viewBox="0 0 100 100">] both
+parses and typechecks.
+
+TyXML builds HTML and SVG documents whose validity is checked by the OCaml
+type system: an element that the specification does not allow in a given
+position does not typecheck, and neither does an attribute on an element that
+does not carry it. It works with the textual representation shipped in the
+package, with DOM trees ({{:/js_of_ocaml/}js_of_ocaml-tyxml}), and with the
+reactive and replicated trees of {{:/eliom/}Eliom}; you can plug your own
+representation through the functorial interface. Markup can be written with
+the combinators, with the HTML syntax through the PPX, or with JSX.
+
+{1 HTML: catching up with the living standard}
+
+New elements: [s], [bdi], [search], [data], [slot], and [track] with its
+[kind], [srclang] and [default] attributes, which [audio] and [video] take
+through a new [?tracks] argument.
+
+New attributes, by family:
+
+{ul
+{- {b popover} ([popover], [popovertarget], [popovertargetaction]) and the
+   invoker commands [command] and [commandfor] on buttons;}
+{- {b microdata}: [itemscope], [itemtype], [itemid], [itemprop] and [itemref],
+   plus [meta_itemprop], the form of [meta] that the specification allows
+   wherever phrasing content is expected and not only in the head;}
+{- {b declarative shadow DOM} on templates ([shadowrootmode],
+   [shadowrootdelegatesfocus], [shadowrootclonable], [shadowrootserializable])
+   and the CSS shadow parts [part] and [exportparts];}
+{- {b loading and fetching}: [loading], [decoding] and [fetchpriority] on
+   images, [as], [imagesrcset] and [imagesizes] on preload links, [blocking]
+   on links, scripts and styles, [nomodule] on scripts, [nonce] anywhere;}
+{- {b forms and dialogs}: [closedby] on dialogs, [dirname] on inputs and
+   textareas, [capture] on file inputs, the [dialog] value of [method] and
+   [formmethod], [autocomplete] on selects and textareas;}
+{- {b global}: [inert], [enterkeyhint], [autocapitalize], [autocorrect],
+   [writingsuggestions], [slot], [is], and the [`Auto] value of [dir].}}
+
+The event handler attributes that were missing are in as well: the whole
+pointer event family, [onwheel], [onauxclick], the clipboard handlers, and
+[onbeforeinput], [onbeforematch], [onbeforetoggle], [oncancel], [oncuechange],
+[onscrollend], [onsecuritypolicyviolation], [onslotchange] and [ontoggle],
+among others.
+
+Content models were brought in line with the specification: [div] groups [dt]
+and [dd] inside [dl], the script-supporting elements are accepted in [dl],
+[ol], [ul], [menu], [table] and its row groups, [tr], [select] and [optgroup],
+[hgroup] accepts [p], and [select] accepts [hr].
+
+{1 SVG: from 1.1 to 2}
+
+The SVG side is where the release is largest, since it had not moved since SVG
+1.1. Three elements were added, and two of them were more than an omission:
+
+{ul
+{- [mask] was declared in [Svg_types] but the element itself was missing;}
+{- [feMerge] could be given no child at all, because [feMergeNode] did not
+   exist;}
+{- [feDropShadow] is new in Filter Effects 1.}}
+
+About thirty presentation attributes had their type tag declared but no
+function to produce them, so they were simply unreachable: [baseline-shift],
+[clip-rule], [color], [color-interpolation], [cursor], [display],
+[fill-opacity], [filter], [flood-color], [letter-spacing], [marker-end],
+[mask], [opacity], [overflow], [pointer-events], [visibility],
+[word-spacing], [writing-mode] and more. The ones new in SVG 2 are there too:
+[paint-order], [text-overflow], [transform-origin], [vector-effect] and
+[white-space].
+
+Also new: ARIA support ([a_role] and [a_aria]) on both the HTML and the SVG
+side, the [tabindex] and [autofocus] global attributes, [lang] becoming
+global, the SVG 2 link attributes on the [a] element ([download], [hreflang],
+[ping], [referrerpolicy], [rel] and [type]), the geometry attributes on
+[symbol], [fr] on radial gradients, [side] and [path] on [textPath], and the
+HTML event handler attributes that SVG 2 reuses on every element.
+
+Content models were widened to SVG 2: shapes accept paint servers, [clipPath],
+[marker], [mask], [script] and [style]; text elements accept paint servers;
+filter primitives accept descriptive elements and animation. What SVG 2
+removed is now deprecated rather than absent, and [a_onload] is undeprecated,
+since the load event is still fired.
+
+Two changes affect the output. The animation attributes [values], [keyTimes]
+and [keySplines] are separated with semicolons, as SMIL requires, where they
+used to be split on spaces. And a printed document no longer carries the SVG
+1.1 doctype: [Svg.Info] declared SVG 1.1, so every document went out with a
+DTD that forbids the SVG 2 elements and attributes TyXML emits, and SVG 2
+defines no DTD at all.
+
+{1 Things that did not work at all}
+
+Part of this release is a list of constructs that the types allowed on paper
+but that no program could actually use:
+
+{ul
+{- the [area] element had no [href] attribute, and its type tag was in no
+   content model, so a [map] containing areas fitted nowhere;}
+{- [symbol] accepted neither the core attributes, so no [id] and therefore no
+   way to reference it, nor the presentation and event attributes, nor shape
+   children;}
+{- the [li] children of [menu] could not be built: the branch required an [li]
+   whose attributes were a subset of the common ones, which excludes the
+   [value] attribute that [li] always allows;}
+{- the [xml:base], [xml:lang] and [xml:space] attributes and the touch event
+   handlers of SVG had type tags listed in no attribute category, which made
+   them unusable on every element;}
+{- nine attribute functions produced a tag that did not match them, among them
+   [a_edgeMode], which produced the tag of [targetY], and [a_low], which
+   produced the tag of [a_high];}
+{- [feFuncR], [feFuncG] and [feFuncB] were all defined as the tag of
+   [feFuncA].}}
+
+Several names were also emitted misspelled, which is worse than a compile
+error because the output looks fine: [reversed] went out as [reserved], the
+[allow-scripts] sandbox token as [allow-script], and in SVG [target] as
+[xlink:target], [glyph-name] as [glyphname], [requiredExtensions],
+[zoomAndPan], [filterRes] and [edgeMode] under wrong names. Some attribute
+values were affected as well. Finally [Xml_print.compose_decl] emitted a
+literal backslash-n instead of a newline, which made the XML declaration
+invalid.
+
+{1 The PPX and the JSX syntax}
+
+The headline fix: {b no camel case SVG attribute was recognised}. [viewBox],
+[maskUnits], [stdDeviation], [gradientTransform], [preserveAspectRatio],
+[refX], [markerWidth] and many others were rejected, because the markup parser
+lowercases attribute names and the SVG case adjustments of the HTML standard
+were not applied. Which means most real SVG could not be written with the PPX
+or with JSX at all.
+
+Whitespace between SVG tags is now ignored for the elements whose content
+model does not accept text, so indented SVG, as the specification itself
+writes it, typechecks:
+
+{@ocaml[
+let icon =
+  [%svg "<g transform='translate(1,2) rotate(45)'>
+           <circle cx='5' cy='5' r='4'/>
+         </g>"]
+]}
+
+Both of those failed before: the indentation for the first reason, and the
+[transform] attribute because its arguments were comma separated. Any
+whitespace, and not only the space character, is now accepted around the
+separators of list-valued attributes. An empty [option] is accepted too, as
+for [script] and [textarea], which is the usual form inside a [datalist].
+
+{1 Breaking changes}
+
+The interesting ones for existing code:
+
+{ul
+{- [hidden] takes an enumerated argument instead of no argument, and
+   [contenteditable] an enumerated argument instead of a boolean, so that the
+   until-found and plaintext-only states can be expressed;}
+{- the attributes whose value is a URL go through [Xml.uri]: [a_itemtype] and
+   [a_ping] on the HTML side, and [a_href], [a_xlink_href] and [a_ping] on the
+   SVG side. [Tyxml.Html] and [Tyxml.Svg] are unaffected, their [Xml.uri] is
+   [string]; the gain is for the implementations whose [uri] type is abstract;}
+{- SVG documents are printed without a doctype, as above;}
+{- the [Wrapped_functions] module type has four new functions, which the
+   implementations of the functorial interface must provide;}
+{- the build now requires OCaml 4.08, dune 3.18 and ppxlib 0.36.}}
+
+The {{:https://github.com/ocsigen/tyxml/blob/master/CHANGES.md}changelog} has
+the full list, including the misspelled names that were corrected.
+
+{1 Documentation}
+
+The manual moved from wikicreole to odoc, the API references in the interfaces
+are native odoc references, and the themed site is built by
+{{:https://github.com/ocsigen/wodoc}wodoc}, like the rest of ocsigen.org. It
+is at {{:/tyxml/latest/}ocsigen.org/tyxml}.
+
+{1 Getting it}
+
+{[
+opam install tyxml
+]}
+
+with [tyxml-ppx] or [tyxml-jsx] for the syntaxes. The
+{{:https://github.com/ocsigen/tyxml/releases/tag/5.0.0}release notes} carry
+the same changelog.
+
+Eliom already has the matching changes in its development branches. The
+released version still requires TyXML 4.6, so it will pick 5.0.0 up in its
+next release; js_of_ocaml-tyxml and the odoc family needed no change at all.
+
+{1 Thanks}
+
+This release owes a lot to its contributors: Hugo Heuzard, who found and fixed
+most of the mismatched type tags and misspelled names, Martin Bodin for the
+SVG whitespace handling, the [transform] separators, [clip-path] and the XML
+declaration, toastal for the microdata attributes, the content models and a
+round of orthographic fixes, Sylvain Boilard for popover and the [name]
+attribute of [details], rand00 for the semicolon-separated animation
+attributes, Sora Morimoto for the build modernisation, and Patrick Ferris for
+the OCaml 5.2 AST.
+
+Bug reports and pull requests are welcome on
+{{:https://github.com/ocsigen/tyxml}GitHub}.
