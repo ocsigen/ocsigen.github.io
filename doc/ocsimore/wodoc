@@ -4,13 +4,23 @@
 ;; was converted once to standalone odoc pages (mld/*.mld, tracked here — the
 ;; legacy repo is untouched), built straight with odoc (mld-dir). The API can't
 ;; be recompiled, so the original generated API is mirrored verbatim under api/
-;; (static-copy). The manual nav comes from the wikicreole menu.
+;; (static-copy). The manual nav is the one of the wikicreole menu.
 (project ocsimore)
 (title Ocsimore)
 (url-prefix /ocsimore)
 (css /css/style.css /css/ocsigen-odoc.css)  ; shared Ocsigen theme (wodoc css default changed)
 (mld-dir mld)
-(manual-menu menu.wiki)
 (landing index.html)
 (static-copy api-snapshot api)
 (static-copy mld/creole_cheat_sheet.png creole_cheat_sheet.png)
+
+(nav
+ (section "Ocsimore Manual"
+  (link "Introduction" intro.html intro)
+  (link "Wiki" wiki.html wiki)
+  (link "Forum" forum.html forum)
+  (link "Users and groups" user.html user)
+  (link "Misc" misc.html misc)
+  (link "Writing extensions for Ocsimore" guidelines.html guidelines)
+  (link "Configuration options" config.html config)
+  (link "Administration interface" admin-interface.html admin-interface)))
