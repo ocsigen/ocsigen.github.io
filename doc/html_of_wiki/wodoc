@@ -2,8 +2,8 @@
 ;; html_of_wiki (legacy wikicreole site generator, superseded by wodoc) exposes
 ;; no public library API, so there is no `dune build @doc`. Its doc is a single
 ;; self-describing manual page, converted once to mld/index.mld (the legacy repo
-;; is untouched) and built straight with odoc (mld-dir). The in-page anchor menu
-;; drives the left nav (anchor-menu); the first content straddles odoc's preamble
+;; is untouched) and built straight with odoc (mld-dir). The left nav links to
+;; the sections of that page; the first content straddles odoc's preamble
 ;; boundary, hence (flat).
 (project html_of_wiki)
 (title html_of_wiki)
@@ -12,5 +12,27 @@
 (mld-dir mld)
 (mld-package html_of_wiki)
 (flat)
-(anchor-menu menu.wiki)
 (landing index.html)
+
+(nav
+ (section "html_of_wiki"
+  (link "Installation" index.html#install)
+  (group "The wikicréole"
+   (link "Standard" index.html#wikistd)
+   (link "Additions" index.html#wikiadd))
+  (group "ohow"
+   (link "Introduction" index.html#ohow)
+   (group "Advanced usage"
+    (link "Templates" index.html#templates)
+    (link "Link extensions" index.html#linkexts)
+    (link "<<doctree>>" index.html#doctree)
+    (link "<<docversion>>" index.html#docversion))
+   (link "Legacy" index.html#legacy))
+  (group "dop"
+   (link "Introduction" index.html#dop)
+   (link "Configuration file" index.html#conf)
+   (link "Command line interface" index.html#cli)
+   (link "Examples" index.html#examples))
+  (group "quickdop"
+   (link "Introduction" index.html#quickdop))
+  (link "Built-in wikicréole extensions" index.html#ext)))
