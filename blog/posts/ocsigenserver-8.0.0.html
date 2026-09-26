@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Ocsigen Server 8.0.0: one command, and a modernized API — Ocsigen</title>
+  <!-- og:image gives the post a thumbnail on social cards and on the OCaml
+       Planet (its scraper reads og:image into a post's preview_image). -->
+  <meta property="og:image" content="https://ocsigen.org/img/ocsigen-badge-400.png"/>
+  <link rel="stylesheet" href="/css/style.css"/>
+  <link rel="stylesheet" href="/css/ocsigen-odoc.css"/>
+  <link rel="stylesheet" href="/css/wodoc.css"/>
+  <!-- odoc emits code blocks as <pre class="language-..">; highlight them
+       client-side with odoc's bundled highlight.js (loaded in <head>, as odoc
+       does). wodoc-highlight.js teaches it the Ocsigen OCaml extensions
+       (let%client/%server/%shared/%rpc, ~%injection, let* …) and starts it. -->
+  <script src="/doc/highlight.pack.js"></script>
+  <script src="/doc/wodoc-highlight.js"></script>
+</head>
+<body class="wodoc-page wodoc-doc wodoc-blog-page wodoc-project-blog">
+  <!-- Shared site menu — THE single source of truth for the header, top menu and
+     drawer of EVERY Ocsigen doc page (vitrine + all projects). Canonical copy
+     lives here in ocsigen.github.io; each project's build fetches it. Injected
+     by `wodoc assemble --menu`. Holes filled by the tool (braces omitted here so
+     this comment is not itself rewritten by the hole-filler):
+       subproject  the sub-project name shown next to the Ocsigen logo
+                   (empty on the vitrine), via --subproject
+       leftnav     the project's left navigation, expanded into BOTH the mobile
+                   drawer (below) and the left column (in the page template),
+                   via --leftnav
+     The current entry is highlighted by adding the `current` class to the
+     element carrying data-wodoc-page=<id>: --current on the vitrine (page id),
+     --menu-current in a project (the project id). Nothing is hardcoded here, so
+     this file is the ONLY place the menu is defined.
+
+     Links are the FINAL site paths (/<project>/, /<page>): the target layout
+     where each project is served at ocsigen.org/<project>/ — no transitional
+     /wodoc/ prefix. -->
+<div class="page-header">
+  <p class="logo-ocsigen"><a href="/"><img src="/img/ocsigen-white.svg" alt="Ocsigen"/></a></p>
+  <p class="logo-subproject">Blog</p>
+
+  <div class="mainmenu">
+    <p class="mainmenu-home" data-wodoc-page="githubio"><a href="/">Home</a></p>
+    <p class="mainmenu-doc" data-wodoc-page="tuto"><a href="/tuto/">Doc</a></p>
+    <p class="mainmenu-blog current" data-wodoc-page="blog"><a href="/blog/">Blog</a></p>
+    <p data-wodoc-page="eliom"><a href="/eliom/">Eliom</a></p>
+    <p data-wodoc-page="js_of_ocaml"><a href="/js_of_ocaml/">Js_of_ocaml</a></p>
+    <p data-wodoc-page="ocsigenserver"><a href="/ocsigenserver/">Server</a></p>
+    <p data-wodoc-page="lwt"><a href="/lwt/">Lwt</a></p>
+    <p data-wodoc-page="tyxml"><a href="/tyxml/">Tyxml</a></p>
+    <p data-wodoc-page="ocsigen-start"><a href="/ocsigen-start/">Start</a></p>
+  </div>
+
+  <form id="googlesearch" action="https://google.com/search">
+    <input name="q" id="gsearch-box" placeholder="Search using Google"/>
+    <label for="gsearch-box"><img src="/img/search.svg" alt="" id="gsearch-icon"/></label>
+    <input type="submit" id="gsearch-submit" onclick="document.getElementById('gsearch-box').value += ' site:ocsigen.org';"/>
+  </form>
+
+  <aside class="how-drawer">
+    <input id="how-drawer-toggle" type="checkbox"/>
+    <label for="how-drawer-toggle" id="how-drawer-label"><span class="how-drawer-icon"></span></label>
+    <nav class="how-drawer-content">
+      <ul class="drawermainmenu">
+        <li class="drawermainmenu-home" data-wodoc-page="githubio"><a href="/">Home</a></li>
+        <li class="drawermainmenu-doc" data-wodoc-page="tuto"><a href="/tuto/">Doc</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="eliom"><a href="/eliom/">Eliom</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="js_of_ocaml"><a href="/js_of_ocaml/">Js_of_ocaml</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="ocsigenserver"><a href="/ocsigenserver/">Server</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="lwt"><a href="/lwt/">Lwt</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="tyxml"><a href="/tyxml/">Tyxml</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="ocsigen-toolkit"><a href="/ocsigen-toolkit/">Toolkit</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="ocsigen-start"><a href="/ocsigen-start/">Start</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="ocsipersist"><a href="/ocsipersist/">Ocsipersist</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="reactiveData"><a href="/reactiveData/">ReactiveData</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="ocsigen-i18n"><a href="/ocsigen-i18n/">i18n</a></li>
+        <li class="drawermainmenu-project" data-wodoc-page="wodoc"><a href="/wodoc/">Wodoc</a></li>
+        <li class="drawermainmenu-page" data-wodoc-page="projects"><a href="/projects">Other projects</a></li>
+        <li class="drawermainmenu-page" data-wodoc-page="papers"><a href="/papers">Research papers</a></li>
+        <li class="drawermainmenu-page" data-wodoc-page="credits"><a href="/credits">Who does Ocsigen?</a></li>
+        <li class="drawermainmenu-page" data-wodoc-page="contributing"><a href="/contributing">Contributing</a></li>
+        <li class="drawermainmenu-page current" data-wodoc-page="blog"><a href="/blog/">Blog</a></li>
+        <li class="drawermainmenu-page" data-wodoc-page="install"><a href="/install">Installation</a></li>
+        <li class="drawermainmenu-page"><a href="https://github.com/ocsigen">Source code</a></li>
+      </ul>
+      <!-- On mobile the left column is hidden; its menu lives here in the burger
+           (.how-doctree, shown only on narrow screens), as the old site did.
+           Empty on the vitrine; the leftnav hole is filled (with the same
+           fragment as the left column) only on project pages. -->
+      <nav class="how-doctree"><nav class="api-nav manual-nav">
+<h3>Blog</h3>
+<ul class="api-section">
+<li class="ml3 current" data-wodoc-page="posts/ocsigenserver-8.0.0.html"><a href="../posts/ocsigenserver-8.0.0.html">2026-09-24 — Ocsigen Server 8.0.0: one command, and a modernized API</a></li>
+<li class="ml3" data-wodoc-page="posts/tyxml-5.0.0.html"><a href="../posts/tyxml-5.0.0.html">2026-09-08 — TyXML 5.0.0: the HTML living standard and SVG 2</a></li>
+<li class="ml3" data-wodoc-page="posts/why-ocsigen-stays-on-lwt-for-now.html"><a href="../posts/why-ocsigen-stays-on-lwt-for-now.html">2026-07-01 — Why Ocsigen decided not to switch from Lwt to Eio (for now)</a></li>
+<li class="ml3" data-wodoc-page="posts/ocsipersist-2.1.0.html"><a href="../posts/ocsipersist-2.1.0.html">2026-06-23 — Ocsipersist 2.1.0: type-safe persistence with Deriving</a></li>
+<li class="ml3" data-wodoc-page="posts/status-of-the-ocsigen-project.html"><a href="../posts/status-of-the-ocsigen-project.html">2026-06-19 — Ocsigen in 2026: what we&#x27;re working on</a></li>
+<li class="ml3" data-wodoc-page="posts/welcome-to-the-ocsigen-blog.html"><a href="../posts/welcome-to-the-ocsigen-blog.html">2026-06-14 — A new home for the Ocsigen blog</a></li>
+<li class="ml3" data-wodoc-page="posts/documenting-ocaml-projects-with-wodoc.html"><a href="../posts/documenting-ocaml-projects-with-wodoc.html">2026-06-07 — Documenting OCaml projects with wodoc</a></li>
+</ul>
+</nav>
+</nav>
+    </nav>
+  </aside>
+</div>
+
+
+  <div class="project-page">
+    <div class="twocols">
+      <nav class="leftcol">
+        <nav class="api-nav manual-nav">
+<h3>Blog</h3>
+<ul class="api-section">
+<li class="ml3 current" data-wodoc-page="posts/ocsigenserver-8.0.0.html"><a href="../posts/ocsigenserver-8.0.0.html">2026-09-24 — Ocsigen Server 8.0.0: one command, and a modernized API</a></li>
+<li class="ml3" data-wodoc-page="posts/tyxml-5.0.0.html"><a href="../posts/tyxml-5.0.0.html">2026-09-08 — TyXML 5.0.0: the HTML living standard and SVG 2</a></li>
+<li class="ml3" data-wodoc-page="posts/why-ocsigen-stays-on-lwt-for-now.html"><a href="../posts/why-ocsigen-stays-on-lwt-for-now.html">2026-07-01 — Why Ocsigen decided not to switch from Lwt to Eio (for now)</a></li>
+<li class="ml3" data-wodoc-page="posts/ocsipersist-2.1.0.html"><a href="../posts/ocsipersist-2.1.0.html">2026-06-23 — Ocsipersist 2.1.0: type-safe persistence with Deriving</a></li>
+<li class="ml3" data-wodoc-page="posts/status-of-the-ocsigen-project.html"><a href="../posts/status-of-the-ocsigen-project.html">2026-06-19 — Ocsigen in 2026: what we&#x27;re working on</a></li>
+<li class="ml3" data-wodoc-page="posts/welcome-to-the-ocsigen-blog.html"><a href="../posts/welcome-to-the-ocsigen-blog.html">2026-06-14 — A new home for the Ocsigen blog</a></li>
+<li class="ml3" data-wodoc-page="posts/documenting-ocaml-projects-with-wodoc.html"><a href="../posts/documenting-ocaml-projects-with-wodoc.html">2026-06-07 — Documenting OCaml projects with wodoc</a></li>
+</ul>
+</nav>
+
+      </nav>
+      <article class="rightcol">
+        <header class="odoc-preamble"><h1 id="ocsigen-server-8.0.0:-one-command,-and-a-modernized-api">Ocsigen Server 8.0.0: one command, and a modernized API</h1>
+<p class="wodoc-blog-meta">2026-09-24 — The Ocsigen team</p><ul class="at-tags"><li class="author"><span class="at-tag">author</span> The Ocsigen team</li></ul><p><a href="/ocsigenserver/">Ocsigen Server</a> 8.0.0 is out. Running a web server no longer needs a configuration file: <code>ocsigenserver ./public</code> serves a directory, and <code>ocsigenserver --reverse-proxy http://localhost:9000</code> puts a proxy in front of an application, both with compression and safe security headers already on. Static files now answer conditional and byte-range requests, compression speaks zstd, and accesses are logged in the Combined Log Format that usual analysers understand. This release also renames the public modules, with a compatibility package for existing code.</p><p>Ocsigen Server is a web server written in OCaml. It can be run as an executable, taking its configuration from a file, or used as a library, so that an application starts and configures its own server from OCaml code. Its architecture is modular: everything that handles a request is an extension, loaded and configured on demand. The ones shipped with the server cover most of what a site needs, among them <a href="/ocsigenserver/latest/staticmod.html">Staticmod</a> for static files, <a href="/ocsigenserver/latest/revproxy.html">Revproxy</a> for forwarding requests to another server, <a href="/ocsigenserver/latest/deflatemod.html">Deflatemod</a> for compression, <a href="/ocsigenserver/latest/accesscontrol.html">Accesscontrol</a> and <a href="/ocsigenserver/latest/authbasic.html">Authbasic</a> for restricting access, <a href="/ocsigenserver/latest/redirectmod.html">Redirectmod</a> and <a href="/ocsigenserver/latest/rewritemod.html">Rewritemod</a> for redirections and URL rewriting, <a href="/ocsigenserver/latest/cors.html">CORS</a>, and the new <a href="/ocsigenserver/latest/securityheaders.html">Securityheaders</a>. An extension is an OCaml module that the server loads, so writing your own is the same exercise as using one. <a href="/eliom/">Eliom</a>, the multi-tier framework for web and mobile applications, is itself an extension of Ocsigen Server.</p></header>
+        <div class="odoc-content"><h2 id="one-command">One command</h2><p>Ocsigen Server has always been configured by an XML file, which is what you want for a real deployment and what you do not want when you just need to serve a directory. It can now do the latter:</p><pre class="language-ocaml"><code>$ ocsigenserver ./public
+Serving /home/me/public on http://localhost:8080</code></pre><p>No configuration file, no log directory to create beforehand: logs go to the terminal, and the Staticmod extension is loaded on demand. Options are available for the usual cases:</p><pre class="language-ocaml"><code>$ ocsigenserver --serve ./public --port 8000 --directory-listing</code></pre><p>The same goes for a reverse proxy, which is how most OCaml applications are actually exposed:</p><pre class="language-ocaml"><code>$ ocsigenserver --reverse-proxy http://localhost:9000 --port 8080</code></pre><p>Both modes are also available as library functions, <code>Ocsigen.Server.serve</code> and <code>Ocsigen.Server.reverse_proxy</code>, so an application can start its own server in one call.</p><h2 id="static-files:-conditional-requests-and-byte-ranges">Static files: conditional requests and byte ranges</h2><p>Static files now carry an <code>ETag</code> and a <code>Last-Modified</code> header, and requests carrying <code>If-None-Match</code> or <code>If-Modified-Since</code> get a <code>304 Not Modified</code> (RFC 7232). A browser revisiting a page no longer downloads what it already has.</p><p>Byte ranges are supported as well (RFC 7233): responses advertise <code>Accept-Ranges</code>, a satisfiable <code>Range</code> yields <code>206 Partial Content</code> with the matching <code>Content-Range</code>, <code>If-Range</code> is honoured, and an unsatisfiable range gives <code>416</code>. This is what media players need to seek in a video, and what a download manager needs to resume.</p><h2 id="compression:-zstd,-and-a-new-backend">Compression: zstd, and a new backend</h2><p>The Deflatemod extension now supports the zstd content encoding (RFC 8878) in addition to gzip and deflate, and prefers it when the client offers several. Its backend moved from camlzip to <a href="https://erratique.ch/software/bytesrw">bytesrw</a>, so the package now depends on <code>bytesrw</code>, <code>conf-zlib</code> and <code>conf-zstd</code> instead of <code>camlzip</code>.</p><p>Compression is on by default in the one-command modes. Two long-standing correctness problems were fixed along the way: a compressed response used to keep the <code>Content-Length</code> of the uncompressed body, which truncated it, and its entity tag was mangled into something that was not a valid one. Compressed responses now also announce <code>Vary: Accept-Encoding</code>, without which a shared cache may hand a compressed body to a client that did not ask for one.</p><h2 id="security">Security</h2><p>Several hardening changes ship in this release:</p><ul><li>the <code>&lt;maxconnected&gt;</code> limit is enforced again, by throttling the accept loop, instead of being silently ignored;</li><li>error responses no longer include the raw OCaml exception in their body; the details stay in the logs;</li><li>the command pipe is created with mode <code>0o600</code>, so that other local users of the server's group can no longer send it <code>shutdown</code> or <code>reload</code>;</li><li>TLS requires version 1.2 at minimum and prefers the server's cipher order, and the <code>&lt;ciphers&gt;</code>, <code>&lt;dhfile&gt;</code> and <code>&lt;curve&gt;</code> entries, until now parsed but never applied, reach the TLS context.</li></ul><p>A new extension, Securityheaders, adds the usual security headers in one declaration. Its defaults are the ones that are safe everywhere (<code>X-Content-Type-Options</code>, <code>X-Frame-Options</code>, <code>Referrer-Policy</code>); <code>Strict-Transport-Security</code> and <code>Content-Security-Policy</code> are opt-in, because neither can be guessed from the outside and both are painful to undo.</p><p>One limitation to keep in mind if you are considering exposing the server directly: the <code>&lt;timeout&gt;</code> options are parsed but not enforced yet, so a client that sends its request one byte at a time still holds a connection. Until that is fixed, keep a reverse proxy or a filtering front in charge of slow clients.</p><h2 id="logs">Logs</h2><p>Accesses are logged in the Apache and nginx Combined Log Format, so the usual analysers can read them directly. The line reports the final status code, the response size and the authenticated user, which the previous custom format did not. Anything parsing the old format has to be updated.</p><p>When no <code>&lt;logdir&gt;</code> is configured, logs now go to the standard output and error instead of to files, which is what a container or a service manager expects.</p><h2 id="new-module-names">New module names</h2><p>The public modules are now grouped under three wrappers:</p><ul><li><code>ocsigenserver</code>: <code>Ocsigen.Server</code>, <code>Ocsigen.Config</code>, <code>Ocsigen.Extensions</code>, <code>Ocsigen.Request</code>, <code>Ocsigen.Response</code>, <code>Ocsigen.Messages</code>, ... replacing <code>Ocsigen_server</code>, <code>Ocsigen_config</code>, and so on;</li><li><code>ocsigenserver.baselib</code>: <code>Ocsigen_base.Lib</code>, <code>Ocsigen_base.Cache</code>, <code>Ocsigen_base.Loader</code>;</li><li><code>ocsigenserver.http</code>: <code>Ocsigen_http.Header</code>, <code>Ocsigen_http.Charset_mime</code>.</li></ul><p><code>Ocsigen_cohttp</code> and <code>Ocsigen_stream</code> keep their name, to avoid clashing with <code>Cohttp</code> and <code>Stdlib.Stream</code>.</p><p>Existing code does not have to be rewritten: the new <code>ocsigenserver-compat</code> package provides the old names as aliases of the new modules. Install it, and code written for 7.0.0 compiles unchanged.</p><h2 id="upgrading">Upgrading</h2><pre class="language-ocaml"><code>$ opam update
+$ opam install ocsigenserver</code></pre><p>Add <code>ocsigenserver-compat</code> to your dependencies if you want to keep the old module names for now. Two other changes are worth checking before upgrading a deployment: log parsing, since the access log format changed, and the dependency on a zstd development package, which <code>conf-zstd</code> pulls in.</p><p>The full list of changes is in the <a href="https://github.com/ocsigen/ocsigenserver/blob/master/CHANGES">CHANGES</a> file, and the manual is on <a href="/ocsigenserver/">ocsigen.org</a>.</p></div>
+      </article>
+    </div>
+  </div>
+
+  <footer class="main-page-section main-page-section-about wodoc-blog-footer">
+    <div class="main-page-section-content">
+      <p>Questions or feedback? Open a discussion on <a href="https://discuss.ocaml.org">Discuss.ocaml.org</a> or contact us at
+        <a href="mailto:dev@ocsigen.org">dev@ocsigen.org</a>.</p>
+    </div>
+  </footer>
+</body>
+</html>
