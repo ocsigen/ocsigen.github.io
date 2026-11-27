@@ -342,7 +342,9 @@ pre code,
   display: flex;
 }
 
-.cs-switch button {
+/* links since wodoc computes their targets; buttons in older frozen versions */
+.cs-switch button,
+.cs-switch a {
   flex: 1;
   font: inherit;
   padding: 0.3em 0.5em;
@@ -350,6 +352,8 @@ pre code,
   background: #eef2f7;
   color: #333;
   cursor: pointer;
+  text-align: center;
+  text-decoration: none;
 }
 
 .cs-switch .cs-server {
@@ -372,6 +376,42 @@ pre code,
   background: #ffec8b;
   color: #333;
   border-color: #ffec8b;
+}
+
+/* The notice above the title of an API page: which side it documents, with a
+   link to the other side. Same palette as the switch. */
+.wodoc-side-banner {
+  /* aligned with the top of the left column, like the page title it precedes */
+  margin: 100px 0 0;
+  padding: 0.6em 1em;
+  border: 1px solid;
+  border-left-width: 5px;
+  border-radius: 4px;
+  font-size: 0.95em;
+}
+
+.wodoc-side-banner p {
+  margin: 0.2em 0;
+}
+
+/* a prose link, not a module reference (see a[href*="/index.html"] above) */
+.rightcol .wodoc-side-banner a {
+  font-family: inherit;
+}
+
+/* the banner takes the place of the title's top margin */
+.project-page .wodoc-side-banner + .odoc-preamble h1 {
+  margin-top: 40px;
+}
+
+.wodoc-side-banner-server {
+  background: #ddeeff;
+  border-color: #5cacee;
+}
+
+.wodoc-side-banner-client {
+  background: #ffffdd;
+  border-color: #e6c200;
 }
 
 /* Code-block syntax highlighting. odoc 3.x does not colour code blocks itself
