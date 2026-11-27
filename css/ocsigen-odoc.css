@@ -342,7 +342,9 @@ pre code,
   display: flex;
 }
 
-.cs-switch button {
+/* links since wodoc computes their targets; buttons in older frozen versions */
+.cs-switch button,
+.cs-switch a {
   flex: 1;
   font: inherit;
   padding: 0.3em 0.5em;
@@ -350,6 +352,8 @@ pre code,
   background: #eef2f7;
   color: #333;
   cursor: pointer;
+  text-align: center;
+  text-decoration: none;
 }
 
 .cs-switch .cs-server {
