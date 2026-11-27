@@ -25,7 +25,8 @@ The documentation is split in two by *where it is hosted*:
     `contributing`), from [`doc/vitrine/`](doc/vitrine) `*.mld`, into the site
     **root**;
   - the **blog**, from [`doc/blog/`](doc/blog) `*.mld`, into `/blog/` plus the
-    Atom feed at `/feed.xml` — see [Blog](#blog) below;
+    Atom feed at `/feed.xml` and the blog's `/blog/llms.txt`, see [Blog](#blog)
+    below;
   - the **sources** of two **archived** projects whose own repos no longer build,
     [`ocsimore`](doc/ocsimore) and [`html_of_wiki`](doc/html_of_wiki) (static
     `.mld` sites). They are *published* from their own repository's `gh-pages`,
@@ -102,12 +103,16 @@ follows. New posts automatically get the Ocsigen badge as their social-card /
 OCaml Planet thumbnail, via the `og:image` in
 [`doc/blog/template.html`](doc/blog/template.html).
 
+For AIs and LLMs, `wodoc blog-llms` gives each post a Markdown twin
+(`/blog/posts/<slug>.md`, advertised by the post page) and writes
+`/blog/llms.txt` and `/blog/llms-full.txt`, which the root `/llms.txt` links to.
+
 **Unlisted drafts.** To share a work-in-progress article by direct link without
 publishing it, drop its `YYYY-MM-DD-slug.mld` in
 [`doc/blog/hidden/`](doc/blog/hidden) instead of `doc/blog/posts/`. `build.sh`
 renders it to the same `/blog/posts/<slug>.html` URL, but because it lives
 outside the `(blog (dir posts))` config it is **absent from the left-nav, the
-landing's latest-posts widget and `/feed.xml`** — so it never reaches OCaml
+landing's latest-posts widget, `/feed.xml` and `/blog/llms.txt`**, so it never reaches OCaml
 Planet and nothing links to it. To publish such a draft for real, move its
 `.mld` into `doc/blog/posts/` (and let CI regenerate the page).
 
