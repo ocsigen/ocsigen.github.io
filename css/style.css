@@ -1148,6 +1148,13 @@ aside.concept {
 }
 
 /* screenshots galleries (ocsigen-start intro, tuto start/os pages) */
+.screenshots {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 4px;
+}
+
 .screenshots img {
   max-height: 200px;
   max-width: calc(100vw - 30px);
@@ -1194,6 +1201,18 @@ img.centered {
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+
+/* odoc renders an image ({image!…}) as <div><a class="img-link"><img/></a></div>,
+   and wodoc gives the classes of {%wodoc:@ class=…%} to that <div>: size and
+   center the image through it. */
+div.centered {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+div.img-col-width-400 img {
+  width: 100%;
 }
 
 /****** Mobile version ******/
