@@ -1,0 +1,46 @@
+# Ocsigen in 2026: what we're working on
+
+Published on 2026-06-19 by The Ocsigen team.
+
+What are we actually working on these days? Faster Wasm compilation, a new documentation toolchain, hierarchical module names, mobile through Capacitor, AI coding skills... Here is an honest look at the state of Ocsigen in 2026: what is in progress, what is on the roadmap and waiting for funding, and where you can lend a hand.
+
+Ocsigen has always had a single, ambitious goal: to give the OCaml community a complete, top-quality suite of tools that makes Web and mobile programming extremely simple, while fitting naturally into the existing ecosystem of OCaml libraries. From the compiler to the browser, from the server to the database, everything should work together, be type-safe end to end, and stay at the best level of what the state of the art has to offer.
+
+Here is a snapshot of what we are currently working on, and where we would love some help.
+
+## Work in progress
+
+A lot is happening around **compilation to the Web**. We are pushing [wasm\_of\_ocaml](/js_of_ocaml/) further: performance improvements, a new syntax for hand-written Wasm, and a systematic comparison between the `js_of_ocaml` and `wasm_of_ocaml` runtimes to detect and fix bugs.
+
+On the **documentation** side, we are building [wodoc](/wodoc/), an odoc driver that can produce a complete website: manual, API reference, blog, and a Markdown version meant for AI agents. This goes hand in hand with a modernisation of our documentation infrastructure (moving ocsigen.org over to wodoc) and a broad content refresh across all projects.
+
+The **core framework** is getting a more polished surface. Across the server, Eliom, the Toolkit and Ocsigen Start, we are moving to hierarchical module names (for instance `Eliom.Service` instead of `Eliom_service`), and factorising the build system into the shared `ocsigen-dune-rules`. On mobile, Ocsigen Start is switching from Cordova to Capacitor. Ocsipersist is gaining type-safe persistent references built on Deriving. The Toolkit is getting new reactive widgets, contributed by Be Sport. And we are writing AI skills for agent-assisted coding with Eliom and Start.
+
+## Backlog — looking for funding
+
+We have a lot of ideas for the next steps, and several of them are ready to start as soon as funding allows:
+
+- **Lwt**: reaching the performance of effect-based libraries, and multi-domain compatibility.
+- **Ocsipersist**: adding a fast, 100% OCaml backend.
+- **Eliom**: off-line apps out of the box, client-side-only use, and distributed apps backed by an Irmin-like database.
+- **Toolkit**: documenting how to use it for client-only `js_of_ocaml`/`wasm_of_ocaml` apps.
+- **Server**: running as a plain executable, with no configuration file.
+- **Apps**: a collaborative editor, and a distributed content management system, ...
+
+## Features we need in neighbouring projects
+
+Some of our goals depend on improvements elsewhere in the ecosystem (all currently unfunded): the missing odoc features that would let us drop wodoc's hacks, complete multi-tier programming support in Merlin/LSP, and the same in Dune so we can avoid dirty build-system workarounds.
+
+## How you can help
+
+Ocsigen is an open project, and there are many ways to contribute, whatever your time and resources:
+
+- **Contribute code.** Pick an issue, send a pull request, or improve the documentation. The roadmap above is full of well-defined tasks, from small fixes to larger features, and we are happy to help you get started.
+- **Fund the projects you care about.** Most of the backlog above is simply waiting for funding. Sponsoring a specific feature, or supporting the project in general, directly turns into development time. Get in touch if your company relies on Ocsigen and would like to see something move forward.
+- **Tell us about your needs.** Bug reports, feature requests and use cases all help us prioritise. Knowing how people actually use the tools, and where they hit friction, is invaluable.
+- **Help us spread the word.** Write about your experience, give a talk, answer questions, or simply star the repositories. A more visible project attracts more contributors and more funding, which benefits everyone.
+If you are not sure where to start, just reach out, on the [GitHub organisation](https://github.com/ocsigen) or the community channels, and we will point you in the right direction.
+
+## Thanks
+
+A huge thank you to all our funders, and especially to Jane Street, Tarides, OCaml Software Foundation, NLnet and Ahrefs.

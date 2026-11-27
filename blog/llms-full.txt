@@ -1,0 +1,637 @@
+# Ocsigen Blog
+
+> News about the Ocsigen project: release announcements, design decisions and the state of the project, newest first.
+
+
+---
+
+# Ocsigen Server 8\.0.0: one command, and a modernized API
+
+Published on 2026-09-24 by The Ocsigen team.
+
+[Ocsigen Server](/ocsigenserver/) 8\.0.0 is out. Running a web server no longer needs a configuration file: `ocsigenserver ./public` serves a directory, and `ocsigenserver --reverse-proxy http://localhost:9000` puts a proxy in front of an application, both with compression and safe security headers already on. Static files now answer conditional and byte-range requests, compression speaks zstd, and accesses are logged in the Combined Log Format that usual analysers understand. This release also renames the public modules, with a compatibility package for existing code.
+
+Ocsigen Server is a web server written in OCaml. It can be run as an executable, taking its configuration from a file, or used as a library, so that an application starts and configures its own server from OCaml code. Its architecture is modular: everything that handles a request is an extension, loaded and configured on demand. The ones shipped with the server cover most of what a site needs, among them [Staticmod](/ocsigenserver/latest/staticmod.html) for static files, [Revproxy](/ocsigenserver/latest/revproxy.html) for forwarding requests to another server, [Deflatemod](/ocsigenserver/latest/deflatemod.html) for compression, [Accesscontrol](/ocsigenserver/latest/accesscontrol.html) and [Authbasic](/ocsigenserver/latest/authbasic.html) for restricting access, [Redirectmod](/ocsigenserver/latest/redirectmod.html) and [Rewritemod](/ocsigenserver/latest/rewritemod.html) for redirections and URL rewriting, [CORS](/ocsigenserver/latest/cors.html), and the new [Securityheaders](/ocsigenserver/latest/securityheaders.html). An extension is an OCaml module that the server loads, so writing your own is the same exercise as using one. [Eliom](/eliom/), the multi-tier framework for web and mobile applications, is itself an extension of Ocsigen Server.
+
+## One command
+
+Ocsigen Server has always been configured by an XML file, which is what you want for a real deployment and what you do not want when you just need to serve a directory. It can now do the latter:
+
+```ocaml
+$ ocsigenserver ./public
+Serving /home/me/public on http://localhost:8080
+```
+No configuration file, no log directory to create beforehand: logs go to the terminal, and the Staticmod extension is loaded on demand. Options are available for the usual cases:
+
+```ocaml
+$ ocsigenserver --serve ./public --port 8000 --directory-listing
+```
+The same goes for a reverse proxy, which is how most OCaml applications are actually exposed:
+
+```ocaml
+$ ocsigenserver --reverse-proxy http://localhost:9000 --port 8080
+```
+Both modes are also available as library functions, `Ocsigen.Server.serve` and `Ocsigen.Server.reverse_proxy`, so an application can start its own server in one call.
+
+## Static files: conditional requests and byte ranges
+
+Static files now carry an `ETag` and a `Last-Modified` header, and requests carrying `If-None-Match` or `If-Modified-Since` get a `304 Not Modified` (RFC 7232\). A browser revisiting a page no longer downloads what it already has.
+
+Byte ranges are supported as well (RFC 7233\): responses advertise `Accept-Ranges`, a satisfiable `Range` yields `206 Partial Content` with the matching `Content-Range`, `If-Range` is honoured, and an unsatisfiable range gives `416`. This is what media players need to seek in a video, and what a download manager needs to resume.
+
+## Compression: zstd, and a new backend
+
+The Deflatemod extension now supports the zstd content encoding (RFC 8878\) in addition to gzip and deflate, and prefers it when the client offers several. Its backend moved from camlzip to [bytesrw](https://erratique.ch/software/bytesrw), so the package now depends on `bytesrw`, `conf-zlib` and `conf-zstd` instead of `camlzip`.
+
+Compression is on by default in the one-command modes. Two long-standing correctness problems were fixed along the way: a compressed response used to keep the `Content-Length` of the uncompressed body, which truncated it, and its entity tag was mangled into something that was not a valid one. Compressed responses now also announce `Vary: Accept-Encoding`, without which a shared cache may hand a compressed body to a client that did not ask for one.
+
+## Security
+
+Several hardening changes ship in this release:
+
+- the `<maxconnected>` limit is enforced again, by throttling the accept loop, instead of being silently ignored;
+- error responses no longer include the raw OCaml exception in their body; the details stay in the logs;
+- the command pipe is created with mode `0o600`, so that other local users of the server's group can no longer send it `shutdown` or `reload`;
+- TLS requires version 1\.2 at minimum and prefers the server's cipher order, and the `<ciphers>`, `<dhfile>` and `<curve>` entries, until now parsed but never applied, reach the TLS context.
+A new extension, Securityheaders, adds the usual security headers in one declaration. Its defaults are the ones that are safe everywhere (`X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`); `Strict-Transport-Security` and `Content-Security-Policy` are opt-in, because neither can be guessed from the outside and both are painful to undo.
+
+One limitation to keep in mind if you are considering exposing the server directly: the `<timeout>` options are parsed but not enforced yet, so a client that sends its request one byte at a time still holds a connection. Until that is fixed, keep a reverse proxy or a filtering front in charge of slow clients.
+
+## Logs
+
+Accesses are logged in the Apache and nginx Combined Log Format, so the usual analysers can read them directly. The line reports the final status code, the response size and the authenticated user, which the previous custom format did not. Anything parsing the old format has to be updated.
+
+When no `<logdir>` is configured, logs now go to the standard output and error instead of to files, which is what a container or a service manager expects.
+
+## New module names
+
+The public modules are now grouped under three wrappers:
+
+- `ocsigenserver`: `Ocsigen.Server`, `Ocsigen.Config`, `Ocsigen.Extensions`, `Ocsigen.Request`, `Ocsigen.Response`, `Ocsigen.Messages`, ... replacing `Ocsigen_server`, `Ocsigen_config`, and so on;
+- `ocsigenserver.baselib`: `Ocsigen_base.Lib`, `Ocsigen_base.Cache`, `Ocsigen_base.Loader`;
+- `ocsigenserver.http`: `Ocsigen_http.Header`, `Ocsigen_http.Charset_mime`.
+`Ocsigen_cohttp` and `Ocsigen_stream` keep their name, to avoid clashing with `Cohttp` and `Stdlib.Stream`.
+
+Existing code does not have to be rewritten: the new `ocsigenserver-compat` package provides the old names as aliases of the new modules. Install it, and code written for 7\.0.0 compiles unchanged.
+
+## Upgrading
+
+```ocaml
+$ opam update
+$ opam install ocsigenserver
+```
+Add `ocsigenserver-compat` to your dependencies if you want to keep the old module names for now. Two other changes are worth checking before upgrading a deployment: log parsing, since the access log format changed, and the dependency on a zstd development package, which `conf-zstd` pulls in.
+
+The full list of changes is in the [CHANGES](https://github.com/ocsigen/ocsigenserver/blob/master/CHANGES) file, and the manual is on [ocsigen.org](/ocsigenserver/).
+
+
+---
+
+# TyXML 5\.0.0: the HTML living standard and SVG 2
+
+Published on 2026-09-08 by The Ocsigen team.
+
+[TyXML](/tyxml/) 5\.0.0 is out, and it is a major release. The library now follows the current specifications: the WHATWG living standard for HTML, and SVG 2 with the Filter Effects module for SVG, whose support had not moved since SVG 1\.1. On the way it fixes a long list of elements and attributes that could not be used at all, and the PPX and JSX syntaxes now accept the camel case SVG attributes, so that an indented `<svg viewBox="0 0 100 100">` both parses and typechecks.
+
+TyXML builds HTML and SVG documents whose validity is checked by the OCaml type system: an element that the specification does not allow in a given position does not typecheck, and neither does an attribute on an element that does not carry it. It works with the textual representation shipped in the package, with DOM trees ([js\_of\_ocaml-tyxml](/js_of_ocaml/)), and with the reactive and replicated trees of [Eliom](/eliom/); you can plug your own representation through the functorial interface. Markup can be written with the combinators, with the HTML syntax through the PPX, or with JSX.
+
+## HTML: catching up with the living standard
+
+New elements: `s`, `bdi`, `search`, `data`, `slot`, and `track` with its `kind`, `srclang` and `default` attributes, which `audio` and `video` take through a new `?tracks` argument.
+
+New attributes, by family:
+
+- **popover** (`popover`, `popovertarget`, `popovertargetaction`) and the invoker commands `command` and `commandfor` on buttons;
+- **microdata**: `itemscope`, `itemtype`, `itemid`, `itemprop` and `itemref`, plus `meta_itemprop`, the form of `meta` that the specification allows wherever phrasing content is expected and not only in the head;
+- **declarative shadow DOM** on templates (`shadowrootmode`, `shadowrootdelegatesfocus`, `shadowrootclonable`, `shadowrootserializable`) and the CSS shadow parts `part` and `exportparts`;
+- **loading and fetching**: `loading`, `decoding` and `fetchpriority` on images, `as`, `imagesrcset` and `imagesizes` on preload links, `blocking` on links, scripts and styles, `nomodule` on scripts, `nonce` anywhere;
+- **forms and dialogs**: `closedby` on dialogs, `dirname` on inputs and textareas, `capture` on file inputs, the `dialog` value of `method` and `formmethod`, `autocomplete` on selects and textareas;
+- **global**: `inert`, `enterkeyhint`, `autocapitalize`, `autocorrect`, `writingsuggestions`, `slot`, `is`, and the ``Auto` value of `dir`.
+The event handler attributes that were missing are in as well: the whole pointer event family, `onwheel`, `onauxclick`, the clipboard handlers, and `onbeforeinput`, `onbeforematch`, `onbeforetoggle`, `oncancel`, `oncuechange`, `onscrollend`, `onsecuritypolicyviolation`, `onslotchange` and `ontoggle`, among others.
+
+Content models were brought in line with the specification: `div` groups `dt` and `dd` inside `dl`, the script-supporting elements are accepted in `dl`, `ol`, `ul`, `menu`, `table` and its row groups, `tr`, `select` and `optgroup`, `hgroup` accepts `p`, and `select` accepts `hr`.
+
+## SVG: from 1\.1 to 2
+
+The SVG side is where the release is largest, since it had not moved since SVG 1\.1. Three elements were added, and two of them were more than an omission:
+
+- `mask` was declared in `Svg_types` but the element itself was missing;
+- `feMerge` could be given no child at all, because `feMergeNode` did not exist;
+- `feDropShadow` is new in Filter Effects 1\.
+About thirty presentation attributes had their type tag declared but no function to produce them, so they were simply unreachable: `baseline-shift`, `clip-rule`, `color`, `color-interpolation`, `cursor`, `display`, `fill-opacity`, `filter`, `flood-color`, `letter-spacing`, `marker-end`, `mask`, `opacity`, `overflow`, `pointer-events`, `visibility`, `word-spacing`, `writing-mode` and more. The ones new in SVG 2 are there too: `paint-order`, `text-overflow`, `transform-origin`, `vector-effect` and `white-space`.
+
+Also new: ARIA support (`a_role` and `a_aria`) on both the HTML and the SVG side, the `tabindex` and `autofocus` global attributes, `lang` becoming global, the SVG 2 link attributes on the `a` element (`download`, `hreflang`, `ping`, `referrerpolicy`, `rel` and `type`), the geometry attributes on `symbol`, `fr` on radial gradients, `side` and `path` on `textPath`, and the HTML event handler attributes that SVG 2 reuses on every element.
+
+Content models were widened to SVG 2: shapes accept paint servers, `clipPath`, `marker`, `mask`, `script` and `style`; text elements accept paint servers; filter primitives accept descriptive elements and animation. What SVG 2 removed is now deprecated rather than absent, and `a_onload` is undeprecated, since the load event is still fired.
+
+Two changes affect the output. The animation attributes `values`, `keyTimes` and `keySplines` are separated with semicolons, as SMIL requires, where they used to be split on spaces. And a printed document no longer carries the SVG 1\.1 doctype: `Svg.Info` declared SVG 1\.1, so every document went out with a DTD that forbids the SVG 2 elements and attributes TyXML emits, and SVG 2 defines no DTD at all.
+
+## Things that did not work at all
+
+Part of this release is a list of constructs that the types allowed on paper but that no program could actually use:
+
+- the `area` element had no `href` attribute, and its type tag was in no content model, so a `map` containing areas fitted nowhere;
+- `symbol` accepted neither the core attributes, so no `id` and therefore no way to reference it, nor the presentation and event attributes, nor shape children;
+- the `li` children of `menu` could not be built: the branch required an `li` whose attributes were a subset of the common ones, which excludes the `value` attribute that `li` always allows;
+- the `xml:base`, `xml:lang` and `xml:space` attributes and the touch event handlers of SVG had type tags listed in no attribute category, which made them unusable on every element;
+- nine attribute functions produced a tag that did not match them, among them `a_edgeMode`, which produced the tag of `targetY`, and `a_low`, which produced the tag of `a_high`;
+- `feFuncR`, `feFuncG` and `feFuncB` were all defined as the tag of `feFuncA`.
+Several names were also emitted misspelled, which is worse than a compile error because the output looks fine: `reversed` went out as `reserved`, the `allow-scripts` sandbox token as `allow-script`, and in SVG `target` as `xlink:target`, `glyph-name` as `glyphname`, `requiredExtensions`, `zoomAndPan`, `filterRes` and `edgeMode` under wrong names. Some attribute values were affected as well. Finally `Xml_print.compose_decl` emitted a literal backslash-n instead of a newline, which made the XML declaration invalid.
+
+## The PPX and the JSX syntax
+
+The headline fix: **no camel case SVG attribute was recognised**. `viewBox`, `maskUnits`, `stdDeviation`, `gradientTransform`, `preserveAspectRatio`, `refX`, `markerWidth` and many others were rejected, because the markup parser lowercases attribute names and the SVG case adjustments of the HTML standard were not applied. Which means most real SVG could not be written with the PPX or with JSX at all.
+
+Whitespace between SVG tags is now ignored for the elements whose content model does not accept text, so indented SVG, as the specification itself writes it, typechecks:
+
+```ocaml
+let icon =
+  [%svg "<g transform='translate(1,2) rotate(45)'>
+           <circle cx='5' cy='5' r='4'/>
+         </g>"]
+```
+Both of those failed before: the indentation for the first reason, and the `transform` attribute because its arguments were comma separated. Any whitespace, and not only the space character, is now accepted around the separators of list-valued attributes. An empty `option` is accepted too, as for `script` and `textarea`, which is the usual form inside a `datalist`.
+
+## Breaking changes
+
+The interesting ones for existing code:
+
+- `hidden` takes an enumerated argument instead of no argument, and `contenteditable` an enumerated argument instead of a boolean, so that the until-found and plaintext-only states can be expressed;
+- the attributes whose value is a URL go through `Xml.uri`: `a_itemtype` and `a_ping` on the HTML side, and `a_href`, `a_xlink_href` and `a_ping` on the SVG side. `Tyxml.Html` and `Tyxml.Svg` are unaffected, their `Xml.uri` is `string`; the gain is for the implementations whose `uri` type is abstract;
+- SVG documents are printed without a doctype, as above;
+- the `Wrapped_functions` module type has four new functions, which the implementations of the functorial interface must provide;
+- the build now requires OCaml 4\.08, dune 3\.18 and ppxlib 0\.36.
+The [changelog](https://github.com/ocsigen/tyxml/blob/master/CHANGES.md) has the full list, including the misspelled names that were corrected.
+
+## Documentation
+
+The manual moved from wikicreole to odoc, the API references in the interfaces are native odoc references, and the themed site is built by [wodoc](https://github.com/ocsigen/wodoc), like the rest of ocsigen.org. It is at [ocsigen.org/tyxml](/tyxml/latest/).
+
+## Getting it
+
+```ocaml
+opam install tyxml
+```
+with `tyxml-ppx` or `tyxml-jsx` for the syntaxes. The [release notes](https://github.com/ocsigen/tyxml/releases/tag/5.0.0) carry the same changelog.
+
+Eliom already has the matching changes in its development branches. The released version still requires TyXML 4\.6, so it will pick 5\.0.0 up in its next release; js\_of\_ocaml-tyxml and the odoc family needed no change at all.
+
+## Thanks
+
+This release owes a lot to its contributors: Hugo Heuzard, who found and fixed most of the mismatched type tags and misspelled names, Martin Bodin for the SVG whitespace handling, the `transform` separators, `clip-path` and the XML declaration, toastal for the microdata attributes, the content models and a round of orthographic fixes, Sylvain Boilard for popover and the `name` attribute of `details`, rand00 for the semicolon-separated animation attributes, Sora Morimoto for the build modernisation, and Patrick Ferris for the OCaml 5\.2 AST.
+
+Bug reports and pull requests are welcome on [GitHub](https://github.com/ocsigen/tyxml).
+
+
+---
+
+# Why Ocsigen decided not to switch from Lwt to Eio (for now)
+
+Published on 2026-07-01 by Vincent Balat.
+
+Through 2025 we migrated the entire Ocsigen stack from Lwt to Eio. The migration compiles and the test suite passes, and yet we have decided to stay on Lwt for now. This post explains the two obstacles that stopped us: the loss of function coloring, and the clash between Eio's handler-based model and browser event handling. We show concrete code from the migration branches, ask the effects community whether these obstacles could be addressed upstream, and reaffirm our commitment to the unity of the OCaml ecosystem.
+
+## Context
+
+In March 2025 we announced that the Ocsigen project (ocsigenserver, Eliom, ocsigen-toolkit, ocsigen-start, os\_template) was experimenting the migration from Lwt to Eio. Through summer 2025 and the second half of 2025 we ran that migration: branch [`to-eio2`](https://github.com/ocsigen/eliom/tree/to-eio2) of Eliom (≈5,000 lines changed across 178 files), branch [`to-eio`](https://github.com/ocsigen/ocsigenserver/tree/to-eio) of ocsigenserver, and matching branches in the other repositories. The result compiles and the basic test suite passes (*this is not a report about migration mechanics failing*).
+
+Despite this, we have decided **not to release the migration for now**, and to stay on Lwt for the foreseeable future. This note explains why, with code excerpts from the migration branches, and asks the OCaml effects community whether some of the obstacles we hit could be addressed upstream. It also comes in response to concerned questions from industrial users of Ocsigen, who needed to know whether their existing Lwt codebases were about to be left behind.
+
+This is *not* an anti-Eio piece. Effects are a major contribution of OCaml 5 and we are grateful for the work of the ocaml-multicore team and Tarides. The points below are about specific design choices and runtime constraints whose resolution would, in our view, benefit many OCaml software projects.
+
+## The two reasons in short
+
+### 1\. Loss of function coloring is particularly painful in reactive or multi-tier code
+
+In Lwt, `val f : a -> b Lwt.t` is a typed signal that `f` may suspend. Under Eio every function has the form `val f : a -> b`, regardless of whether it's pure, suspends, performs I/O, or, crucially in our case, triggers a network round-trip from the client to the server.
+
+Eliom is a multi-tier framework: the same source code is compiled for both sides via `[%shared]` sections, and a shared expression can execute either on the server or on the client depending on the context (first render, subsequent in-browser navigation, etc.). The *same* function call can be a local computation on the server and an RPC across the network on the client. Lwt made that dual reality visible in the types. Eio does not.
+
+The practical consequence: a developer can no longer locally identify where waits will occur, and in particular where they need to display a spinner, disable a button, or otherwise absorb a network delay.
+
+This is even worse in reactive code: a signal map that used to be typed `map_s : ('a -> 'b Lwt.t) -> 'a event -> 'b event` is now `map_s : ('a -> 'b) -> 'a event -> 'b event`. The type no longer signals that the function may suspend and perform I/O, breaking the FRP semantics of React.
+
+We see this break down repeatedly across the Eliom APIs: `Ot_spinner` (A.1), `React`/`Eio_react` (A.2), `Eliom_reference` (A.3) below.
+
+### 2\. Eio's handler-based model cannot coexist cleanly with browser event handling
+
+On the client, OCaml event handlers (`a_onclick`, `a_onchange`, etc.) are called directly by the browser. No Eio handler is installed in the stack at that point, so any `perform` inside the handler body crashes with `Effect.Unhandled`. The standard workaround in js\_of\_ocaml-eio is to wrap each handler body with `Js_of_ocaml_eio.Eio_js.start`, which opens a local handler and schedules its body via `setTimeout(0)`. This is problematic on three orthogonal axes:
+
+**a. DOM event propagation.** `Eio_js.start` defers its body to a `setTimeout(0)` task, so the body executes *after* the event propagation phase. But event handlers routinely need to act *during* propagation: `Dom.preventDefault`, `Dom_html.stopPropagation`, or returning a boolean to the browser. Deferred execution makes those impossible. Wrapping defensively breaks the semantics of event handling; not wrapping means crashing on the first effect performed. There is no local fallback.
+
+**b. Quantity and placement difficulty.** A typical Eliom application has dozens to hundreds of entry points (event handlers, RPC callbacks, fork points, timers, animation frames, mutation observers). Each one is a potential site for `Eio_js.start`. Whether a given site *actually* needs the wrapper depends on what the user-provided callbacks might `perform`, several call levels deep, a non-local question. A missed wrap crashes at runtime; an accidentally nested wrap creates redundant sub-fibers and disrupts cancellation. Neither case is statically detectable.
+
+**c. Shared (multi-tier) code.** In `[%shared]` sections, `Eio_js.start` only makes sense on the client (the server already has a handler open from `Eio_main.run`). Writing the same idiomatic code for both sides requires an abstraction layer (`Eliom_lib.fork`) with two different runtime implementations: same syntactic expression, two distinct behaviors. This goes directly against what `[%shared]` is supposed to give us.
+
+Beyond DOM event handlers (B.1), the ambiguity surfaces *throughout the public API* of any framework: see `Ot_popup` (B.2) and `Ot_sticky` (B.3) below.
+
+### A note on distributed computing (1994)
+
+Neither of the two points above is new. In 1994, Jim Waldo, Geoff Wyant, Ann Wollrath and Sam Kendall published [*A Note on Distributed Computing*](https://scholar.harvard.edu/files/waldo/files/waldo-94.pdf) (Sun Microsystems Laboratories, SMLI TR-94-29), a critique of what they called the *vision of unified objects*: the idea that a call should look the same whether its target sits in the same address space or on another machine, because location is "merely an aspect of the implementation of the object". Their thesis was that "this unified view of objects is mistaken", and it was not an argument about speed. Latency, they note, "is the most obvious, but in many ways is the least fundamental" of the differences, and being so obvious "has tended to mask the more irreconcilable differences".
+
+Two of their observations apply to our situation almost word for word.
+
+**The distinction has to live in the interface, not in the implementation.** They devote a section to what they call the myth of "quality of service": the belief that reliability can be repaired by choosing a better implementation behind an unchanged interface. "Robustness is not simply a function of the implementations of the interfaces that make up the system", they write, and "many aspects of robustness can be reflected only at the protocol/interface level". Their case study is NFS, a file-system API designed for local use and "re-implemented in a distributed way": no improvement in implementation quality can repair it, because "the lack of robustness is inherent in the interface". This is what we observe in A.2, A.3 and B.3 below. Once `_ Lwt.t` leaves a signature, the fact that a call may wait, or may reach the network, has to be restated in a doc-comment. The information has moved from the interface into prose, and prose is not type-checked.
+
+**A transparency that is not enforced everywhere is worse than none.** On memory access they are categorical: either the underlying system controls every access, or the programmer must know which kind of access each one is, and "there is no inbetween". The danger, they write, lies in promoting the myth that remote access and local access are exactly the same *without enforcing it*: a mechanism that promotes the myth while leaving some accesses outside its control is "both misleading and prone to error". Replace memory access with suspension and this is point 2 above. The model says that a call is just a call, but at the browser boundary the myth is not enforced and the program dies with `Effect.Unhandled`. Wrapping every entry point in `Eio_js.start` is the "enforce it everywhere" branch, and it costs us DOM propagation semantics; not wrapping is the crash. There is no middle ground, exactly as they predicted.
+
+Their conclusion is a design rule rather than a prohibition: "rather than trying to merge local and remote objects, engineers need to be constantly reminded of the differences between the two", because "making the difference visible will aid in making the difference part of the design of the system". A `_ Lwt.t` in an Eliom signature is such a reminder, and it is one the compiler checks. An uncoloured `val f : a -> b` cannot be.
+
+One clarification, because the parallel could be pushed too far. Eio is not a distributed-computing library and claims no RPC transparency; and Eliom's whole purpose is to write client and server code in one language, in one file, sometimes in a single `[%shared]` expression. We are not retreating from that. What we want to unify is the *language*, not the *cost model*: multi-tier programming is only safe while the tier boundary stays manifest somewhere the compiler can see it. In Ocsigen that somewhere is the `_ Lwt.t` in the type. In a multi-tier framework the suspension marker is also the network marker, so erasing it reinstates the unified view of 1994, thirty years later and by accident.
+
+### A note on monadic versus direct style
+
+One argument often made for effects is the syntactic comfort of direct-style code. We do not find it decisive. The monadic style of Lwt is perfectly good: with binding operators such as `let*` it is not even uncomfortable to write, and the explicit `_ Lwt.t` is in fact very practical, because it keeps the developer aware of what the code is really doing. For those who genuinely dislike monads, `Lwt 6` (Cruanes, January 2026\) offers [`Lwt_direct`](https://discuss.ocaml.org/t/ann-lwt-6-0-0-release-direct-style-tracing/17690), which provides direct-style syntax (`await : 'a Lwt.t -> 'a`) on top of Lwt while keeping function coloring intact. So the "monads versus effects" debate about syntactic ergonomics is, for us, beside the point: what matters is coloring.
+
+## Concrete examples
+
+All code snippets below come from the migration branches. Each example pairs a small Lwt fragment from `master` with its counterpart on `to-eio2` / `to-eio`.
+
+### A.1. `Ot_spinner`: the visual promise
+
+A spinner is the *visual equivalent of a promise*: it marks the place in the UI where a value will appear later. **Whenever an operation may take time, the developer needs to insert a spinner** (or an equivalent: disabled button, placeholder, etc.), and function coloring is precisely what tells the developer where those sites are. Without it, **a call that turns out to be an RPC is syntactically indistinguishable from a local computation**: the UI freezes for the network round-trip and no spinner was ever planned.
+
+In a multi-tier framework like Eliom this matters in two ways at once. The widget itself must behave differently depending on where the page is generated:
+
+- **Server-side render** (first page load, SEO, crawlers, no-JS fallback): wait for the value, then send the complete page in one go.
+- **Client-side render** (subsequent Eliom navigation): return the spinner *immediately* so the page change feels instantaneous; replace the spinner with the real content asynchronously when available.
+But the deeper issue is in the *call sites*, not the widget implementation. Under Lwt the `_ Lwt.t` in `let%lwt users = get_users () in …` made the wait obvious; under Eio there is no cue.
+
+The Lwt signature (from `ocsigen-toolkit/master/src/widgets/ot_spinner.eliomi`):
+
+```ocaml
+val with_spinner :
+   ?a:[< Html_types.div_attrib] Eliom_content.Html.attrib list
+  -> ?spinner:[< Html_types.div_content] Eliom_content.Html.elt list
+  -> ?fail:(exn ->
+              [< Html_types.div_content] Eliom_content.Html.elt list Lwt.t)
+  -> [< Html_types.div_content] Eliom_content.Html.elt list Lwt.t
+  -> [> `Div] Eliom_content.Html.elt Lwt.t
+```
+The Eio signature (`to-eio` branch):
+
+```ocaml
+val with_spinner :
+   ?a:[< Html_types.div_attrib] Eliom_content.Html.attrib list
+  -> ?spinner:[< Html_types.div_content] Eliom_content.Html.elt list
+  -> ?fail:(exn ->
+              [< Html_types.div_content] Eliom_content.Html.elt list)
+  -> (unit -> [< Html_types.div_content] Eliom_content.Html.elt list)
+  -> [> `Div] Eliom_content.Html.elt
+```
+What used to be a promise (`... list Lwt.t`) is now a thunk (`unit -> ... list`). The return type used to be `... elt Lwt.t`, it is now a plain `... elt`. No `Lwt.t` appears anywhere in the signature.
+
+The application code that uses it, from [`ocsigen-start/template.distillery/demo_pgocaml.eliom`](https://github.com/ocsigen/ocsigen-start/blob/to-eio/template.distillery/demo_pgocaml.eliom), is now syntactically indistinguishable from purely local code:
+
+```ocaml
+(* Lwt (master) *)
+let%rpc get_users () : string list Lwt.t = ...
+
+let%shared page () =
+  let%lwt user_block =
+    Ot_spinner.with_spinner
+      (let%lwt users = get_users () in   (* the wait is manifest *)
+       ...)
+  in
+  ...
+```
+
+```ocaml
+(* Eio (to-eio) *)
+let%rpc get_users () : string list = ...
+
+let%shared page () =
+  let user_block =
+    Ot_spinner.with_spinner (fun () ->
+      let users = get_users () in        (* nothing signals the RPC *)
+      ...)
+  in
+  ...
+```
+`get_users` is an Eliom RPC. The `let%shared page () = …` block runs on the server for the first render and on the client for subsequent Eliom navigation. On the server `get_users ()` is a local call; on the client *the same expression* is a network round-trip of several hundred milliseconds. Under Lwt the `_ Lwt.t` made this dual reality visible; under Eio nothing does.
+
+This is the unified view of objects that Waldo et al. warned against: at this call site nothing distinguishes a local computation from a network round-trip, so the spinner that should absorb the round-trip is never planned.
+
+### A.2. `React`: the type collapse of `map_s`
+
+React (Daniel Bünzli's FRP library) is deterministic: a signal's value is, at any moment, a pure function of its inputs. `Lwt_react` adds *threaded* versions of the combinators (`map_s`, `filter_s`, etc.) for cases where the transformation must wait on something (a database fetch, a confirmation event, …).
+
+Under Lwt, the type of the threaded variant explicitly differed from the pure one:
+
+```ocaml
+(* React.E.map: pure FRP, always synchronous *)
+val map   : ('a -> 'b)        -> 'a event -> 'b event
+
+(* Lwt_react.E.map_s: threaded, takes a function that may yield *)
+val map_s : ('a -> 'b Lwt.t)  -> 'a event -> 'b event
+val map_p : ('a -> 'b Lwt.t)  -> 'a event -> 'b event
+```
+Passing a function returning `_ Lwt.t` to `React.E.map` was a type error. Conversely, `map_s` required `_ Lwt.t`. The two worlds were *physically separated* by the type system.
+
+Under Eio (Eliom's `Eio_react` is a port of `Lwt_react`):
+
+```ocaml
+val map_s : ('a -> 'b) -> 'a event -> 'b event
+val map_p : ('a -> 'b) -> 'a event -> 'b event
+```
+The type is now identical to `React.E.map`. The `_s`/`_p` suffix has no semantic content at the type level: it survives only as a naming convention.
+
+A developer can now write `React.E.map` with a function that yields internally, no warning, no error. The result is an event that secretly performs I/O at every occurrence, breaking the local determinism on which FRP semantics rely. We lose the language-level guarantee that combinators are pure.
+
+### A.3. `Eliom_reference`: the `Volatile` submodule rendered moot
+
+`Eliom_reference` is the primitive every Eliom developer uses to store server-side state (session data, user preferences, request-scoped state). Its references can be either *volatile* (in memory) or *persistent* (backed by ocsipersist on disk: sqlite / dbm / postgres). Both flavors share the same `'a eref` type; persistence is chosen at creation time via an optional `?persistent` argument.
+
+Under Lwt:
+
+```ocaml
+val get    : 'a eref -> 'a Lwt.t
+val set    : 'a eref -> 'a -> unit Lwt.t
+val modify : 'a eref -> ('a -> 'a) -> unit Lwt.t
+val unset  : 'a eref -> unit Lwt.t
+```
+Because the API does not statically know whether an eref will be volatile or persistent, the type `_ Lwt.t` covers both cases, and conveys to the developer that the call *may* be I/O.
+
+The module also exposed, for developers who knew their reference was volatile, an *explicit escape hatch*:
+
+```ocaml
+(** Same functions as in [Eliom_reference] but a non-Lwt interface
+    for non-persistent Eliom references. *)
+module Volatile : sig
+  val get    : 'a eref -> 'a
+  val set    : 'a eref -> 'a -> unit
+  val modify : 'a eref -> ('a -> 'a) -> unit
+  val unset  : 'a eref -> unit
+end
+```
+Under Eio, all four operations on the main module become flat:
+
+```ocaml
+val get    : 'a eref -> 'a
+val set    : 'a eref -> 'a -> unit
+val modify : 'a eref -> ('a -> 'a) -> unit
+val unset  : 'a eref -> unit
+```
+**This is now identical to the `Volatile` submodule**. The submodule, which under Lwt was the typed escape-hatch into the synchronous world, now duplicates the main module entirely. Its purpose disappears with the loss of coloring: there is no longer a way, in the type, to require a non-suspendable reference.
+
+For the application developer this means: a `let pref = Eliom_reference.get my_pref in …` may be a memory read or a disk read, depending on how `my_pref` was created, and the type no longer tells you which. Innocuous-looking code like `if Eliom_reference.get pref > 0 then …` can hide a `perform` and a disk I/O. Placed inside a signal map (cf. A.2), or inside a tight loop, this is a real performance bug waiting to happen.
+
+### B.1. DOM event handlers: a local impossibility
+
+Take a typical bullet handler from [`ot_carousel.eliom`](https://github.com/ocsigen/ocsigen-toolkit/blob/to-eio/src/widgets/ot_carousel.eliom):
+
+**Lwt** (4 similar sites in this one file):
+
+```ocaml
+a_onclick [%client fun _ -> ~%change (`Goto ~%i)]
+```
+**Eio**:
+
+```ocaml
+a_onclick [%client fun _ -> Eio_js.start (fun () -> ~%change (`Goto ~%i))]
+```
+Why the wrapper? Because `~%change` is an `Eliom_client_value.t` provided by the user of the carousel widget. The carousel's author doesn't know whether `change` will, somewhere down the call graph, perform an Eio effect.
+
+Two scenarios:
+
+- if `change = fun _ -> incr counter`, the wrapper is needless overhead;
+- if `change = fun _ -> save_state_to_server ()` (an RPC, an `Eliom_reference.set` on a persistent eref, …), the wrapper is mandatory.
+The "defensive" answer of wrapping everywhere is not viable, for the reason given in point 2a above: `Eio_js.start` defers to `setTimeout(0)` and runs after DOM propagation. Under Lwt none of this was necessary: a promise is just an OCaml value, the Lwt scheduler picks it up from any browser callback, with no stack-installed handler required.
+
+The branch shows a further complication: in practice we ended up using *several* primitives that do similar things: `Js_of_ocaml_eio.Eio_js.start`, `Eliom_lib.fork` (whose implementation differs by side: client \= `Eio_js.start`, server \= `Eio.Fiber.fork`), and `Eio_js_events.async`, plus library functions like `Eio_js_events.clicks button (fun ev -> …)` that install their own handler. So the same conceptual call, `a_onclick (fun ev -> change ())` versus `Eio_js_events.clicks button (fun ev -> change ())`, may require a wrapper in one form and not the other, with no syntactic cue to distinguish them.
+
+### B.2. `Ot_popup.popup`: three ambiguities in one signature
+
+`Ot_popup.popup` is a modal-popup widget used routinely in Eliom apps. Its signature takes several user callbacks and a content generator.
+
+**Lwt**:
+
+```ocaml
+val popup :
+   ?a:...
+  -> ?close_button:...
+  -> ?confirmation_onclose:(unit -> bool Lwt.t)
+  -> ?onclose:(unit -> unit Lwt.t)
+  -> ?close_on_background_click:bool
+  -> ?close_on_escape:bool
+  -> ((unit -> unit Lwt.t) -> [< div_content] elt Lwt.t)
+  -> [> `Div] elt Lwt.t
+```
+**Eio**:
+
+```ocaml
+val popup :
+   ?a:...
+  -> ?close_button:...
+  -> ?confirmation_onclose:(unit -> bool)
+  -> ?onclose:(unit -> unit)
+  -> ?close_on_background_click:bool
+  -> ?close_on_escape:bool
+  -> ((unit -> unit) -> [< div_content] elt)
+  -> [> `Div] elt
+```
+Under Lwt, the signature answers three questions for the caller: *can my callbacks suspend? does `popup` await them or schedule them? is `popup` itself synchronous or does it return a promise?* Three questions, three `Lwt.t` markers.
+
+Under Eio, none of these are answered by the type:
+
+1. Can `confirmation_onclose` or `onclose` suspend? If yes, who installs the handler? The popup, or the caller? Nothing says.
+2. Does `popup` itself fork these callbacks, await them, or call them synchronously? Reading the type does not tell.
+3. Does `popup` block until `gen_content` returns, or does it return early with a div that fills in later? The type just says you get a `div`.
+To use the widget correctly the developer must read the implementation. And the ambiguity composes: if `popup` is called from a generic widget, which is called from another, each layer adds uncertainty.
+
+### B.3. `Ot_sticky.make_sticky`: hidden wait
+
+`Ot_sticky.make_sticky` is a stickiness polyfill. Its first action, internally, is to wait for the DOM node to be attached (`Ot_nodeready.nodeready`).
+
+**Lwt**:
+
+```ocaml
+val make_sticky :
+   dir:[`Left | `Top]
+  -> ?ios_html_scroll_hack:bool
+  -> ?force:bool
+  -> div_content elt
+  -> glue option Lwt.t
+```
+**Eio**:
+
+```ocaml
+val make_sticky :
+   dir:[`Left | `Top]
+  -> ?ios_html_scroll_hack:bool
+  -> ?force:bool
+  -> div_content elt
+  -> glue option
+(** [...] The function will wait until the node is ready in the
+    page before starting. *)
+```
+The doc-comment "*The function will wait until the node is ready in the page before starting*" was **added** in the Eio version. It did not exist under Lwt, and didn't need to, because the type said so. This is the same pattern as in `Lwt_react` (A.2) and `Eliom_reference` (A.3): the documentation has to carry what the types used to.
+
+For the application developer this means: nothing in the call site `let glue = make_sticky elt in …` warns that the next line may execute much later, or, worse, that the call will crash with `Effect.Unhandled` if it is invoked from an unwrapped DOM event handler.
+
+## What we hope could unblock us
+
+We see several possible directions. None is short or easy. We'd welcome the community's view on which are realistic.
+
+- **Typed effects in OCaml**, e.g. à la Koka or Frank, where signatures can read `val f : a -> b / { suspend, io, network }`. This would restore coloring while keeping direct-style syntax. It is the most satisfying answer, but a long-term research direction.
+- **A root effect handler installed by js\_of\_ocaml-eio** at program start, with a trampoline through every JS callback. This addresses the basic "no handler in DOM callback" problem (point 2a above), but does not, by itself, solve the `setTimeout`\-vs-propagation timing issue.
+- **A "fiber-less" or "synchronous-first" mode of Eio**, in which primitives that don't yield run inline within the current call stack, and only an explicit yield surrenders control. This preserves DOM propagation semantics. It is also, conceptually, close to what Lwt already provides: promises are values, the scheduler picks them up when ready, no stack-installed handler required.
+- **Investing in Lwt itself**, for example an io\_uring backend, an effects-based scheduler, or multicore support. Lwt is not frozen: much of what makes Eio attractive at the runtime level could be brought to a library that keeps coloring intact.
+For the time being, staying on Lwt preserves coloring and spares us the dilemmas above. That is why we are staying on Lwt.
+
+## Closing
+
+We tried, we documented, we paused. We'd like to thank the ocaml-multicore team, Tarides, and everyone who has contributed to Eio and the surrounding tooling (`lwt_eio`, js\_of\_ocaml-eio, …): the implementation work we relied on was of high quality, and what is described above is about design tradeoffs at the language and runtime level, not about the quality of any implementation.
+
+Our experience also taught us that migrating a very large codebase is genuinely hard: it is complex, slow, and can introduce many subtle problems, even when the migration itself compiles and passes the test suite. Very large codebases built on Lwt exist, and the less well-funded projects among them will simply not be able to afford such a migration. Our attempt to reduce this cost is [`ciao-lwt`](https://github.com/tarides/ciao-lwt), a set of tools that automate part of the Lwt-to-Eio migration; it handles many common patterns, although a fully mechanical migration remains out of reach.
+
+More broadly, the state of concurrency libraries in the OCaml world is, in our view, extremely concerning. The OCaml community is small and cannot afford a split. If OCaml is to grow, it must reach real-world applications, and those users need high-level, interoperable building blocks. The Ocsigen project has always aimed to provide such tools while fostering the unity of the ecosystem. We are fully committed to helping solve the problem of concurrency libraries.
+
+We are happy to share code, write more details, or pair on small experiments. Discussion welcome.
+
+This work was funded by [`NLnet`](https://nlnet.nl/) through the [`NGI Zero Core`](https://nlnet.nl/core/) fund.
+
+
+---
+
+# Ocsipersist 2\.1.0: type-safe persistence with Deriving
+
+Published on 2026-06-23 by The Ocsigen team.
+
+[Ocsipersist](/ocsipersist/) 2\.1.0 is out. The headline is a new, type-safe way to store your data: persistent references, stores and tables can now be serialised with **Deriving\_Json** instead of `Marshal`. The data is human-readable in the database and stable across OCaml versions. The whole new API is purely additive, so existing code keeps working unchanged.
+
+Ocsipersist is a generic library of persistent references and key-value tables for **any OCaml program**. It does not depend on Eliom or Ocsigen Server: any application that needs to keep data across restarts can use it as a plain library. It is also fully compatible with Ocsigen Server, and it is what Eliom and Ocsigen use internally for sessions and persistent references. A single, uniform front-end covers three interchangeable backends (**SQLite**, **PostgreSQL** and **DBM**), so you can switch backend without changing a line of application code.
+
+## The problem with Marshal
+
+Until now, the simple interfaces (`Ref`, `Store`, `Polymorphic`) serialised values with `Marshal`. That is convenient, but it has two well-known drawbacks: the binary format gives no guarantee of stability across OCaml versions for some types, and the stored blobs are completely opaque, so you cannot read or inspect your own data in the database.
+
+## The new type-safe interfaces
+
+2\.1.0 introduces type-safe alternatives based on [Deriving\_Json](/js_of_ocaml/) (the same mechanism Eliom uses for client-server communication, with no JavaScript compilation involved):
+
+- `Ocsipersist.Ref_json`: persistent references;
+- `Ocsipersist.Store_json`: named persistent values in a store;
+- `Ocsipersist.Column.Json`: a column functor for the typed `Functorial` tables.
+You annotate the stored type with `[@@deriving json]` and pass its codec explicitly:
+
+```ocaml
+type user = { name : string; age : int } [@@deriving json]
+
+(* A persistent reference, stored as readable JSON: *)
+let visits = Ocsipersist.Ref_json.ref ~persistent:"visits" [%json: int] 0
+
+let count_visit () =
+  let%lwt n = Ocsipersist.Ref_json.get visits in
+  Ocsipersist.Ref_json.set visits (n + 1)
+```
+The value is written to the database as plain JSON text, which means it stays readable and survives an OCaml upgrade.
+
+## Fully backward compatible
+
+The change is **additive**. The `Marshal`\-based `Ref`, `Store` and `Column.Marshal` are untouched, so your existing data and code keep working exactly as before. You can adopt the JSON interfaces incrementally, only where you want them. (`iter`/`fold` were also added to `Polymorphic`, with the old `iter_step`/`fold_step` kept as deprecated aliases.)
+
+## Also in this release
+
+Beyond serialisation, 2\.1.0 brings a round of fixes and hardening across the three backends:
+
+- **SQLite**: a persistent database connection instead of opening and closing it on every operation, and a real `iter_batch` implementation.
+- **PostgreSQL**: fixes to `replace_if_exists`, a transactional `modify_opt`, and corrected `Functorial.length` and `fold`.
+- **DBM**: replaced the old double-fork with `Unix.create_process`, compatible with OCaml 5 multicore domains.
+- **Security**: table and store names are now validated to prevent SQL injection through interpolated names.
+- **Quality**: a new test suite covering all three backends, run in CI.
+
+## Getting it
+
+Ocsipersist 2\.1.0 is available on opam:
+
+```ocaml
+opam install ocsipersist ocsipersist-sqlite
+```
+(replace `ocsipersist-sqlite` with `ocsipersist-pgsql` or `ocsipersist-dbm` for the other backends). The full list of changes is in the [release notes](https://github.com/ocsigen/ocsipersist/releases/tag/2.1.0).
+
+This is also a step on the [roadmap](/blog/posts/2026-06-19-status-of-the-ocsigen-project.html) we shared recently: next up for Ocsipersist is a fast, 100% OCaml backend.
+
+
+---
+
+# Ocsigen in 2026: what we're working on
+
+Published on 2026-06-19 by The Ocsigen team.
+
+What are we actually working on these days? Faster Wasm compilation, a new documentation toolchain, hierarchical module names, mobile through Capacitor, AI coding skills... Here is an honest look at the state of Ocsigen in 2026: what is in progress, what is on the roadmap and waiting for funding, and where you can lend a hand.
+
+Ocsigen has always had a single, ambitious goal: to give the OCaml community a complete, top-quality suite of tools that makes Web and mobile programming extremely simple, while fitting naturally into the existing ecosystem of OCaml libraries. From the compiler to the browser, from the server to the database, everything should work together, be type-safe end to end, and stay at the best level of what the state of the art has to offer.
+
+Here is a snapshot of what we are currently working on, and where we would love some help.
+
+## Work in progress
+
+A lot is happening around **compilation to the Web**. We are pushing [wasm\_of\_ocaml](/js_of_ocaml/) further: performance improvements, a new syntax for hand-written Wasm, and a systematic comparison between the `js_of_ocaml` and `wasm_of_ocaml` runtimes to detect and fix bugs.
+
+On the **documentation** side, we are building [wodoc](/wodoc/), an odoc driver that can produce a complete website: manual, API reference, blog, and a Markdown version meant for AI agents. This goes hand in hand with a modernisation of our documentation infrastructure (moving ocsigen.org over to wodoc) and a broad content refresh across all projects.
+
+The **core framework** is getting a more polished surface. Across the server, Eliom, the Toolkit and Ocsigen Start, we are moving to hierarchical module names (for instance `Eliom.Service` instead of `Eliom_service`), and factorising the build system into the shared `ocsigen-dune-rules`. On mobile, Ocsigen Start is switching from Cordova to Capacitor. Ocsipersist is gaining type-safe persistent references built on Deriving. The Toolkit is getting new reactive widgets, contributed by Be Sport. And we are writing AI skills for agent-assisted coding with Eliom and Start.
+
+## Backlog — looking for funding
+
+We have a lot of ideas for the next steps, and several of them are ready to start as soon as funding allows:
+
+- **Lwt**: reaching the performance of effect-based libraries, and multi-domain compatibility.
+- **Ocsipersist**: adding a fast, 100% OCaml backend.
+- **Eliom**: off-line apps out of the box, client-side-only use, and distributed apps backed by an Irmin-like database.
+- **Toolkit**: documenting how to use it for client-only `js_of_ocaml`/`wasm_of_ocaml` apps.
+- **Server**: running as a plain executable, with no configuration file.
+- **Apps**: a collaborative editor, and a distributed content management system, ...
+
+## Features we need in neighbouring projects
+
+Some of our goals depend on improvements elsewhere in the ecosystem (all currently unfunded): the missing odoc features that would let us drop wodoc's hacks, complete multi-tier programming support in Merlin/LSP, and the same in Dune so we can avoid dirty build-system workarounds.
+
+## How you can help
+
+Ocsigen is an open project, and there are many ways to contribute, whatever your time and resources:
+
+- **Contribute code.** Pick an issue, send a pull request, or improve the documentation. The roadmap above is full of well-defined tasks, from small fixes to larger features, and we are happy to help you get started.
+- **Fund the projects you care about.** Most of the backlog above is simply waiting for funding. Sponsoring a specific feature, or supporting the project in general, directly turns into development time. Get in touch if your company relies on Ocsigen and would like to see something move forward.
+- **Tell us about your needs.** Bug reports, feature requests and use cases all help us prioritise. Knowing how people actually use the tools, and where they hit friction, is invaluable.
+- **Help us spread the word.** Write about your experience, give a talk, answer questions, or simply star the repositories. A more visible project attracts more contributors and more funding, which benefits everyone.
+If you are not sure where to start, just reach out, on the [GitHub organisation](https://github.com/ocsigen) or the community channels, and we will point you in the right direction.
+
+## Thanks
+
+A huge thank you to all our funders, and especially to Jane Street, Tarides, OCaml Software Foundation, NLnet and Ahrefs.
+
+
+---
+
+# A new home for the Ocsigen blog
+
+Published on 2026-06-14 by The Ocsigen team.
+
+The Ocsigen blog is back, and it is now built like the rest of the Ocsigen website: with [wodoc](/wodoc/), our odoc-based static site generator. Each post is a plain `.mld` file — the same lightweight markup we use for the manuals and the API documentation — so writing an article is just adding a file.
+
+## How it works
+
+A post lives in `doc/blog/posts/` and is named `YYYY-MM-DD-slug.mld`: the date in the file name is its publication date, and wodoc lists the posts newest first, both in the navigation on the left and on this page. The author comes from the standard odoc `@author` tag.
+
+The feed at `/feed.xml` is generated from the same sources, so it keeps working for the OCaml Planet aggregator exactly as before.
+
+
+---
+
+# Documenting OCaml projects with wodoc
+
+Published on 2026-06-07 by The Ocsigen team.
+
+[wodoc](/wodoc/) turns `.mld` and `.mli` sources into a complete, styled website — not just API documentation. The very site you are reading is built with it.
+
+The same sources render as plain semantic documentation with a stock odoc (for example on [ocaml.org](https://ocaml.org)) and as the full themed website when built with wodoc, with no fork of odoc and no separate dialect to learn. This blog is one more thing wodoc now does out of the box.
+
+## The whole site is migrated
+
+We have now migrated the entire Ocsigen website to wodoc: the documentation is entirely in the odoc format, and so is the full website — the home page, the project pages, this blog and the rest. There is a single, uniform toolchain from the API reference all the way to the landing page.
+
+## Still experimental — tell us what breaks
+
+wodoc is still **experimental**, and a migration this large is bound to have left rough edges: a broken link, a misrendered page, a missing style. If you spot anything that looks wrong, please **report it** on the [wodoc issue tracker](https://github.com/ocsigen/wodoc/issues) — it is a great help and will make the tool better for everyone.
